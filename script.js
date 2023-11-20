@@ -181,14 +181,60 @@ let swiperTestimonial = new Swiper(".testimonial-container", {
 
 //----preloader-----
 document.addEventListener("DOMContentLoaded", function () {
-  // Simulate a delay (1 second in this case) for demonstration purposes
+  // Array of preloader GIFs in the "Assets" folder
+  var preloaderGifs = [
+      "Assets/preloader1.gif",
+      "Assets/preloader2.gif",
+      "Assets/preloader3.gif",
+      "Assets/preloader4.gif",
+      "Assets/preloader5.gif",
+      "Assets/preloader6.gif",
+      "Assets/preloader.gif",
+      // Add more preloader GIFs as needed
+  ];
+
+  // Randomly select a preloader GIF
+  var randomIndex = Math.floor(Math.random() * preloaderGifs.length);
+  var selectedPreloader = preloaderGifs[randomIndex];
+
+  // Set the preloader image source
+  var preloaderImage = document.querySelector(".preloader-container img");
+  preloaderImage.src = selectedPreloader;
+
+  // Get the effective network connection type
+  var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+  // Default delay in milliseconds (1 second)
+  var delay = 1000;
+
+  // Adjust the delay based on the network speed
+  if (connection) {
+      switch (connection.effectiveType) {
+          case 'slow-2g':
+          case '2g':
+              delay = 5000; // 5 seconds for slow connections
+              break;
+          case '3g':
+              delay = 3000; // 3 seconds for 3G connections
+              break;
+          case '4g':
+              delay = 2000; // 2 seconds for 4G connections
+              break;
+          default:
+              // Use the default delay for unknown or faster connections
+              break;
+      }
+  }
+
+  // Simulate the adjusted delay
   setTimeout(function () {
-      // Hide the preloader after 1 second
+      // Hide the preloader after the adjusted delay
       hidePreloader();
-  }, 1000);
+  }, delay);
 });
 
 function hidePreloader() {
   var preloader = document.getElementById("preloader");
   preloader.style.display = "none";
 }
+

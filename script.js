@@ -178,3 +178,17 @@ let swiperTestimonial = new Swiper(".testimonial-container", {
     },
   },
 });
+
+//----preloader-----
+document.addEventListener("DOMContentLoaded", function () {
+  // Simulate a delay (1 second in this case) for demonstration purposes
+  setTimeout(function () {
+      // Hide the preloader after 1 second
+      hidePreloader();
+  }, 1000);
+});
+
+function hidePreloader() {
+  var preloader = document.getElementById("preloader");
+  preloader.style.display = "none";
+}

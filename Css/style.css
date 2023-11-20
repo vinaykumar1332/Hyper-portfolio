@@ -43,6 +43,8 @@
   --z-fixed: 100;
   --z-model: 100;
 
+  --preloader-backgorund:#FFFFFF;
+
   @media screen and (min-width: 968px) {
     :root {
       --big-font-size: 3rem;
@@ -1176,4 +1178,23 @@ img {
   .swiper-container-horizontal > .swiper-pagination-bullets {
     bottom: -4.5rem;
   }
+}
+
+/*-- preloader --*/
+.preloader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--preloader-backgorund); /* You can customize the background color and opacity */
+  z-index: 999;
+}
+
+.preloader-container img {
+  width: 50px; /* Adjust the width of the preloader image as needed */
+  height: 50px; /* Adjust the height of the preloader image as needed */
 }

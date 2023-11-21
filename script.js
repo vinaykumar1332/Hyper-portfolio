@@ -189,7 +189,18 @@ document.addEventListener("DOMContentLoaded", function () {
       "Assets/preloader4.gif",
       "Assets/preloader5.gif",
       "Assets/preloader6.gif",
-      "Assets/Preloader.gif",
+      "Assets/preloader7.gif",
+     "Assets/preloader8.gif",
+     "Assets/preloader9.gif",
+     "Assets/preloader10.gif",
+    "Assets/preloader11.gif",
+    "Assets/preloader12.gif",
+    "Assets/preloader12.gif",
+    "Assets/preloader13.gif",
+    "Assets/preloader14.gif",
+    "Assets/preloader15.gif",
+    "Assets/preloader16.gif",
+     "Assets/Preloader.gif",
       // Add more preloader GIFs as needed
   ];
 

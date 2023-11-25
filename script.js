@@ -247,4 +247,21 @@ function hidePreloader() {
   var preloader = document.getElementById("preloader");
   preloader.style.display = "none";
 }
+//--- skill-button automatic click function --//
+function clickButtonsWithInfiniteLoop() {
+  var skillButtons = document.querySelectorAll('.skills-name');
+  var delay = 1000; // 
+  var currentIndex = 0;
 
+  function clickButtonWithColorChange() {
+    skillButtons[currentIndex].style.backgroundColor = '#713abe';
+    setTimeout(function () {
+      skillButtons[currentIndex].click();
+      skillButtons[currentIndex].style.backgroundColor = ''; // Reset to default
+      currentIndex = (currentIndex + 1) % skillButtons.length;
+      clickButtonWithColorChange();
+    }, delay);
+  }
+  clickButtonWithColorChange();
+}
+clickButtonsWithInfiniteLoop();

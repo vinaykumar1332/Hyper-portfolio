@@ -265,3 +265,70 @@ function clickButtonsWithInfiniteLoop() {
   clickButtonWithColorChange();
 }
 clickButtonsWithInfiniteLoop();
+
+
+
+
+
+
+   // Use the Intersection Observer API to add a class when the section is in view
+   document.addEventListener('DOMContentLoaded', function() {
+    var section = document.querySelector('.qualification-section');
+    var observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.8 }); // Adjust the threshold as needed
+
+    observer.observe(section);
+  });
+
+ 
+
+    // Use the Intersection Observer API to add a class when a section is in view
+    document.addEventListener('DOMContentLoaded', function() {
+      var sections = document.querySelectorAll('.animated-section.other-class, .about-container, .services-container, .skills-name');
+
+      var observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { threshold: 0.8 });
+
+      sections.forEach(function(section) {
+        observer.observe(section);
+      });
+
+      var lastScrollTop = 0;
+
+      window.addEventListener('scroll', function() {
+        var st = window.scrollY || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+          // Scrolling down
+          sections.forEach(function(section) {
+            if (!section.classList.contains('visible')) {
+              observer.observe(section);
+            }
+          });
+        } else {
+          // Scrolling up
+          sections.forEach(function(section) {
+            if (section.classList.contains('visible')) {
+              observer.unobserve(section);
+            }
+          });
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
+      });
+    });
+
+
+
+  

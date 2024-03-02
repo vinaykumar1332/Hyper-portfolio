@@ -355,5 +355,5 @@ function typeJs() {
 
 setInterval(() => {
   typeJs();
-}, 120);
+}, 140);
 

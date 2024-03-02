@@ -330,7 +330,7 @@ clickButtonsWithInfiniteLoop();
     });
 
 
-//
+//name text animation js 
 /* type js style  */
 // type js plugin
 let typeJsText = document.querySelector(".typeJsText");

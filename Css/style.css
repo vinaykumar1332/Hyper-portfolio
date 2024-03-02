@@ -447,7 +447,7 @@ img {
   margin-bottom: 1rem;
   margin-right: 1rem;
   font-size: var(--small-font-size);
-  background: var(--first-color-lighter);
+  background-color: var(--first-color-alt);
   border-radius: 5px;
   font-weight: 600;
   color: var(--title-color);
@@ -1266,4 +1266,26 @@ img {
 .skills-name.visible {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* type js style  */
+.typeJsWrapper {
+  padding: 0px 0px 20px 0px;
+
+  @media screen and (max-width: 480px) {
+    padding: 0px 0px 5px 0px;
+}
+}
+.typeJsWrapper .typeJsText {
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  font-size: 32px;
+  display: inline-block;
+  padding: 0;
+  border-right: 1px solid #414141;
+  max-width: max-content;
+
+  @media screen and (max-width: 480px) {
+    font-size: 20px;
+}
 }

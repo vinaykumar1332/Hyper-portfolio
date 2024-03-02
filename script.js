@@ -300,7 +300,7 @@ clickButtonsWithInfiniteLoop();
             entry.target.classList.remove('visible');
           }
         });
-      }, { threshold: 0.8 });
+      }, { threshold: 0.5 });
 
       sections.forEach(function(section) {
         observer.observe(section);
@@ -330,5 +330,30 @@ clickButtonsWithInfiniteLoop();
     });
 
 
+//
+/* type js style  */
+// type js plugin
+let typeJsText = document.querySelector(".typeJsText");
+let textArray = typeJsText.dataset.typetext.split("");
+let counter = -1;
 
-  
+typeJsText.innerHTML = "";
+
+function typeJs() {
+  if (counter < typeJsText.dataset.typetext.length) {
+    counter++;
+    typeJsText.innerHTML += typeJsText.dataset.typetext.charAt(counter);
+    textArray = typeJsText.dataset.typetext.split("");
+  } else {
+    textArray.pop();
+    typeJsText.innerHTML = textArray.join("");
+    if (textArray.length == 0) {
+      counter = -1;
+    }
+  }
+}
+
+setInterval(() => {
+  typeJs();
+}, 120);
+

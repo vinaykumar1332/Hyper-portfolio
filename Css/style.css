@@ -112,7 +112,7 @@ body {
   transition: 0.3s ease-in;
 }
 
-h1,
+
 h2,
 h3,
 h4 {
@@ -1296,13 +1296,18 @@ img {
 
 .typeJsWrapper .typeJsText {
   text-align: center;
-  font-family: Verdana, sans-serif;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 32px;
   display: inline-block;
   border-right: 3px solid var(--first-color);
   max-width: max-content;
 
   @media screen and (max-width: 480px) {
-    font-size: 20px;
+    font-size: 19px;
   }
+}
+
+.lazy {
+  opacity: 0; /* Initially hide lazy-loaded elements */
+  transition: opacity 0.5s ease-in-out; /* Add a smooth transition effect */
 }

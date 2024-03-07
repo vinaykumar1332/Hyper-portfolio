@@ -333,27 +333,56 @@ clickButtonsWithInfiniteLoop();
 //name text animation js 
 /* type js style  */
 // type js plugin
-let typeJsText = document.querySelector(".typeJsText");
-let textArray = typeJsText.dataset.typetext.split("");
-let counter = -1;
+document.addEventListener('DOMContentLoaded', function () {
+  let typeJsText = document.querySelector(".typeJsText");
+  let textArray = typeJsText.dataset.typetext.split("");
+  let counter = -1;
 
-typeJsText.innerHTML = "";
-
-function typeJs() {
-  if (counter < typeJsText.dataset.typetext.length) {
-    counter++;
-    typeJsText.innerHTML += typeJsText.dataset.typetext.charAt(counter);
-    textArray = typeJsText.dataset.typetext.split("");
-  } else {
-    textArray.pop();
-    typeJsText.innerHTML = textArray.join("");
-    if (textArray.length == 0) {
-      counter = -1;
+  function typeJs() {
+    if (counter < typeJsText.dataset.typetext.length) {
+      counter++;
+      typeJsText.innerHTML += typeJsText.dataset.typetext.charAt(counter);
+      textArray = typeJsText.dataset.typetext.split("");
     }
   }
-}
 
-setInterval(() => {
-  typeJs();
-}, 140);
+  setTimeout(() => {
+    setInterval(() => {
+      typeJs();
+    }, 140);
+  }, 4000); // Adjust the delay (in milliseconds) as needed
+});
 
+//-sun-moon
+document.addEventListener('DOMContentLoaded', function () {
+  const themeButton = document.getElementById('theme-button');
+  const body = document.body;
+
+  themeButton.addEventListener('click', function () {
+    body.classList.toggle('dark-mode');
+    body.classList.toggle('dark-mode');
+    console.log("test1");
+
+    // Toggle the moon icon when switching themes
+    themeButton.classList.toggle('fa-moon');
+    themeButton.classList.toggle('fa-sun');
+  });
+});
+
+//---refresh the page
+document.addEventListener('DOMContentLoaded', function () {
+  const themeButton = document.getElementById('theme-button');
+
+  themeButton.addEventListener('click', function () {
+      // Check if the flag is set in local storage
+      const hasRefreshed = localStorage.getItem('hasRefreshed');
+
+      if (!hasRefreshed) {
+          // Your code to refresh the page goes here
+          location.reload();
+
+          // Set the flag in local storage to indicate that the page has been refreshed
+          localStorage.setItem('hasRefreshed', true);
+      }
+  });
+});

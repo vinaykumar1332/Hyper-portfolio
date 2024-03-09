@@ -368,21 +368,3 @@ document.addEventListener('DOMContentLoaded', function () {
     themeButton.classList.toggle('fa-sun');
   });
 });
-
-//---refresh the page
-document.addEventListener('DOMContentLoaded', function () {
-  const themeButton = document.getElementById('theme-button');
-
-  themeButton.addEventListener('click', function () {
-      // Check if the flag is set in local storage
-      const hasRefreshed = localStorage.getItem('hasRefreshed');
-
-      if (!hasRefreshed) {
-          // Your code to refresh the page goes here
-          location.reload();
-
-          // Set the flag in local storage to indicate that the page has been refreshed
-          localStorage.setItem('hasRefreshed', true);
-      }
-  });
-});

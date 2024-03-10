@@ -2,6 +2,7 @@
 
 :root {
   --header-height: 3rem;
+  --header-height-cs :3.3rem;
 
   --hue-color: 250;
 
@@ -180,7 +181,7 @@ img {
 
 .nav {
   max-width: 968px;
-  height: var(--header-height);
+  height: var(--header-height-cs);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1306,6 +1307,18 @@ img {
       font-size: 19px;
     }
   }
+}
+.progress-bar {
+  width: 0%;
+  height: 4px;
+  background-color: #4CAF50;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s;
+}
 
-
+.button {
+  position: relative;
+  overflow: hidden;
 }

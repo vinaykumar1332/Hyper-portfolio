@@ -368,3 +368,4 @@ document.addEventListener('DOMContentLoaded', function () {
     themeButton.classList.toggle('fa-sun');
   });
 });
+

@@ -368,3 +368,32 @@ document.addEventListener('DOMContentLoaded', function () {
     themeButton.classList.toggle('fa-sun');
   });
 });
+
+function startDownload() {
+  const downloadButton = document.getElementById('downloadButton');
+  const progressBar = document.getElementById('progressBar');
+
+  // Disable the button during download
+  downloadButton.setAttribute('disabled', 'true');
+
+  // Simulate a 2-second download process (adjust as needed)
+  let width = 0;
+  const downloadProgress = setInterval(function () {
+      if (width >= 100) {
+          clearInterval(downloadProgress);
+          // Enable the button after download completion
+          downloadButton.removeAttribute('disabled');
+      } else {
+          width += 10;
+          progressBar.style.width = width + '%';
+      }
+  }, 200);
+
+  // Simulate downloading the file (replace with actual download logic)
+  setTimeout(function () {
+      progressBar.style.width = '100%';
+
+      // Redirect to the actual file download link
+      window.location.href = downloadButton.getAttribute('href');
+  }, 2000); // Simulating a 2-second download time (adjust as needed)
+}

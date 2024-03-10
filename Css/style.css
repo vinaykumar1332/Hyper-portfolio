@@ -1307,6 +1307,18 @@ img {
       font-size: 19px;
     }
   }
+}
+.progress-bar {
+  width: 0%;
+  height: 4px;
+  background-color: #4CAF50;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s;
+}
 
-
+.button {
+  position: relative;
+  overflow: hidden;
 }

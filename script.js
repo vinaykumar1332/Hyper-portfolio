@@ -198,7 +198,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "Assets/preloader12.gif",
     "Assets/preloader13.gif",
     "Assets/preloader14.gif",
+    "Assets/preloader15.gif",
     "Assets/preloader16.gif",
+    "Assets/preloader17.gif",
      "Assets/Preloader.gif",
       // Add more preloader GIFs as needed
   ];

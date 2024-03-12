@@ -2,7 +2,7 @@
 
 :root {
   --header-height: 3rem;
-  --header-height-cs :3.3rem;
+  --header-height-cs: 3.3rem;
 
   --hue-color: 250;
 
@@ -1196,6 +1196,7 @@ img {
 /*-- preloader --*/
 .preloader-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -1206,6 +1207,30 @@ img {
   background-color: var(--preloader-backgorund);
   /* You can customize the background color and opacity */
   z-index: 999;
+
+  & p {
+    margin-top: 5%;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    /* Make the text bold */
+    text-transform: uppercase;
+    /* Convert text to uppercase for emphasis */
+    letter-spacing: 2px;
+    /* Add some letter spacing for clarity */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    /* Add a subtle shadow for depth */
+    animation: shake 0.8s infinite;
+    font-family: 'Roboto', sans-serif; /* Use the Roboto font family */
+  }
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+  }
 }
 
 .preloader-container img {
@@ -1308,17 +1333,52 @@ img {
     }
   }
 }
-.progress-bar {
-  width: 0%;
-  height: 4px;
-  background-color: #4CAF50;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transition: width 0.3s;
+
+/*--custome-alret-box--*/
+.custom-alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: none;
+  /* Hide initially */
+  animation: fadeInOut 3s ease-in-out forwards;
+  /* Fade in/out animation */
+
+  & p {
+    margin: 0;
+    color: #721c24;
+  }
 }
 
-.button {
-  position: relative;
-  overflow: hidden;
+/* Styles for the text inside the custom alert box */
+
+
+/* Keyframes for fade in/out animation */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
 }

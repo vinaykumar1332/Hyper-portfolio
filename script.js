@@ -368,4 +368,21 @@ document.addEventListener('DOMContentLoaded', function () {
     themeButton.classList.toggle('fa-sun');
   });
 });
+//--check the sun or moon else refresh 
+document.addEventListener('DOMContentLoaded', function () {
+  const changeThemeIcon = document.querySelector('.fa-regular.change-theme');
 
+  // Function to check and refresh the page if needed
+  function checkAndRefresh() {
+      // Check if the 'change-theme' icon has either 'fa-moon' or 'fa-sun'
+      const hasMoonOrSunIcon = changeThemeIcon.classList.contains('fa-moon') || changeThemeIcon.classList.contains('fa-sun');
+
+      if (!hasMoonOrSunIcon) {
+          // Refresh the page
+          location.reload();
+      }
+  }
+
+  // Check and refresh periodically (adjust the interval as needed)
+  setInterval(checkAndRefresh, 1000); // Check every second
+});

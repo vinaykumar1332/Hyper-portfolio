@@ -394,3 +394,108 @@ document.addEventListener('DOMContentLoaded', function () {
     // Check and refresh periodically (adjust the interval as needed)
     setInterval(checkAndRefresh, 1000); // Check every second
 });
+
+
+const carousel = document.getElementById('carousel');
+const carouselTrack = document.querySelector('.carousel-track');
+const carouselItems = document.querySelectorAll('.carousel-item');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const carouselIndicators = document.querySelector('.carousel-indicators');
+
+let currentIndex = 0;
+const slideWidth = carouselItems[0].clientWidth;
+const slidesCount = carouselItems.length;
+
+// Set initial position
+carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+// Auto slide
+let autoSlideInterval;
+
+function startAutoSlide() {
+  autoSlideInterval = setInterval(() => {
+    nextSlide();
+  }, 3500); // Change slide every 3 seconds (adjust as needed)
+}
+
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+}
+
+startAutoSlide();
+
+// Next slide
+function nextSlide() {
+  currentIndex++;
+  if (currentIndex >= slidesCount) {
+    currentIndex = 0;
+  }
+  updateSlide();
+}
+
+// Previous slide
+function prevSlide() {
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = slidesCount - 1;
+  }
+  updateSlide();
+}
+
+// Update slide
+function updateSlide() {
+  carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+  carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  updateIndicators();
+}
+
+// Update indicators
+function updateIndicators() {
+  const indicators = carouselIndicators.querySelectorAll('.carousel-indicator');
+  indicators.forEach((indicator, index) => {
+    indicator.classList.remove('active');
+    if (index === currentIndex) {
+      indicator.classList.add('active');
+    }
+  });
+}
+
+// Next button click event
+nextBtn.addEventListener('click', () => {
+  nextSlide();
+  stopAutoSlide();
+  startAutoSlide();
+});
+
+// Previous button click event
+prevBtn.addEventListener('click', () => {
+  prevSlide();
+  stopAutoSlide();
+  startAutoSlide();
+});
+
+// Transition end event
+carouselTrack.addEventListener('transitionend', () => {
+  if (currentIndex === slidesCount - 1) {
+    carouselTrack.style.transition = 'none';
+    currentIndex = 0;
+    carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+});
+
+// Create bullet indicators
+for (let i = 0; i < slidesCount; i++) {
+  const indicator = document.createElement('div');
+  indicator.classList.add('carousel-indicator');
+  if (i === currentIndex) {
+    indicator.classList.add('active');
+  }
+  indicator.addEventListener('click', () => {
+    currentIndex = i;
+    updateSlide();
+    stopAutoSlide();
+    startAutoSlide();
+  });
+  carouselIndicators.appendChild(indicator);
+}

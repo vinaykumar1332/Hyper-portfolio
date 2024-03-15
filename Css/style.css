@@ -1405,21 +1405,30 @@ img {
 }
 
 /*-------carousel-component---------*/
+.portfolio{
+ max-width: max-content;
+}
 .carousel {
   position: relative;
   overflow: hidden;
   margin: 0 auto;
   width: 70%;
+  border-radius: 4%;
 
   @media screen and (min-width:480px) {
     width: 50%;
     overflow: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column-reverse;
   }
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease-in-out;
+  justify-content: center;
+  align-items: center;
 }
 
 .carousel-item {
@@ -1432,6 +1441,11 @@ img {
 .carousel-item img {
   max-width: 100%;
   height: auto;
+  object-fit: cover;
+  @media screen and (max-width:480px){
+    max-width: 100%;
+    object-position: center;
+  }
 }
 
 .carousel-caption {
@@ -1448,18 +1462,18 @@ img {
   color: var(--container-color);
   border: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 22px;
   z-index: 1;
   padding: 10px;
-  border-radius: 80%;
+  border-radius: 25%;
   margin-left: -20px;
   margin-right: -20px;
   background-color: var(--text-color);
-  opacity: 0.2;
+  opacity: 0.7;
 
   @media screen and (min-width:480px) {
-    background-color:var(--text-color);
-    opacity: 1;
+    background-color: var(--text-color);
+    opacity: 0.6;
     color: var(--container-color);
   }
 }
@@ -1483,21 +1497,25 @@ img {
 .carousel-indicator {
   width: 12px;
   height: 12px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--text-color);
   /* Semi-transparent white */
-  border-radius: 50%;
+  border-radius: 25%;
   margin: 0 5px;
   cursor: pointer;
 
   @media screen and (max-width: 480px) {
     width: 6px;
     height: 6px;
+    background-color: var(--container-color);
   }
 }
 
 .carousel-indicator.active {
   background-color:#713abe;
   /* White color for active indicator */
+  @media screen and (max-width: 480px) {
+    background-color: var(--text-color);
+  }
 }
 
 #carousel-p{

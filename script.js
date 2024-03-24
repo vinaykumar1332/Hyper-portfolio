@@ -499,3 +499,11 @@ for (let i = 0; i < slidesCount; i++) {
   });
   carouselIndicators.appendChild(indicator);
 }
+
+setInterval(function() {
+  changeThemeIcon.themeButton.classList.toggle('fa-moon');
+  changeThemeIcon.themeButton.classList.toggle('fa-sun');
+  console.log(fa-sun);
+  changeThemeIcon.themeButton.classList.toggle('spin-animation1');
+  console.log("test1")
+}, 1000); // Spin the icon every 3 seconds

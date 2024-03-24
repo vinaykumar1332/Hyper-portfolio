@@ -1525,3 +1525,112 @@ img {
   margin-top: 10px;
   color: var(--body-font);
 }
+
+#please-wait{
+  display: block;
+  animation: none;
+}
+
+.button-icon {
+  font-size: 24px; /* Adjust size as needed */
+}
+
+@keyframes shake0 {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.shake-animation {
+  animation: shake0 3s ease infinite; /* Adjust animation duration and timing as needed */
+}
+
+
+.home-scroll-button {
+  /* Add styles for the button if needed */
+}
+
+.home-scroll-arrow {
+  /* Add any necessary styles for the arrow icon */
+}
+
+@keyframes shake1 {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.shake-animation1 {
+  animation: shake1 3s ease infinite; /* Adjust animation duration and timing as needed */
+}
+
+
+.change-theme {
+  font-size: 24px; /* Adjust size as needed */
+  cursor: pointer;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation1 {
+  animation: spin 1s linear; /* Adjust animation duration and timing as needed */
+}
+.fa-moon {
+  animation: spin 1.5s linear;
+}
+
+
+
+/*--scroll-to-top--*/
+.scrollup.show-scroll {
+  display: block;
+  animation: shake2 0.5s infinite alternate;
+  padding-top: -2px;
+}
+
+@keyframes shake2 {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-5px); /* Adjust the distance for desired shake effect */
+  }
+}
+
+
+.scroll-up-icon:active {
+  animation: shake2 0.3s; /* Add shake animation when the button is clicked */
+}
+
+

@@ -74,7 +74,6 @@ body.dark-theme {
 .nav-btns {
   display: flex;
   align-items: center;
-  align-items: center;
   padding-right: 5px;
 }
 
@@ -316,10 +315,6 @@ img {
 
 .home-description {
   margin-bottom: var(--margin-bottom-0-2);
-}
-
-.home-scroll {
-  /* display: none; */
 }
 
 .home-scroll-button {
@@ -819,11 +814,6 @@ img {
   flex-direction: column;
   row-gap: 1.5rem;
 }
-
-.footer-link {
-  /* hii  */
-}
-
 .footer-link:hover {
   color: var(--first-color-lighter);
 }
@@ -870,6 +860,7 @@ img {
 .scroll-up-icon {
   font-size: 1.25rem;
   color: #fff;
+  line-height: 1.40 !important;
 }
 
 .show-scroll {
@@ -1557,15 +1548,6 @@ img {
   animation: shake0 3s ease infinite; /* Adjust animation duration and timing as needed */
 }
 
-
-.home-scroll-button {
-  /* Add styles for the button if needed */
-}
-
-.home-scroll-arrow {
-  /* Add any necessary styles for the arrow icon */
-}
-
 @keyframes shake1 {
   0% {
     transform: translateY(0);
@@ -1596,11 +1578,22 @@ img {
 
 @keyframes spin {
   0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media screen and (max-width: 480px) {
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
+}
 }
 
 .spin-animation1 {

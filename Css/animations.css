@@ -84,3 +84,12 @@
   vertical-align: middle;
   margin-right: 10px;
 }
+
+
+/* ---blocked the content copying using ctl+c */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}

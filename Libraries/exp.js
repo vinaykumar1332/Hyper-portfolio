@@ -126,6 +126,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
           blockNotificationCount++;
       } else if (blockNotificationCount >= maxBlockNotificationCount) {
           displayNotification("notification3", "Your IP has been blocked and reported to the admin team. Please be cautious.");
+          window.alert("Warning");
+          window.location.reload();
           // You can implement further actions here, like IP blocking and reporting
       }
   });
@@ -136,3 +138,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
           rightClickCount = 0;
       }
   });
+
+//  ----------------------------------------
+
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});

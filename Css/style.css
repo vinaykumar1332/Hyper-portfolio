@@ -1632,25 +1632,7 @@ img {
   animation: shake2 0.3s; /* Add shake animation when the button is clicked */
 }
 
-.arrow {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 0 5px 7px;
-  border-color: transparent transparent transparent var(--text-color); /* Adjust color as needed */
-  margin-left: 5px;
-  animation: arrowAnimation 2s ease-in-out infinite alternate;
-}
 
-@keyframes arrowAnimation {
-  0% {
-      transform: translateX(0);
-  }
-  100% {
-      transform: translateX(10px); /* Adjust distance of movement */
-  }
-}
 
 
 

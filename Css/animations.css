@@ -21,4 +21,66 @@
     }
   }
 
+  .home-blob-img img {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    pointer-events: none;
+}
 
+/* --nofification warning */
+.notification {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  animation: slideDown 0.6s ease-out forwards, fadeOut 0.5s 2.5s ease-out forwards;
+}
+
+.notification:first-of-type {
+  background-color: #6fa8dc; /* Light blue for the first notification */
+}
+
+.notification:nth-of-type(2) {
+  background-color: #ff7f0e; /* Orange for the second notification */
+}
+
+.notification:last-of-type {
+  background-color: #ff4d4d; /* Red for the third notification */
+}
+
+@keyframes slideDown {
+  0% {
+      transform: translate(-50%, -100%);
+  }
+  100% {
+      transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+
+.notification-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}

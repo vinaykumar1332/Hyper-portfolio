@@ -48,3 +48,34 @@ setInterval(updateAboutInfo, 5000);
 
 // Start observing changes
 observeAndRefresh();
+
+
+// ------------please wait animation dots ---------------------
+// JavaScript code to animate the dots
+let dots = document.getElementById("dots");
+let animationInterval;
+
+function animateDots() {
+    animationInterval = setInterval(function() {
+        switch (dots.innerHTML) {
+            case ".":
+                dots.innerHTML = "..";
+                break;
+            case "..":
+                dots.innerHTML = "...";
+                break;
+            case "...":
+                dots.innerHTML = ".";
+                break;
+            default:
+                dots.innerHTML = ".";
+                break;
+        }
+    }, 450); 
+}
+
+// Start the animation when the page loads
+window.onload = function() {
+    animateDots();
+};
+

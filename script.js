@@ -512,3 +512,4 @@ function animateGradient() {
       });
   }, 5000); // Change this value to adjust the duration of the animation
 }
+

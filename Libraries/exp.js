@@ -144,3 +144,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 });
+
+// ------------------------
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    simulateFormSubmission();
+});
+
+function simulateFormSubmission() {
+    // Simulate form submission delay (1.5 seconds)
+    setTimeout(function() {
+        showNotification();
+    }, 700);
+}
+
+function showNotification() {
+    var notification = document.getElementById('notificationForm');
+    notification.style.display = 'block'; // Display the notification
+}
+
+function closeNotification() {
+    var notification = document.getElementById('notificationForm');
+    notification.style.display = 'none'; // Hide the notification
+    setTimeout(function() {
+        window.scrollTo(0, 0); // Scroll to the top of the page
+        window.location.reload();
+    }, 500);
+}

@@ -512,16 +512,16 @@
         <section class="contact section" id="contact">
             <h2 class="section-title">Contact me</h2>
             <span class="section-subtitle">Get in touch<span class="arrow"></span></span>
-             <div class="container-form-contact" id="blur-container">
-                <form id="contactForm" action="" method="post">      
-                    <input name="name" type="text" class="feedback-input" placeholder="Name" required />   
-                    <input name="email" type="text" class="feedback-input" placeholder="Email" required />
+            <div class="container-form-contact">
+                <form id="contactForm" action="" method="post" onsubmit="return validateForm()">
+                    <input name="name" type="text" class="feedback-input" placeholder="Name" required />
+                    <input name="email" type="email" class="feedback-input" placeholder="Email" required />
                     <textarea name="text" class="feedback-input" placeholder="Comment" required></textarea>
                     <div class="send-button">
-                        <input type="submit" value="Send" class="send-button"/><span class="icon"><i class="fas fa-paper-plane"></i> </span>
-                        </div>
+                        <input type="submit" value="Send" class="send-button"/><span class="icon"><i class="fas fa-paper-plane"></i></span>
+                    </div>
                 </form>
-             </div>
+            </div>
             <div class="contact-container container grid">
                 <div>
                     <div class="contact-info">

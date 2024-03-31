@@ -126,8 +126,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
           blockNotificationCount++;
       } else if (blockNotificationCount >= maxBlockNotificationCount) {
           displayNotification("notification3", "Your IP has been blocked and reported to the admin team. Please be cautious.");
-          window.alert("Warning");
-          window.location.reload();
+          setTimeout(function() {
+            window.location.href = 'ip_blocking.html'; // Redirect to the specified page
+            setTimeout(function() {
+                history.replaceState()
+                window.history.replaceState({}, document.title, window.location.pathname); // Clear browser history
+            }, 50); // Execute after redirect to ensure it's not blocked by browser security
+        }, 3000); // Redirect after 3 seconds
           // You can implement further actions here, like IP blocking and reporting
       }
   });
@@ -166,8 +171,27 @@ function showNotification() {
 function closeNotification() {
     var notification = document.getElementById('notificationForm');
     notification.style.display = 'none'; // Hide the notification
-    setTimeout(function() {
-        window.scrollTo(0, 0); // Scroll to the top of the page
+    setTimeout(function() { 
         window.location.reload();
+        window.scrollTo(0, 0);
     }, 500);
+}
+window.scrollTo(0, 0);
+
+
+
+// -------------------------------------
+function validateForm() {
+    var name = document.forms["contactForm"]["name"].value;
+    var email = document.forms["contactForm"]["email"].value;
+
+    if (name == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+    if (email == "") {
+        alert("Email must be filled out");
+        return false;
+    }
+    return true;
 }

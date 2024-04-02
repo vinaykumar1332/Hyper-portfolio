@@ -177,21 +177,3 @@ function closeNotification() {
     }, 500);
 }
 window.scrollTo(0, 0);
-
-
-
-// -------------------------------------
-function validateForm() {
-    var name = document.forms["contactForm"]["name"].value;
-    var email = document.forms["contactForm"]["email"].value;
-
-    if (name == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-    if (email == "") {
-        alert("Email must be filled out");
-        return false;
-    }
-    return true;
-}

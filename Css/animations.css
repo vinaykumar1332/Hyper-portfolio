@@ -87,12 +87,12 @@
 
 
 /* ---blocked the content copying using ctl+c */
-/* body {
+body {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-} */
+}
 
 /* ----------form---------css */
 

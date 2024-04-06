@@ -4,18 +4,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="expires" content="Wed, 21 Oct 2026 07:28:00 GMT">
+    <meta name="description" content="Welcome to vinay kumar pudi portfolio website. Explore a curated collection of my latest projects showcasing my skills in javascript. From web design and development to graphic design and more, discover how I can bring creativity and innovation to your next project.">
     <title>Vinay Kumar</title>
     <link rel="stylesheet" href="Libraries/swiper-bundle.min.css" />
     <link rel="stylesheet" href="Css/style.css" />
+    <link rel="stylesheet" href="Css/animations.css" />
+    <link rel="icon" type="image/x-icon" href="/Assets/favicon-v.svg" />
 </head>
 
-<body>
+<body class="icon-Theme">
+    <div class="custom-alert" id="custom-alert">
+        <p>Hold on tight! The magic monkeys are updating the page. 🐵</p>
+    </div>
     <!-- Preloader  -->
-     <section class="loader">
+    <section class="loader">
         <div class="preloader-container" id="preloader">
-            <img src=" " alt="Loading...">
-          </div>
-     </section>
+            <img src="" alt="Loading...">
+            <p id="please-wait">Please wait<span id="dots">...</span></p>
+        </div>
+    </section>
     <!-- header  -->
     <header class="header" id="header">
         <nav class="nav container">
@@ -24,22 +36,28 @@
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-list grid">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link"><i class="fa-solid fa-house nav-icon"></i> Home</a>
+                        <a href="#home" class="nav-link"><i class="fa-solid fa-house nav-icon"
+                                loading="lazy lazy-icon"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#about" class="nav-link"><i class="fa-solid fa-user nav-icon"></i> About</a>
+                        <a href="#about" class="nav-link"><i class="fa-solid fa-user nav-icon"
+                                loading="lazy lazy-icon"></i> About</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#skills" class="nav-link"><i class="fa-solid fa-file nav-icon"></i> Skills</a>
+                        <a href="#skills" class="nav-link"><i class="fa-solid fa-file nav-icon"
+                                loading="lazy lazy-icon"></i> Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#services" class="nav-link"><i class="fa-solid fa-briefcase nav-icon"></i> Services</a>
+                        <a href="#services" class="nav-link"><i class="fa-solid fa-briefcase nav-icon"
+                                loading="lazy lazy-icon"></i> Services</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#portfolio" class="nav-link"><i class="fa-solid fa-image nav-icon"></i> Projects</a>
+                        <a href="#portfolio" class="nav-link"><i class="fa-solid fa-image nav-icon"
+                                loading="lazy lazy-icon"></i> Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#contact" class="nav-link"><i class="fa-solid fa-message nav-icon"></i> Contact</a>
+                        <a href="#contact" class="nav-link"><i class="fa-solid fa-message nav-icon"
+                                loading="lazy lazy-icon"></i> Contact</a>
                     </li>
                 </ul>
                 <i class="fa-solid fa-xmark nav-close" id="nav-close"></i>
@@ -48,7 +66,6 @@
             <div class="nav-btns">
                 <!-- theme btn  -->
                 <i class="fa-regular fa-moon change-theme" id="theme-button"></i>
-
                 <div class="nav-toggle" id="nav-toggle">
                     <i class="fa-solid fa-bars"></i>
                 </div>
@@ -57,25 +74,44 @@
     </header>
 
     <main class="main">
+        <!-- Notification -->
+        <div class="container-notification">
+            <div class="notification" id="notification1">
+                <span class="notification-icon"><i class="fas fa-info-circle"></i></span>
+                Right-clicking is disabled on this website. Please respect the site's content.
+            </div>
+
+            <div class="notification" id="notification2">
+                <span class="notification-icon"><i class="fas fa-exclamation-triangle"></i></span>
+                Your IP will be blocked if you continue to attempt right-clicking.
+            </div>
+
+            <div class="notification" id="notification3">
+                <span class="notification-icon"><i class="fas fa-ban"></i></span>
+                Your IP has been blocked and reported to the admin team. Please be cautious.
+            </div>
+        </div>
         <section class="home section" id="home">
             <div class="home-container container grid">
                 <div class="home-content grid">
                     <div class="home-social">
-                        <a href="https://www.linkedin.com/in/vinay-kumar-pudi-426634232" target="_blank"
-                            class="home-social-icon">
-                            <i class="fa-brands fa-linkedin-in"></i>
+                        <a href="https://www.linkedin.com/in/vinay-kumar-pudi-426634232" aria-label="linkedin link"
+                            target="_blank" rel="noopener noreferrer" class="home-social-icon">
+                            <i class="fa-brands fa-linkedin-in" loading="lazy lazy-icon"></i>
                         </a>
-                        <a href="https://www.instagram.com/mr_vinnu_1332/" target="_blank" class="home-social-icon">
-                            <i class="fa-brands fa-instagram"></i>
+                        <a href="https://www.instagram.com/mr_vinnu_1332/" aria-label="instagram link" target="_blank"
+                            class="home-social-icon" rel="noopener noreferrer">
+                            <i class="fa-brands fa-instagram" loading="lazy lazy-icon"></i>
                         </a>
-                        <a href="https://github.com" target="_blank" class="home-social-icon">
-                            <i class="fa-brands fa-github"></i>
+                        <a href="https://github.com" target="_blank" class="home-social-icon" aria-label="github link"
+                            rel="noopener noreferrer">
+                            <i class="fa-brands fa-github" loading="lazy lazy-icon"></i>
                         </a>
                     </div>
 
                     <div class="home-img">
                         <svg class="home-blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            xmlns:xlink="http://www.w3.org/1999/xlink" loading="lazy lazy-icon">
                             <mask id="mask0" mask-type="alpha">
                                 <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
         130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
@@ -87,28 +123,34 @@
         165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
         129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
         -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
-                                <image class="home-blob-img" x="-15" y="-1" href="Assets/profile-icon.png" />
+                                <image class="home-blob-img" x="-15" y="-1" href="Assets/profile-icon.png" /
+                                    loading="lazy lazy-icon" ondragstart="return false;">
                             </g>
                         </svg>
                     </div>
 
                     <div class="home-data">
-                        <h1 class="home-title">Hi, I am Vinay Kumar Pudi</h1>
+                        <div class="typeJsWrapper">
+                            <div class="container-name">
+                                <h1 class="typeJsText" data-typetext="Hi, I am Vinay Kumar Pudi"></h1>
+                            </div>
+                        </div>
                         <h3 class="home-subtitle">Frontend Developer</h3>
                         <p class="home-description">
                             Passionate frontend developer specializing in pixel-perfect web
                             design.
                         </p>
                         <a href="#contact" class="button button-flex">
-                            Contact Me <i class="fa-regular fa-envelope button-icon"></i>
+                            Contact Me <i class="fa-regular fa-envelope button-icon shake-animation"
+                                loading="lazy lazy-icon"></i>
                         </a>
                     </div>
                 </div>
                 <div class="home-scroll">
                     <a href="#about" class="home-scroll-button button-flex">
-                        <img class="home-scroll-mouse" src="Assets/mouse.svg" alt="" />
+                        <img class="home-scroll-mouse" loading="lazy lazy-icon" src="Assets/mouse.svg" alt="" />
                         <span class="home-scroll-name">Scroll down</span>
-                        <i class="fa-solid fa-angles-down home-scroll-arrow"></i>
+                        <i class="fa-solid fa-angles-down home-scroll-arrow shake-animation1"></i>
                     </a>
                 </div>
             </div>
@@ -116,10 +158,10 @@
 
         <section class="about section" id="about">
             <h2 class="section-title">About Me</h2>
-            <span class="section-subtitle">My Introduction</span>
+            <span class="section-subtitle">My Introduction<span class="arrow"></span></span>
 
             <div class="about-container container grid">
-                <img src="Assets/Icons/aboutimg.png" alt="" class="about-img" />
+                <img src="Assets/Icons/aboutimg.png" alt="" class="about-img" loading="lazy lazy-icon" />
 
                 <div class="about-data">
                     <p class="about-description">
@@ -134,7 +176,7 @@
 
                     <div class="about-info">
                         <div>
-                            <span class="about-info-title">1.8+</span>
+                            <span class="about-info-title" id="yearsExperiencePlaceholder"></span>
                             <span class="about-info-name">Years <br />
                                 experience</span>
                         </div>
@@ -153,6 +195,7 @@
                     <div class="about-buttons">
                         <a download="" href="/Assets/Resume1.pdf" class="button button-flex">
                             Download Resume<i class="fa-solid fa-file-arrow-down button-icon"></i>
+                            <div id="progressBar" class="progress-bar"></div>
                         </a>
                     </div>
                 </div>
@@ -162,21 +205,19 @@
         <!-- skills and qualification  -->
         <section class="skills section" id="skills">
             <h2 class="section-title">Skills</h2>
-            <span class="section-subtitle">My Technical Skills</span>
+            <span class="section-subtitle">My Technical Skills<span class="arrow"></span></span>
             <div class="skills-content container">
-                <div class="skills-name">JavaScript</div>
-                <div class="skills-name">React JS</div>
-                <div class="skills-name">Tailwind CSS</div>
-                <div class="skills-name">Bootstrap</div>
-                <div class="skills-name">CSS</div>
-                <div class="skills-name">SASS</div>
-                <div class="skills-name">Figma</div>
-                <div class="skills-name">Node JS</div>
+                <div class="skills-name skill-from-right">JavaScript</div>
+                <div class="skills-name skill-from-left">React JS</div>
+                <div class="skills-name skill-from-right">Tailwind CSS</div>
+                <div class="skills-name skill-from-left">Bootstrap</div>
+                <div class="skills-name skill-from-right">CSS</div>
+                <div class="skills-name skill-from-right">SASS</div>
             </div>
         </section>
         <section class="qualification section">
             <h2 class="section-title">Qualification</h2>
-            <span class="section-subtitle">My journey</span>
+            <span class="section-subtitle">My journey<span class="arrow"></span></span>
 
             <div class="qualification-container container">
                 <div class="qualification-tabs">
@@ -279,7 +320,7 @@
                                 <span class="qualification-subtitle">TCS</span>
                                 <div class="qualification-date">
                                     <i class="fa-solid fa-calendar-days"></i>
-                                    2023 - Present
+                                    2022 - Present
                                 </div>
                             </div>
                             <div>
@@ -314,13 +355,13 @@
 
         <section class="services section" id="services">
             <h2 class="section-title">Services</h2>
-            <span class="section-subtitle">What I offer</span>
+            <span class="section-subtitle">What I offer<span class="arrow"></span></span>
 
             <div class="services-container container grid">
                 <!-- service 1  -->
                 <div class="services-content">
                     <div>
-                        <i class="fa-solid fa-code services-icon"></i>
+                        <i class="fa-solid fa-code services-icon" loading="lazy lazy-icon"></i>
 
                         <h3 class="services-title">
                             Frontend <br />
@@ -329,7 +370,7 @@
                     </div>
                     <span class="button button-flex button-small button-link services-button">
                         View more
-                        <i class="fa-solid fa-arrow-right button-icon"></i>
+                        <i class="fa-solid fa-arrow-right button-icon" loading="lazy lazy-icon"></i>
                     </span>
 
                     <div class="services-box">
@@ -342,19 +383,23 @@
 
                             <ul class="services-box-services grid">
                                 <li class="services-box-list">
-                                    <i class="fa-regular fa-circle-check services-list-icon"></i>
+                                    <i class="fa-regular fa-circle-check services-list-icon"
+                                        loading="lazy lazy-icon"></i>
                                     <p>Responsive Web Design</p>
                                 </li>
                                 <li class="services-box-list">
-                                    <i class="fa-regular fa-circle-check services-list-icon"></i>
+                                    <i class="fa-regular fa-circle-check services-list-icon"
+                                        loading="lazy lazy-icon"></i>
                                     <p>Interactive User Interfaces</p>
                                 </li>
                                 <li class="services-box-list">
-                                    <i class="fa-regular fa-circle-check services-list-icon"></i>
+                                    <i class="fa-regular fa-circle-check services-list-icon"
+                                        loading="lazy lazy-icon"></i>
                                     <p>SEO-Friendly Implementations</p>
                                 </li>
                                 <li class="services-box-list">
-                                    <i class="fa-regular fa-circle-check services-list-icon"></i>
+                                    <i class="fa-regular fa-circle-check services-list-icon"
+                                        loading="lazy lazy-icon"></i>
                                     <p>Accessibility and UX Enhancement</p>
                                 </li>
                             </ul>
@@ -364,7 +409,7 @@
                 <!-- service 2 -->
                 <div class="services-content">
                     <div>
-                        <i class="fa-solid fa-hashtag services-icon"></i>
+                        <i class="fa-solid fa-hashtag services-icon" loading="lazy lazy-icon"></i>
                         <h3 class="services-title">
                             Content<br />
                             Creation
@@ -372,7 +417,7 @@
                     </div>
                     <span class="button button-flex button-small button-link services-button">
                         View more
-                        <i class="fa-solid fa-arrow-right button-icon"></i>
+                        <i class="fa-solid fa-arrow-right button-icon" loading="lazy lazy-icon"></i>
                     </span>
 
                     <div class="services-box">
@@ -385,19 +430,23 @@
 
                             <ul class="services-box-services grid">
                                 <li class="services-box-list">
-                                    <i class="fa-regular fa-circle-check services-list-icon"></i>
+                                    <i class="fa-regular fa-circle-check services-list-icon"
+                                        loading="lazy lazy-icon"></i>
                                     <p>Engaging Visual Content</p>
-                                </li>
+                                </li> git remote add origin
                                 <li class="services-box-list">
-                                    <i class="fa-regular fa-circle-check services-list-icon"></i>
+                                    <i class="fa-regular fa-circle-check services-list-icon"
+                                        loading="lazy lazy-icon"></i>
                                     <p>Social Media Management</p>
                                 </li>
                                 <li class="services-box-list">
-                                    <i class="fa-regular fa-circle-check services-list-icon"></i>
+                                    <i class="fa-regular fa-circle-check services-list-icon"
+                                        loading="lazy lazy-icon"></i>
                                     <p>Content Strategy Consulting</p>
                                 </li>
                                 <li class="services-box-list">
-                                    <i class="fa-regular fa-circle-check services-list-icon"></i>
+                                    <i class="fa-regular fa-circle-check services-list-icon"
+                                        loading="lazy lazy-icon"></i>
                                     <p>Brand Development and Growth</p>
                                 </li>
                             </ul>
@@ -408,92 +457,60 @@
         </section>
 
         <!-- portfolio -->
-      <!---<section class="portfolio section" id="portfolio">
-            <h2 class="section-title">Projects</h2>
-            <span class="section-subtitle">Most recent work</span>
-
-            <div class="portfolio-container container swiper-container">
-                <div class="swiper-wrapper">-->
-                    <!-- project1  -->
-                  <!---  <div class="portfolio-content grid swiper-slide">
-                        <img src="Assets/project1.svg" alt="" class="portfolio-img" />
-
-                        <div class="portfolio-data">
-                            <h3 class="portfolio-title">Business Websites</h3>
-                            <p class="portfolio-description">
-                                Dynamic business sites that reflect your brand and engage
-                                customers effectively.
-                            </p>
-                            <a href="https://github.com/harisahmad59/CodeHype-Responsive-Website" target="_blank"
-                                class="button button-flex button-small portfolio-button">Project Link
-                                <i class="fa-solid fa-arrow-right button-icon"></i></a>
-                        </div>
-                    </div> -->
-                    <!-- project2  -->
-                   <!--- <div class="portfolio-content grid swiper-slide">
-                        <img src="Assets/project2.svg" alt="" class="portfolio-img" />
-
-                        <div class="portfolio-data">
-                            <h3 class="portfolio-title">Portfolio Websites</h3>
-                            <p class="portfolio-description">
-                                Impressive portfolio sites that showcase your talents with a
-                                flawless user experience.
-                            </p>
-                            <a href="https://github.com/harisahmad59/Hypefolio" target="_blank"
-                                class="button button-flex button-small portfolio-button">Project Link
-                                <i class="fa-solid fa-arrow-right button-icon"></i></a>
-                        </div>
-                    </div> -->
-                    <!-- project3  -->
-                  <!--- <div class="portfolio-content grid swiper-slide">
-                        <img src="Assets/project3.svg" alt="" class="portfolio-img" />
-
-                        <div class="portfolio-data">
-                            <h3 class="portfolio-title">Landing Pages</h3>
-                            <p class="portfolio-description">
-                                Compelling landing pages that drive conversions and engage
-                                your audience.
-                            </p>
-                            <a href="https://github.com/harisahmad59/Hypefolio" target="_blank"
-                                class="button button-flex button-small portfolio-button">Project Link
-                                <i class="fa-solid fa-arrow-right button-icon"></i></a>
-                        </div>
-                    </div>
+        <!--section for projects -->
+        <section class="portfolio section" id="portfolio">
+            <h2 class="section-title">My Projects</h2>
+            <span class="section-subtitle highlight">Still in progress<span class="arrow"></span></span>
+            <div id="carousel" class="carousel">
+                <div class="carousel-track">
+                  <div class="carousel-item active">
+                    <a href="404.html"> <img src="Assets/demo1.jpeg" alt="Slide 1"></a>
+                    <div class="carousel-caption"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="404.html"> <img src="Assets/demo2.jpeg" alt="Slide 2"></a>
+                    <div class="carousel-caption"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="404.html"> <img src="Assets/demo3.jpeg" alt="Slide 3"></a>
+                    <div class="carousel-caption"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="404.html"> <img src="Assets/demo4.jpeg" alt="Slide 4"></a>
+                    <div class="carousel-caption"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <a href="4041.html"> <img src="Assets/demo2.jpeg" alt="Slide 5"></a>
+                    <div class="carousel-caption"></div>
+                  </div>
                 </div>
-                <div class="swiper-angles">
-                    <div class="swiper-button-next">
-                        <i class="fa-solid fa-angle-right swiper-icon"></i>
-                    </div>
-                    <div class="swiper-button-prev">
-                        <i class="fa-solid fa-angle-left swiper-icon"></i>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
+                <button id="prevBtn" class="carousel-btn prev">&#10094;</button>
+                <button id="nextBtn" class="carousel-btn next">&#10095;</button>
+                <div class="carousel-indicators"></div>
+              </div>
+              
+            <p id="carousel-p">Discover more by clicking the images.</p>
         </section>
-        <section class="project-contact section">
-            <div class="project-bg">
-                <div class="project-container container grid">
-                    <div class="project-data">
-                        <h2 class="project-title">Do you have a new project?</h2>
-                        <p class="project-description">
-                            Contact me now and get a 50% discount on your new project.
-                        </p>
-                        <a href="#contact" class="button button-flex button-white">Contact Me
-                            <i class="fa-regular fa-comment-dots project-icon button-icon"></i>
-                        </a>
-                    </div>
-                    <img src="Assets/Icons/contactme.png" alt="" class="project-img" />
-                </div>
-            </div>
-        </section> -->
-
-
         <!-- contact me  -->
+        <div class="notification-form" id="notificationForm">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>Form's on a coffee break! ☕️ We'll get it working again soon😴.</p>
+            <span class="close-btn" onclick="closeNotification()">&times;</span>
+        </div>
         <section class="contact section" id="contact">
             <h2 class="section-title">Contact me</h2>
-            <span class="section-subtitle">Get in touch</span>
-
+            <span class="section-subtitle">Get in touch<span class="arrow"></span></span>
+            <div class="container-form-contact">
+                <form id="contactForm" action="" method="post" onsubmit="return validateForm()">
+                    <input name="name" type="text" class="feedback-input" placeholder="Name" required />
+                    <input name="email" type="email" class="feedback-input" placeholder="Email" required />
+                    <textarea name="text" class="feedback-input" placeholder="Comment" required></textarea>
+                    <div class="send-button">
+                        <input type="submit" value="Send" class="send-button" /><span class="icon"><i
+                                class="fas fa-paper-plane"></i></span>
+                    </div>
+                </form>
+            </div>
             <div class="contact-container container grid">
                 <div>
                     <div class="contact-info">
@@ -505,11 +522,11 @@
                         </div>
                     </div>
                     <div class="contact-info">
-                        <i class="fa-brands fa-linkedin-in contact-icon"></i>
+                        <i class="fa-brands fa-linkedin-in contact-icon" loading="lazy lazy-icon"></i>
                         <div>
                             <h3 class="contact-title">Linkedin</h3>
-                            <a class="contact-subtitle" href="https://www.linkedin.com"
-                                target="_blank">@vinaypudi1332</a>
+                            <a class="contact-subtitle" href="https://www.linkedin.com" target="_blank"
+                                rel="noopener noreferrer">@vinaypudi1332 </a>
                         </div>
                     </div>
                 </div>
@@ -537,28 +554,35 @@
                     </ul>
 
                     <div class="footer-socials">
-                        <a href="https://www.linkedin.com" target="_blank" class="footer-social">
-                            <i class="fa-brands fa-linkedin-in"></i>
+                        <a href="https://www.linkedin.com/in/vinay-kumar-pudi-426634232" target="_blank"
+                            class="footer-social" rel="noopener noreferrer" aria-label="linkedin link">
+                            <i class="fa-brands fa-linkedin-in " loading="lazy lazy-icon"></i>
                         </a>
-                        <a href="https://github.com" target="_blank" target="_blank" class="footer-social">
-                            <i class="fa-brands fa-github"></i>
+                        <a href="https://github.com" target="_blank" target="_blank" class="footer-social"
+                            rel="noopener noreferrer" aria-label="github link">
+                            <i class="fa-brands fa-github" loading="lazy lazy-icon"></i>
                         </a>
-                        <a href="https://www.instagram.com" target="_blank" class="footer-social">
-                            <i class="fa-brands fa-instagram"></i>
+                        <a href="https://www.instagram.com/mr_vinnu_1332/" target="_blank" class="footer-social"
+                            rel="noopener noreferrer" aria-label="instagram link">
+                            <i class="fa-brands fa-instagram" loading="lazy lazy-icon"></i>
                         </a>
                     </div>
                 </div>
-                <p class="footer-copy">By vinay kumar - CodeHype</p>
+                <p class="footer-copy">By vinay kumar</p>
             </div>
         </footer>
     </main>
 
-    <a href="#home" class="scrollup" id="scroll-up">
+    <a href="#home" class="scrollup" id="scroll-up" aria-label="Home page with no link">
         <i class="fa-solid fa-arrow-up scroll-up-icon"></i>
     </a>
     <script src="Libraries/swiper-bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/9b634c15bd.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/9b634c15bd.js" ></script>
+    <script src="Libraries/script.min.js"></script>
+    <script src="Libraries/exp.js"></script>
+    <script src="Libraries/customeScript.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

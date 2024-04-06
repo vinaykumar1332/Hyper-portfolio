@@ -189,7 +189,19 @@ document.addEventListener("DOMContentLoaded", function () {
       "Assets/preloader4.gif",
       "Assets/preloader5.gif",
       "Assets/preloader6.gif",
-      "Assets/preloader.gif",
+      "Assets/preloader7.gif",
+     "Assets/preloader8.gif",
+     "Assets/preloader9.gif",
+     "Assets/preloader10.gif",
+    "Assets/preloader11.gif",
+    "Assets/preloader12.gif",
+    "Assets/preloader12.gif",
+    "Assets/preloader13.gif",
+    "Assets/preloader14.gif",
+    "Assets/preloader15.gif",
+    "Assets/preloader16.gif",
+    "Assets/preloader17.gif",
+     "Assets/Preloader.gif",
       // Add more preloader GIFs as needed
   ];
 
@@ -236,5 +248,268 @@ document.addEventListener("DOMContentLoaded", function () {
 function hidePreloader() {
   var preloader = document.getElementById("preloader");
   preloader.style.display = "none";
+}
+//--- skill-button automatic click function --//
+function clickButtonsWithInfiniteLoop() {
+  var skillButtons = document.querySelectorAll('.skills-name');
+  var delay = 1000; // 
+  var currentIndex = 0;
+
+  function clickButtonWithColorChange() {
+    skillButtons[currentIndex].style.backgroundColor = '#713abe';
+    setTimeout(function () {
+      skillButtons[currentIndex].click();
+      skillButtons[currentIndex].style.backgroundColor = ''; // Reset to default
+      currentIndex = (currentIndex + 1) % skillButtons.length;
+      clickButtonWithColorChange();
+    }, delay);
+  }
+  clickButtonWithColorChange();
+}
+clickButtonsWithInfiniteLoop();
+
+
+
+
+
+
+   // Use the Intersection Observer API to add a class when the section is in view
+   document.addEventListener('DOMContentLoaded', function() {
+    var section = document.querySelector('.qualification-section');
+    var observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.8 }); // Adjust the threshold as needed
+
+    observer.observe(section);
+  });
+
+ 
+
+    // Use the Intersection Observer API to add a class when a section is in view
+    document.addEventListener('DOMContentLoaded', function() {
+      var sections = document.querySelectorAll('.animated-section.other-class, .about-container, .services-container, .skills-name');
+
+      var observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { threshold: 0.5 });
+
+      sections.forEach(function(section) {
+        observer.observe(section);
+      });
+
+      var lastScrollTop = 0;
+
+      window.addEventListener('scroll', function() {
+        var st = window.scrollY || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+          // Scrolling down
+          sections.forEach(function(section) {
+            if (!section.classList.contains('visible')) {
+              observer.observe(section);
+            }
+          });
+        } else {
+          // Scrolling up
+          sections.forEach(function(section) {
+            if (section.classList.contains('visible')) {
+              observer.unobserve(section);
+            }
+          });
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
+      });
+    });
+
+
+//name text animation js 
+/* type js style  */
+// type js plugin
+document.addEventListener('DOMContentLoaded', function () {
+  let typeJsText = document.querySelector(".typeJsText");
+  let textArray = typeJsText.dataset.typetext.split("");
+  let counter = -1;
+
+  function typeJs() {
+    if (counter < typeJsText.dataset.typetext.length) {
+      counter++;
+      typeJsText.innerHTML += typeJsText.dataset.typetext.charAt(counter);
+      textArray = typeJsText.dataset.typetext.split("");
+    }
+  }
+
+  setTimeout(() => {
+    setInterval(() => {
+      typeJs();
+    }, 140);
+  }, 4000); // Adjust the delay (in milliseconds) as needed
+});
+
+//-sun-moon
+document.addEventListener('DOMContentLoaded', function () {
+  const themeButton = document.getElementById('theme-button');
+  const body = document.body;
+
+  themeButton.addEventListener('click', function () {
+    body.classList.toggle('dark-mode');
+    body.classList.toggle('dark-mode');
+    console.log("test1");
+
+    // Toggle the moon icon when switching themes
+    themeButton.classList.toggle('fa-moon');
+    themeButton.classList.toggle('fa-sun');
+  });
+});
+
+  // Use 'load' event instead of 'DOMContentLoaded' for broader compatibility
+  window.addEventListener('load', function () {
+    const changeThemeIcon = document.querySelector('.fa-regular.change-theme');
+
+    // Function to check and refresh the page if needed
+    function checkAndRefresh() {
+        // Check if the 'change-theme' icon has either 'fa-moon' or 'fa-sun'
+        const hasMoonOrSunIcon = changeThemeIcon.classList.contains('fa-moon') || changeThemeIcon.classList.contains('fa-sun');
+
+        if (!hasMoonOrSunIcon) {
+            // Display custom alert when refreshing
+            document.getElementById('custom-alert').style.display = 'block';
+
+            // Refresh the page after a delay (adjust as needed)
+            setTimeout(function () {
+                location.reload();
+            }, 3000); // Refresh after 3 seconds
+        }
+    }
+
+    // Check and refresh periodically (adjust the interval as needed)
+    setInterval(checkAndRefresh, 1000); // Check every second
+});
+
+
+const carousel = document.getElementById('carousel');
+const carouselTrack = document.querySelector('.carousel-track');
+const carouselItems = document.querySelectorAll('.carousel-item');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const carouselIndicators = document.querySelector('.carousel-indicators');
+
+let currentIndex = 0;
+const slideWidth = carouselItems[0].clientWidth;
+const slidesCount = carouselItems.length;
+
+// Set initial position
+carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+// Auto slide
+let autoSlideInterval;
+
+function startAutoSlide() {
+  autoSlideInterval = setInterval(() => {
+    nextSlide();
+  }, 3500); // Change slide every 3 seconds (adjust as needed)
+}
+
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+}
+
+startAutoSlide();
+
+// Next slide
+function nextSlide() {
+  currentIndex++;
+  if (currentIndex >= slidesCount) {
+    currentIndex = 0;
+  }
+  updateSlide();
+}
+
+// Previous slide
+function prevSlide() {
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = slidesCount - 1;
+  }
+  updateSlide();
+}
+
+// Update slide
+function updateSlide() {
+  carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+  carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  updateIndicators();
+}
+
+// Update indicators
+function updateIndicators() {
+  const indicators = carouselIndicators.querySelectorAll('.carousel-indicator');
+  indicators.forEach((indicator, index) => {
+    indicator.classList.remove('active');
+    if (index === currentIndex) {
+      indicator.classList.add('active');
+    }
+  });
+}
+
+// Next button click event
+nextBtn.addEventListener('click', () => {
+  nextSlide();
+  stopAutoSlide();
+  startAutoSlide();
+});
+
+// Previous button click event
+prevBtn.addEventListener('click', () => {
+  prevSlide();
+  stopAutoSlide();
+  startAutoSlide();
+});
+
+// Transition end event
+carouselTrack.addEventListener('transitionend', () => {
+  if (currentIndex === slidesCount - 1) {
+    carouselTrack.style.transition = 'none';
+    currentIndex = 0;
+    carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+});
+
+// Create bullet indicators
+for (let i = 0; i < slidesCount; i++) {
+  const indicator = document.createElement('div');
+  indicator.classList.add('carousel-indicator');
+  if (i === currentIndex) {
+    indicator.classList.add('active');
+  }
+  indicator.addEventListener('click', () => {
+    currentIndex = i;
+    updateSlide();
+    stopAutoSlide();
+    startAutoSlide();
+  });
+  carouselIndicators.appendChild(indicator);
+}
+
+$(document).ready(function() {
+  animateGradient();
+});
+
+function animateGradient() {
+  $('.highlight').css('background-image', 'linear-gradient(to right, #ff9900, #ff0055, #6600ff)');
+  setInterval(function() {
+      $('.highlight').animate({ backgroundPositionX: '100%' }, 5000, 'linear', function() {
+          $(this).css('background-position-x', '0%');
+      });
+  }, 5000); // Change this value to adjust the duration of the animation
 }
 

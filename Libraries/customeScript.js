@@ -65,7 +65,7 @@ function simulateFormSubmission() {
     // Simulate form submission delay (1.5 seconds)
     setTimeout(function() {
         showNotification();
-    }, 700);
+    }, 500);
 }
 
 function showNotification() {
@@ -73,12 +73,12 @@ function showNotification() {
     notification.style.display = 'block'; // Display the notification
 }
 
+const feedbackInput = document.querySelectorAll('input feedback-input')
 function closeNotification() {
     var notification = document.getElementById('notificationForm');
     notification.style.display = 'none'; // Hide the notification
     setTimeout(function() { 
-        window.location.reload();
-        window.scrollTo(0, 0);
+        feedbackInput.Value='';
     }, 500);
 }
 window.scrollTo(0, 0);

@@ -500,16 +500,4 @@ for (let i = 0; i < slidesCount; i++) {
   carouselIndicators.appendChild(indicator);
 }
 
-$(document).ready(function() {
-  animateGradient();
-});
-
-function animateGradient() {
-  $('.highlight').css('background-image', 'linear-gradient(to right, #ff9900, #ff0055, #6600ff)');
-  setInterval(function() {
-      $('.highlight').animate({ backgroundPositionX: '100%' }, 5000, 'linear', function() {
-          $(this).css('background-position-x', '0%');
-      });
-  }, 5000); // Change this value to adjust the duration of the animation
-}
 

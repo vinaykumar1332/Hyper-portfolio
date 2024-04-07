@@ -138,41 +138,6 @@ textarea {
   resize:vertical;
 }
 
-.send-button {
-  background-color: var(--first-color); /* Green */
-  border: none;
-  color: white;
-  padding: 7px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 2px 1px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: transform 0.2s ease; /* Add smooth transition to transform */
-}
-
-.send-button:hover {
-  transform: scale(1.05); /* Scale up a bit on hover */
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.send-button:hover {
-  animation: pulse 0.5s infinite alternate; /* Apply the pulse animation on hover */
-}
-
 
 
 /* -----------notifcation--------------- */
@@ -231,4 +196,54 @@ textarea {
 
 .notification-form .pulse {
   animation: pulse 1s infinite alternate; /* Apply the pulse animation */
+}
+
+
+
+.send-button {
+  background-color: var(--first-color); /* Green */
+  border: 2px solid transparent; /* Set initial border */
+  color: white;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 1px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Add smooth transition */
+  position: relative; /* Add position relative to apply pseudo-element */
+  overflow: hidden; /* Hide overflow to prevent overflow issues */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.send-button:hover {
+    transform: scale(1.05); /* Scale up a bit on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Add larger shadow on hover */
+    border-color: var(--first-color); /* Change border color on hover */
+}
+
+/* Optional: Add a border transition */
+.send-button {
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease-in-out;
+}
+
+.send-button:active {
+  animation: clickAnimation 0.5s linear; /* Apply the click animation */
+}
+
+@keyframes clickAnimation {
+  0% {
+      transform: scale(1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+      transform: scale(1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 }

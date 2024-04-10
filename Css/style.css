@@ -350,6 +350,7 @@ img {
   padding: 1rem;
   border-radius: 0.5rem;
   font-weight: var(--font-medium);
+  border-color: var(--text-color);
 }
 
 .button:hover {
@@ -438,7 +439,41 @@ img {
   justify-content: center;
 }
 
-/* skills  */
+/* -----------download button------------- */
+.button {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-text {
+  display: inline-block;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4.5px;
+    background-color: #CBC3E3; /* Fallback color for older browsers */
+    width: 0%;
+    transition: width 1s ease; /* Add smooth transition */
+    border-radius: 4px; /* Add rounded corners to the progress bar */
+    box-shadow: 0 0 5px var(--container-color); /* Add shadow for depth */
+}
+.button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--small-font-size);
+  font-weight: 600;
+}
+
+.button-icon {
+  transition: all 2s ease-out; /* Add transition for icon movement */
+}
+
+/* --------------------------------- */
+
 .skills-content {
   display: flex;
   flex-wrap: wrap;

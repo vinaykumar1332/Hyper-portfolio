@@ -9,8 +9,10 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="expires" content="Wed, 21 Oct 2026 07:28:00 GMT">
-    <meta name="description" content="Welcome to vinay kumar pudi portfolio website. Explore a curated collection of my latest projects showcasing my skills in javascript. From web design and development to graphic design and more, discover how I can bring creativity and innovation to your next project.">
+    <meta name="description"
+        content="Welcome to vinay kumar pudi portfolio website. Explore a curated collection of my latest projects showcasing my skills in javascript. From web design and development to graphic design and more, discover how I can bring creativity and innovation to your next project.">
     <title>Vinay Kumar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="Libraries/swiper-bundle.min.css" />
     <link rel="stylesheet" href="Css/style.css" />
     <link rel="stylesheet" href="Css/animations.css" />
@@ -75,20 +77,11 @@
 
     <main class="main">
         <!-- Notification -->
-        <div class="container-notification">
-            <div class="notification" id="notification1">
+        <div class="container-notification-toast">
+            <!-- Notification element -->
+            <div id="notification-toast-rtc" class="notification-rtc-toast">
                 <span class="notification-icon"><i class="fas fa-info-circle"></i></span>
                 Right-clicking is disabled on this website. Please respect the site's content.
-            </div>
-
-            <div class="notification" id="notification2">
-                <span class="notification-icon"><i class="fas fa-exclamation-triangle"></i></span>
-                Your IP will be blocked if you continue to attempt right-clicking.
-            </div>
-
-            <div class="notification" id="notification3">
-                <span class="notification-icon"><i class="fas fa-ban"></i></span>
-                Your IP has been blocked and reported to the admin team. Please be cautious.
             </div>
         </div>
         <section class="home section" id="home">
@@ -165,13 +158,13 @@
 
                 <div class="about-data">
                     <p class="about-description">
-                        An accomplished Frontend Developer with a passion for creating
-                        seamless user experiences. With a solid foundation in HTML, CSS,
-                        and JavaScript, I specialize in crafting visually captivating and
-                        intuitively navigable websites. Leveraging my expertise in
-                        responsive design and UI/UX principles, I bring concepts to life,
-                        ensuring each project is a masterpiece of precision and
-                        functionality.
+                        I'm a Frontend Developer who's passionate about creating websites that people love to use.
+                        I'm skilled in HTML, CSS, and JavaScript, which are the core technologies of the web.
+                        My specialty lies in designing visually appealing and user-friendly websites.
+                        By focusing on responsive design and user experience principles,
+                        I ensure that every project I work on is both beautiful and easy to navigate.
+                        My goal is to bring concepts to life by crafting websites that are not only visually stunning
+                        but also highly functional.
                     </p>
 
                     <div class="about-info">
@@ -208,8 +201,8 @@
             <h2 class="section-title">Skills</h2>
             <span class="section-subtitle">My Technical Skills<span class="arrow"></span></span>
             <div class="skills-content container">
+                <div class="skills-name skill-from-right">HTML</div>
                 <div class="skills-name skill-from-right">JavaScript</div>
-                <div class="skills-name skill-from-left">React JS</div>
                 <div class="skills-name skill-from-right">Tailwind CSS</div>
                 <div class="skills-name skill-from-left">Bootstrap</div>
                 <div class="skills-name skill-from-right">CSS</div>
@@ -464,32 +457,32 @@
             <span class="section-subtitle highlight">Still in progress<span class="arrow"></span></span>
             <div id="carousel" class="carousel">
                 <div class="carousel-track">
-                  <div class="carousel-item active">
-                    <a href="404.html"> <img src="Assets/demo1.jpeg" alt="Slide 1"></a>
-                    <div class="carousel-caption"></div>
-                  </div>
-                  <div class="carousel-item">
-                    <a href="404.html"> <img src="Assets/demo2.jpeg" alt="Slide 2"></a>
-                    <div class="carousel-caption"></div>
-                  </div>
-                  <div class="carousel-item">
-                    <a href="404.html"> <img src="Assets/demo3.jpeg" alt="Slide 3"></a>
-                    <div class="carousel-caption"></div>
-                  </div>
-                  <div class="carousel-item">
-                    <a href="404.html"> <img src="Assets/demo4.jpeg" alt="Slide 4"></a>
-                    <div class="carousel-caption"></div>
-                  </div>
-                  <div class="carousel-item">
-                    <a href="4041.html"> <img src="Assets/demo2.jpeg" alt="Slide 5"></a>
-                    <div class="carousel-caption"></div>
-                  </div>
+                    <div class="carousel-item active">
+                        <a href="404.html"> <img src="Assets/demo1.jpeg" alt="Slide 1"></a>
+                        <div class="carousel-caption"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="404.html"> <img src="Assets/demo2.jpeg" alt="Slide 2"></a>
+                        <div class="carousel-caption"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="404.html"> <img src="Assets/demo3.jpeg" alt="Slide 3"></a>
+                        <div class="carousel-caption"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="404.html"> <img src="Assets/demo4.jpeg" alt="Slide 4"></a>
+                        <div class="carousel-caption"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="4041.html"> <img src="Assets/demo2.jpeg" alt="Slide 5"></a>
+                        <div class="carousel-caption"></div>
+                    </div>
                 </div>
                 <button id="prevBtn" class="carousel-btn prev">&#10094;</button>
                 <button id="nextBtn" class="carousel-btn next">&#10095;</button>
                 <div class="carousel-indicators"></div>
-              </div>
-              
+            </div>
+
             <p id="carousel-p">Discover more by clicking the images.</p>
         </section>
         <!-- contact me  -->
@@ -502,7 +495,8 @@
             <h2 class="section-title">Contact me</h2>
             <span class="section-subtitle">Get in touch<span class="arrow"></span></span>
             <div class="container-form-contact">
-                <form id="contactForm"  id="myForm" action="https://formsubmit.co/cc5b87a9c6061b6362d9231d23f3789c" method="POST"  onsubmit="return validateForm()">
+                <form id="contactForm" id="myForm" action="https://formsubmit.co/vinaypudi1332@gmail.com" method="POST"
+                    onsubmit="return validateForm()">
                     <input name="name" type="text" class="feedback-input" placeholder="Name" required />
                     <input name="email" type="email" class="feedback-input" placeholder="Email" required />
                     <textarea name="text" class="feedback-input" placeholder="Comment" required></textarea>
@@ -578,7 +572,7 @@
         <i class="fa-solid fa-arrow-up scroll-up-icon"></i>
     </a>
     <script src="Libraries/swiper-bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/9b634c15bd.js" ></script>
+    <script src="https://kit.fontawesome.com/9b634c15bd.js"></script>
     <script src="Libraries/script.min.js"></script>
     <script src="Libraries/exp.js"></script>
     <script src="Libraries/customeScript.js"></script>

@@ -77,7 +77,7 @@ function scrollActive() {
   sections.forEach((current) => {
     const sectionHeight = current.offsetHeight;
     const sectionTop = current.offsetTop - 50;
-    sectionId = current.getAttribute("id");
+   const sectionId = current.getAttribute("id");
 
     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
       document
@@ -182,7 +182,7 @@ let swiperTestimonial = new Swiper(".testimonial-container", {
 //----preloader-----
 document.addEventListener("DOMContentLoaded", function () {
   // Array of preloader GIFs in the "Assets" folder
-  var preloaderGifs = [
+  const preloaderGifs = [
       "Assets/preloader1.gif",
       "Assets/preloader2.gif",
       "Assets/preloader3.gif",
@@ -206,18 +206,18 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   // Randomly select a preloader GIF
-  var randomIndex = Math.floor(Math.random() * preloaderGifs.length);
-  var selectedPreloader = preloaderGifs[randomIndex];
+  const randomIndex = Math.floor(Math.random() * preloaderGifs.length);
+  const selectedPreloader = preloaderGifs[randomIndex];
 
   // Set the preloader image source
-  var preloaderImage = document.querySelector(".preloader-container img");
+  const preloaderImage = document.querySelector(".preloader-container img");
   preloaderImage.src = selectedPreloader;
 
   // Get the effective network connection type
-  var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
   // Default delay in milliseconds (1 second)
-  var delay = 1000;
+  const delay = 1000;
 
   // Adjust the delay based on the network speed
   if (connection) {
@@ -246,14 +246,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function hidePreloader() {
-  var preloader = document.getElementById("preloader");
+  const preloader = document.getElementById("preloader");
   preloader.style.display = "none";
 }
 //--- skill-button automatic click function --//
 function clickButtonsWithInfiniteLoop() {
-  var skillButtons = document.querySelectorAll('.skills-name');
-  var delay = 1000; // 
-  var currentIndex = 0;
+  const skillButtons = document.querySelectorAll('.skills-name');
+  const delay = 1000; // 
+  const currentIndex = 0;
 
   function clickButtonWithColorChange() {
     skillButtons[currentIndex].style.backgroundColor = '#713abe';
@@ -275,8 +275,8 @@ clickButtonsWithInfiniteLoop();
 
    // Use the Intersection Observer API to add a class when the section is in view
    document.addEventListener('DOMContentLoaded', function() {
-    var section = document.querySelector('.qualification-section');
-    var observer = new IntersectionObserver(function(entries, observer) {
+    const section = document.querySelector('.qualification-section');
+    const observer = new IntersectionObserver(function(entries, observer) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
@@ -292,9 +292,9 @@ clickButtonsWithInfiniteLoop();
 
     // Use the Intersection Observer API to add a class when a section is in view
     document.addEventListener('DOMContentLoaded', function() {
-      var sections = document.querySelectorAll('.animated-section.other-class, .about-container, .services-container, .skills-name');
+      const sections = document.querySelectorAll('.animated-section.other-class, .about-container, .services-container, .skills-name');
 
-      var observer = new IntersectionObserver(function(entries, observer) {
+      const observer = new IntersectionObserver(function(entries, observer) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
@@ -308,10 +308,10 @@ clickButtonsWithInfiniteLoop();
         observer.observe(section);
       });
 
-      var lastScrollTop = 0;
+      const lastScrollTop = 0;
 
       window.addEventListener('scroll', function() {
-        var st = window.scrollY || document.documentElement.scrollTop;
+        const st = window.scrollY || document.documentElement.scrollTop;
         if (st > lastScrollTop) {
           // Scrolling down
           sections.forEach(function(section) {
@@ -500,16 +500,36 @@ for (let i = 0; i < slidesCount; i++) {
   carouselIndicators.appendChild(indicator);
 }
 
-$(document).ready(function() {
-  animateGradient();
-});
+ // -----------------------------
+ function startDownload() {
+  const progressBar = document.getElementById('progressBar');
+  const button = document.getElementById('btn-download').querySelector('.button');
 
-function animateGradient() {
-  $('.highlight').css('background-image', 'linear-gradient(to right, #ff9900, #ff0055, #6600ff)');
-  setInterval(function() {
-      $('.highlight').animate({ backgroundPositionX: '100%' }, 5000, 'linear', function() {
-          $(this).css('background-position-x', '0%');
-      });
-  }, 5000); // Change this value to adjust the duration of the animation
+  // Show progress bar
+  progressBar.style.display = 'block';
+
+  // Animate progress
+  const progress = 0;
+  const interval = setInterval(function() {
+      progress += 2.5; // Increment progress by 1 (adjust this value to control speed)
+      progressBar.style.width = Math.min(progress, 100) + '%';
+      progressBar.style.backgroundColor = button.style.backgroundColor; // Match button color
+
+      if (progress >= 100) {
+          clearInterval(interval);
+          progressBar.style.display = 'none'; // Hide progress bar
+          // Initiate download after animation completes
+          downloadFile();
+      }
+  }, 100); // Adjust the interval (slower animation)
+}
+
+function downloadFile() {
+  const link = document.createElement('a');
+  link.href = '/Assets/Resume1.pdf';
+  link.download = 'Resume.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 

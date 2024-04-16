@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
   // Default delay in milliseconds (1 second)
-  const delay = 1000;
+  let delay = 1000;
 
   // Adjust the delay based on the network speed
   if (connection) {
@@ -253,7 +253,7 @@ function hidePreloader() {
 function clickButtonsWithInfiniteLoop() {
   const skillButtons = document.querySelectorAll('.skills-name');
   const delay = 1000; // 
-  const currentIndex = 0;
+  let currentIndex = 0;
 
   function clickButtonWithColorChange() {
     skillButtons[currentIndex].style.backgroundColor = '#713abe';
@@ -308,7 +308,7 @@ clickButtonsWithInfiniteLoop();
         observer.observe(section);
       });
 
-      const lastScrollTop = 0;
+      let lastScrollTop = 0;
 
       window.addEventListener('scroll', function() {
         const st = window.scrollY || document.documentElement.scrollTop;
@@ -679,30 +679,6 @@ document.addEventListener("DOMContentLoaded", function () {
     targetNode.setAttribute('aria-pressed', isPressed ? 'false' : 'true');
   });
 });
-
-
-// --------------Right_click_Disable & notofocation------
-
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault(); 
-  showNotification(); 
-});
-
-document.addEventListener('copy', function(e) {
-  e.preventDefault(); 
-  showNotification(); 
-});
-function showNotification() {
-  const notification = document.getElementById('notification-toast-rtc');
-  notification.style.display = 'block';
-
-  
-  setTimeout(function() {
-      notification.style.display = 'none';
-  }, 5000); 
-}
-
-
 
 // -----------form_notification-------------
 document.getElementById('contactForm').addEventListener('submit', function(event) {

@@ -121,7 +121,8 @@
                     <div class="home-data">
                         <div class="typeJsWrapper">
                             <div class="container-name">
-                                <h1 class="typeJsText"  aria-labelledby="name"   data-typetext="Hi, I am Vinay Kumar Pudi"></h1>
+                                <h1 class="typeJsText" aria-labelledby="name" data-typetext="Hi, I am Vinay Kumar Pudi">
+                                </h1>
                             </div>
                         </div>
                         <h3 class="home-subtitle">Frontend Developer</h3>
@@ -451,32 +452,32 @@
         <section class="portfolio section" id="portfolio">
             <h2 class="section-title">My Projects</h2>
             <span class="section-subtitle highlight">Still in progress<span class="arrow"></span></span>
-            <div id="carousel" class="carousel">
-                <div class="carousel-track">
-                    <div class="carousel-item active">
-                        <a href="404.html"> <img src="Assets/demo1.jpeg" alt="Slide 1"></a>
-                        <div class="carousel-caption"></div>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="404.html"> <img src="Assets/demo2.jpeg" alt="Slide 2"></a>
-                        <div class="carousel-caption"></div>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="404.html"> <img src="Assets/demo3.jpeg" alt="Slide 3"></a>
-                        <div class="carousel-caption"></div>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="404.html"> <img src="Assets/demo4.jpeg" alt="Slide 4"></a>
-                        <div class="carousel-caption"></div>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="4041.html"> <img src="Assets/demo2.jpeg" alt="Slide 5"></a>
-                        <div class="carousel-caption"></div>
-                    </div>
+
+            <div class="slideshow-container">
+                <div class="mySlides fade" style="width: 100%; overflow: hidden;">
+                    <a href="404.html"><img alt="demo1" data-src="Assets/demo1.jpeg" style="width:100%"></a>
+                     <!-- <div class="text">Demo Text</div> -->
                 </div>
-                <button id="prevBtn" class="carousel-btn prev">&#10094;</button>
-                <button id="nextBtn" class="carousel-btn next">&#10095;</button>
-                <div class="carousel-indicators"></div>
+                <div class="mySlides fade" style="width: 100%; overflow: hidden;">
+                    <a href="404.html"><img alt="demo1" data-src="Assets/demo2.jpeg" style="width:100%"></a>
+                    <!-- <div class="text">Demo Two</div> -->
+                </div>
+                <div class="mySlides fade" style="width: 100%; overflow: hidden;">
+                    <a href="404.html"><img alt="demo1" data-src="Assets/demo3.jpeg" style="width:100%"></a>
+                </div>
+                <div class="mySlides fade" style="width: 100%; overflow: hidden;">
+                    <a href="404.html"><img alt="demo1" data-src="Assets/demo4.jpeg" style="width:100%"></a>
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)" aria-label="Previous">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)" aria-label="Next">&#10095;</a>
+            </div>
+            <br>
+            <div class="bullet-indicator" style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)" aria-label="Slide 1"></span>
+                <span class="dot" onclick="currentSlide(2)" aria-label="Slide 2"></span>
+                <span class="dot" onclick="currentSlide(3)" aria-label="Slide 3"></span>
+                <span class="dot" onclick="currentSlide(4)" aria-label="Slide 4"></span>
             </div>
 
             <p id="carousel-p">Discover more by clicking the images.</p>

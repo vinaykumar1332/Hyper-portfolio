@@ -21,6 +21,7 @@ function debounceWithCount(func, delay) {
 // Initialize debounce functions for contextmenu and copy events
 const debouncedShowNotificationContextMenu = debounceWithCount(showNotification, 1000);
 const debouncedShowNotificationCopy = debounceWithCount(showNotification, 1000);
+const debouncedShowNotificationTouch = debounceWithCount(showNotification, 1000);
 
 // Add event listeners with debounced functions
 document.addEventListener('contextmenu', function(e) {
@@ -33,6 +34,11 @@ document.addEventListener('copy', function(e) {
   debouncedShowNotificationCopy(); 
 });
 
+if ('ontouchstart' in window || navigator.maxTouchPoints) {
+  document.addEventListener('touchstart', function(e) {
+    debouncedShowNotificationTouch(); 
+  });
+}
 function showNotification() {
   const notification = document.getElementById('notification-toast-rtc');
   if (!notification) return; // Null checker

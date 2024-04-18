@@ -1,44 +1,26 @@
 let notificationTriggered = false; // Flag to track if the notification has been triggered
+let contextMenuListenerActive = true; // Flag to track if the context menu event listener is active
 
-// Debounce function with count
-function debounceWithCount(func, delay) {
+// Debounce function
+function debounce(func, delay) {
   let timer;
-  let count = 0;
   return function() {
     clearTimeout(timer);
-    count++;
-    if (count >= 2) {
-      func(); // Call the function immediately
-      count = 0; // Reset count
-    } else {
-      timer = setTimeout(function() {
-        count = 0; // Reset count if the delay expires
-      }, delay);
-    }
+    timer = setTimeout(func, delay);
   };
 }
 
-// Initialize debounce functions for contextmenu and copy events
-const debouncedShowNotificationContextMenu = debounceWithCount(showNotification, 1000);
-const debouncedShowNotificationCopy = debounceWithCount(showNotification, 1000);
-const debouncedShowNotificationTouch = debounceWithCount(showNotification, 1000);
+// Initialize debounce function for contextmenu event
+const debouncedShowNotificationContextMenu = debounce(showNotification, 1000);
 
-// Add event listeners with debounced functions
+// Add event listener with debounced function for contextmenu event
 document.addEventListener('contextmenu', function(e) {
-  e.preventDefault(); 
-  debouncedShowNotificationContextMenu(); 
+  if (contextMenuListenerActive) {
+    e.preventDefault(); 
+    debouncedShowNotificationContextMenu(); 
+  }
 });
 
-document.addEventListener('copy', function(e) {
-  e.preventDefault(); 
-  debouncedShowNotificationCopy(); 
-});
-
-if ('ontouchstart' in window || navigator.maxTouchPoints) {
-  document.addEventListener('touchstart', function(e) {
-    debouncedShowNotificationTouch(); 
-  });
-}
 function showNotification() {
   const notification = document.getElementById('notification-toast-rtc');
   if (!notification) return; // Null checker
@@ -54,15 +36,24 @@ function showNotification() {
   // Block scrolling
   document.body.style.overflow = 'hidden';
 
+  // Disable context menu listener while notification is displayed
+  contextMenuListenerActive = false;
+
   notification.addEventListener('click', function() {
     notification.style.display = 'none';
     // Allow scrolling again when notification is dismissed
     document.body.style.overflow = '';
+
+    // Re-enable context menu listener after notification is dismissed
+    contextMenuListenerActive = true;
   });
   
   setTimeout(function() {
     notification.style.display = 'none';
     // Allow scrolling after notification timeout
     document.body.style.overflow = '';
+
+    // Re-enable context menu listener after notification timeout
+    contextMenuListenerActive = true;
   }, 5000); 
 }

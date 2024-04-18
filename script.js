@@ -596,6 +596,7 @@ function showNotificationForm() {
 const feedbackInput = document.querySelectorAll('input feedback-input')
 function closeNotification() {
   const notification = document.getElementById('notificationForm');
+  document.getElementById("contactForm").reset();
   notification.style.display = 'none'; // Hide the notification
   setTimeout(function() { 
       feedbackInput.Value='';
@@ -603,6 +604,9 @@ function closeNotification() {
 }
 window.scrollTo(0, 0);
 
+
+
+// -----------slide -carousel------
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -633,8 +637,22 @@ function showSlides(n) {
     let images = slides[slideIndex-1].querySelectorAll("img");
     images.forEach(image => {
         if (image.hasAttribute("data-src")) {
+            // Create a new MutationObserver
+            let observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (mutation.attributeName === 'src' && image.src !== image.getAttribute("data-src")) {
+                        // If the src attribute has been updated and not equal to data-src, remove data-src
+                        image.removeAttribute("data-src");
+                        observer.disconnect(); // Disconnect the observer once the attribute is changed
+                    }
+                });
+            });
+            
+            // Configure and start the observer
+            observer.observe(image, { attributes: true });
+            
+            // Set the src attribute to start loading the image
             image.src = image.getAttribute("data-src");
-            image.removeAttribute("data-src");
         }
     });
 }

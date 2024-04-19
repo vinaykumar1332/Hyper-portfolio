@@ -395,92 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(checkAndRefresh, 1000); // Check every second
 });
 
- // -----------------------------
- function startDownload() {
-  const progressBar = document.getElementById('progressBar');
-  const button = document.getElementById('btn-download').querySelector('.button');
-
-  // Show progress bar
-  progressBar.style.display = 'block';
-
-  // Animate progress
-  const progress = 0;
-  const interval = setInterval(function() {
-      progress += 2.5; // Increment progress by 1 (adjust this value to control speed)
-      progressBar.style.width = Math.min(progress, 100) + '%';
-      progressBar.style.backgroundColor = button.style.backgroundColor; // Match button color
-
-      if (progress >= 100) {
-          clearInterval(interval);
-          progressBar.style.display = 'none'; // Hide progress bar
-          // Initiate download after animation completes
-          downloadFile();
-      }
-  }, 100); // Adjust the interval (slower animation)
-}
-
-function downloadFile() {
-  const link = document.createElement('a');
-  link.href = '/Assets/Resume1.pdf';
-  link.download = 'Resume.pdf';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-// Function to add months to the current date
-function addMonths(months) {
-  const date = new Date();
-  date.setMonth(date.getMonth() + months);
-  return date;
-}
-
-// Function to update about info
-function updateAboutInfo() {
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
-  const monthsLeftToAdd = 26; // Example: You can change this value
-  const newDate = addMonths(monthsLeftToAdd);
-  const newYear = newDate.getFullYear();
-  const newMonth = newDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
-
-  let totalExperience = newYear - currentYear;
-  const monthsExperience = newMonth - currentMonth;
-
-  // If new month is less than current month, it means we have crossed another year
-  if (newMonth < currentMonth) {
-    totalExperience -= 1; // Subtract 1 from totalExperience because we crossed another year
-    totalExperience += (12 + monthsExperience) / 12; // Add the remaining months as a fraction of a year
-  } else {
-    totalExperience += monthsExperience / 12; // Add the months as a fraction of a year
-  }
-
-  const yearsExperienceElement = document.querySelector("#yearsExperiencePlaceholder");
-  yearsExperienceElement.innerText = totalExperience.toFixed(1) + "+"; // Update HTML with total experience, rounded to one decimal place
-}
-
-// Function to observe changes and update about info
-function observeAndRefresh() {
-  const observer = new MutationObserver(updateAboutInfo);
-  const targetNode = document.querySelector("#aboutInfo");
-  const config = { subtree: true, childList: true };
-  if (targetNode) { // Check if the targetNode exists
-    observer.observe(targetNode, config);
-  }
-}
-
-// Call updateAboutInfo() immediately
-updateAboutInfo();
-
-// Update every 5 seconds and observe changes
-setInterval(updateAboutInfo, 5000);
-
-// Start observing changes
-observeAndRefresh();
-
-
-// ------------please wait animation dots ---------------------
+ 
 // JavaScript code to animate the dots
 let dots = document.getElementById("dots");
 let animationInterval;
@@ -663,4 +578,51 @@ function autoClick() {
   element.click();
 }
 autoClick();
-setInterval(autoClick, 4000);
+setInterval(autoClick, 6000);
+
+
+ // --------resume download---------------------
+ let isDownloading = false; // Flag to track download status
+
+function startDownload() {
+  const progressBar = document.getElementById('progressBar');
+  const button = document.getElementById('btn-download').querySelector('.button');
+
+  // Show progress bar
+  progressBar.style.display = 'block';
+
+  // Reset progress bar
+  progressBar.style.width = '0%';
+
+  // Animate progress
+  let progressCV = 0; // Use let instead of const
+  const interval = setInterval(function() {
+      progressCV += 2.5; // Increment progress by 2.5
+      progressBar.style.width = Math.min(progressCV, 100) + '%'; // Corrected progressCV
+      progressBar.style.backgroundColor = button.style.backgroundColor; // Match button color
+
+      if (progressCV >= 100) {
+          clearInterval(interval);
+          // Initiate download after animation completes
+          if (!isDownloading) {
+              isDownloading = true;
+              downloadFile(progressBar);
+          }
+      }
+  }, 100); // Adjust the interval (slower animation)
+}
+
+function downloadFile(progressBar) {
+  const link = document.createElement('a');
+  link.href = '/Assets/Resume1.pdf';
+  link.download = 'Resume.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  // Reset progress bar after download completes
+  link.addEventListener('load', function() {
+    progressBar.style.width = '0%';
+    isDownloading = false;
+  });
+}

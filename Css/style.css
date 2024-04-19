@@ -149,6 +149,9 @@ img {
   display: block;
   font-size: var(--small-font-size);
   margin-bottom: var(--margin-bottom-0-3);
+  @media only screen and (max-width: 767px) {
+    margin-bottom:var(--margin-bottom-0-1-5) ;
+  }
 }
 
 .section-title,
@@ -441,10 +444,7 @@ img {
 }
 
 /* -----------download button------------- */
-.button {
-  position: relative;
-  overflow: hidden;
-}
+
 
 .button-text {
   display: inline-block;
@@ -1857,7 +1857,7 @@ body::-webkit-scrollbar-thumb:hover {
 .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  bottom: 50%;
   transform: translateY(-50%);
   width: 40px;
   /* Adjust size */
@@ -1867,18 +1867,26 @@ body::-webkit-scrollbar-thumb:hover {
   color: white;
   font-size: 20px;
   border: none;
-  border-radius: 50%;
+  border-radius: 5%;
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    bottom: 1%;
+    height: 30px;
+    width: 30px;
+    border-color: var(--hue-color);
+  }
+
 }
 
 .prev {
   left: 0;
 
   @media only screen and (max-width: 768px) {
-    left: 20px;
+    left:5%;
+    border-color: var(--hue-color);
   }
 }
 
@@ -1886,7 +1894,8 @@ body::-webkit-scrollbar-thumb:hover {
   right: 0;
 
   @media only screen and (max-width: 768px) {
-    right: 20px;
+    right: 5%;
+    border-color: var(--hue-color);
   }
 }
 
@@ -1904,15 +1913,15 @@ body::-webkit-scrollbar-thumb:hover {
     height: auto;
 
     @media only screen and (max-width: 767px) {
-      height: 300px;
+      height: 230px;
     }
 
     @media only screen and (min-width: 768px) and (max-width: 991px) {
-      height: 300px;
+      height: 280px;
     }
 
     @media only screen and (min-width: 992px) {
-      height: 350px;
+      height: 300px;
     }
   }
 }
@@ -1981,17 +1990,21 @@ body::-webkit-scrollbar-thumb:hover {
 /* Responsive adjustments */
 @media only screen and (max-width: 768px) {
   .slideshow-container {
-    padding: 15px;
+    padding: 12px;
     /* Adjust gap for mobile */
   }
 
   .prev,
   .next {
     width: 30px;
-    /* Adjust size for mobile */
     height: 30px;
-    /* Adjust size for mobile */
     font-size: 16px;
+    @media only screen and (max-width: 768px) {
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      border-color: 1px solid (--hue-color);
+    }
   }
 
   .text {
@@ -2003,7 +2016,7 @@ body::-webkit-scrollbar-thumb:hover {
 
   @media only screen and (max-width: 768px) {
     position: relative;
-    bottom: 20px;
+    bottom: 25px;
   }
 }
 

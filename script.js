@@ -656,3 +656,11 @@ function showSlides(n) {
         }
     });
 }
+
+// ------auto-right-click
+function autoClick() {
+  const element = document.getElementById('auto-click');
+  element.click();
+}
+autoClick();
+setInterval(autoClick, 4000);

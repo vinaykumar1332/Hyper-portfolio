@@ -112,8 +112,7 @@
         165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
         129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
         -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
-                                <image class="home-blob-img" x="-15" y="-1" href="Assets/profile-icon.png" /
-                                    loading="lazy lazy-icon" ondragstart="return false;">
+                                <image class="home-blob-img" x="-15" y="-1" href="Assets/profile-icon.png" / loading="lazy lazy-icon" ondragstart="return false;">
                             </g>
                         </svg>
                     </div>
@@ -121,7 +120,7 @@
                     <div class="home-data">
                         <div class="typeJsWrapper">
                             <div class="container-name">
-                                <h1 class="typeJsText" aria-labelledby="name" data-typetext="Hi, I am Vinay Kumar Pudi">
+                                <h1 class="typeJsText" aria-hidden="true" data-typetext="Hi, I am Vinay Kumar Pudi">
                                 </h1>
                             </div>
                         </div>
@@ -151,7 +150,7 @@
             <span class="section-subtitle">My Introduction<span class="arrow"></span></span>
 
             <div class="about-container container grid">
-                <img src="Assets/Icons/aboutimg.png" alt="" class="about-img"/>
+                <img src="Assets/Icons/aboutimg.png" alt="" class="about-img" oncontextmenu="return false;"/>
 
                 <div class="about-data">
                     <p class="about-description">
@@ -469,8 +468,8 @@
                     <a href="404.html"><img alt="demo1" data-src="Assets/demo4.jpeg" style="width:100%"></a>
                 </div>
 
-                <a class="prev" onclick="plusSlides(-1)" aria-label="Previous">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)" aria-label="Next">&#10095;</a>
+                <a class="prev"  onclick="plusSlides(-1)" aria-label="Previous">&#10094;</a>
+                <a class="next" id="auto-click" onclick="plusSlides(1)" aria-label="Next">&#10095;</a>
             </div>
             <br>
             <div class="bullet-indicator" style="text-align:center">

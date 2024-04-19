@@ -455,18 +455,13 @@ img {
   bottom: 0;
   left: 0;
   height: 4.5px;
-  background-color: #CBC3E3;
-  /* Fallback color for older browsers */
+  background-color:#5b0888 ;
   width: 0%;
   transition: width 1s ease;
-  /* Add smooth transition */
-  border-radius: 4px;
-  /* Add rounded corners to the progress bar */
-  box-shadow: 0 0 5px var(--container-color);
-  /* Add shadow for depth */
+  box-shadow: 0 0 1px var(--container-color);
 }
 
-.button {
+.button{
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -1625,7 +1620,7 @@ body {
 
   @media screen and (max-width: 480px) {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    max-width: 75%;
+    max-width: 80%;
     margin-left: 12.5%;
     margin-bottom: 20%;
     margin-top: -15px;
@@ -1647,7 +1642,15 @@ body {
   width: 100%;
   box-sizing: border-box;
   outline: 0;
-  background-color: transparent
+  background-color: transparent;
+  @media only screen and (max-width: 481px){
+    width: 315px;
+    padding-right: 1px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
 }
 
 .feedback-input:focus {

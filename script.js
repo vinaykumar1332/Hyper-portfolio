@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
   // Default delay in milliseconds (1 second)
-  const delay = 1000;
+  let delay = 1000;
 
   // Adjust the delay based on the network speed
   if (connection) {
@@ -253,7 +253,7 @@ function hidePreloader() {
 function clickButtonsWithInfiniteLoop() {
   const skillButtons = document.querySelectorAll('.skills-name');
   const delay = 1000; // 
-  const currentIndex = 0;
+  let currentIndex = 0;
 
   function clickButtonWithColorChange() {
     skillButtons[currentIndex].style.backgroundColor = '#713abe';
@@ -308,7 +308,7 @@ clickButtonsWithInfiniteLoop();
         observer.observe(section);
       });
 
-      const lastScrollTop = 0;
+      let lastScrollTop = 0;
 
       window.addEventListener('scroll', function() {
         const st = window.scrollY || document.documentElement.scrollTop;
@@ -395,111 +395,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(checkAndRefresh, 1000); // Check every second
 });
 
-
-const carousel = document.getElementById('carousel');
-const carouselTrack = document.querySelector('.carousel-track');
-const carouselItems = document.querySelectorAll('.carousel-item');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const carouselIndicators = document.querySelector('.carousel-indicators');
-
-let currentIndex = 0;
-const slideWidth = carouselItems[0].clientWidth;
-const slidesCount = carouselItems.length;
-
-// Set initial position
-carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-
-// Auto slide
-let autoSlideInterval;
-
-function startAutoSlide() {
-  autoSlideInterval = setInterval(() => {
-    nextSlide();
-  }, 3500); // Change slide every 3 seconds (adjust as needed)
-}
-
-function stopAutoSlide() {
-  clearInterval(autoSlideInterval);
-}
-
-startAutoSlide();
-
-// Next slide
-function nextSlide() {
-  currentIndex++;
-  if (currentIndex >= slidesCount) {
-    currentIndex = 0;
-  }
-  updateSlide();
-}
-
-// Previous slide
-function prevSlide() {
-  currentIndex--;
-  if (currentIndex < 0) {
-    currentIndex = slidesCount - 1;
-  }
-  updateSlide();
-}
-
-// Update slide
-function updateSlide() {
-  carouselTrack.style.transition = 'transform 0.5s ease-in-out';
-  carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  updateIndicators();
-}
-
-// Update indicators
-function updateIndicators() {
-  const indicators = carouselIndicators.querySelectorAll('.carousel-indicator');
-  indicators.forEach((indicator, index) => {
-    indicator.classList.remove('active');
-    if (index === currentIndex) {
-      indicator.classList.add('active');
-    }
-  });
-}
-
-// Next button click event
-nextBtn.addEventListener('click', () => {
-  nextSlide();
-  stopAutoSlide();
-  startAutoSlide();
-});
-
-// Previous button click event
-prevBtn.addEventListener('click', () => {
-  prevSlide();
-  stopAutoSlide();
-  startAutoSlide();
-});
-
-// Transition end event
-carouselTrack.addEventListener('transitionend', () => {
-  if (currentIndex === slidesCount - 1) {
-    carouselTrack.style.transition = 'none';
-    currentIndex = 0;
-    carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-  }
-});
-
-// Create bullet indicators
-for (let i = 0; i < slidesCount; i++) {
-  const indicator = document.createElement('div');
-  indicator.classList.add('carousel-indicator');
-  if (i === currentIndex) {
-    indicator.classList.add('active');
-  }
-  indicator.addEventListener('click', () => {
-    currentIndex = i;
-    updateSlide();
-    stopAutoSlide();
-    startAutoSlide();
-  });
-  carouselIndicators.appendChild(indicator);
-}
-
  // -----------------------------
  function startDownload() {
   const progressBar = document.getElementById('progressBar');
@@ -533,3 +428,239 @@ function downloadFile() {
   document.body.removeChild(link);
 }
 
+// Function to add months to the current date
+function addMonths(months) {
+  const date = new Date();
+  date.setMonth(date.getMonth() + months);
+  return date;
+}
+
+// Function to update about info
+function updateAboutInfo() {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
+  const monthsLeftToAdd = 26; // Example: You can change this value
+  const newDate = addMonths(monthsLeftToAdd);
+  const newYear = newDate.getFullYear();
+  const newMonth = newDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
+
+  let totalExperience = newYear - currentYear;
+  const monthsExperience = newMonth - currentMonth;
+
+  // If new month is less than current month, it means we have crossed another year
+  if (newMonth < currentMonth) {
+    totalExperience -= 1; // Subtract 1 from totalExperience because we crossed another year
+    totalExperience += (12 + monthsExperience) / 12; // Add the remaining months as a fraction of a year
+  } else {
+    totalExperience += monthsExperience / 12; // Add the months as a fraction of a year
+  }
+
+  const yearsExperienceElement = document.querySelector("#yearsExperiencePlaceholder");
+  yearsExperienceElement.innerText = totalExperience.toFixed(1) + "+"; // Update HTML with total experience, rounded to one decimal place
+}
+
+// Function to observe changes and update about info
+function observeAndRefresh() {
+  const observer = new MutationObserver(updateAboutInfo);
+  const targetNode = document.querySelector("#aboutInfo");
+  const config = { subtree: true, childList: true };
+  if (targetNode) { // Check if the targetNode exists
+    observer.observe(targetNode, config);
+  }
+}
+
+// Call updateAboutInfo() immediately
+updateAboutInfo();
+
+// Update every 5 seconds and observe changes
+setInterval(updateAboutInfo, 5000);
+
+// Start observing changes
+observeAndRefresh();
+
+
+// ------------please wait animation dots ---------------------
+// JavaScript code to animate the dots
+let dots = document.getElementById("dots");
+let animationInterval;
+
+function animateDots() {
+  animationInterval = setInterval(function () {
+    switch (dots.innerHTML) {
+      case ".":
+        dots.innerHTML = "..";
+        break;
+      case "..":
+        dots.innerHTML = "...";
+        break;
+      case "...":
+        dots.innerHTML = ".";
+        break;
+      default:
+        dots.innerHTML = ".";
+        break;
+    }
+  }, 450);
+}
+
+// Start the animation when the page loads
+window.onload = function () {
+  animateDots();
+};
+
+// --------------------------------------
+window.addEventListener('DOMContentLoaded', (event) => {
+  // Check if the URL contains a hash
+  if (window.location.hash) {
+    // Get the element with the ID matching the hash
+    const targetElement = document.querySelector(window.location.hash);
+    // If the element exists, scroll to it
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+});
+
+
+
+
+caches.keys().then((keyList) => Promise.all(keyList.map((key) => caches.delete(key))))
+
+document.addEventListener("DOMContentLoaded", function () {
+  const sunIcon = document.getElementById("theme-button");
+
+  // Function to rotate the icon
+  function rotateIcon() {
+    sunIcon.classList.add("rotate");
+    setTimeout(function () {
+      sunIcon.style.transform = "rotate(360deg)";
+    }, 100);
+
+    setTimeout(function () {
+      sunIcon.style.transform = "rotate(720deg)";
+    }, 600);
+  }
+
+  // Add click event listener to rotate the icon when clicked
+  sunIcon.addEventListener("click", rotateIcon);
+});
+
+
+//-------check the theme icon 
+document.addEventListener("DOMContentLoaded", function () {
+  const targetNode = document.getElementById('theme-button');
+  const config = { attributes: true, attributeFilter: ['class'] };
+
+  const callback = function (mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'attributes') {
+        if (!targetNode.classList.contains('fa-sun') && !targetNode.classList.contains('fa-moon')) {
+          targetNode.classList.add('fa-sun');
+        }
+      }
+    }
+  };
+
+  const observer = new MutationObserver(callback);
+  observer.observe(targetNode, config);
+
+  // Set initial aria-pressed attribute
+  targetNode.setAttribute('aria-pressed', 'false');
+
+  // Toggle aria-pressed attribute on click
+  targetNode.addEventListener('click', function () {
+   const isPressed = targetNode.getAttribute('aria-pressed') === 'true';
+    targetNode.setAttribute('aria-pressed', isPressed ? 'false' : 'true');
+  });
+});
+
+// -----------form_notification-------------
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
+  simulateFormSubmission();
+});
+
+function simulateFormSubmission() {
+  // Simulate form submission delay (1.5 seconds)
+  setTimeout(function() {
+      showNotificationForm();
+  }, 500);
+}
+
+function showNotificationForm() {
+  const notification = document.getElementById('notificationForm');
+  notification.style.display = 'block'; // Display the notification
+}
+
+const feedbackInput = document.querySelectorAll('input feedback-input')
+function closeNotification() {
+  const notification = document.getElementById('notificationForm');
+  document.getElementById("contactForm").reset();
+  notification.style.display = 'none'; // Hide the notification
+  setTimeout(function() { 
+      feedbackInput.Value='';
+  }, 500);
+}
+window.scrollTo(0, 0);
+
+
+
+// -----------slide -carousel------
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots1 = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1; }    
+    if (n < 1) { slideIndex = slides.length; }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+    }
+    for (i = 0; i < dots1.length; i++) {
+        dots1[i].classList.remove("active");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots1[slideIndex-1].classList.add("active");
+    
+    // Lazy loading images
+    let images = slides[slideIndex-1].querySelectorAll("img");
+    images.forEach(image => {
+        if (image.hasAttribute("data-src")) {
+            // Create a new MutationObserver
+            let observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (mutation.attributeName === 'src' && image.src !== image.getAttribute("data-src")) {
+                        // If the src attribute has been updated and not equal to data-src, remove data-src
+                        image.removeAttribute("data-src");
+                        observer.disconnect(); // Disconnect the observer once the attribute is changed
+                    }
+                });
+            });
+            
+            // Configure and start the observer
+            observer.observe(image, { attributes: true });
+            
+            // Set the src attribute to start loading the image
+            image.src = image.getAttribute("data-src");
+        }
+    });
+}
+
+// ------auto-right-click
+function autoClick() {
+  const element = document.getElementById('auto-click');
+  element.click();
+}
+autoClick();
+setInterval(autoClick, 4000);

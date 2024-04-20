@@ -640,3 +640,24 @@ function downloadFile(progressBar, button) {
   button.style.pointerEvents = 'none';
 }
 
+// -------dynamic update experience
+function updateExperience() {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1;
+  const startMonth = 2; // Start month (February)
+  const startYear = 2022; // Start year
+  const monthsPerYear = 12;
+
+  const totalMonths = (currentYear - startYear) * monthsPerYear + currentMonth - startMonth;
+  const years = Math.floor(totalMonths / monthsPerYear);
+  const months = totalMonths % monthsPerYear;
+
+  document.getElementById('experienceValue').innerText = years + (months > 0 ? '.' + months : '');
+}
+
+// Call the updateExperience function initially
+updateExperience();
+
+// Update experience every month
+setInterval(updateExperience, 1000 * 60 * 60 * 24 * 30); // Update every 30 days

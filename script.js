@@ -582,47 +582,61 @@ setInterval(autoClick, 6000);
 
 
  // --------resume download---------------------
- let isDownloading = false; // Flag to track download status
+ let isDownloading = false;
 
 function startDownload() {
   const progressBar = document.getElementById('progressBar');
   const button = document.getElementById('btn-download').querySelector('.button');
+  const buttonText = button.querySelector('.button-text');
+  const buttonIcon = button.querySelector('.button-icon');
 
-  // Show progress bar
-  progressBar.style.display = 'block';
+  if (!isDownloading) {
+    progressBar.style.display = 'block';
+    progressBar.style.width = '0%';
 
-  // Reset progress bar
-  progressBar.style.width = '0%';
+    buttonText.textContent = 'Downloading...';
+    buttonIcon.classList.add('fa-spinner', 'spin-button');
 
-  // Animate progress
-  let progressCV = 0; // Use let instead of const
-  const interval = setInterval(function() {
-      progressCV += 2.5; // Increment progress by 2.5
-      progressBar.style.width = Math.min(progressCV, 100) + '%'; // Corrected progressCV
-      progressBar.style.backgroundColor = button.style.backgroundColor; // Match button color
+    let progressCV = 0;
+    const interval = setInterval(function() {
+      progressCV += 2.5;
+      progressBar.style.width = Math.min(progressCV, 100) + '%';
+      progressBar.style.backgroundColor = button.style.backgroundColor;
 
       if (progressCV >= 100) {
-          clearInterval(interval);
-          // Initiate download after animation completes
-          if (!isDownloading) {
-              isDownloading = true;
-              downloadFile(progressBar);
-          }
+        clearInterval(interval);
+        isDownloading = true;
+        downloadFile(progressBar, button);
       }
-  }, 100); // Adjust the interval (slower animation)
+    }, 100);
+
+    progressBar.addEventListener('click', function() {
+      if (!isDownloading) {
+        clearInterval(interval);
+        progressBar.style.width = '0%';
+      }
+    });
+  }
 }
 
-function downloadFile(progressBar) {
+function downloadFile(progressBar, button) {
   const link = document.createElement('a');
-  link.href = '/Assets/Resume1.pdf';
+  link.href = 'Assets/resume (1).pdf';
   link.download = 'Resume.pdf';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
   
-  // Reset progress bar after download completes
-  link.addEventListener('load', function() {
-    progressBar.style.width = '0%';
-    isDownloading = false;
-  });
+  progressBar.style.width = '0%';
+  
+  button.querySelector('.button-text').textContent = 'Downloaded';
+  button.querySelector('.button-icon').className = 'fa-solid fa-check button-icon';
+
+  isDownloading = false;
+
+  // Disable further clicks on the button
+  button.onclick = null;
+  button.style.cursor = 'not-allowed';
+  button.style.pointerEvents = 'none';
 }
+

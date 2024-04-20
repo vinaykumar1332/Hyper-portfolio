@@ -454,12 +454,28 @@ img {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 4.5px;
-  background-color:#5b0888 ;
+  height: 3px;
+  background-color: hsl(269, 69%, 92%);
   width: 0%;
-  transition: width 1s ease;
-  box-shadow: 0 0 1px var(--container-color);
+  transition: width 0.4.8s ease;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  border-radius: 10px; /* Add border radius for smoother edges */
 }
+
+/* Add animation to the progress bar */
+@keyframes progressBarAnimation {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.progress-bar.animated {
+  animation: progressBarAnimation 1s linear forwards; /* Adjust animation duration and timing */
+}
+
 
 .button{
   position: relative;
@@ -1629,6 +1645,8 @@ body {
 }
 
 .feedback-input {
+  display: flex;
+  justify-content: center;
   color: var(--text-color);
   font-family: Helvetica, Arial, sans-serif;
   font-weight: 500;
@@ -1644,11 +1662,13 @@ body {
   outline: 0;
   background-color: transparent;
   @media only screen and (max-width: 481px){
-    width: 315px;
+    width: 333px;
     padding-right: 1px;
     justify-content: center;
     align-items: center;
     display: flex;
+    position: relative;
+    left: -5px;
   }
 
 }
@@ -1747,6 +1767,8 @@ textarea {
   overflow: hidden;
   @media only screen and (max-width: 768px) {
     padding: 5px 10px;
+    left:-5px;
+    position: relative;
   }
 
   & .fa-paper-plane{
@@ -1839,8 +1861,7 @@ body::-webkit-scrollbar-thumb:hover {
 /*-------carousel-component---------*/
 /* Centering the slideshow */
 .slideshow-container {
-  max-width: 800px;
-  /* Adjust as needed */
+  max-width: 650px;
   margin: auto;
   overflow: hidden;
   position: relative;
@@ -1862,10 +1883,8 @@ body::-webkit-scrollbar-thumb:hover {
   position: absolute;
   bottom: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  /* Adjust size */
-  height: 40px;
-  /* Adjust size */
+  width: 40px; /* Adjust size */
+  height: 40px; /* Adjust size */
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 20px;
@@ -1875,13 +1894,29 @@ body::-webkit-scrollbar-thumb:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  @media only screen and (max-width: 768px) {
+  transition: transform 0.3s ease; /* Smooth transition for scale */
+  @media screen and (min-width: 770px){
+    bottom: 40%;
+  }
+}
+
+.prev:active,
+.next:active {
+  transform: translateY(-60%) scale(0.9); /* Scale down when clicked */
+}
+.prev:hover,
+.next:hover{
+  background-color: #713abe;
+}
+
+@media only screen and (max-width: 768px) {
+  .prev,
+  .next {
     bottom: 1%;
     height: 30px;
     width: 30px;
     border-color: var(--hue-color);
   }
-
 }
 
 .prev {
@@ -2030,3 +2065,14 @@ body::-webkit-scrollbar-thumb:hover {
   margin-top: 10px;
   color: var(--body-font);
 }
+/* ----donwloading spin animation */
+.spin-button{
+  animation: spinAnimationBtn 1s linear infinite; /* Adjust duration and timing */
+}
+@keyframes spinAnimationBtn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+

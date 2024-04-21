@@ -491,33 +491,33 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // -----------form_notification-------------
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent default form submission
-  simulateFormSubmission();
-});
+// document.getElementById('contactForm').addEventListener('submit', function(event) {
+//   event.preventDefault(); // Prevent default form submission
+//   simulateFormSubmission();
+// });
 
-function simulateFormSubmission() {
-  // Simulate form submission delay (1.5 seconds)
-  setTimeout(function() {
-      showNotificationForm();
-  }, 500);
-}
+// function simulateFormSubmission() {
+//   // Simulate form submission delay (1.5 seconds)
+//   setTimeout(function() {
+//       showNotificationForm();
+//   }, 500);
+// }
 
-function showNotificationForm() {
-  const notification = document.getElementById('notificationForm');
-  notification.style.display = 'block'; // Display the notification
-}
+// function showNotificationForm() {
+//   const notification = document.getElementById('notificationForm');
+//   notification.style.display = 'block'; // Display the notification
+// }
 
-const feedbackInput = document.querySelectorAll('input feedback-input')
-function closeNotification() {
-  const notification = document.getElementById('notificationForm');
-  document.getElementById("contactForm").reset();
-  notification.style.display = 'none'; // Hide the notification
-  setTimeout(function() { 
-      feedbackInput.Value='';
-  }, 500);
-}
-window.scrollTo(0, 0);
+// const feedbackInput = document.querySelectorAll('input feedback-input')
+// function closeNotification() {
+//   const notification = document.getElementById('notificationForm');
+//   document.getElementById("contactForm").reset();
+//   notification.style.display = 'none'; // Hide the notification
+//   setTimeout(function() { 
+//       feedbackInput.Value='';
+//   }, 500);
+// }
+// window.scrollTo(0, 0);
 
 
 
@@ -661,3 +661,27 @@ updateExperience();
 
 // Update experience every month
 setInterval(updateExperience, 1000 * 60 * 60 * 24 * 30); // Update every 30 days
+
+// -----------form submit data notification
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
+  showNotificationForm(); // Display notification
+  setTimeout(function() {
+      document.getElementById('contactForm').submit(); // Submit the form after 2 seconds
+      console.log("form is processing data to send")
+  }, 3000);
+});
+
+function showNotificationForm() {
+  console.log("Please wait..");
+  document.getElementById('notification-form-txt').innerText = "Please wait...";
+  document.getElementById('notification-form-txt').style.display = 'block';
+  setTimeout(function() {
+      document.getElementById('notification-form-txt').innerText = "Your data is being processed...";
+      console.log("Your data is being processed");
+      setTimeout(function() {
+          document.getElementById('notification-form-txt').style.display = 'none';
+      }, 1600); // Hide the notification after 1 second
+  }, 1400); // Show "Your data is being processed..." after 1 second
+}

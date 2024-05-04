@@ -54,3 +54,26 @@ function addAccessibilityToButtons(buttonsClass) {
 // document.addEventListener('DOMContentLoaded', function() {
 //   animateDots();
 // });
+
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+      var script = document.querySelector('script[src="Libraries/swiper-bundle.min.js"]');
+      if (script) {
+          script.remove();
+          console.log("Script removed successfully.");
+      } else {
+          console.log("Script not found.");
+      }
+  }, 6000); // Wait for 6 seconds before executing
+});
+
+setTimeout(function() {
+  var script = document.querySelector('script[src="Libraries/swiper-bundle.min.js"]');
+  if (script) {
+      script.outerHTML = "<!--" + script.outerHTML + "-->";
+      console.log("Script commented out successfully.");
+  } else {
+      console.log("Script not found.");
+  }
+},10); // Wait for 3 seconds before commenting out
+

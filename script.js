@@ -179,76 +179,6 @@ let swiperTestimonial = new Swiper(".testimonial-container", {
   },
 });
 
-//----preloader-----
-document.addEventListener("DOMContentLoaded", function () {
-  // Array of preloader GIFs in the "Assets" folder
-  const preloaderGifs = [
-      "Assets/preloader1.gif",
-      "Assets/preloader2.gif",
-      "Assets/preloader3.gif",
-      "Assets/preloader4.gif",
-      "Assets/preloader5.gif",
-      "Assets/preloader6.gif",
-      "Assets/preloader7.gif",
-     "Assets/preloader8.gif",
-     "Assets/preloader9.gif",
-     "Assets/preloader10.gif",
-    "Assets/preloader11.gif",
-    "Assets/preloader12.gif",
-    "Assets/preloader12.gif",
-    "Assets/preloader13.gif",
-    "Assets/preloader14.gif",
-    "Assets/preloader15.gif",
-    "Assets/preloader16.gif",
-    "Assets/preloader17.gif",
-     "Assets/Preloader.gif",
-      // Add more preloader GIFs as needed
-  ];
-
-  // Randomly select a preloader GIF
-  const randomIndex = Math.floor(Math.random() * preloaderGifs.length);
-  const selectedPreloader = preloaderGifs[randomIndex];
-
-  // Set the preloader image source
-  const preloaderImage = document.querySelector(".preloader-container img");
-  preloaderImage.src = selectedPreloader;
-
-  // Get the effective network connection type
-  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-
-  // Default delay in milliseconds (1 second)
-  let delay = 1000;
-
-  // Adjust the delay based on the network speed
-  if (connection) {
-      switch (connection.effectiveType) {
-          case 'slow-2g':
-          case '2g':
-              delay = 5000; // 5 seconds for slow connections
-              break;
-          case '3g':
-              delay = 3000; // 3 seconds for 3G connections
-              break;
-          case '4g':
-              delay = 2000; // 2 seconds for 4G connections
-              break;
-          default:
-              // Use the default delay for unknown or faster connections
-              break;
-      }
-  }
-
-  // Simulate the adjusted delay
-  setTimeout(function () {
-      // Hide the preloader after the adjusted delay
-      hidePreloader();
-  }, delay);
-});
-
-function hidePreloader() {
-  const preloader = document.getElementById("preloader");
-  preloader.style.display = "none";
-}
 //--- skill-button automatic click function --//
 function clickButtonsWithInfiniteLoop() {
   const skillButtons = document.querySelectorAll('.skills-name');
@@ -394,35 +324,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Check and refresh periodically (adjust the interval as needed)
     setInterval(checkAndRefresh, 1000); // Check every second
 });
-
- 
-// JavaScript code to animate the dots
-let dots = document.getElementById("dots");
-let animationInterval;
-
-function animateDots() {
-  animationInterval = setInterval(function () {
-    switch (dots.innerHTML) {
-      case ".":
-        dots.innerHTML = "..";
-        break;
-      case "..":
-        dots.innerHTML = "...";
-        break;
-      case "...":
-        dots.innerHTML = ".";
-        break;
-      default:
-        dots.innerHTML = ".";
-        break;
-    }
-  }, 450);
-}
-
-// Start the animation when the page loads
-window.onload = function () {
-  animateDots();
-};
 
 // --------------------------------------
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -685,3 +586,49 @@ function showNotificationForm() {
       }, 1600); // Hide the notification after 1 second
   }, 1400); // Show "Your data is being processed..." after 1 second
 }
+// --header hide when scroll 
+if (window.innerWidth >= 768) { // Only for devices with width 768px or larger
+  let lastScrollTop = 0;
+  const header = document.getElementById("header");
+
+  window.addEventListener("scroll", function() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScroll > lastScrollTop) {
+      header.style.top = "-50px";
+    } else {
+      header.style.top = "0";
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  }, false);
+}
+// --preloader
+// Function to remove the preloader and show the content
+function removePreloader() {
+  document.getElementById('preloader').style.display = 'none';
+  document.querySelector('.content').style.display = 'block';
+}
+
+// Function to check network speed
+function checkNetwork() {
+  var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (connection && connection.effectiveType === '2g') {
+    document.getElementById('network-message').style.display = 'block';
+    document.getElementById('please-wait').style.display = 'none'; // Hide "Please wait" message
+  } else {
+    setTimeout(function() {
+      document.getElementById('setup-message').style.display = 'block';
+      removePreloader();
+    }, 2500); // Simulate setup time (2 seconds) before removing preloader
+  }
+}
+
+// Run checkNetwork function when the DOM content is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  checkNetwork();
+});
+
+// Run removePreloader function when the window is fully loaded
+window.addEventListener('load', function() {
+  removePreloader();
+});
+

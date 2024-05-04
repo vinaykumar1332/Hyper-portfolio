@@ -2161,7 +2161,9 @@ body::-webkit-scrollbar-thumb:hover {
 
 @keyframes changeColor {
   0%, 100% { border-top-color: var(--first-color-alt); border-bottom-color: var(--first-color-alt); } /* Initial and final color */
-  25% { border-top-color: #e74c3c; border-bottom-color: #e74c3c; } /* Change to a different color */
+  25% { border-top-color: #4d0357; border-bottom-color: #4d0357; } /* Change to a different color */
   50% { border-top-color: #9b59b6; border-bottom-color: #9b59b6; } /* Change to a different color */
   75% { border-top-color: #5b0888; border-bottom-color: #5b0888; } /* Change to a different color */
 }
+
+

@@ -15,6 +15,7 @@ function showNotification() {
   if (!notification) return; // Null checker
   
   if (!notificationTriggered) {
+    console.log("right click or copy")
     notificationTriggered = true; // Set flag to true after the first trigger
     return; // Exit early without showing the notification on initial trigger
   }

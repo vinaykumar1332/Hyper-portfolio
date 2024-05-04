@@ -20,12 +20,13 @@
 
 <body class="icon-Theme">
     <!-- Preloader  -->
-    <section class="loader">
-        <div class="preloader-container" id="preloader">
-            <img src="" alt="Loading...">
-            <p id="please-wait">Please wait<span id="dots">...</span></p>
+    <div id="preloader">
+        <div class="loader">
+            <div class="inner-loader"></div>
         </div>
-    </section>
+        <p class="pre-text" id="please-wait">Please wait<span >...</span></p>
+        <p class="pre-text" id="network-message"   style="display:none;"><i class="fas fa-exclamation-triangle"></i>Waiting for network...</p>
+    </div>
     <!-- header  -->
     <header class="header" id="header">
         <nav class="nav container">

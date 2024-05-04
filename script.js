@@ -77,7 +77,7 @@ function scrollActive() {
   sections.forEach((current) => {
     const sectionHeight = current.offsetHeight;
     const sectionTop = current.offsetTop - 50;
-   const sectionId = current.getAttribute("id");
+    const sectionId = current.getAttribute("id");
 
     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
       document
@@ -203,63 +203,63 @@ clickButtonsWithInfiniteLoop();
 
 
 
-   // Use the Intersection Observer API to add a class when the section is in view
-   document.addEventListener('DOMContentLoaded', function() {
-    const section = document.querySelector('.qualification-section');
-    const observer = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.8 }); // Adjust the threshold as needed
+// Use the Intersection Observer API to add a class when the section is in view
+document.addEventListener('DOMContentLoaded', function () {
+  const section = document.querySelector('.qualification-section');
+  const observer = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.8 }); // Adjust the threshold as needed
 
+  observer.observe(section);
+});
+
+
+
+// Use the Intersection Observer API to add a class when a section is in view
+document.addEventListener('DOMContentLoaded', function () {
+  const sections = document.querySelectorAll('.animated-section.other-class, .about-container, .services-container, .skills-name');
+
+  const observer = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  sections.forEach(function (section) {
     observer.observe(section);
   });
 
- 
+  let lastScrollTop = 0;
 
-    // Use the Intersection Observer API to add a class when a section is in view
-    document.addEventListener('DOMContentLoaded', function() {
-      const sections = document.querySelectorAll('.animated-section.other-class, .about-container, .services-container, .skills-name');
-
-      const observer = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
-          }
-        });
-      }, { threshold: 0.5 });
-
-      sections.forEach(function(section) {
-        observer.observe(section);
-      });
-
-      let lastScrollTop = 0;
-
-      window.addEventListener('scroll', function() {
-        const st = window.scrollY || document.documentElement.scrollTop;
-        if (st > lastScrollTop) {
-          // Scrolling down
-          sections.forEach(function(section) {
-            if (!section.classList.contains('visible')) {
-              observer.observe(section);
-            }
-          });
-        } else {
-          // Scrolling up
-          sections.forEach(function(section) {
-            if (section.classList.contains('visible')) {
-              observer.unobserve(section);
-            }
-          });
+  window.addEventListener('scroll', function () {
+    const st = window.scrollY || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      // Scrolling down
+      sections.forEach(function (section) {
+        if (!section.classList.contains('visible')) {
+          observer.observe(section);
         }
-        lastScrollTop = st <= 0 ? 0 : st;
       });
-    });
+    } else {
+      // Scrolling up
+      sections.forEach(function (section) {
+        if (section.classList.contains('visible')) {
+          observer.unobserve(section);
+        }
+      });
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  });
+});
 
 
 //name text animation js 
@@ -293,7 +293,6 @@ document.addEventListener('DOMContentLoaded', function () {
   themeButton.addEventListener('click', function () {
     body.classList.toggle('dark-mode');
     body.classList.toggle('dark-mode');
-    console.log("test1");
 
     // Toggle the moon icon when switching themes
     themeButton.classList.toggle('fa-moon');
@@ -301,28 +300,28 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-  // Use 'load' event instead of 'DOMContentLoaded' for broader compatibility
-  window.addEventListener('load', function () {
-    const changeThemeIcon = document.querySelector('.fa-regular.change-theme');
+// Use 'load' event instead of 'DOMContentLoaded' for broader compatibility
+window.addEventListener('load', function () {
+  const changeThemeIcon = document.querySelector('.fa-regular.change-theme');
 
-    // Function to check and refresh the page if needed
-    function checkAndRefresh() {
-        // Check if the 'change-theme' icon has either 'fa-moon' or 'fa-sun'
-        const hasMoonOrSunIcon = changeThemeIcon.classList.contains('fa-moon') || changeThemeIcon.classList.contains('fa-sun');
+  // Function to check and refresh the page if needed
+  function checkAndRefresh() {
+    // Check if the 'change-theme' icon has either 'fa-moon' or 'fa-sun'
+    const hasMoonOrSunIcon = changeThemeIcon.classList.contains('fa-moon') || changeThemeIcon.classList.contains('fa-sun');
 
-        if (!hasMoonOrSunIcon) {
-            // Display custom alert when refreshing
-            document.getElementById('custom-alert').style.display = 'block';
+    if (!hasMoonOrSunIcon) {
+      // Display custom alert when refreshing
+      document.getElementById('custom-alert').style.display = 'block';
 
-            // Refresh the page after a delay (adjust as needed)
-            setTimeout(function () {
-                location.reload();
-            }, 3000); // Refresh after 3 seconds
-        }
+      // Refresh the page after a delay (adjust as needed)
+      setTimeout(function () {
+        location.reload();
+      }, 3000); // Refresh after 3 seconds
     }
+  }
 
-    // Check and refresh periodically (adjust the interval as needed)
-    setInterval(checkAndRefresh, 1000); // Check every second
+  // Check and refresh periodically (adjust the interval as needed)
+  setInterval(checkAndRefresh, 1000); // Check every second
 });
 
 // --------------------------------------
@@ -386,7 +385,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Toggle aria-pressed attribute on click
   targetNode.addEventListener('click', function () {
-   const isPressed = targetNode.getAttribute('aria-pressed') === 'true';
+    const isPressed = targetNode.getAttribute('aria-pressed') === 'true';
     targetNode.setAttribute('aria-pressed', isPressed ? 'false' : 'true');
   });
 });
@@ -427,63 +426,54 @@ let slideIndex = 1;
 showSlides(slideIndex);
 
 function plusSlides(n) {
-    showSlides(slideIndex += n);
+  showSlides(slideIndex += n);
 }
 
 function currentSlide(n) {
-    showSlides(slideIndex = n);
+  showSlides(slideIndex = n);
 }
 
 function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots1 = document.getElementsByClassName("dot");
-    if (n > slides.length) { slideIndex = 1; }    
-    if (n < 1) { slideIndex = slides.length; }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots1 = document.getElementsByClassName("dot");
+  if (n > slides.length) { slideIndex = 1; }
+  if (n < 1) { slideIndex = slides.length; }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots1.length; i++) {
+    dots1[i].classList.remove("active");
+  }
+  slides[slideIndex - 1].style.display = "block";
+  dots1[slideIndex - 1].classList.add("active");
+
+  // Lazy loading images
+  let images = slides[slideIndex - 1].querySelectorAll("img");
+  images.forEach(image => {
+    if (image.hasAttribute("data-src")) {
+      // Create a new MutationObserver
+      let observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+          if (mutation.attributeName === 'src' && image.src !== image.getAttribute("data-src")) {
+            // If the src attribute has been updated and not equal to data-src, remove data-src
+            image.removeAttribute("data-src");
+            observer.disconnect(); // Disconnect the observer once the attribute is changed
+          }
+        });
+      });
+
+      // Configure and start the observer
+      observer.observe(image, { attributes: true });
+
+      // Set the src attribute to start loading the image
+      image.src = image.getAttribute("data-src");
     }
-    for (i = 0; i < dots1.length; i++) {
-        dots1[i].classList.remove("active");
-    }
-    slides[slideIndex-1].style.display = "block";  
-    dots1[slideIndex-1].classList.add("active");
-    
-    // Lazy loading images
-    let images = slides[slideIndex-1].querySelectorAll("img");
-    images.forEach(image => {
-        if (image.hasAttribute("data-src")) {
-            // Create a new MutationObserver
-            let observer = new MutationObserver(mutations => {
-                mutations.forEach(mutation => {
-                    if (mutation.attributeName === 'src' && image.src !== image.getAttribute("data-src")) {
-                        // If the src attribute has been updated and not equal to data-src, remove data-src
-                        image.removeAttribute("data-src");
-                        observer.disconnect(); // Disconnect the observer once the attribute is changed
-                    }
-                });
-            });
-            
-            // Configure and start the observer
-            observer.observe(image, { attributes: true });
-            
-            // Set the src attribute to start loading the image
-            image.src = image.getAttribute("data-src");
-        }
-    });
+  });
 }
 
-// ------auto-right-click
-function autoClick() {
-  const element = document.getElementById('auto-click');
-  element.click();
-}
-autoClick();
-setInterval(autoClick, 6000);
-
-
- // --------resume download---------------------
- let isDownloading = false;
+// --------resume download---------------------
+let isDownloading = false;
 
 function startDownload() {
   const progressBar = document.getElementById('progressBar');
@@ -499,7 +489,7 @@ function startDownload() {
     buttonIcon.classList.add('fa-spinner', 'spin-button');
 
     let progressCV = 0;
-    const interval = setInterval(function() {
+    const interval = setInterval(function () {
       progressCV += 2.5;
       progressBar.style.width = Math.min(progressCV, 100) + '%';
       progressBar.style.backgroundColor = button.style.backgroundColor;
@@ -511,7 +501,7 @@ function startDownload() {
       }
     }, 100);
 
-    progressBar.addEventListener('click', function() {
+    progressBar.addEventListener('click', function () {
       if (!isDownloading) {
         clearInterval(interval);
         progressBar.style.width = '0%';
@@ -527,9 +517,9 @@ function downloadFile(progressBar, button) {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-  
+
   progressBar.style.width = '0%';
-  
+
   button.querySelector('.button-text').textContent = 'Downloaded';
   button.querySelector('.button-icon').className = 'fa-solid fa-check button-icon';
 
@@ -565,47 +555,67 @@ setInterval(updateExperience, 1000 * 60 * 60 * 24 * 30); // Update every 30 days
 
 // -----------form submit data notification
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
+document.getElementById('contactForm').addEventListener('submit', function (event) {
   event.preventDefault(); // Prevent default form submission
   showNotificationForm(); // Display notification
-  setTimeout(function() {
-      document.getElementById('contactForm').submit(); // Submit the form after 2 seconds
-      console.log("form is processing data to send")
+  setTimeout(function () {
+    document.getElementById('contactForm').submit(); // Submit the form after 2 seconds
   }, 3000);
 });
 
 function showNotificationForm() {
-  console.log("Please wait..");
   document.getElementById('notification-form-txt').innerText = "Please wait...";
   document.getElementById('notification-form-txt').style.display = 'block';
-  setTimeout(function() {
-      document.getElementById('notification-form-txt').innerText = "Your data is being processed...";
-      console.log("Your data is being processed");
-      setTimeout(function() {
-          document.getElementById('notification-form-txt').style.display = 'none';
-      }, 1600); // Hide the notification after 1 second
+  setTimeout(function () {
+    document.getElementById('notification-form-txt').innerText = "Your data is being processed...";
+    setTimeout(function () {
+      document.getElementById('notification-form-txt').style.display = 'none';
+    }, 1600); // Hide the notification after 1 second
   }, 1400); // Show "Your data is being processed..." after 1 second
 }
 // --header hide when scroll 
-if (window.innerWidth >= 768) { // Only for devices with width 768px or larger
+if (window.innerWidth >= 769) { // Only for devices with width 768px or larger
   let lastScrollTop = 0;
   const header = document.getElementById("header");
-
-  window.addEventListener("scroll", function() {
-    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    if (currentScroll > lastScrollTop) {
-      header.style.top = "-50px";
-    } else {
-      header.style.top = "0";
-    }
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-  }, false);
+  if (header) {
+    window.addEventListener("scroll", function () {
+      let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop) {
+        header.style.top = "-50px";
+      } else {
+        header.style.top = "0";
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, false);
+  }
 }
+
+// ---header scroll for mobile
+if (window.innerWidth <= 480) {
+  let firstScrollBottom = 0;
+  const navMobile = document.getElementById('header');
+
+  if (navMobile) {
+    window.addEventListener("scroll", function () {
+      let mobCurrentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (mobCurrentScroll < firstScrollBottom) {
+        navMobile.style.bottom = "0px";
+
+      } else {
+        navMobile.style.bottom = "-40px";
+
+      }
+      firstScrollBottom = mobCurrentScroll;
+    }, false);
+  }
+}
+
+
+
 // --preloader
 // Function to remove the preloader and show the content
 function removePreloader() {
   document.getElementById('preloader').style.display = 'none';
-  document.querySelector('.content').style.display = 'block';
 }
 
 // Function to check network speed
@@ -615,21 +625,20 @@ function checkNetwork() {
     document.getElementById('network-message').style.display = 'block';
     document.getElementById('please-wait').style.display = 'none'; // Hide "Please wait" message
   } else {
-    setTimeout(function() {
+    setTimeout(function () {
       document.getElementById('please-wait').innerHTML = "<span>We are setting up...</span>"; // Change text to "We are setting up"
-      document.getElementById('setup-message').style.display = 'block';
       removePreloader();
     }, 2500); // Simulate setup time (2 seconds) before removing preloader
   }
 }
 
 // Run checkNetwork function when the DOM content is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   checkNetwork();
 });
 
 // Run removePreloader function when the window is fully loaded
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   removePreloader();
 });
 

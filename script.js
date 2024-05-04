@@ -616,6 +616,7 @@ function checkNetwork() {
     document.getElementById('please-wait').style.display = 'none'; // Hide "Please wait" message
   } else {
     setTimeout(function() {
+      document.getElementById('please-wait').innerHTML = "<span>We are setting up...</span>"; // Change text to "We are setting up"
       document.getElementById('setup-message').style.display = 'block';
       removePreloader();
     }, 2500); // Simulate setup time (2 seconds) before removing preloader

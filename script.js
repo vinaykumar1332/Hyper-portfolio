@@ -609,36 +609,3 @@ if (window.innerWidth <= 480) {
     }, false);
   }
 }
-
-
-
-// --preloader
-// Function to remove the preloader and show the content
-function removePreloader() {
-  document.getElementById('preloader').style.display = 'none';
-}
-
-// Function to check network speed
-function checkNetwork() {
-  var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  if (connection && connection.effectiveType === '2g') {
-    document.getElementById('network-message').style.display = 'block';
-    document.getElementById('please-wait').style.display = 'none'; // Hide "Please wait" message
-  } else {
-    setTimeout(function () {
-      document.getElementById('please-wait').innerHTML = "<span>We are setting up...</span>"; // Change text to "We are setting up"
-      removePreloader();
-    }, 2500); // Simulate setup time (2 seconds) before removing preloader
-  }
-}
-
-// Run checkNetwork function when the DOM content is loaded
-document.addEventListener('DOMContentLoaded', function () {
-  checkNetwork();
-});
-
-// Run removePreloader function when the window is fully loaded
-window.addEventListener('load', function () {
-  removePreloader();
-});
-

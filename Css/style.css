@@ -2144,26 +2144,5 @@ body::-webkit-scrollbar-thumb:hover {
   color: gray;
 }
 
-.loader {
-  border: 8px solid gray; /* Increased border width */
-  border-top: 8px solid var(--first-color-alt); /* Initial color */
-  border-bottom: 8px solid var(--first-color-alt);
-  border-radius: 50%;
-  width: 60px; /* Increased width */
-  height: 60px; /* Increased height */
-  animation: spin 2s linear infinite, changeColor 5s linear infinite; /* Adjust animation speed here */
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg);animation-timing-function: linear; }
-  100% { transform: rotate(360deg);animation-timing-function: ease-out; }
-}
-
-@keyframes changeColor {
-  0%, 100% { border-top-color: var(--first-color-alt); border-bottom-color: var(--first-color-alt); } /* Initial and final color */
-  25% { border-top-color: #4d0357; border-bottom-color: #4d0357; } /* Change to a different color */
-  50% { border-top-color: #9b59b6; border-bottom-color: #9b59b6; } /* Change to a different color */
-  75% { border-top-color: #5b0888; border-bottom-color: #5b0888; } /* Change to a different color */
-}
 
 

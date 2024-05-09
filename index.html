@@ -15,21 +15,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="Libraries/swiper-bundle.min.css" />
     <link rel="stylesheet" href="Css/style.css" />
+    <link rel="stylesheet" href="Css/preloader.css" />
     <link rel="icon" type="image/x-icon" href="Assets/favicon-v.svg" />
 </head>
 
 <body class="icon-Theme">
     <!-- Preloader  -->
     <div id="preloader">
-        <div class="loader">
-            <div class="inner-loader"></div>
-        </div>
-        <p class="pre-text" id="please-wait">Please wait<span >...</span></p>
-        <p class="pre-text" id="network-message"   style="display:none;"><i class="fas fa-exclamation-triangle"></i>Waiting for network...</p>
+        <div class="loader" id="preloader1"></div>
+        <div class="loader" id="preloader2"></div>
+        <div class="loader" id="preloader3"></div>
+        <div class="loader" id="preloader4"></div>
+        <div class="loader" id="preloader5"></div>
+        <p class="pre-text" id="please-wait"><i class='fas fa-spinner fa-spin'></i>Please wait<span>...</span></p>
+        <p class="pre-text" id="network-message" style="display:none;"><i
+                class="fas fa-exclamation-triangle"></i>Waiting for network...</p>
     </div>
     <!-- header  -->
     <header class="header" id="header">
-        <nav class="nav container" >
+        <nav class="nav container">
             <a href="#" class="nav-logo">Vinay kumar pudi</a>
 
             <div class="nav-menu" id="nav-menu">
@@ -113,7 +117,9 @@
         165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
         129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
         -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
-                                <image alt="profile-image"  class="home-blob-img" x="-15" y="-1" href="Assets/profile-icon.png" / loading="lazy lazy-icon" ondragstart="return false;">
+                                <image alt="profile-image" class="home-blob-img" x="-15" y="-1"
+                                    href="Assets/profile-icon.png" / loading="lazy lazy-icon"
+                                    ondragstart="return false;">
                             </g>
                         </svg>
                     </div>
@@ -121,7 +127,8 @@
                     <div class="home-data">
                         <div class="typeJsWrapper">
                             <div class="container-name">
-                                <h1 class="typeJsText" aria-labelledby="Name" aria-hidden="true" data-typetext="Hi, I am Vinay Kumar Pudi">
+                                <h1 class="typeJsText" aria-labelledby="Name" aria-hidden="true"
+                                    data-typetext="Hi, I am Vinay Kumar Pudi">
                                 </h1>
                             </div>
                         </div>
@@ -151,7 +158,7 @@
             <span class="section-subtitle" tabindex="0">My Introduction<span class="arrow"></span></span>
 
             <div class="about-container container grid">
-                <img src="Assets/Icons/aboutimg.webp" alt="" class="about-img" oncontextmenu="return false;"/>
+                <img src="Assets/Icons/aboutimg.webp" alt="" class="about-img" oncontextmenu="return false;" />
 
                 <div class="about-data">
                     <p class="about-description">
@@ -165,8 +172,8 @@
                     </p>
 
                     <div class="about-info">
-                        <div  id="experience">
-                            <span class="about-info-title" id="experienceValue" ></span>
+                        <div id="experience">
+                            <span class="about-info-title" id="experienceValue"></span>
                             <span class="about-info-name">Years <br />
                                 experience</span>
                         </div>
@@ -456,11 +463,11 @@
             <div class="slideshow-container">
                 <div class="mySlides fade" style="width: 100%; overflow: hidden;">
                     <a href="404.html"><img alt="demo1" data-src="Assets/demo1.jpeg" style="width:100%"></a>
-                    
+
                 </div>
                 <div class="mySlides fade" style="width: 100%; overflow: hidden;">
                     <a href="404.html"><img alt="demo1" data-src="Assets/demo2.jpeg" style="width:100%"></a>
-        
+
                 </div>
                 <div class="mySlides fade" style="width: 100%; overflow: hidden;">
                     <a href="404.html"><img alt="demo1" data-src="Assets/demo3.jpeg" style="width:100%"></a>
@@ -469,15 +476,15 @@
                     <a href="404.html"><img alt="demo1" data-src="Assets/demo4.jpeg" style="width:100%"></a>
                 </div>
 
-                <button class="prev"  tabindex="0"  onclick="plusSlides(-1)" aria-label="Previous">&#10094;</button>
+                <button class="prev" tabindex="0" onclick="plusSlides(-1)" aria-label="Previous">&#10094;</button>
                 <button class="next" id="auto-click" onclick="plusSlides(1)" aria-label="Next">&#10095;</button>
             </div>
             <br>
             <div class="bullet-indicator" style="text-align:center">
                 <span class="dot" tabindex="0" onclick="currentSlide(1)" aria-label="Slide 1"></span>
                 <span class="dot" tabindex="0" onclick="currentSlide(2)" aria-label="Slide 2"></span>
-                <span class="dot"  tabindex="0" onclick="currentSlide(3)" aria-label="Slide 3"></span>
-                <span class="dot"  tabindex="0" onclick="currentSlide(4)" aria-label="Slide 4"></span>
+                <span class="dot" tabindex="0" onclick="currentSlide(3)" aria-label="Slide 3"></span>
+                <span class="dot" tabindex="0" onclick="currentSlide(4)" aria-label="Slide 4"></span>
             </div>
 
             <p id="carousel-p">Discover more by clicking the images.</p>
@@ -492,7 +499,8 @@
             <h2 class="section-title">Contact me</h2>
             <span class="section-subtitle">Get in touch<span class="arrow"></span></span>
             <div class="container-form-contact">
-                <form   id="contactForm" id="myForm" action="https://formsubmit.co/cc5b87a9c6061b6362d9231d23f3789c"  method="POST">
+                <form id="contactForm" id="myForm" action="https://formsubmit.co/cc5b87a9c6061b6362d9231d23f3789c"
+                    method="POST">
                     <input name="name" type="text" class="feedback-input" placeholder="Name" required />
                     <input name="email" type="email" class="feedback-input" placeholder="Email" required />
                     <textarea name="text" class="feedback-input" placeholder="Comment" required></textarea>
@@ -502,7 +510,7 @@
                     </div>
                 </form>
                 <div id="notification-form-txt" class="toast-form" style="display:none;">Please wait...</div>
-         
+
             </div>
             <div class="contact-container container grid">
                 <div>
@@ -571,9 +579,9 @@
     </a>
     <script src="Libraries/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/9b634c15bd.js"></script>
-    <script src="Libraries/script.min.js"></script>
+    <!-- <script src="Libraries/script.min.js"></script> -->
     <script src="Libraries/accessbility.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <script src="script.js"></script>
     <script src="Libraries/rightClick.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 

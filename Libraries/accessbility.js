@@ -26,35 +26,7 @@ function addAccessibilityToButtons(buttonsClass) {
   addAccessibilityToButtons('nav-btns');
   addAccessibilityToButtons('prev');
 
-// // ---dots
-// // JavaScript code to animate the dots
-// let dots = document.getElementById("please-wait");
-// let animationInterval;
-
-// function animateDots() {
-//   animationInterval = setInterval(function () {
-//     switch (dots.innerHTML) {
-//       case ".":
-//         dots.innerHTML = "..";
-//         break;
-//       case "..":
-//         dots.innerHTML = "...";
-//         break;
-//       case "...":
-//         dots.innerHTML = ".";
-//         break;
-//       default:
-//         dots.innerHTML = ".";
-//         break;
-//     }
-//   }, 450);
-// }
-
-// // Start the animation when the page loads
-// document.addEventListener('DOMContentLoaded', function() {
-//   animateDots();
-// });
-
+// -------removing script  file
 document.addEventListener("DOMContentLoaded", function() {
   setTimeout(function() {
       var script = document.querySelector('script[src="Libraries/swiper-bundle.min.js"]');
@@ -76,46 +48,56 @@ setTimeout(function() {
       console.log("Script not found.");
   }
 },10); // Wait for 3 seconds before commenting out
+  
+// Function to remove the preloader after a minimum duration
+function removePreloader() {
+  // Set the minimum duration in milliseconds (1.5 seconds = 1500 milliseconds)
+  var minDuration = 1000;
 
+  // Get the current timestamp
+  var startTime = new Date().getTime();
 
-  // Function to hide all preloaders
-  function hideAllPreloaders() {
-    document.querySelectorAll('.loader').forEach(function(preloader) {
+  // Hide the preloader after the minimum duration
+  setTimeout(function() {
+      var currentTime = new Date().getTime();
+      var elapsedTime = currentTime - startTime;
+
+      // Check if the elapsed time is greater than or equal to the minimum duration
+      if (elapsedTime >= minDuration) {
+          document.getElementById('preloader').style.display = 'none';
+      } else {
+          // If the minimum duration hasn't passed yet, wait for the remaining time
+          setTimeout(function() {
+              document.getElementById('preloader').style.display = 'none';
+          }, minDuration - elapsedTime);
+      }
+  }, minDuration);
+}
+
+// Function to hide all preloaders
+function hideAllPreloaders() {
+  document.querySelectorAll('.loader').forEach(function(preloader) {
       preloader.style.display = 'none';
-    });
-  }
+  });
+}
 
-  // Function to show a random preloader
-  function showRandomPreloader() {
-    hideAllPreloaders();
-    const preloaders = document.querySelectorAll('.loader');
-    const randomIndex = Math.floor(Math.random() * preloaders.length);
-    preloaders[randomIndex].style.display = 'block';
-  }
-
-  // Function to remove the preloader and show the content
-  function removePreloader() {
-    document.getElementById('preloader').style.display = 'none';
-  }
-
-  // Function to check network speed
-  function checkNetwork() {
-    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    if (connection && connection.effectiveType === '2g') {
+// Function to check network speed
+function checkNetwork() {
+  var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (connection && connection.effectiveType === '2g') {
       document.getElementById('network-message').style.display = 'block';
       document.getElementById('please-wait').style.display = 'none'; // Hide "Please wait" message
-    } else {
-      document.getElementById('please-wait').innerHTML = "<span>We are setting up..</span>"; // Change text to "We are setting up"
-      showRandomPreloader(); // Show a random preloader
-    }
+  } else {
+      document.getElementById('please-wait').innerHTML = '<i class="fas fa-exclamation-triangle"></i><span>Waiting for network..</span>'; // Change text to "We are setting up"
   }
+}
 
-  // Run checkNetwork function when the DOM content is loaded
-  document.addEventListener('DOMContentLoaded', function () {
-    checkNetwork();
-  });
+// Run checkNetwork function when the DOM content is loaded
+document.addEventListener('DOMContentLoaded', function () {
+  checkNetwork();
+});
 
-  // Run removePreloader function when the window is fully loaded
-  window.addEventListener('load', function () {
-    removePreloader();
-  });
+// Run removePreloader function when the window is fully loaded
+window.addEventListener('load', function () {
+  removePreloader();
+});

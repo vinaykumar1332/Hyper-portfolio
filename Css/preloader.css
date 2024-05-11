@@ -1,96 +1,21 @@
-.loader{
-    display: none;
+
+  #preloader5 {
+  width: 120px;
+  height: 22px;
+  border-radius: 20px;
+  color: #514b82;
+  border: 2px solid;
+  position: relative;
 }
-
-#preloader1{
-    width: 120px;
-    height: 60px;
-    border-radius: 200px 200px 0 0;
-    -webkit-mask: repeating-radial-gradient(farthest-side at bottom ,#0000 0,#000 1px 12%,#0000 calc(12% + 1px) 20%);
-    background:
-     radial-gradient(farthest-side at bottom,#514b82 0 95%,#0000 0) bottom/0% 0% no-repeat
-     #ddd;
-    animation: l10 2s infinite steps(6);
-  }
-  @keyframes l10 {
-      100% {background-size:120% 120%}
-  }
-
-#preloader2 {
-    width: 60px;
-    aspect-ratio: 1;
-    border: 15px solid #ddd;
-    border-radius: 50%;
-    position: relative;
-    transform: rotate(45deg);
-  }
-  #preloader2::before {
-    content: "";
-    position: absolute;
-    inset: -15px;
-    border-radius: 50%;
-    border: 15px solid #514b82;
-    animation: l18 2s infinite linear;
-  }
-  @keyframes l18 {
-      0%   {clip-path:polygon(50% 50%,0 0,0    0,0    0   ,0    0   ,0    0   )}
-      25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0   ,100% 0   ,100% 0   )}
-      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-      75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    100%)}
-      100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0    100%,0    0   )}
-  }
-#preloader3 {
-    height: 4px;
-    width: 130px;
-    --c:no-repeat linear-gradient(#6100ee 0 0);
-    background: var(--c),var(--c),#d7b8fc;
-    background-size: 60% 100%;
-    animation: l16 3s infinite;
-  }
-  @keyframes l16 {
-    0%   {background-position:-150% 0,-150% 0}
-    66%  {background-position: 250% 0,-150% 0}
-    100% {background-position: 250% 0, 250% 0}
-  }
-  /* HTML: <div class="loader"></div> */
-#preloader4 {
-    height: 80px;
-    width: 20px;
-    color: #514b82;
-    background:
-      radial-gradient(farthest-side,currentColor 94%,#0000 ) top/8px 8px,
-      linear-gradient(currentColor 0 0) top/4px 70%,
-      conic-gradient(from -30deg at bottom,#0000,currentColor 2deg 58deg,#0000 60deg) bottom            /100% 20px,
-      conic-gradient(from 150deg at top   ,#0000,currentColor 2deg 58deg,#0000 60deg) bottom 20px left 0/100% 20px;
-    background-repeat: no-repeat;
-    transform-origin: 50% 4px;
-    animation: l15 2s infinite cubic-bezier(0.5,300,0.5,-300);
-  }
-  @keyframes l15 { 
-   100% {transform: rotate(0.5deg)}
-  }
-/* HTML: <div class="loader"></div> */
-#preloader5 {
-    width: 50px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 8px solid #514b82;
-    animation:
-      l20-1 0.8s infinite linear alternate,
-      l20-2 1.6s infinite linear;
-  }
-  @keyframes l20-1{
-     0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
-     12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
-     25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
-     50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
-     62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
-     75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
-     100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
-  }
-  @keyframes l20-2{ 
-    0%    {transform:scaleY(1)  rotate(0deg)}
-    49.99%{transform:scaleY(1)  rotate(135deg)}
-    50%   {transform:scaleY(-1) rotate(0deg)}
-    100%  {transform:scaleY(-1) rotate(-135deg)}
-  }
+#preloader5::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  inset: 0 100% 0 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: l6 2s infinite;
+}
+@keyframes l6 {
+    100% {inset:0}
+}

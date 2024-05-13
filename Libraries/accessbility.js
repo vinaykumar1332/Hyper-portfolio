@@ -101,3 +101,109 @@ document.addEventListener('DOMContentLoaded', function () {
 window.addEventListener('load', function () {
   removePreloader();
 });
+
+// Get all faq-header-section elements
+const faqSections = document.querySelectorAll('.faq-header-section');
+
+// Loop through each faq-header-section
+faqSections.forEach((section, index) => {
+    // Check if the section has already been processed
+    if (!section.classList.contains('accordion-initialized')) {
+        // Remove any existing div with class 'faq-heading'
+        // Create h2 element
+        const h2 = document.createElement('h2');
+        h2.setAttribute('id', 'accordion-heading-' + (index + 1));
+        h2.setAttribute('role', 'heading');
+        h2.setAttribute('aria-level', '2');
+
+        // Create button element
+        const button = document.createElement('button');
+        button.setAttribute('aria-controls', 'accordion-panel-' + (index + 1));
+        button.setAttribute('aria-expanded', 'true');
+        button.setAttribute('role', 'button');
+        button.innerHTML = '<div class="faq-heading field-heading">' + section.textContent.trim() + '</div>';
+
+        // Append button to h2
+        h2.appendChild(button);
+
+        // Append h2 to faq-header-section
+        section.insertBefore(h2, section.firstChild);
+
+        // Add a class to mark the section as processed
+        section.classList.add('accordion-initialized');
+    }
+});
+
+
+
+// Function to initialize accordion for a single FAQ section
+function initializeAccordionForFAQ(section, index) {
+  const h2 = document.createElement('h2');
+  const button = document.createElement('button');
+
+  // Set id and aria-controls attributes with dynamic index
+  const panelId = 'accordion-panel-' + index;
+  h2.setAttribute('id', 'accordion-heading-' + index);
+  button.setAttribute('aria-controls', panelId);
+
+  // Other attributes and content
+  h2.setAttribute('role', 'heading');
+  h2.setAttribute('aria-level', '2');
+  button.setAttribute('aria-expanded', 'true');
+  button.setAttribute('role', 'button');
+  button.innerHTML = `
+      <div class="faq-heading field-heading">${section.querySelector('.faq-heading').innerHTML.trim()}</div>
+      <span class="faq-chevron open">
+          ${section.querySelector('.faq-chevron').innerHTML}
+      </span>
+  `;
+
+  // Append button to h2
+  h2.appendChild(button);
+
+  // Replace content of section with h2
+  section.innerHTML = '';
+  section.appendChild(h2);
+
+  // Assign an event listener to the button to toggle visibility of the corresponding panel
+  button.addEventListener('click', function() {
+      const panel = document.getElementById(panelId);
+      if (panel) {
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', String(!isExpanded));
+          panel.setAttribute('aria-hidden', String(isExpanded));
+      }
+  });
+}
+
+// Function to initialize accordion for all FAQ sections
+function initializeAccordionForAllFAQs() {
+  const faqSections = document.querySelectorAll('.faq-header-section');
+  faqSections.forEach((section, index) => {
+      initializeAccordionForFAQ(section, index + 1);
+  });
+}
+
+// Initialize accordion for existing FAQs
+initializeAccordionForAllFAQs();
+
+// Mutation observer to handle dynamically loaded FAQs
+const observer = new MutationObserver(function(mutationsList) {
+  mutationsList.forEach(function(mutation) {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          mutation.addedNodes.forEach(function(node) {
+              if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('faq-header-section')) {
+                  initializeAccordionForFAQ(node, document.querySelectorAll('.faq-header-section').length);
+              }
+          });
+      }
+  });
+});
+
+// Observe changes in the parent element containing the FAQs
+const parentElement = document.querySelector('.faq-search');
+if (parentElement) {
+  observer.observe(parentElement, { childList: true });
+} else {
+  console.error('Parent element not found.');
+}

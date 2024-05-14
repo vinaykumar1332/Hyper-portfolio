@@ -136,74 +136,121 @@ faqSections.forEach((section, index) => {
 
 
 
-// Function to initialize accordion for a single FAQ section
-function initializeAccordionForFAQ(section, index) {
-  const h2 = document.createElement('h2');
-  const button = document.createElement('button');
 
-  // Set id and aria-controls attributes with dynamic index
-  const panelId = 'accordion-panel-' + index;
-  h2.setAttribute('id', 'accordion-heading-' + index);
-  button.setAttribute('aria-controls', panelId);
 
-  // Other attributes and content
-  h2.setAttribute('role', 'heading');
-  h2.setAttribute('aria-level', '2');
-  button.setAttribute('aria-expanded', 'true');
-  button.setAttribute('role', 'button');
-  button.innerHTML = `
-      <div class="faq-heading field-heading">${section.querySelector('.faq-heading').innerHTML.trim()}</div>
-      <span class="faq-chevron open">
-          ${section.querySelector('.faq-chevron').innerHTML}
-      </span>
-  `;
+function createFAQStructure() {
+  var faqHeadings = document.querySelectorAll('.faq-heading');
 
-  // Append button to h2
-  h2.appendChild(button);
+  faqHeadings.forEach(function(heading, index) {
+      // Create the outer <h2> element
+      var outerH2 = document.createElement('h2');
+      outerH2.setAttribute('id', 'accordion-heading-' + (index + 1)); // Set unique id
+      outerH2.setAttribute('role', 'heading');
+      outerH2.setAttribute('aria-level', '2');
 
-  // Replace content of section with h2
-  section.innerHTML = '';
-  section.appendChild(h2);
+      // Create the <button> element
+      var button = document.createElement('button');
+      button.setAttribute('aria-controls', 'accordion-panel-' + (index + 1));
+      button.setAttribute('aria-expanded', 'true');
+      button.setAttribute('role', 'button');
 
-  // Assign an event listener to the button to toggle visibility of the corresponding panel
-  button.addEventListener('click', function() {
-      const panel = document.getElementById(panelId);
-      if (panel) {
-          const isExpanded = button.getAttribute('aria-expanded') === 'true';
-          button.setAttribute('aria-expanded', String(!isExpanded));
-          panel.setAttribute('aria-hidden', String(isExpanded));
+      // Append the <button> element to the outer <h2>
+      outerH2.appendChild(button);
+
+      // Create the inner <div> with the class "faq-heading field-heading"
+      var innerDiv = document.createElement('div');
+      innerDiv.setAttribute('class', 'faq-heading field-heading');
+
+      // Clone the content of faq-heading
+      var clonedContent = heading.cloneNode(true);
+
+      // Append the cloned content to the inner <div>
+      innerDiv.appendChild(clonedContent);
+
+      // Append the inner <div> to the <button>
+      button.appendChild(innerDiv);
+
+      // Append the outer <h2> to the document body or any other desired parent element
+      document.body.appendChild(outerH2);
+  });
+}
+
+// Call the function initially
+document.addEventListener('DOMContentLoaded', function() {
+  createFAQStructure();
+});
+
+// -- new working code
+
+
+
+
+//
+function wrapFAQsWithH2AndButton() {
+  var faqDivs = document.querySelectorAll('.faq-heading');
+  faqDivs.forEach(function(div, index) {
+      if (!div.parentNode || div.parentNode.tagName.toLowerCase() === 'h2') return;
+      var clonedDiv = div.cloneNode(true);
+      var h2Faq = document.createElement('h2');
+      h2Faq.setAttribute('id', 'accordion-heading-' + (index + 1));
+      h2Faq.setAttribute('role', 'heading');
+      var buttonFaq = document.createElement('button');
+      buttonFaq.setAttribute('aria-controls', 'accordion-panel-' + (index + 1));
+      h2Faq.appendChild(buttonFaq);
+      h2Faq.appendChild(clonedDiv);
+      div.parentNode.replaceChild(h2Faq, div);
+  });
+}
+wrapFAQsWithH2AndButton();
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList') {
+          wrapFAQsWithH2AndButton();
       }
   });
-}
+});
+observer.observe(document.body, { childList: true, subtree: true });
 
-// Function to initialize accordion for all FAQ sections
-function initializeAccordionForAllFAQs() {
-  const faqSections = document.querySelectorAll('.faq-header-section');
-  faqSections.forEach((section, index) => {
-      initializeAccordionForFAQ(section, index + 1);
+
+
+function wrapFAQsWithH2AndButton() {
+  // Find all elements with the class "faq-heading"
+  var faqDivs = document.querySelectorAll('.faq-heading');
+
+  faqDivs.forEach(function(div, index) {
+      if (div.parentNode && div.parentNode.tagName.toLowerCase() === 'h2') return;
+
+      // Create the h2 element
+      var h2Faq = document.createElement('h2');
+      h2Faq.setAttribute('id', 'accordion-heading-' + (index + 1));
+      h2Faq.setAttribute('role', 'heading');
+      var clonedDiv = div.cloneNode(true);
+
+      // Create the button element
+      var buttonFaq = document.createElement('button');
+      buttonFaq.setAttribute('aria-controls', 'accordion-panel-' + (index + 1));
+
+      // Move the div inside the button
+      buttonFaq.appendChild(clonedDiv);
+
+      // Move the button inside the h2
+      h2Faq.appendChild(buttonFaq);
+
+      // Insert the h2 before the div's original position
+      div.parentNode.insertBefore(h2Faq, buttonFaq);
   });
 }
 
-// Initialize accordion for existing FAQs
-initializeAccordionForAllFAQs();
+wrapFAQsWithH2AndButton();
 
-// Mutation observer to handle dynamically loaded FAQs
-const observer = new MutationObserver(function(mutationsList) {
-  mutationsList.forEach(function(mutation) {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-          mutation.addedNodes.forEach(function(node) {
-              if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('faq-header-section')) {
-                  initializeAccordionForFAQ(node, document.querySelectorAll('.faq-header-section').length);
-              }
-          });
+// Use MutationObserver to watch for changes in the DOM
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList') {
+          wrapFAQsWithH2AndButton();
       }
   });
 });
 
-// Observe changes in the parent element containing the FAQs
-const parentElement = document.querySelector('.faq-search');
-if (parentElement) {
-  observer.observe(parentElement, { childList: true });
-} else {
-  console.error('Parent element not found.');
-}
+// Start observing the document body for changes
+observer.observe(document.body, { childList: true, subtree: true });

@@ -187,70 +187,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //
 function wrapFAQsWithH2AndButton() {
-  var faqDivs = document.querySelectorAll('.faq-heading');
+  var faqDivs = document.querySelectorAll('.faq-heading:not(.processed)');
   faqDivs.forEach(function(div, index) {
-      if (!div.parentNode || div.parentNode.tagName.toLowerCase() === 'h2') return;
-      var clonedDiv = div.cloneNode(true);
-      var h2Faq = document.createElement('h2');
-      h2Faq.setAttribute('id', 'accordion-heading-' + (index + 1));
-      h2Faq.setAttribute('role', 'heading');
-      var buttonFaq = document.createElement('button');
-      buttonFaq.setAttribute('aria-controls', 'accordion-panel-' + (index + 1));
-      h2Faq.appendChild(buttonFaq);
-      h2Faq.appendChild(clonedDiv);
-      div.parentNode.replaceChild(h2Faq, div);
-  });
-}
-wrapFAQsWithH2AndButton();
-var observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-      if (mutation.type === 'childList') {
-          wrapFAQsWithH2AndButton();
-      }
-  });
-});
-observer.observe(document.body, { childList: true, subtree: true });
+    if (!div.parentNode || div.parentNode.tagName.toLowerCase() === 'h2') return;
 
+    // Mark this div as processed to avoid reprocessing
+    div.classList.add('processed');
 
+    var clonedDiv = div.cloneNode(true);
+    var h2Faq = document.createElement('h2');
+    h2Faq.setAttribute('id', 'accordion-heading-' + (index + 1));
+    h2Faq.setAttribute('role', 'heading');
 
-function wrapFAQsWithH2AndButton() {
-  // Find all elements with the class "faq-heading"
-  var faqDivs = document.querySelectorAll('.faq-heading');
+    var buttonFaq = document.createElement('button');
+    buttonFaq.setAttribute('aria-controls', 'accordion-panel-' + (index + 1));
 
-  faqDivs.forEach(function(div, index) {
-      if (div.parentNode && div.parentNode.tagName.toLowerCase() === 'h2') return;
+    // Append the cloned div inside the button and the button inside the h2
+    buttonFaq.appendChild(clonedDiv);
+    h2Faq.appendChild(buttonFaq);
 
-      // Create the h2 element
-      var h2Faq = document.createElement('h2');
-      h2Faq.setAttribute('id', 'accordion-heading-' + (index + 1));
-      h2Faq.setAttribute('role', 'heading');
-      var clonedDiv = div.cloneNode(true);
-
-      // Create the button element
-      var buttonFaq = document.createElement('button');
-      buttonFaq.setAttribute('aria-controls', 'accordion-panel-' + (index + 1));
-
-      // Move the div inside the button
-      buttonFaq.appendChild(clonedDiv);
-
-      // Move the button inside the h2
-      h2Faq.appendChild(buttonFaq);
-
-      // Insert the h2 before the div's original position
-      div.parentNode.insertBefore(h2Faq, buttonFaq);
+    // Replace the original div with the new h2 element
+    div.parentNode.replaceChild(h2Faq, div);
   });
 }
 
-wrapFAQsWithH2AndButton();
+setTimeout(wrapFAQsWithH2AndButton, 1000); // Delay execution to ensure DOM is loaded
 
-// Use MutationObserver to watch for changes in the DOM
-var observer = new MutationObserver(function(mutations) {
+var observerFaq = new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
-      if (mutation.type === 'childList') {
-          wrapFAQsWithH2AndButton();
-      }
+    if (mutation.type === 'childList') {
+      wrapFAQsWithH2AndButton();
+    }
   });
 });
 
-// Start observing the document body for changes
-observer.observe(document.body, { childList: true, subtree: true });
+observerFaq.observe(document.body, { childList: true, subtree: true });
+

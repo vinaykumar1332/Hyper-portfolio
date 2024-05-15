@@ -223,3 +223,137 @@ var observerFaq = new MutationObserver(function(mutations) {
 
 observerFaq.observe(document.body, { childList: true, subtree: true });
 
+
+function transformDivsToButtons() {
+  console.log("Running transformDivsToButtons");
+
+  // Select all h2 elements with class 'faq-heading-level'
+  const faqHeadings = document.querySelectorAll('h2.faq-heading-parent');
+
+  if (faqHeadings.length === 0) {
+      console.log("No h2 elements with class 'faq-heading-level' found");
+  } else {
+      console.log(`Found ${faqHeadings.length} h2 elements with class 'faq-heading-level'`);
+  }
+
+  faqHeadings.forEach(function(faqHeading) {
+      // Find the child div with class 'faq-button' within each h2
+      const faqButtonDiv = faqHeading.querySelector('div.faq-button');
+
+      if (faqButtonDiv) {
+          console.log("Found a div with class 'faq-button'");
+
+          // Create a new button element
+          const newButton = document.createElement('button');
+
+          // Transfer the inner HTML and attributes from the div to the button
+          newButton.innerHTML = faqButtonDiv.innerHTML;
+          for (let attr of faqButtonDiv.attributes) {
+              newButton.setAttribute(attr.name, attr.value);
+          }
+
+          // Replace the div with the new button element
+          faqButtonDiv.replaceWith(newButton);
+      } else {
+          console.log("No div with class 'faq-button' found within h2");
+      }
+  });
+}
+
+// Function to repeatedly attempt initial transformation
+function attemptInitialTransformation() {
+  transformDivsToButtons();
+  // Check every second for a maximum of 5 seconds to see if elements have been added
+  let attempts = 0;
+  const intervalId = setInterval(() => {
+      attempts++;
+      if (attempts >= 5) {
+          clearInterval(intervalId);
+      }
+      transformDivsToButtons();
+  }, 1000);
+}
+
+// Initial transformation attempt
+attemptInitialTransformation();
+
+// Set up a MutationObserver to watch for new elements being added
+const observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          mutation.addedNodes.forEach(function(node) {
+              if (node.nodeType === 1) { // Only process element nodes
+                  if (node.matches('h2.faq-heading-level')) {
+                      console.log("New h2.faq-heading-level element added, running transformDivsToButtons");
+                      transformDivsToButtons();
+                  }
+                  node.querySelectorAll('h2.faq-heading-level').forEach(function(faqHeading) {
+                      console.log("New h2.faq-heading-level element found within added node, running transformDivsToButtons");
+                      transformDivsToButtons();
+                  });
+              }
+          });
+      }
+  });
+});
+
+// Start observing the document for changes
+observer.observe(document.body, { childList: true, subtree: true });
+
+console.log("Script loaded and MutationObserver is set up");
+
+
+// ----------running 
+function transformDivsToButtons() {
+  console.log("Running transformDivsToButtons");
+
+  // Select all h2 elements with class 'faq-heading-level'
+  const faqHeadings = document.querySelectorAll('h2.faq-heading-parent');
+
+  if (faqHeadings.length === 0) {
+      console.log("No h2 elements with class 'faq-heading-level' found");
+  } else {
+      console.log(`Found ${faqHeadings.length} h2 elements with class 'faq-heading-level'`);
+  }
+
+  faqHeadings.forEach(function(faqHeading) {
+      // Find the child div with class 'faq-button' within each h2
+      const faqButtonDiv = faqHeading.querySelector('div.faq-button');
+
+      if (faqButtonDiv) {
+          console.log("Found a div with class 'faq-button'");
+
+          // Create a new button element
+          const newButton = document.createElement('button');
+
+          // Transfer the inner HTML and attributes from the div to the button
+          newButton.innerHTML = faqButtonDiv.innerHTML;
+          for (let attr of faqButtonDiv.attributes) {
+              newButton.setAttribute(attr.name, attr.value);
+          }
+
+          // Replace the div with the new button element
+          faqButtonDiv.replaceWith(newButton);
+      } else {
+          console.log("No div with class 'faq-button' found within h2");
+      }
+  });
+}
+
+// Initial transformation
+transformDivsToButtons();
+
+// Set up a MutationObserver to watch for new elements being added
+const observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList') {
+          console.log("DOM mutation observed, running transformDivsToButtons");
+          transformDivsToButtons();
+      }
+  });
+});
+
+// Start observing the document for changes
+observer.observe(document.body, { childList: true, subtree: true });
+
+console.log("Script loaded and MutationObserver is set up");

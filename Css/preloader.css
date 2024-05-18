@@ -19,3 +19,32 @@
 @keyframes l6 {
     100% {inset:0}
 }
+
+#slow-network {
+  display: none;
+  font-family: 'Arial', sans-serif; /* Set the font family */
+  font-size: 16px; /* Set the font size */
+  color: #555555; /* Set a softer text color */
+  background-color: #f0e9e9; /* Set a softer background color */
+  padding: 10px; /* Add some padding */
+  border: 1px solid #e0d4d4; /* Add a softer border color */
+  border-radius: 5px; /* Round the corners */
+  text-align: center; /* Center the text */
+  margin-top: 5px; /* Add some margin at the top */
+}
+@keyframes dots {
+  0%, 20% {
+    content: '';
+  }
+  40% {
+    content: '.';
+  }
+  60%,100% {
+    content: '..';
+  }
+}
+
+#please-wait::after,#network-message::after {
+  content: '';
+  animation: dots 2s steps(5, end) infinite;
+}

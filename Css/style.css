@@ -595,13 +595,12 @@ img {
 /* services  */
 .services-container {
   gap: 1.5rem;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1fr);
 }
 
 .services-content {
-  position: relative;
   background-color: var(--container-color);
-  padding: 3.5rem 0.5rem 1.25rem 1.5rem;
+  padding: 2.5rem 3.5rem 1.25rem 4.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
@@ -1136,7 +1135,7 @@ img {
   }
 
   .services-container {
-    grid-template-columns: repeat(3, 218px);
+    grid-template-columns: repeat(1, 218px);
     justify-content: center;
   }
 
@@ -1220,7 +1219,7 @@ img {
   }
 
   .services-container {
-    grid-template-columns: repeat(2, 238px);
+    grid-template-columns: repeat(1, 250px);
   }
 
   .portfolio-content {

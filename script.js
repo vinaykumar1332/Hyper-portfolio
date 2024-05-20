@@ -730,4 +730,3 @@ checkNetwork();
 window.addEventListener('load', function () {
 removePreloader();
 });
-

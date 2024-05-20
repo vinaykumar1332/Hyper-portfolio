@@ -600,7 +600,7 @@ img {
 
 .services-content {
   background-color: var(--container-color);
-  padding: 2.5rem 3.5rem 1.25rem 4.5rem;
+  padding: 2.5rem 2.5rem 1.25rem 3.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   transition: 0.3s;
@@ -1144,7 +1144,7 @@ img {
   }
 
   .services-content {
-    padding: 6rem 0 2rem 2.5rem;
+    padding: 2rem 3rem;
   }
 
   .services-box-content {

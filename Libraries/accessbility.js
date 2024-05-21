@@ -119,30 +119,18 @@ window.addEventListener('load', function () {
 });
 
 
-
-// optimize code
 function convertFaqHeadingsToButtons() {
   const faqHeadings = document.querySelectorAll('h2.faq-heading-parent');
-
   if (faqHeadings.length === 0) {
-    console.log("No FAQ headings found");
     return;
   }
-
-  console.log(`Found ${faqHeadings.length} FAQ headings`);
-
   faqHeadings.forEach((faqHeading, index) => {
     const faqHeaderSection = faqHeading.closest('.faq-header-section');
-
     if (!faqHeaderSection) {
-      console.log("No FAQ header section found");
       return;
     }
-
     const faqButtonDiv = faqHeading.querySelector('div.faq-button');
-
     if (!faqButtonDiv) {
-      console.log("No FAQ button element found within FAQ heading");
       return;
     }
 
@@ -161,147 +149,21 @@ function convertFaqHeadingsToButtons() {
     const panel = faqHeaderSection.nextElementSibling;
     if (panel && panel.classList.contains('faq-content')) {
       panel.setAttribute('id', panelId);
-
-      const isVisible = !panel.hasAttribute('hidden');
-      newButton.setAttribute('aria-expanded', isVisible);
-
-      const isLockedExpanded = panel.hasAttribute('locked-expanded');
-      if (isLockedExpanded) {
-        newButton.setAttribute('aria-disabled', true);
-      }
-
       newButton.addEventListener('click', function() {
-        const isPanelHidden = panel.hasAttribute('hidden');
-        panel.toggleAttribute('hidden');
-        panel.setAttribute('aria-hidden', !panel.hidden);
-        newButton.setAttribute('aria-expanded', !panel.hidden);
+        const isPanelHidden = panel.hasAttribute('');
+        // Update aria-hidden based on the current hidden state
+        panel.setAttribute('aria-hidden', isPanelHidden);
       });
-
-      panel.setAttribute('aria-hidden', !isVisible);
-    } else {
-      console.log("No corresponding FAQ content found");
     }
   });
 }
-
 convertFaqHeadingsToButtons();
-
 const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     if (mutation.type === 'childList') {
-      console.log("DOM mutation observed, running convertFaqHeadingsToButtons");
       convertFaqHeadingsToButtons();
     }
   });
 });
-
 observer.observe(document.body, { childList: true, subtree: true });
 
-console.log("Script loaded and MutationObserver is set up");
-
-
-
-// non-optimize code
-function convertFaqHeadingsToButtons() {
-  console.log("Running convertFaqHeadingsToButtons");
-
-  // Select all h2 elements with class 'faq-heading-parent'
-  const faqHeadings = document.querySelectorAll('h2.faq-heading-parent');
-
-  if (faqHeadings.length === 0) {
-    console.log("No FAQ headings found");
-  } else {
-    console.log(`Found ${faqHeadings.length} FAQ headings`);
-  }
-
-  faqHeadings.forEach(function(faqHeading, index) {
-    // Find the parent div with class 'faq-header-section'
-    const faqHeaderSection = faqHeading.closest('.faq-header-section');
-
-    if (faqHeaderSection) {
-      // Find the child div with class 'faq-button' within each h2
-      const faqButtonDiv = faqHeading.querySelector('div.faq-button');
-
-      if (faqButtonDiv) {
-        console.log("Found a FAQ button element");
-
-        // Create a new button element
-        const newButton = document.createElement('button');
-        newButton.classList.add('faq-button'); // Add class for styling
-
-        // Transfer the inner HTML and attributes from the div to the button
-        newButton.innerHTML = faqButtonDiv.innerHTML;
-        for (let attr of faqButtonDiv.attributes) {
-          newButton.setAttribute(attr.name, attr.value);
-        }
-
-        // Replace the div with the new button element
-        faqButtonDiv.replaceWith(newButton);
-
-        // Start indexing from 1 (common for IDs)
-        const newIndex = index + 1;
-        const panelId = `accordion-panel-${newIndex}`;
-        faqHeading.setAttribute('id', `accordion-heading-${newIndex}`);
-        faqHeading.setAttribute('role', 'heading'); // Set role for accessibility
-        newButton.setAttribute('aria-controls', panelId); // Link button to panel
-
-        // Find the corresponding panel and set its ID
-        const panel = faqHeaderSection.nextElementSibling;
-        if (panel && panel.classList.contains('faq-content')) {
-          panel.setAttribute('id', panelId);
-
-          // Check if the panel is visible (modify based on your visibility class)
-          const isVisible = !panel.hasAttribute('hidden');
-          newButton.setAttribute('aria-expanded', isVisible); // Set initial state of aria-expanded
-          
-          // Set aria-disabled if the panel is locked in the expanded state
-          const isLockedExpanded = panel.hasAttribute('locked-expanded');
-          if (isLockedExpanded) {
-            newButton.setAttribute('aria-disabled', true);
-          }
-
-          // Add click event to toggle panel visibility
-          newButton.addEventListener('click', function() {
-            const isPanelHidden = panel.hasAttribute('hidden');
-            if (isPanelHidden) {
-              panel.removeAttribute('hidden');
-              panel.setAttribute('aria-hidden', 'false'); // Announce visibility change
-              newButton.setAttribute('aria-expanded', 'true'); // Update aria-expanded
-            } else {
-              panel.setAttribute('hidden', 'true');
-              panel.setAttribute('aria-hidden', 'true'); // Announce visibility change
-              newButton.setAttribute('aria-expanded', 'false'); // Update aria-expanded
-            }
-          });
-
-          // Announce visibility in the initial state
-          panel.setAttribute('aria-hidden', (!isVisible).toString());
-        } else {
-          console.log("No corresponding FAQ content found");
-        }
-      } else {
-        console.log("No FAQ button element found within FAQ heading");
-      }
-    } else {
-      console.log("No FAQ header section found");
-    }
-  });
-}
-
-// Initial transformation
-convertFaqHeadingsToButtons();
-
-// Set up a MutationObserver to watch for new elements being added
-const observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    if (mutation.type === 'childList') {
-      console.log("DOM mutation observed, running convertFaqHeadingsToButtons");
-      convertFaqHeadingsToButtons();
-    }
-  });
-});
-
-// Start observing the document for changes
-observer.observe(document.body, { childList: true, subtree: true });
-
-console.log("Script loaded and MutationObserver is set up");

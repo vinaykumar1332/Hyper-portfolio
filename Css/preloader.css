@@ -49,3 +49,51 @@
 @keyframes l6 {
     100% {inset:0}
 }
+.tooltip {
+  position: absolute;
+  display: none;
+  padding: 0.5rem; /* Use rem for better responsiveness */
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px; /* Increased for smoother appearance */
+  font-size: 0.8rem; /* Adjust for readability based on context */
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: opacity 0.2s ease-in-out; /* Smooth fade-in/out animation */
+}
+
+.tooltip::before { /* Target the tooltip arrow (pseudo-element) */
+  content: "";
+  position: absolute;
+  border: solid transparent;
+  border-width: 0 5px 5px 0; /* Create a right-pointing arrow */
+  bottom: -6px; /* Position the arrow below the tooltip */
+  left: 50%; /* Center the arrow horizontally */
+  transform: translateX(-50%); /* Offset the arrow for alignment */
+  background-color: inherit; /* Inherit tooltip background color */
+}
+
+#hover-text {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none; /* Remove underline for a cleaner look */
+}
+
+#hover-text:hover .tooltip {
+  display: block;
+  opacity: 1; /* Ensure full opacity on hover */
+}
+.tooltip {
+  /* ... previous styles ... */
+  animation: tooltip-appear 0.2s ease-in-out forwards;
+}
+
+@keyframes tooltip-appear {
+  from { opacity: 0; transform: translateY(5px); } /* Start slightly hidden and shifted down */
+  to { opacity: 1; transform: translateY(0); } /* Fade in and move to final position */
+}
+
+#hover-text:hover .tooltip {
+  animation: tooltip-appear 0.2s ease-in-out; /* Trigger animation on hover */
+}

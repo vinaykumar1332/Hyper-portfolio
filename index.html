@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" disabled>
     <link rel="stylesheet" href="Libraries/swiper-bundle.min.css" aria-disabled="true">
     <link rel="stylesheet" href="Css/style.css" media="all">
-    <link rel="stylesheet" href="Css/preloader.css" media="all" >
+    <!-- <link rel="stylesheet" href="Css/preloader.css" media="all" > -->
     <link rel="icon" type="image/x-icon" href="Assets/favicon-v.svg" />
 </head>
 
@@ -32,32 +32,33 @@
     <!-- header  -->
     <header class="header" id="header">
         <nav class="nav container">
-            <a href="#" class="nav-logo">Vinay kumar pudi</a>
+            <a href="#" class="nav-logo" id="hover-text" data-tooltip="Vinay Kumar Pudi">Vinay kumar pudi</a>
 
             <div class="nav-menu" id="nav-menu">
+                <div id="tooltip" class="tooltip"></div>
                 <ul class="nav-list grid">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link"><i class="fa-solid fa-house nav-icon"
+                        <a href="#home" class="nav-link"  id="hover-text" data-tooltip="home"><i class="fa-solid fa-house nav-icon"
                                 loading="lazy lazy-icon"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#about" class="nav-link"><i class="fa-solid fa-user nav-icon"
+                        <a href="#about" class="nav-link" id="hover-text" data-tooltip="about"><i class="fa-solid fa-user nav-icon"
                                 loading="lazy lazy-icon"></i> About</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#skills" class="nav-link"><i class="fa-solid fa-file nav-icon"
+                        <a href="#skills" class="nav-link" id="hover-text" data-tooltip="skill set"><i class="fa-solid fa-file nav-icon"
                                 loading="lazy lazy-icon"></i> Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#services" class="nav-link"><i class="fa-solid fa-briefcase nav-icon"
+                        <a href="#services" class="nav-link" id="hover-text" data-tooltip="services"><i class="fa-solid fa-briefcase nav-icon"
                                 loading="lazy lazy-icon"></i> Services</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#portfolio" class="nav-link"><i class="fa-solid fa-image nav-icon"
+                        <a href="#portfolio" class="nav-link" id="hover-text" data-tooltip="portfolio" ><i class="fa-solid fa-image nav-icon"
                                 loading="lazy lazy-icon"></i> Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#contact" class="nav-link"><i class="fa-solid fa-message nav-icon"
+                        <a href="#contact" class="nav-link"  id="hover-text" data-tooltip="contact me"><i class="fa-solid fa-message nav-icon"
                                 loading="lazy lazy-icon"></i> Contact</a>
                     </li>
                 </ul>
@@ -66,7 +67,7 @@
 
             <div class="nav-btns">
                 <!-- theme btn  -->
-                <i class="fa-regular fa-moon change-theme" id="theme-button" tabindex="0"></i>
+                <i class="fa-regular fa-moon change-theme"  id="theme-button" tabindex="0"></i>
                 <div class="nav-toggle" id="nav-toggle">
                     <i class="fa-solid fa-bars"></i>
                 </div>

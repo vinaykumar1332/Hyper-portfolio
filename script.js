@@ -730,4 +730,28 @@ checkNetwork();
 window.addEventListener('load', function () {
 removePreloader();
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const tooltip = document.getElementById('tooltip');
+  if (tooltip) {
+    document.querySelectorAll('#hover-text').forEach(element => {
+      element.addEventListener('mouseover', (e) => {
+        const tooltipText = e.target.getAttribute('data-tooltip');
+        if (tooltipText) {
+          tooltip.innerText = tooltipText;
+          tooltip.style.display = 'block';
+        }
+      });
+
+      element.addEventListener('mousemove', (e) => {
+        tooltip.style.left = e.pageX + 10 + 'px';
+        tooltip.style.top = e.pageY + 10 + 'px';
+      });
+
+      element.addEventListener('mouseout', () => {
+        tooltip.style.display = 'none';
+      });
+    });
+  }
+
+});
 

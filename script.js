@@ -754,4 +754,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const footerLink = document.querySelector('.footer-link');
+  const chevron = document.querySelector('.fa-circle-chevron-down');
+  const sublist = document.querySelector('.services-sub');
 
+  footerLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      sublist.classList.toggle('show');
+      chevron.classList.toggle('rotate');
+  });
+});

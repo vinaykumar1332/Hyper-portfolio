@@ -2143,5 +2143,50 @@ body::-webkit-scrollbar-thumb:hover {
   color: gray;
 }
 
+.footer-link {
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
 
+li {
+  display: block; /* Changed to block to ensure the sublist appears below */
+}
+.has-sublist{
+ i.fa-solid.fa-circle-chevron-down {
+    margin-left: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  & .services-sub {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+   color: #fff;
+   transition: transform 0.3s;
+  }
+  
+  &.services-sub-list {
+    color: #fff;
+    background-color: transparent;
+    white-space: nowrap;
+    @media screen and (min-width: 768px) {
+      padding-top: 10px;
+       max-width: 20px;
+       position: relative;
+    } 
+  }
+  
+ .show {
+    display: block;
+  }
+  
+  .rotate {
+    transform: rotate(180deg);
+  }
+  
+}
 

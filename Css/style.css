@@ -2148,6 +2148,9 @@ body::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  &:hover{
+    color:#fff;
+  }
 }
 
 li {

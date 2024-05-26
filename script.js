@@ -179,30 +179,6 @@ let swiperTestimonial = new Swiper(".testimonial-container", {
   },
 });
 
-//--- skill-button automatic click function --//
-function clickButtonsWithInfiniteLoop() {
-  const skillButtons = document.querySelectorAll('.skills-name');
-  const delay = 1000; // 
-  let currentIndex = 0;
-
-  function clickButtonWithColorChange() {
-    skillButtons[currentIndex].style.backgroundColor = '#713abe';
-    setTimeout(function () {
-      skillButtons[currentIndex].click();
-      skillButtons[currentIndex].style.backgroundColor = ''; // Reset to default
-      currentIndex = (currentIndex + 1) % skillButtons.length;
-      clickButtonWithColorChange();
-    }, delay);
-  }
-  clickButtonWithColorChange();
-}
-clickButtonsWithInfiniteLoop();
-
-
-
-
-
-
 // Use the Intersection Observer API to add a class when the section is in view
 document.addEventListener('DOMContentLoaded', function () {
   const section = document.querySelector('.qualification-section');

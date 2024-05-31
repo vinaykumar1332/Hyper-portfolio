@@ -741,3 +741,20 @@ document.addEventListener('DOMContentLoaded', () => {
       chevron.classList.toggle('rotate');
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const skillElements = document.querySelectorAll('.skills-name');
+  let currentIndex = 0;
+
+  function showSkill() {
+      const percentageElement = skillElements[currentIndex].querySelector('.percentage');
+      percentageElement.classList.add('show');
+
+      setTimeout(() => {
+          percentageElement.classList.remove('show');
+          currentIndex = (currentIndex + 1) % skillElements.length;
+          setTimeout(showSkill, 800); // Wait for the fade-out animation to complete before showing the next skill
+      }, 3000); // Display the percentage for 2 seconds
+  }
+
+  showSkill();
+});

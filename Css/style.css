@@ -503,6 +503,7 @@ img {
 }
 
 .skills-name {
+  display: flex;
   padding: 0.8rem 1.25rem;
   margin-bottom: 1rem;
   margin-right: 1rem;
@@ -513,7 +514,51 @@ img {
   color: var(--color-white);
   transition: 0.3s ease;
 }
+.percentage {
+  display: none;
+  overflow-x: hidden;
+  align-items: center;
+  margin-left: 3px;
+  opacity: 0;
+  transform: translateX(10px) scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
+.percentage.show {
+  display: inline-block;
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+@keyframes slideIn {
+  0% {
+      opacity: 0;
+      transform: translateX(10px) scale(0.9);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+  }
+  100% {
+      opacity: 0;
+      transform: translateX(10px) scale(0.9);
+  }
+}
+
+.percentage.show {
+  animation: slideIn 0.5s forwards ease-in-out;
+}
+
+.percentage.hide {
+  animation: slideOut 0.5s backwards ease-in-out;
+}
 .skills-name:hover {
   background-color: var(--first-color-alt);
 }

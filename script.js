@@ -765,3 +765,42 @@ document.addEventListener('DOMContentLoaded',()=>{
 		}
 	}
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  var popup = document.getElementById("popup");
+  var closeButton = document.getElementById("close-button");
+  var clickButton = document.getElementById("click-button");
+  var popupShown = false;
+
+  // Function to show the popup
+  function showPopup() {
+    if (!popupShown) {
+      popup.classList.add("show-popup");
+      popupShown = true;
+    }
+  }
+
+  // Function to hide the popup
+  function hidePopup() {
+    popup.classList.add("hide-popup");
+    setTimeout(() => {
+      popup.classList.remove("show-popup");
+      popupShown = false; // Reset popupShown when the popup is hidden
+    }, 400); // Match this duration with the CSS transition duration
+  }
+
+  // Event listeners
+  closeButton.addEventListener("click", hidePopup);
+  clickButton.addEventListener("click", showPopup);
+
+  // Improved scroll event listener to prevent duplicate popups
+  var scrolledPastTrigger = false;
+  window.addEventListener("scroll", function() {
+    if (window.scrollY > 550 && !scrolledPastTrigger) {
+      showPopup();
+      scrolledPastTrigger = true; // Set flag to prevent repeated show
+    } else if (window.scrollY <= 550) {
+      scrolledPastTrigger = false; // Reset flag when user scrolls up again
+    }
+  });
+});

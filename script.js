@@ -742,3 +742,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+let clickOnce =false;
+document.addEventListener('DOMContentLoaded',()=>{
+	const resetFilterBtn = document.querySelector('.reset-filter-button');
+	if(resetFilterBtn){
+		const anchorTag = resetFilterBtn.querySelector('a');
+		if(anchorTag){
+			resetFilterBtn.addEventListener('click',(event)=>{
+				event.preventDefault();
+				function resetFilters(){
+					const searchButton = document.querySelector('.search-box-button-with-redirect');
+          if(searchButton && !clickOnce){
+            searchButton.click();
+            clickOnce = true;
+          }
+          else{
+            return;
+          }
+				}
+				resetFilters();
+			});
+		}
+	}
+});

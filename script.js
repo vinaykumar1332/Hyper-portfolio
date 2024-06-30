@@ -742,31 +742,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-let clickOnce =false;
-document.addEventListener('DOMContentLoaded',()=>{
-	const resetFilterBtn = document.querySelector('.reset-filter-button');
-	if(resetFilterBtn){
-		const anchorTag = resetFilterBtn.querySelector('a');
-		if(anchorTag){
-			resetFilterBtn.addEventListener('click',(event)=>{
-				event.preventDefault();
-				function resetFilters(){
-					const searchButton = document.querySelector('.search-box-button-with-redirect');
-          if(searchButton && !clickOnce){
+let clickOnce = false;
+document.addEventListener('DOMContentLoaded', () => {
+  const resetFilterBtn = document.querySelector('.reset-filter-button');
+  if (resetFilterBtn) {
+    const anchorTag = resetFilterBtn.querySelector('a');
+    if (anchorTag) {
+      resetFilterBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        function resetFilters() {
+          const searchButton = document.querySelector('.search-box-button-with-redirect');
+          if (searchButton && !clickOnce) {
             searchButton.click();
             clickOnce = true;
           }
-          else{
+          else {
             return;
           }
-				}
-				resetFilters();
-			});
-		}
-	}
+        }
+        resetFilters();
+      });
+    }
+  }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   var popup = document.getElementById("popup");
   var closeButton = document.getElementById("close-button");
   var clickButton = document.getElementById("click-button");
@@ -795,12 +795,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Improved scroll event listener to prevent duplicate popups
   var scrolledPastTrigger = false;
-  window.addEventListener("scroll", function() {
-    if (window.scrollY > 550 && !scrolledPastTrigger) {
-      showPopup();
-      scrolledPastTrigger = true; // Set flag to prevent repeated show
-    } else if (window.scrollY <= 550) {
-      scrolledPastTrigger = false; // Reset flag when user scrolls up again
-    }
+  window.addEventListener('load', function () {
+    window.addEventListener("scroll", function () {
+      setTimeout(() => {
+        if (window.scrollY > 550 && !scrolledPastTrigger) {
+          showPopup();
+          scrolledPastTrigger = true; // Set flag to prevent repeated show
+        } else if (window.scrollY <= 550) {
+          scrolledPastTrigger = false; // Reset flag when user scrolls up again
+        }
+      }, 3000);
+    });
   });
 });

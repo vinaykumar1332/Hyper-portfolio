@@ -693,7 +693,7 @@ function checkNetwork() {
           slowNetworkMessage.style.display = 'block';
         }
       }
-    }, 3000);
+    }, 2000);
   }
 }
 
@@ -808,3 +808,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+

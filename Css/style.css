@@ -2341,7 +2341,7 @@ li {
       .button {
         background: hsl(250, 69%, 61%);
         color: white;
-        padding: 10px 20px;
+        padding: 10px 15px;
         margin-top: 5px;
         border: none;
         cursor: pointer;
@@ -2349,6 +2349,8 @@ li {
         transition: background 0.3s;
         position: relative;
         top: 10px;
+        width: 150px;
+        align-self: center;
 
         @media (max-width: 600px) {
           width: 100%;
@@ -2406,6 +2408,7 @@ li {
   display: block;
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+  transition: opacity 1s ease-in, transform 0.6s ease-out;
 }
 
 .hide-popup {
@@ -2422,3 +2425,19 @@ li {
   }
 }
 /*---pop-up-close-----------------*/
+
+.nav-close{
+  padding-bottom: 7px;
+  padding-left: 6px;
+  font-size: 28px;
+  height: 32px;
+  width: 32px;
+  color: var(--text-color);
+  &:hover{
+    background-color: var(--container-color);
+    border-radius: 50%;
+  }
+}
+.main-container-popup.hide-popup.show-popup{
+  display: none;
+}

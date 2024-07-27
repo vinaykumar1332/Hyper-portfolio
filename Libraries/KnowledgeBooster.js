@@ -9,3 +9,13 @@ function toggleDarkMode() {
         icon.classList.add('fa-moon');
     }
 }
+
+ // Redirect if accessed directly at /KnowledgeBooster
+ if (window.location.pathname === '/KnowledgeBooster') {
+    window.location.replace('/Pages/KnowledgeBooster.html');
+} 
+// Change the URL without reloading the page
+else if (window.location.pathname === '/Pages/KnowledgeBooster.html') {
+    window.history.pushState({}, '', '/KnowledgeBooster');
+}
+

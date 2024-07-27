@@ -35,8 +35,11 @@ body {
     .navbar {
         background-color: var(--nav-bg-color);
         transition: background-color 0.3s;
+        padding-bottom: 15px;
     }
-
+  .fa-duotone.fa-solid.fa-bars{
+    color: var(--nav-hover-text-color);
+  }
     .navbar-brand {
         color: var(--nav-text-color);
         font-weight: bold;
@@ -60,6 +63,7 @@ body {
         display: flex;
         align-items: center;
         font-weight: 500;
+        max-width: max-content;
     }
 
     .navbar-nav .nav-item .nav-link i {
@@ -111,7 +115,11 @@ body {
         }
     }
   .nav-login-btn{
-    margin-top: 10px;
+    
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
     .btn-login {
         background-color: var(--login-btn-bg-color);
         color: var(--login-btn-text-color);
@@ -146,9 +154,21 @@ body {
     .navbar-expand-md .navbar-collapse {
         -ms-flex-preferred-size: auto;
         flex-basis: auto;
+        padding-right: 70px;
     }
 }
 
+@media (min-width: 768px) {
+    .navbar-expand-md>.container, .navbar-expand-md>.container-fluid, .navbar-expand-md>.container-lg, .navbar-expand-md>.container-md, .navbar-expand-md>.container-sm, .navbar-expand-md>.container-xl {
+        -ms-flex-wrap: nowrap;
+        flex-wrap: wrap !important;
+    }
+}
+ @media (min-width:768px) and (min-width:920px) {
+    .navbar-expand-md>.container, .navbar-expand-md>.container-fluid, .navbar-expand-md>.container-lg, .navbar-expand-md>.container-md, .navbar-expand-md>.container-sm, .navbar-expand-md>.container-xl {
+        display: flexbox;
+    }
+}
 .dark-mode-toggle {
     color: var(--toggle-icon-color);
     cursor: pointer;

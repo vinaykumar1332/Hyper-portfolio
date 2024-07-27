@@ -1,0 +1,163 @@
+:root {
+    --brand-color-1: #713abe;
+    --nav-bg-color: #713abe;
+    --nav-text-color: #ffffff;
+    --nav-hover-bg-color: #9C27B0;
+    --nav-hover-text-color: #ffffff;
+    --nav-link-hover-transform: 10px;
+    --login-btn-bg-color: #9C27B0;
+    --login-btn-text-color: #ffffff;
+    --login-btn-hover-bg-color: #ffffff;
+    --login-btn-hover-text-color: #9C27B0;
+    --lightbulb-color: #FFD700;
+    --toggle-icon-color: #ffffff;
+}
+
+body.dark-mode {
+    --nav-bg-color: #1f1f1f;
+    --nav-text-color: #ffffff;
+    --login-btn-bg-color: #9C27B0;
+    --login-btn-text-color: #ffffff;
+    --login-btn-hover-bg-color: #ffffff;
+    --login-btn-hover-text-color: #9C27B0;
+    --toggle-icon-color: #ffffff;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--nav-bg-color);
+    color: var(--nav-text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.Navigation-container {
+    padding: 0px;
+    .navbar {
+        background-color: var(--nav-bg-color);
+        transition: background-color 0.3s;
+    }
+
+    .navbar-brand {
+        color: var(--nav-text-color);
+        font-weight: bold;
+        @media screen and (max-width: 480px){
+        font-size: 16px;
+        }
+    }
+
+    .navbar-brand i {
+        margin-right: 5px;
+        color: var(--lightbulb-color);
+        font-size: 1.5rem;
+    }
+    
+    .navbar-nav .nav-item .nav-link {
+        color: var(--nav-text-color);
+        position: relative;
+        transition: 0.3s;
+        transform: translateX(0);
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+    }
+
+    .navbar-nav .nav-item .nav-link i {
+        margin-right: 5px;
+        font-weight: 700;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover {
+        transform: translateX(var(--nav-link-hover-transform));
+        /* Hover effect with a transform */
+        max-width: max-content;
+
+    }
+    .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+        color: rgba(255, 255, 255, .75);
+        max-width: max-content;
+    }
+
+    .navbar-nav .nav-item .nav-link::before {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--nav-hover-text-color);
+        transition: 0.3s;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover::before {
+        width: 100%;
+    }
+
+    /* Center the logo on mobile devices */
+    @media (max-width: 767px) {
+        .navbar-brand {
+            text-align: center;
+            width: 54%;
+        }
+
+        .navbar-toggler {
+            margin-left: auto;
+            /* Push the toggler icon to the right */
+        }
+
+        .navbar-collapse {
+            padding-left: 45px;
+            text-align: center;
+        }
+    }
+  .nav-login-btn{
+    margin-top: 10px;
+    .btn-login {
+        background-color: var(--login-btn-bg-color);
+        color: var(--login-btn-text-color);
+        border-radius: 5px;
+        padding: 8px 20px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid var(--login-btn-bg-color);
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-login i {
+        margin-right: 5px;
+    }
+
+    .btn-login:hover {
+        background-color: var(--login-btn-hover-bg-color);
+        color: var(--login-btn-hover-text-color);
+        border: 1px solid var(--login-btn-bg-color);
+    }
+  }
+ 
+}
+@media (min-width: 968px) {
+    .collapse:not(.show) {
+        display: none !important;
+    }
+}
+@media (min-width: 768px) {
+    .navbar-expand-md .navbar-collapse {
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
+}
+
+.dark-mode-toggle {
+    color: var(--toggle-icon-color);
+    cursor: pointer;
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    padding-top: 8px;
+    justify-content: center;
+    @media (max-width: 720px) {
+        font-size: 18px;
+    }
+}

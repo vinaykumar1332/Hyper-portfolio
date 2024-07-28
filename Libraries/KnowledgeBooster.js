@@ -36,34 +36,43 @@ function closeLoginSignPage() {
 function getLoginForm() {
     return `
         <div class="form-header" id="login">
-            <h2>Login</h2>
-        </div>
-        <form>
-            <label for="loginUsername">Username:</label>
-            <input type="text" id="loginUsername" name="loginUsername" aria-label="Username"><br><br>
-            <label for="loginPassword">Password:</label>
-            <input type="password" id="loginPassword" name="loginPassword" aria-label="Password"><br><br>
-            <input type="submit" value="Login">
-        </form>
-        <p>Not a member? <a href="#" onclick="showSignUpForm()">Sign up now</a></p>
+  <h2>Login</h2>
+</div>
+<form id="login-wrap">
+  <label for="loginUsername">Username:</label>
+  <input type="text" id="loginUsername" name="loginUsername" aria-label="Username" required>
+  <br>
+  <label for="loginPassword">Password:</label>
+  <input type="password" class="password" id="loginPassword" name="loginPassword" aria-label="Password" required>
+  <span class="toggle-password"></span>
+  <br>
+  <br>
+  <input type="submit" value="Login">
+</form>
+<p>Not a member? <a href="#" onclick="showSignUpForm()">Sign up now</a></p>
     `;
 }
 
 function getSignUpForm() {
     return `
-        <div class="form-header" id="sign-up">
-            <h2>Sign Up</h2>
-        </div>
-        <form>
-            <label for="signUpUsername">Username:</label>
-            <input type="text" id="signUpUsername" name="signUpUsername" aria-label="Username"><br><br>
-            <label for="signUpEmail">Email:</label>
-            <input type="email" id="signUpEmail" name="signUpEmail" aria-label="Email"><br><br>
-            <label for="signUpPassword">Password:</label>
-            <input type="password" id="signUpPassword" name="signUpPassword" aria-label="Password"><br><br>
-            <input type="submit" value="Sign Up">
-        </form>
-        <p>Already a member? <a href="#" onclick="showLoginForm()">Login now</a></p>
+       <div class="form-header" id="sign-up">
+  <h2>Sign Up</h2>
+</div>
+<form id="signup-wrap">
+  <label for="signUpUsername">Username:</label>
+  <input type="text" id="signUpUsername" name="signUpUsername" pattern="[A-Za-z0-9]+" title="Only letters and numbers are allowed" aria-label="Username" required>
+  <br>
+  <label for="signUpEmail">Email:</label>
+  <input type="email" id="signUpEmail" name="signUpEmail" aria-label="Email" required>
+  <br>
+  <label for="signUpPassword">Password:</label>
+  <input type="password" class="password" id="signUpPassword" name="signUpPassword" aria-label="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+ <span class="toggle-password"></span>
+  <br>
+  <br>
+  <input type="submit" value="Sign Up">
+</form>
+<p>Already a member? <a href="#" onclick="showLoginForm()">Login now</a></p>
     `;
 }
 
@@ -76,4 +85,19 @@ function showLoginForm() {
     const formContent = document.getElementById('formContent');
     formContent.innerHTML = getLoginForm();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginBtn = document.querySelector('.nav-login-btn');
+    const loginSection = document.querySelector('.loginSection');
+    let clicked = false;
+  
+    loginBtn.addEventListener('click', () => {
+      if (!clicked) {
+        loginSection.style.display = 'block';
+        clicked = true;
+      }
+    });
+  });
+  
+  
 

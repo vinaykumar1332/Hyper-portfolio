@@ -72,79 +72,83 @@
                             <option value="react">React</option>
                             <option value="angular">Angular</option>
                             <option value="html">HTML&CSS</option>
+                            <option value="javascript">JAVASCRIPT</option>
+                            <option value="dsa">DSA</option>
+                            <option value="java">JAVA</option>
                             <!-- Add more options as needed -->
                         </select>
                     </div>
                 </header>
                 <main id="cardContainer">
-                    <div class="card" data-category="react" onclick="openPDF('html-css')">
+                    <div class="card" data-category="html" onclick="openPDF('html-css-1')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 1" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 1</h2>
-                            <p>Description for PDF 1</p>
+                            <h2>UI Technologies</h2>
+                            <p>This PDF conatins all concepts related to UI</p>
                         </div>
                     </div>
-                    <div class="card" data-category="html" onclick="openPDF('pdf2.pdf')">
+                    <div class="card" data-category="html" onclick="openPDF('html-css-2')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 2" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 2</h2>
-                            <p>Description for PDF 2</p>
+                            <h2>FRONT-END DEVELOPEMNT</h2>
+                            <p>revision guide</p>
                         </div>
                     </div>
-                    <div class="card" data-category="react" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="javascript" onclick="openPDF('js-1')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 3</h2>
-                            <p>Description for PDF 3</p>
+                            <h2>JAVASCRIPT Concepts to Ace</h2>
+                            <p>Technical Interview Question & ANSWERS</p>
                         </div>
                     </div>
-                    <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="react" onclick="openPDF('react-js-1')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 4" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 4</h2>
-                            <p>Description for PDF 3</p>
+                            <h2>React.js Questions</h2>
+                            <p>Technical Interview</p>
                         </div>
                     </div>
-                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="react" onclick="openPDF('react-js-2')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 5</h2>
-                            <p>Description for PDF 3</p>
+                            <h2>React JS</h2>
+                            <p>Roadmap</p>
                         </div>
                     </div>
-                    <div class="card" data-category="react" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="react" onclick="openPDF('react-js-3')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 6</h2>
-                            <p>Description for PDF 3</p>
+                            <h2>React JS</h2>
+                            <p>Performance
+                                Optimization</p>
                         </div>
                     </div>
-                    <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="dsa" onclick="openPDF('dsa-1')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 7</h2>
-                            <p>Description for PDF 3</p>
+                            <h2>Data Structures and Algorithms</h2>
+                            <p>Beginner to advanced levels guide (handwritten)</p>
                         </div>
                     </div>
-                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="react" onclick="openPDF('react-js-4')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 8</h2>
-                            <p>Description for PDF 3</p>
+                            <h2>ReactJS</h2>
+                            <p>Concurrent mode</p>
                         </div>
                     </div>
-                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="dsa" onclick="openPDF('dsa-2')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 9</h2>
-                            <p>Description for PDF 3</p>
+                            <h2>DSA</h2>
+                            <p>Book from Topper world</p>
                         </div>
                     </div>
-                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="javascript" onclick="openPDF('js-2')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 10</h2>
-                            <p>Description for PDF 3</p>
+                            <h2>JAVASCRIPT</h2>
+                            <p>API Terminology Handbook</p>
                         </div>
                     </div>
                     <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
@@ -190,9 +194,10 @@
         <section class="pdfPreview">
             <div id="pdfOverlay" class="overlay">
                 <div class="overlay-content">
-                    <span class="close-btn" onclick="closePDF()">×</span>
-                    <iframe id="pdfIframe" src="" frameborder="0"></iframe>
+                    <span class="close-btn" onclick="closePDF()"><i class="fa-regular fa-circle-xmark"></i></span>
+                    <iframe id="pdfIframe" src="" frameborder="0" width="640" height="80%" allow="autoplay"></iframe>
                 </div>
+                
             </div>
         </section>
         <script src="../Libraries/KnowledgeBooster.js"></script>

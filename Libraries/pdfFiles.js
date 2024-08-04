@@ -25,18 +25,22 @@ function closePDF() {
 }
 // Google Drive PDF links with correct preview URLs
 const pdfLinks = {
-    'html-css': 'https://drive.google.com/file/d/1Lu-GPDG-LVOHEELfC8UHRa0HnE2Z7RFv/preview',
-    'react': 'https://drive.google.com/file/d/REACT_FILE_ID/preview',
-    'angular': 'https://drive.google.com/file/d/ANGULAR_FILE_ID/preview',
-    // Add more links as needed
-};
+    // ---HMTL & CSS---
+    'html-css-1':'https://drive.google.com/file/d/1rTauQMkzfm02S3uxyL2_mKDVOrJY2a0d/preview',
+    'html-css-2': 'https://drive.google.com/file/d/1sUWeS6hQYb7MTdEFOIWCorBI4rPUIUx_/preview',
 
-const iframe = document.getElementById('myIframe');
-const iframeContentWindow = iframe.contentWindow;
+    // -- JAVASCRIPT
+    'js-1': 'https://drive.google.com/file/d/1rm3G7o2OkW24EffE5yuccc-EEhOmV2Dq/preview',
+    'js-2': '',
 
-// Assuming you've identified the pop-out button's class or ID
-const popoutButton = iframeContentWindow.document.querySelector('.popout-button');
-if (popoutButton) {
-    popoutButton.style.display = 'none'; // Or remove it entirely
+    // --React JS
+    'react-js-1' :'https://drive.google.com/file/d/1ridMuJU1P127v3x8IH0vKNq3sAlhOeOM/preview',
+    'react-js-2' :'https://drive.google.com/file/d/1rkM7RIHmB4JHOKOtc3w7FqeKi65-sJQB/preview',
+    'react-js-3' :'https://drive.google.com/file/d/1r_Hvmprj-MmhbfOalF31yU34ylXDrk-6/preview',
+    'react-js-4' :'https://drive.google.com/file/d/1re6roCDU8rWqdfLCnOtLMxFMntozojlW/preview',
+
+
+    //--DSA--
+    'dsa-1': 'https://drive.google.com/file/d/1rxTjrfVdLTXHNUc6Gc5wpghQVvOXNlxy/preview',
+    'dsa-2': 'https://drive.google.com/file/d/1ryvTI0qiEG_UEt-OLjBbvMZPzClbZqmz/preview',
 }
-

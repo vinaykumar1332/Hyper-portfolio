@@ -141,3 +141,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+
+//--disbale right click
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+});

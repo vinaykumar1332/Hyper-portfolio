@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="expires" content="Wed, 21 Oct 2026 07:28:00 GMT">
+    <meta name="description"
+        content="Boost Your Knowledge: Access a wide range of study files, coding questions, and interview materials across various technologies including React, Angular, HTML, CSS, JavaScript, and jQuery.">
+    <meta name="keywords"
+        content="study files, coding questions, interview materials, React, Angular, HTML, CSS, JavaScript, jQuery, technology PDFs">
+    <meta name="Vinay kumar pudi" content="Boost Your Knowledge">
+    <meta name="google" content="nositelinkssearchbox">
+    <link rel="stylesheet" href="../Css/Boost Knowledge/KnowledgeBooster.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Files</title>
+</head>
+
+<body>
+    <header class="Navigation-container">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-lightbulb blinking-icon"></i> Boost your Knowledge
+                </a>
+                <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <i class="fa-duotone fa-solid fa-bars"></i>
+                </div>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../KnowledgeBooster.html"><i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="files" href="files.html"><i class="fas fa-file-alt"></i> Files</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Blog"><i class="fas fa-blog"></i> Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html"><i class="fas fa-envelope"></i> About us</a>
+                        </li>
+                    </ul>
+                    <div class="nav-login-btn" onclick="loginSignPage()">
+                        <button class="btn btn-login ml-md-2">
+                            <i class="fas fa-user"></i> Login/SignUp
+                        </button>
+                    </div>
+
+                    <div class="dark-mode-toggle ml-3" onclick="toggleDarkMode()">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="files-container">
+            <div class="container">
+                <header>
+                    <h1>PDF Showcase</h1>
+                    <div class="search-filter">
+                        <input type="text" placeholder="Search PDFs..." class="search-bar">
+                        <select class="filter-options" id="filterOptions">
+                            <option value="all">All</option>
+                            <option value="react">React</option>
+                            <option value="angular">Angular</option>
+                            <option value="html">HTML&CSS</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                </header>
+                <main id="cardContainer">
+                    <div class="card" data-category="react" onclick="openPDF('html-css')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 1" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 1</h2>
+                            <p>Description for PDF 1</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf2.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 2" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 2</h2>
+                            <p>Description for PDF 2</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="react" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 3</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 4" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 4</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 5</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="react" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 6</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 7</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 8</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 9</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 10</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 11</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 12</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 13</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 14</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 15</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+
+                    <!-- Add more cards as needed -->
+                </main>
+            </div>
+        </section>
+        <section class="pdfPreview">
+            <div id="pdfOverlay" class="overlay">
+                <div class="overlay-content">
+                    <span class="close-btn" onclick="closePDF()">×</span>
+                    <iframe id="pdfIframe" src="" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+        <script src="../Libraries/KnowledgeBooster.js"></script>
+        <script src="../Libraries/pdfFiles.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </main>
+</body>
+
+</html>

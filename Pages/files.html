@@ -47,12 +47,6 @@
                             <a class="nav-link" href="../index.html"><i class="fas fa-envelope"></i> About us</a>
                         </li>
                     </ul>
-                    <div class="nav-login-btn" onclick="loginSignPage()">
-                        <button class="btn btn-login ml-md-2">
-                            <i class="fas fa-user"></i> Login/SignUp
-                        </button>
-                    </div>
-
                     <div class="dark-mode-toggle ml-3" onclick="toggleDarkMode()">
                         <i class="fas fa-moon"></i>
                     </div>
@@ -64,7 +58,7 @@
         <section class="files-container">
             <div class="container">
                 <header>
-                    <h1>PDF Showcase</h1>
+                    <h1 class="heading-h1"><i class="fa-solid fa-code"></i> Knowledge <em>Hub</em></h1>
                     <div class="search-filter">
                         <input type="text" placeholder="Search PDFs..." class="search-bar">
                         <select class="filter-options" id="filterOptions">
@@ -74,12 +68,22 @@
                             <option value="html">HTML&CSS</option>
                             <option value="javascript">JAVASCRIPT</option>
                             <option value="dsa">DSA</option>
-                            <option value="java">JAVA</option>
+                            <option value="sql">SQL</option>
+                            <option value="mongo-db">MONGO-DB</option>
+                            <option value="python">PYTHON</option>
+                            
                             <!-- Add more options as needed -->
                         </select>
                     </div>
+                    <div class="cardsResults">
+                         <p id="cardCount"> Results: 0</p>
+                    </div>
+                    <div id="results">
+                        <p id="no-results-message" style="display: none;">Sorry, no files available.</p>
+                        <!-- Results will be displayed here -->
+                      </div>
                 </header>
-                <main id="cardContainer">
+                <main id="cardContainer" class="cardContainer">
                     <div class="card" data-category="html" onclick="openPDF('html-css-1')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 1" class="lazy-load">
                         <div class="content">
@@ -145,51 +149,307 @@
                         </div>
                     </div>
                     <div class="card" data-category="javascript" onclick="openPDF('js-2')">
-                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 11" class="lazy-load">
                         <div class="content">
                             <h2>JAVASCRIPT</h2>
                             <p>API Terminology Handbook</p>
                         </div>
                     </div>
-                    <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
+                    <div class="card" data-category="mongo-db" onclick="openPDF('mongo-db-1')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 11" class="lazy-load">
+                        <div class="content">
+                            <h2>MongoDB</h2>
+                            <p>The MongoDB
+                                CheatSheet</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="dsa" onclick="openPDF('dsa-3')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 11</h2>
+                            <h2>LEET CODE</h2>
+                            <p>100 Must do Leetcode Problems</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="sql" onclick="openPDF('sql-1')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>SQL</h2>
+                            <p>SQL BASICS AND ADVANCED</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="python" onclick="openPDF('python-1')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>Python for everyone </h2>
+                            <p>Machine Learning with Python for Everyone Book by Mark Fenner</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('html-css-3')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>FRONT-END</h2>
+                            <p>M a s t e r Frontend in 60 Days by bosscoder academy</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('html-css-4')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>Center a div</h2>
+                            <p>5 ways to center a div</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 16</h2>
                             <p>Description for PDF 3</p>
                         </div>
                     </div>
                     <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 12</h2>
+                            <h2>PDF Title 17</h2>
                             <p>Description for PDF 3</p>
                         </div>
                     </div>
                     <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 13</h2>
-                            <p>Description for PDF 3</p>
-                        </div>
-                    </div>
-                    <div class="card" data-category="angular" onclick="openPDF('pdf3.pdf')">
-                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
-                        <div class="content">
-                            <h2>PDF Title 14</h2>
+                            <h2>PDF Title 18</h2>
                             <p>Description for PDF 3</p>
                         </div>
                     </div>
                     <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
                         <div class="content">
-                            <h2>PDF Title 15</h2>
+                            <h2>PDF Title 19</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 20</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 21</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 22</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 23</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 24</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 25</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 26</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 27</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 28</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 29</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 30</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 31</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 32</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 33</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 34</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 35</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 36</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 37</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 38</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 39</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 40</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 41</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 42</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 43</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 44</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 45</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 46</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 47</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 48</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 49</h2>
+                            <p>Description for PDF 3</p>
+                        </div>
+                    </div>
+                    <div class="card" data-category="html" onclick="openPDF('pdf3.pdf')">
+                        <img data-src="../Assets/pdf image.png" alt="PDF 3" class="lazy-load">
+                        <div class="content">
+                            <h2>PDF Title 50</h2>
                             <p>Description for PDF 3</p>
                         </div>
                     </div>
 
+    
+
                     <!-- Add more cards as needed -->
                 </main>
             </div>
+            <div class="loadmoreCotainer"><button id="loadMoreBtn"><i class="fas fa-angle-double-down"></i>Load More</button></div>
         </section>
         <section class="pdfPreview">
             <div id="pdfOverlay" class="overlay">
@@ -199,6 +459,41 @@
                 </div>
                 
             </div>
+        </section>
+        <section class="footer-section">
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section about">
+                        <h3>About Boost Your Knowledge</h3>
+                        <p>Your go-to platform for learning various technologies.</p>
+                    </div>
+                    <div class="footer-section links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="../KnowledgeBooster.html">Home</a></li>
+                            <li><a href="../index.html">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section social-media">
+                        <h3>Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section disclaimer">
+                        <h3>Disclaimer</h3>
+                        <p>
+                            The PDFs available on this platform are gathered from various sources, and some may belong to other authors. They are provided for educational purposes only. If any content infringes on your copyright, please notify us, and we will remove it.
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    &copy; 2024 Boost Your Knowledge | <span id="footer-name"><a href="../index.html"> VINAY KUMAR PUDI</a></span>
+                </div>
+            </footer>
         </section>
         <script src="../Libraries/KnowledgeBooster.js"></script>
         <script src="../Libraries/pdfFiles.js"></script>

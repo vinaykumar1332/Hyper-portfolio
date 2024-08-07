@@ -69,7 +69,7 @@
                             <option value="javascript">JAVASCRIPT</option>
                             <option value="dsa">DSA</option>
                             <option value="sql">SQL</option>
-                            <option value="mongo-db">MONGO-DB</option>
+                            <option value="mongodb">MONGO-DB</option>
                             <option value="python">PYTHON</option>
                             
                             <!-- Add more options as needed -->
@@ -85,7 +85,7 @@
                 </header>
                 <main id="cardContainer" class="cardContainer">
                     <div class="card" data-category="html" onclick="openPDF('html-css-1')">
-                        <img data-src="../Assets/pdf image.png" alt="PDF 1" class="lazy-load">
+                        <img data-src="../Assets/images/html-css.jpg" alt="PDF 1" class="lazy-load">
                         <div class="content">
                             <h2>UI Technologies</h2>
                             <p>This PDF conatins all concepts related to UI</p>
@@ -155,7 +155,7 @@
                             <p>API Terminology Handbook</p>
                         </div>
                     </div>
-                    <div class="card" data-category="mongo-db" onclick="openPDF('mongo-db-1')">
+                    <div class="card" data-category="mongodb" onclick="openPDF('mongo-db-1')">
                         <img data-src="../Assets/pdf image.png" alt="PDF 11" class="lazy-load">
                         <div class="content">
                             <h2>MongoDB</h2>
@@ -449,15 +449,15 @@
                     <!-- Add more cards as needed -->
                 </main>
             </div>
+            <div id="toast-container"></div>
             <div class="loadmoreCotainer"><button id="loadMoreBtn"><i class="fas fa-angle-double-down"></i>Load More</button></div>
         </section>
         <section class="pdfPreview">
             <div id="pdfOverlay" class="overlay">
                 <div class="overlay-content">
                     <span class="close-btn" onclick="closePDF()"><i class="fa-regular fa-circle-xmark"></i></span>
-                    <iframe id="pdfIframe" src="" frameborder="0" width="640" height="80%" allow="autoplay"></iframe>
+                    <iframe id="pdfIframe" src="" frameborder="0" width="auto" height="auto" ></iframe>
                 </div>
-                
             </div>
         </section>
         <section class="footer-section">

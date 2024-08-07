@@ -10,7 +10,44 @@ function openPDF(fileId) {
         overlay.style.display = 'flex'; // Show the overlay
     } else {
         console.error('No PDF URL found for ID:', fileId);
+        showToast('Sorry, File is not available');
     }
+    function showToast(message) {
+        const toastContainer = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.classList.add('toast');
+      
+        const toastMessage = document.createElement('span');
+        toastMessage.classList.add('toast-message');
+        toastMessage.textContent = message;
+      
+        const progressBar = document.createElement('div');
+        progressBar.classList.add('progress-bar');
+        const progressBarFill = document.createElement('div');
+        progressBarFill.classList.add('progress-bar-fill');
+        progressBar.appendChild(progressBarFill);
+      
+        toast.appendChild(toastMessage);
+        toast.appendChild(progressBar);
+      
+        toastContainer.appendChild(toast);
+      
+        toast.classList.add('show');
+      
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += 1;
+          progressBarFill.style.width = `${progress}%`;
+          if (progress >= 100) {
+            clearInterval(interval);
+            toast.classList.remove('show');
+            setTimeout(() => {
+              toastContainer.removeChild(toast);
+            }, 300); // Delay removal for smooth transition
+          }
+        }, 30); // Adjust interval for progress bar speed
+      }
+      
 }
 
 // Function to close the PDF overlay
@@ -60,7 +97,7 @@ const pdfLinks = {
 
 
 //--results count 
-// scripts.js
+
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('searchInput');
     const filterSelect = document.getElementById('filterSelect');
@@ -234,7 +271,32 @@ document.addEventListener('DOMContentLoaded', () => {
     filterCards();
 });
 
-//--zero results message
+//images updated based on data-category
+document.addEventListener("DOMContentLoaded", function() {
+    const cards = document.querySelectorAll('.card');
+    const imagePaths = {
+        html: '../Assets/images/html-css.jpg',
+        javascript: '../Assets/images/javascript.jpeg',
+        react: '../Assets/images/react.png',
+        dsa:'../Assets/images/dsa.jpeg',
+        sql:'../Assets/images/sql.png',
+        python:'../Assets/images/python.png',
+        mongodb:'../Assets/images/mongodb.jpeg',
+        // Add other categories and their corresponding image paths here
+    };
+
+    cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const img = card.querySelector('img.lazy-load');
+        
+        if (imagePaths[category]) {
+            img.setAttribute('data-src', imagePaths[category]);
+        }
+    });
+
+    // Optional: Initialize lazy loading if you're using a lazy loading library
+    // lazyLoadInstance.update();
+});
 
 
   

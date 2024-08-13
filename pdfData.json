@@ -1,0 +1,170 @@
+{
+    "html-css-1": {
+        "url": "https://drive.google.com/file/d/1rTauQMkzfm02S3uxyL2_mKDVOrJY2a0d/preview",
+        "title": "HTML & CSS Basics",
+        "description": "Introduction to HTML and CSS.",
+        "category": "html"
+    },
+    "html-css-2": {
+        "url": "https://drive.google.com/file/d/1sUWeS6hQYb7MTdEFOIWCorBI4rPUIUx_/preview",
+        "title": "Advanced HTML & CSS",
+        "description": "Deep dive into HTML and CSS.",
+        "category": "html"
+    },
+    "html-css-3": {
+        "url": "https://drive.google.com/file/d/1syooFeN_3AekujhrjCZXMXzeI9un6ypA/preview",
+        "title": "CSS Flexbox",
+        "description": "Learn Flexbox layout.",
+        "category": "html"
+    },
+    "html-css-4": {
+        "url": "https://drive.google.com/file/d/1t6Uhe-5BYHn5_A7mwATp16jLoYfcYrrG/preview",
+        "title": "CSS Grid",
+        "description": "Learn CSS Grid layout.",
+        "category": "html"
+    },
+    "js-1": {
+        "url": "https://drive.google.com/file/d/1rm3G7o2OkW24EffE5yuccc-EEhOmV2Dq/preview",
+        "title": "JavaScript Basics",
+        "description": "Introduction to JavaScript.",
+        "category": "javascript"
+    },
+    "js-2": {
+        "url": "",
+        "title": "Advanced JavaScript",
+        "description": "Deep dive into JavaScript.",
+        "category": "javascript"
+    },
+    "react-js-1": {
+        "url": "https://drive.google.com/file/d/1ridMuJU1P127v3x8IH0vKNq3sAlhOeOM/view",
+        "title": "React Basics",
+        "description": "Introduction to React.",
+        "category": "react"
+    },
+    "react-js-2": {
+        "url": "https://drive.google.com/file/d/1rkM7RIHmB4JHOKOtc3w7FqeKi65-sJQB/preview",
+        "title": "React Advanced",
+        "description": "Advanced concepts in React.",
+        "category": "react"
+    },
+    "react-js-3": {
+        "url": "https://drive.google.com/file/d/1r_Hvmprj-MmhbfOalF31yU34ylXDrk-6/preview",
+        "title": "React Hooks",
+        "description": "Learn React Hooks.",
+        "category": "react"
+    },
+    "react-js-4": {
+        "url": "https://drive.google.com/file/d/1re6roCDU8rWqdfLCnOtLMxFMntozojlW/preview",
+        "title": "React Context API",
+        "description": "Understanding Context API.",
+        "category": "react"
+    },
+    "dsa-1": {
+        "url": "https://drive.google.com/file/d/1rxTjrfVdLTXHNUc6Gc5wpghQVvOXNlxy/preview",
+        "title": "Data Structures Basics",
+        "description": "Introduction to Data Structures.",
+        "category": "dsa"
+    },
+    "dsa-2": {
+        "url": "https://drive.google.com/file/d/1ryvTI0qiEG_UEt-OLjBbvMZPzClbZqmz/preview",
+        "title": "Algorithms Basics",
+        "description": "Introduction to Algorithms.",
+        "category": "dsa"
+    },
+    "dsa-3": {
+        "url": "https://drive.google.com/file/d/1szo8VtfElXEg783P16Ds9JlrJ8ObZgvV/preview",
+        "title": "Advanced Algorithms",
+        "description": "Deep dive into Algorithms.",
+        "category": "dsa"
+    },
+    "mongo-db-1": {
+        "url": "https://drive.google.com/file/d/1sucxZf0txHuKDtbi9apSlkoGjkfRTl39/preview",
+        "title": "MongoDB Guide",
+        "description": "Learn MongoDB concepts.",
+        "category": "mongodb"
+    },
+    "sql-1": {
+        "url": "https://drive.google.com/file/d/1sfxVcTL4bavVSkzFqcns-AXNIApqdCf-/preview",
+        "title": "SQL Basics",
+        "description": "Introduction to SQL.",
+        "category": "sql"
+    },
+    "python-1": {
+        "url": "https://drive.google.com/file/d/1t5USIUD8K5XsBbK3AZSvQIlSvhqa8uAo/preview",
+        "title": "Python Basics",
+        "description": "Machine learning Python.",
+        "category": "python"
+    },
+    "react-js-5": {
+        "url": "https://drive.google.com/file/d/1v3fEXrTREuZp0FbQspAZIJ1nPAyDwbSe/preview",
+        "title": "React Libraries",
+        "description": "Top React Libraries and Tools you need.",
+        "category": "react"
+    },
+    "react-js-6": {
+        "url": "https://drive.google.com/file/d/1unfOaXb0y1iRcAYqhcOcTX-xCzWtwzJS/preview",
+        "title": "React useEffect()",
+        "description": "useEffect() in React JS.",
+        "category": "react"
+    },
+    "react-js-7": {
+        "url": "https://drive.google.com/file/d/1y-u7YXv6C3RPdlHsODZFPMOYQCnSNmcu/preview",
+        "title": "React Tips",
+        "description": "An intro to React Basics.",
+        "category": "react"
+    },
+    "js-3": {
+        "url": "https://drive.google.com/file/d/1xwRrO5nLlMmzm1_DyqLAjehSSZ5e7eBR/preview",
+        "title": "Functions in JavaScript",
+        "description": "Types of Functions in JavaScript.",
+        "category": "javascript"
+    },
+    "js-4": {
+        "url": "https://drive.google.com/file/d/1xyNl4MNBTcpqR2miRAJg7Nwm0Hmb5guv/preview",
+        "title": "JavaScript Destructuring Concept",
+        "description": "JavaScript Destructuring.",
+        "category": "javascript"
+    },
+    "js-5": {
+        "url": "https://drive.google.com/file/d/1sS4PtCU6jYKN5P62P74pmZp6LpRWsOx9/preview",
+        "title": "JavaScript Concepts to Ace",
+        "description": "Technical Interview.",
+        "category": "javascript"
+    },
+    "js-6": {
+        "url": "https://drive.google.com/file/d/1y0Ryq2wsRLx5stNJbhRBjBwwe3q5T9ih/preview",
+        "title": "JavaScript Local & Session Storage",
+        "description": "Storing Data in Browser.",
+        "category": "javascript"
+    },
+    "js-7": {
+        "url": "https://drive.google.com/file/d/1sYcqsA_j81zpG3V_gM8uspLomWRl1RRZ/preview",
+        "title": "JavaScript ES6 Features",
+        "description": "ES6 Features.",
+        "category": "javascript"
+    },
+    "js-8": {
+        "url": "https://drive.google.com/file/d/1sTmsv0YF_95pXZHntxraJLhB7sLvINpj/preview",
+        "title": "JavaScript API",
+        "description": "API Terminology Handbook.",
+        "category": "javascript"
+    },
+    "sql-2": {
+        "url": "https://drive.google.com/file/d/1szEVOC3Vpcv3P_3N6TlxHsCZnsqSKnGd/preview",
+        "title": "SQL",
+        "description": "SQL Notes.",
+        "category": "sql"
+    },
+    "sql-3": {
+        "url": "https://drive.google.com/file/d/1sf6ha1EhYebG_CcHlTve28UFP45R3TBR/preview",
+        "title": "SQL Leetcode",
+        "description": "LeetCode SQL solutions.",
+        "category": "sql"
+    },
+    "sql-4": {
+        "url": "https://drive.google.com/file/d/1umzbeFY_eVndpG3IDD52IsNwy6CicdC-/preview",
+        "title": "SQL Cheatsheet",
+        "description": "Cheat Sheet.",
+        "category": "sql"
+    }
+}

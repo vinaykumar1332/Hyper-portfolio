@@ -4,13 +4,15 @@ const pdfData = {
         url: 'https://drive.google.com/file/d/1rTauQMkzfm02S3uxyL2_mKDVOrJY2a0d/preview',
         title: 'HTML & CSS Basics',
         description: 'Introduction to HTML and CSS.',
-        category: 'html'
+        category: 'html',
+        dataCategory:"frontend",
     },
     'html-css-2': {
         url: 'https://drive.google.com/file/d/1sUWeS6hQYb7MTdEFOIWCorBI4rPUIUx_/preview',
         title: 'Advanced HTML & CSS',
         description: 'Deep dive into HTML and CSS.',
         category: 'html'
+        
     },
     'html-css-3': {
         url: 'https://drive.google.com/file/d/1syooFeN_3AekujhrjCZXMXzeI9un6ypA/preview',
@@ -174,6 +176,56 @@ const pdfData = {
         description: 'Introduction to Python.',
         category: 'python'
     },
+    'react-js-8': {
+        url: 'https://drive.google.com/file/d/1zOCqXnGPbZyJ-gTH8ZHSyWt1k-RShS3X/preview',
+        title: 'React Js Questions',
+        description: 'Technical interview question',
+        category: 'react'
+    },
+    'html-css-5': {
+        url: 'https://drive.google.com/file/d/11-fTFB5oqMMy6nM7tdmVqNpHN4-aPV_Q/preview',
+        title: 'HTML semantic and non semantic html ',
+        description: 'semantic and non semantic html',
+        category: 'html'
+    },
+    'react-js-9': {
+        url: 'https://drive.google.com/file/d/1-pfxgm2cBQsK8YGJyI69qGGSlB1a7BSf/preview',
+        title: 'React Js ',
+        description: 'Hand Written book',
+        category: 'react'
+    },
+    'sql-4': {
+        url: 'https://drive.google.com/file/d/10dU5eZORsndBb5kYgTiSWwNdkFmr_Obv/preview',
+        title: 'SQL & NoSQL',
+        description: 'Interview questions',
+        category: 'sql'
+    },
+    'html-css-6': {
+        url: 'https://drive.google.com/file/d/10rzK833BJUmGPp9Fsx-PBdkdH4nSdhlp/preview',
+        title: 'CSS {V/S} SCSS',
+        description: 'Difference between css and scss',
+        category: 'html'
+    },
+    'git-1': {
+        url: 'https://drive.google.com/file/d/1--GXm7FKvl3BLz4-hQuXjXs6MsbiToph/preview',
+        title: 'Git {v/s} GitHub',
+        description: 'Difference between GIT and GITHUB',
+        category: 'git'
+    },
+    'git-2': {
+        url: 'https://drive.google.com/file/d/1-evO9wS1i6SCsUhbeqG1cw6cVadwmFV3/preview',
+        title: 'Git',
+        description: 'Revert a commit',
+        category: 'git'
+    },
+    'sysdesign-1': {
+        url: 'https://drive.google.com/file/d/1-64s9EFcKiJ9U9i8M9ODSPv-hfzkzqjq/preview',
+        title: 'System design',
+        description: 'System design by ByteByteGo.com',
+        category: 'sysdesign'
+    },
+
+
 };
 
  function imageLoadOnCategory() {
@@ -186,6 +238,8 @@ const pdfData = {
         sql:'../Assets/images/sql.png',
         python:'../Assets/images/python.png',
         mongodb:'../Assets/images/mongodb.jpeg',
+        git:'../Assets/images/Git&Github.png',
+        sysdesign:'../Assets/images/system design.jfif',
         // Add other categories and their corresponding image paths here
     };
 
@@ -201,7 +255,6 @@ const pdfData = {
             console.error(`Image path not found for category: ${category}`);
         }
     });
-    
     // Optional: Initialize lazy loading if you're using a lazy loading library
 };
 
@@ -266,6 +319,195 @@ function populateCards() {
     imageLoadOnCategory();
     shuffleCards();
 }
+
+//dropdown functionality 
+// document.addEventListener('DOMContentLoaded', function () {
+//     const mainFilterOptions = document.getElementById('mainFilterOptions');
+//     const filterOptions = document.getElementById('filterOptions');
+//     const cards = document.querySelectorAll('.card');
+
+//     const subcategories = {
+//         frontend: [
+//             { value: 'html', text: 'HTML & CSS' },
+//             { value: 'javascript', text: 'JavaScript' },
+//             { value: 'react', text: 'React JS' },
+//             { value: 'angular', text: 'Angular' }
+//         ],
+//         backend: [
+//             { value: 'nodejs', text: 'Node.js' },
+//             { value: 'java', text: 'Java' },
+//             { value: 'python', text: 'Python' }
+//         ],
+//         database: [
+//             { value: 'sql', text: 'SQL' },
+//             { value: 'mongodb', text: 'MongoDB' },
+//             { value: 'firebase', text: 'Firebase' }
+//         ],
+//         devops: [
+//             { value: 'docker', text: 'Docker' },
+//             { value: 'kubernetes', text: 'Kubernetes' },
+//             { value: 'jenkins', text: 'Jenkins' }
+//         ],
+//         other: [
+//             { value: 'dsa', text: 'DSA' },
+//             { value: 'git', text: 'Git' },
+//             { value: 'bash', text: 'Bash' },
+//             { value: 'sysdesign', text: 'System Design' }
+
+//         ]
+//     };
+
+//     // Event listener for main category filter
+//     mainFilterOptions.addEventListener('change', function () {
+//         const selectedCategory = this.value;
+
+//         // Filter cards based on selected category
+//         cards.forEach(card => {
+//             if (selectedCategory === 'select' || card.getAttribute('data-category') === selectedCategory) {
+//                 card.style.display = 'block';
+//             } else {
+//                 card.style.display = 'none';
+//             }
+//         });
+
+//         // Clear and populate subcategory options
+//         filterOptions.innerHTML = '<option value="all">Select Technology</option>';
+//         if (subcategories[selectedCategory]) {
+//             subcategories[selectedCategory].forEach(subcategory => {
+//                 const option = document.createElement('option');
+//                 option.value = subcategory.value;
+//                 option.text = subcategory.text;
+//                 filterOptions.appendChild(option);
+//             });
+
+//             filterOptions.style.display = 'inline-block';
+//         } else {
+//             filterOptions.style.display = 'none';
+//         }
+//     });
+
+//     // Event listener for subcategory filter
+//     filterOptions.addEventListener('change', function () {
+//         const selectedSubcategory = this.value;
+
+//         cards.forEach(card => {
+//             if (selectedSubcategory === 'all' || card.getAttribute('data-subcategory') === selectedSubcategory) {
+//                 card.style.display = 'block';
+//             } else {
+//                 card.style.display = 'none';
+//             }
+//         });
+//     });
+// });
+document.addEventListener('DOMContentLoaded', function () {
+    const mainFilterOptions = document.getElementById('mainFilterOptions');
+    const filterOptions = document.getElementById('filterOptions');
+    const resetButton = document.getElementById('resetButton');
+    const cards = document.querySelectorAll('.card');
+
+    const subcategories = {
+        frontend: [
+            { value: 'html', text: 'HTML & CSS' },
+            { value: 'javascript', text: 'JavaScript' },
+            { value: 'react', text: 'React JS' },
+            { value: 'angular', text: 'Angular' }
+        ],
+        backend: [
+            { value: 'nodejs', text: 'Node.js' },
+            { value: 'java', text: 'Java' },
+            { value: 'python', text: 'Python' }
+        ],
+        database: [
+            { value: 'sql', text: 'SQL' },
+            { value: 'mongodb', text: 'MongoDB' },
+            { value: 'firebase', text: 'Firebase' }
+        ],
+        devops: [
+            { value: 'docker', text: 'Docker' },
+            { value: 'kubernetes', text: 'Kubernetes' },
+            { value: 'jenkins', text: 'Jenkins' }
+        ],
+        other: [
+            { value: 'dsa', text: 'DSA' },
+            { value: 'git', text: 'Git' },
+            { value: 'bash', text: 'Bash' },
+            { value: 'sysdesign', text: 'System Design' }
+        ]
+    };
+
+    // Event listener for main category filter
+    mainFilterOptions.addEventListener('change', function () {
+        const selectedCategory = this.value;
+
+        // Show/Hide cards based on selected category
+        cards.forEach(card => {
+            if (selectedCategory === 'select' || card.getAttribute('data-category') === selectedCategory) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Clear and populate subcategory options
+        filterOptions.innerHTML = '<option value="all">Select Technology</option>';
+        if (subcategories[selectedCategory]) {
+            subcategories[selectedCategory].forEach(subcategory => {
+                const option = document.createElement('option');
+                option.value = subcategory.value;
+                option.text = subcategory.text;
+                filterOptions.appendChild(option);
+            });
+
+            filterOptions.style.display = 'inline-block';
+            resetButton.style.display = 'inline-block'; // Show the reset button
+        } else {
+            filterOptions.style.display = 'none';
+            resetButton.style.display = 'none'; // Hide the reset button
+        }
+    });
+
+    // Event listener for subcategory filter
+    filterOptions.addEventListener('change', function () {
+        const selectedSubcategory = this.value;
+
+        cards.forEach(card => {
+            if (selectedSubcategory === 'all' || card.getAttribute('data-subcategory') === selectedSubcategory) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // Event listener for reset button
+    resetButton.addEventListener('click', function () {
+        // Reset the main category dropdown
+        mainFilterOptions.value = 'select';
+
+        // Hide the subcategory dropdown and clear options
+        filterOptions.innerHTML = '<option value="all">Select Technology</option>';
+        filterOptions.style.display = 'none';
+
+        // Hide the reset button
+        resetButton.style.display = 'none';
+
+        // Show all cards explicitly
+        cards.forEach(card => {
+            card.style.display = 'block'; // Ensure all cards are displayed
+        });
+    });
+    resetButton.addEventListener('click', function () {
+        location.reload(); // Reload the page to reset all filters and show all cards
+    });
+});
+
+
+
+
+
+
+
+
 
 // Function to set the PDF URL in the iframe and show the overlay
 function openPDF(fileId) {
@@ -401,7 +643,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPage++;
         showCards();
     });
-    lazyLoadInstance();
 });
 
 //--results count 
@@ -499,6 +740,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial count
     filterCards();
 });
+
+
 
 
 

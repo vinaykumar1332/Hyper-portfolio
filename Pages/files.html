@@ -64,34 +64,39 @@
             <div class="container">
                 <header>
                     <h1 class="heading-h1"><i class="fa-solid fa-code"></i> Knowledge <em>Hub</em></h1>
-                   <div class="search-filter">
-    <div class="search-container">
-        <input type="text" placeholder="Search PDFs..." class="search-bar"><i class="fa fa-search search-icon" aria-hidden="true"></i></input>
-        
-    </div>
-    <div class="filter-container">
-        <select class="filter-options" id="filterOptions">
-            <option value="all">Select Technologie</option>
-            <option value="react">React JS</option>
-            <option value="html">HTML & CSS</option>
-            <option value="javascript">JavaScript</option>
-            <option value="dsa">DSA</option>
-            <option value="sql">SQL</option>
-            <option value="mongodb">MongoDB</option>
-            <option value="python">Python</option>
-        </select>
-    </div>
-</div>
+                    <div class="search-drop-main">
+                        <div class="search-filter">
+                            <div class="search-container">
+                                <input type="text" placeholder="Search PDFs..." class="search-bar"><i
+                                    class="fa fa-search search-icon" aria-hidden="true"></i></input>
 
-                    <div class="cardsResults">
-                        <p id="cardCount"> Results: 0</p>
-                    </div>
-                    <div id="results">
-                        <p id="no-results-message" style="display: none;">Sorry, no files available.</p>
-                        <!-- Results will be displayed here -->
-                    </div>
+                            </div>
+                            <div class="filter-container">
+                                <select title="select options" class="main-filter-options" id="mainFilterOptions">
+                                    <option value="select">Select Category</option>
+                                    <option value="frontend">Frontend</option>
+                                    <option value="backend">Backend</option>
+                                    <option value="database">Database</option>
+                                    <option value="devops">DevOps</option>
+                                    <option value="other">Other</option>
+                                </select>
+
+                                <select class="filter-options" id="filterOptions" style="display:none;">
+                                    <option value="all">Select Technology</option>
+                                    <!-- Subcategory options will be populated here dynamically -->
+                                </select>
+                                <button id="resetButton" style="display:none;">Clear</button>
+                            </div>
+                        </div>
+                        <div class="cardsResults">
+                            <p id="cardCount"> Results: 0</p>
+                        </div>
+                        <div id="results">
+                            <p id="no-results-message" style="display: none;">Sorry, no files available.</p>
+                            <!-- Results will be displayed here -->
+                        </div>
                 </header>
-                
+
                 <main id="cardContainer" class="cardContainer">
                     <!-- Add more cards as needed -->
                 </main>
@@ -101,9 +106,9 @@
         <section class="pdfPreview">
             <div id="pdfOverlay" class="overlay">
                 <div class="overlay-content">
-                    <span class="close-btn" onclick="closePDF()"><i class="fa-regular fa-circle-xmark"></i></span>
-                    <iframe id="pdfIframe" src="" frameborder="0" width="300"
-                    height="200" allowfullscreen></iframe>
+                    <div class="close-btn-container"><span class="close-btn" onclick="closePDF()"><i
+                                class="fa-regular fa-circle-xmark"></i></span></div>
+                    <iframe id="pdfIframe" src="" frameborder="0" width="300" height="200" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
@@ -151,30 +156,30 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
-          document.addEventListener('DOMContentLoaded', () => {
-    // Show preloader
-    const preloader = document.getElementById('preloader');
-    preloader.style.display = 'flex';
+            document.addEventListener('DOMContentLoaded', () => {
+                // Show preloader
+                const preloader = document.getElementById('preloader');
+                preloader.style.display = 'flex';
 
-    // Populate the cards
-    populateCards();
+                // Populate the cards
+                populateCards();
 
-    // Initialize lazy loading for images
-    lazyLoadInstance();
+                // Initialize lazy loading for images
+                lazyLoadInstance();
 
-    // Delay hiding the preloader for 2 seconds after cards are populated
-    setTimeout(() => {
-        preloader.style.display = 'none';
-    }, 1000);
+                // Delay hiding the preloader for 2 seconds after cards are populated
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 1000);
 
-    // Add event listeners for search and filter
-    document.querySelector('.search-bar')?.addEventListener('input', filterCards);
-    document.getElementById('filterOptions')?.addEventListener('change', filterCards);
-    document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
-        currentPage++;
-        showCards();
-    });
-});
+                // Add event listeners for search and filter
+                document.querySelector('.search-bar')?.addEventListener('input', filterCards);
+                document.getElementById('filterOptions')?.addEventListener('change', filterCards);
+                document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
+                    currentPage++;
+                    showCards();
+                });
+            });
 
         </script>
     </main>

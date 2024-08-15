@@ -99,6 +99,7 @@ const pdfData = {
         category: 'python'
     },
     'react-js-5': {
+
         url: 'https://drive.google.com/file/d/1v3fEXrTREuZp0FbQspAZIJ1nPAyDwbSe/preview',
         title: 'React Libraries',
         description: 'Top React Libraries and Tools you need.',
@@ -194,7 +195,7 @@ const pdfData = {
         description: 'Hand Written book',
         category: 'react'
     },
-    'sql-4': {
+    'sql-5': {
         url: 'https://drive.google.com/file/d/10dU5eZORsndBb5kYgTiSWwNdkFmr_Obv/preview',
         title: 'SQL & NoSQL',
         description: 'Interview questions',
@@ -224,8 +225,54 @@ const pdfData = {
         description: 'System design by ByteByteGo.com',
         category: 'sysdesign'
     },
-
-
+   'react-js-10': {
+        url: 'https://drive.google.com/file/d/12D-IcjC0jNS71nza06AbxSd_AMv3q0i2/preview',
+        title: 'Data Flow in React Js ',
+        description: 'React js',
+        category: 'react'
+    },
+    'react-js-11': {
+        url: 'https://drive.google.com/file/d/12AWIGmm3zvEA8vah0FzKkplQ5qUrdLtC/preview',
+        title: ' React Js ',
+        description: 'React js interview questions',
+        category: 'react'
+    },
+    'testing-1': {
+        url: 'https://drive.google.com/file/d/124LQQw_JQXv7VP50vI9XSgujDwO-fv0l/preview',
+        title: 'Qualitative Analysis ',
+        description: 'Manual Testing',
+        category: 'testing'
+    },
+    'sql-6': {
+        url: 'https://drive.google.com/file/d/11vhchu0b8C7RLYOS7QASJg2UCzXmlp5A/preview',
+        title: 'SQL Leet code',
+        description: 'Sql 50 challenge',
+        category:'sql'
+    },
+    'git-3': {
+        url: 'https://drive.google.com/file/d/10WQnEkbIoxm7viKgg3kfu6NJYNsOMTLv/preview',
+        title: 'Git Commands',
+        description: 'By Bosscoder Academy',
+        category: 'git'
+    },
+    'git-4': {
+        url: 'https://drive.google.com/file/d/10WQnEkbIoxm7viKgg3kfu6NJYNsOMTLv/preview',
+        title: 'Git CheatSheet',
+        description: 'By InterviewBit',
+        category: 'git'
+    },
+    'html-css-7': {
+        url: 'https://drive.google.com/file/d/122qyVMbxL0iDG0X1BpSSMn4qfrZMhNHh/preview',
+        title: 'Frontend in 60 days',
+        description: 'By Bosscoder Accademy',
+        category: 'html'
+    },
+    'html-css-8': {
+        url: 'https://drive.google.com/file/d/10WPx_CyWskeF-6SDme08FsOGM3er876U/preview',
+        title: 'Css',
+        description: ' Css Pixels is over',
+        category: 'html'
+    },
 };
 
  function imageLoadOnCategory() {
@@ -240,6 +287,8 @@ const pdfData = {
         mongodb:'../Assets/images/mongodb.jpeg',
         git:'../Assets/images/Git&Github.png',
         sysdesign:'../Assets/images/system design.jfif',
+        testing: '../Assets/images/testing.png',
+        
         // Add other categories and their corresponding image paths here
     };
 
@@ -249,7 +298,6 @@ const pdfData = {
         
         if (imagePaths[category]) {
             const imagePath = imagePaths[category];
-            console.log(`Setting image src for category ${category}: ${imagePath}`);
             img.setAttribute('data-src', imagePath);
         } else {
             console.error(`Image path not found for category: ${category}`);
@@ -316,89 +364,10 @@ function populateCards() {
     });
 
     console.log('Cards populated successfully.');
-    imageLoadOnCategory();
+    
     shuffleCards();
 }
 
-//dropdown functionality 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const mainFilterOptions = document.getElementById('mainFilterOptions');
-//     const filterOptions = document.getElementById('filterOptions');
-//     const cards = document.querySelectorAll('.card');
-
-//     const subcategories = {
-//         frontend: [
-//             { value: 'html', text: 'HTML & CSS' },
-//             { value: 'javascript', text: 'JavaScript' },
-//             { value: 'react', text: 'React JS' },
-//             { value: 'angular', text: 'Angular' }
-//         ],
-//         backend: [
-//             { value: 'nodejs', text: 'Node.js' },
-//             { value: 'java', text: 'Java' },
-//             { value: 'python', text: 'Python' }
-//         ],
-//         database: [
-//             { value: 'sql', text: 'SQL' },
-//             { value: 'mongodb', text: 'MongoDB' },
-//             { value: 'firebase', text: 'Firebase' }
-//         ],
-//         devops: [
-//             { value: 'docker', text: 'Docker' },
-//             { value: 'kubernetes', text: 'Kubernetes' },
-//             { value: 'jenkins', text: 'Jenkins' }
-//         ],
-//         other: [
-//             { value: 'dsa', text: 'DSA' },
-//             { value: 'git', text: 'Git' },
-//             { value: 'bash', text: 'Bash' },
-//             { value: 'sysdesign', text: 'System Design' }
-
-//         ]
-//     };
-
-//     // Event listener for main category filter
-//     mainFilterOptions.addEventListener('change', function () {
-//         const selectedCategory = this.value;
-
-//         // Filter cards based on selected category
-//         cards.forEach(card => {
-//             if (selectedCategory === 'select' || card.getAttribute('data-category') === selectedCategory) {
-//                 card.style.display = 'block';
-//             } else {
-//                 card.style.display = 'none';
-//             }
-//         });
-
-//         // Clear and populate subcategory options
-//         filterOptions.innerHTML = '<option value="all">Select Technology</option>';
-//         if (subcategories[selectedCategory]) {
-//             subcategories[selectedCategory].forEach(subcategory => {
-//                 const option = document.createElement('option');
-//                 option.value = subcategory.value;
-//                 option.text = subcategory.text;
-//                 filterOptions.appendChild(option);
-//             });
-
-//             filterOptions.style.display = 'inline-block';
-//         } else {
-//             filterOptions.style.display = 'none';
-//         }
-//     });
-
-//     // Event listener for subcategory filter
-//     filterOptions.addEventListener('change', function () {
-//         const selectedSubcategory = this.value;
-
-//         cards.forEach(card => {
-//             if (selectedSubcategory === 'all' || card.getAttribute('data-subcategory') === selectedSubcategory) {
-//                 card.style.display = 'block';
-//             } else {
-//                 card.style.display = 'none';
-//             }
-//         });
-//     });
-// });
 document.addEventListener('DOMContentLoaded', function () {
     const mainFilterOptions = document.getElementById('mainFilterOptions');
     const filterOptions = document.getElementById('filterOptions');
@@ -431,7 +400,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { value: 'dsa', text: 'DSA' },
             { value: 'git', text: 'Git' },
             { value: 'bash', text: 'Bash' },
-            { value: 'sysdesign', text: 'System Design' }
+            { value: 'sysdesign', text: 'System Design' },
+            { value: 'testing', text: 'Testing' },
         ]
     };
 
@@ -460,15 +430,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
             filterOptions.style.display = 'inline-block';
             resetButton.style.display = 'inline-block'; // Show the reset button
+            return;
         } else {
             filterOptions.style.display = 'none';
             resetButton.style.display = 'none'; // Hide the reset button
         }
+
+
+        console.log(selectedCategory);
+        filterCards();
     });
 
     // Event listener for subcategory filter
     filterOptions.addEventListener('change', function () {
         const selectedSubcategory = this.value;
+        console.log(selectedSubcategory);
 
         cards.forEach(card => {
             if (selectedSubcategory === 'all' || card.getAttribute('data-subcategory') === selectedSubcategory) {
@@ -477,6 +453,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.style.display = 'none';
             }
         });
+        resultsCategory(selectedSubcategory);
+        function resultsCategory(selectedSubcategory) {
+            console.log(selectedSubcategory + ' selected');
+            
+            // Get the first element with the class 'resultsCategory'
+            const resultsCategoryElement = document.querySelector('.resultsCategory');
+            
+            if (resultsCategoryElement) {
+                resultsCategoryElement.innerHTML = selectedSubcategory;
+            } else {
+                console.error('Element with class "resultsCategory" not found!');
+            }
+        }
+        
     });
 
     // Event listener for reset button
@@ -500,14 +490,6 @@ document.addEventListener('DOMContentLoaded', function () {
         location.reload(); // Reload the page to reset all filters and show all cards
     });
 });
-
-
-
-
-
-
-
-
 
 // Function to set the PDF URL in the iframe and show the overlay
 function openPDF(fileId) {
@@ -608,10 +590,28 @@ function filterCards() {
         } else {
             card.style.display = 'none';
         }
+
     });
 
-    cardCount.innerHTML = ` Results : ${visibleCardCount}`;
+    cardCount.innerHTML = ` Results: ${visibleCardCount}`;
+    
+    const noResultsCont = document.querySelector('#results');
+    const noResultsMsg = noResultsCont.querySelector('#no-results-message');
+    
+    if (visibleCardCount === 0) {
+        if (noResultsMsg) {
+            noResultsMsg.style.display = 'block';
+            noResultsCont.style.display = 'block';
+            
+        }
+    } else {
+        if (noResultsMsg) {
+            noResultsMsg.style.display = 'none';
+            noResultsCont.style.display = 'none';
+        }
+    }
 }
+
 
 // Function to implement lazy loading
 function lazyLoadInstance() {
@@ -686,17 +686,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateCardCount(count) {
         resultsCount.textContent = `Results : ${count}`;
     }
-    function updateNoResultsMessage(count) {
-        if (count === 0) {
-            noResultsMessage.style.display = 'block'; // Show message
-        } else {
-            noResultsMessage.style.display = 'none'; // Hide message
-        }
-    }
-    
-    // Initial count
+   
+   // Initial count
     filterCards();
-    updateNoResultsMessage();
+
 });
 
 //filter search and reuslts count

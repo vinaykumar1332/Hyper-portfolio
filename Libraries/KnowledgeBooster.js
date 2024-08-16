@@ -10,6 +10,20 @@ function toggleDarkMode() {
     }
 }
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Select the carousel element
+    var myCarousel = document.querySelector('#carouselExampleIndicators');
+    
+    // Initialize the carousel with auto-sliding
+    var carousel = new bootstrap.Carousel(myCarousel, {
+        interval: 5000, // Set the interval for auto-sliding (5000ms = 5 seconds)
+        ride: 'carousel' // Enables auto-sliding
+    });
+
+    // Optional: You can add custom controls or functionality if needed
+});
+
 document.addEventListener('contextmenu', (event) => {
     event.preventDefault();
   });

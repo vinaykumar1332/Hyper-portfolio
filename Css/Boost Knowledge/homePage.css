@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
+/* Parent Selector */
+.content-container-home-page {
+    margin:0 auto;
+    & .hero-section {
+        background-color: transparent;
+        padding: 60px 0;
+        text-align: center;
+        animation: fadeIn 1.5s ease-in-out;
+
+        & .hero-content {
+            h1 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                color: #333;
+            }
+            p {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 400;
+                color: #666;
+                margin-top: 20px;
+            }
+            .btn.btn-primary{
+                font-family: 'Poppins', sans-serif;
+                font-weight: 500;
+                padding: 10px 20px;
+                border-radius: 25px;
+                background-color: var(--nav-bg-color);
+                color: #ffffff;
+                position: relative;
+                display: inline-block;
+                transition: background-color 0.3s ease;
+                margin-top: 20px;
+
+                &:hover {
+                    background-color: #0056b3;
+                }
+
+                /* Add arrow icon and hover effect */
+                &::after {
+                    content: '→';
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 900;
+                    position: absolute;
+                    right: -20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    transition: right 0.3s ease;
+                    opacity: 0;
+                }
+
+                &:hover::after {
+                    right: -30px;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    @media (max-width:768px) {
+        max-width: 0  auto;
+        padding: 10px;
+    }
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.features-section {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.features-section .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-family: 'Poppins', sans-serif;
+    color: #666;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.technology-highlights {
+    background-color: #f4f4f4;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.technology-highlights .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tech-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    @media (max-width:768px) {
+        padding: 10px;
+    }
+}
+
+.tech-card img {
+    max-width: 100px;
+    margin-bottom: 15px;
+}
+
+.tech-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.tech-card p {
+    font-family: 'Poppins', sans-serif;
+    color: #666;
+}
+
+.tech-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.carousel-section {
+    background-color: #f8f9fa;
+    padding: 30px 50px;
+    @media (max-width:768px) {
+        padding: 30px 20px;
+    }
+
+}
+
+.carousel-inner {
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    h1 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: #333;
+        padding-bottom: 20px;
+    }
+
+}
+
+.carousel-item {
+    height: 400px;
+    background-color: #007bff; /* Default background color, can be changed per slide */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &:first-child{
+        background-color: #d56509; 
+    }
+    &:nth-child(2){
+        background-color: #aef112; 
+    }
+    &:nth-child(3){
+        background-color: #08e25c; 
+    }
+    &:nth-child(5){
+        background-color: #7100b3; 
+    }
+}
+
+.carousel-slide-content {
+    padding: 20px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    @media (max-width:768px) {
+        top:130px !important;
+    }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+.carousel-control-prev-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 16 16"%3E%3Cpath d="M11.854 1.146a.5.5 0 0 1 .058.638l-7 7a.5.5 0 0 1-.708 0l-7-7a.5.5 0 0 1 .638-.76L4.5 7.793 11.146 1.146a.5.5 0 0 1 .708-.708z" fill="%23fff"/%3E%3C/svg%3E');
+}
+
+.carousel-control-next-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 16 16"%3E%3Cpath d="M4.146 1.146a.5.5 0 0 1 .708 0l7 7a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708L9.793 8 4.146 2.354a.5.5 0 0 1 0-.708z" fill="%23fff"/%3E%3C/svg%3E');
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 200px;
+    }
+}
+a{
+    text-decoration: none;
+}

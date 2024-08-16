@@ -15,10 +15,8 @@
     <meta name="google" content="nositelinkssearchbox">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="Css/Boost Knowledge/KnowledgeBooster.css">
+    <link rel="stylesheet" href="Css/Boost Knowledge/homePage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Poppins Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
     <title>Boost Your Knowledge</title>
 </head>
@@ -39,7 +37,7 @@
                             <a class="nav-link" href="#Home"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"  id="files" href="./Pages/files.html"><i class="fas fa-file-alt"></i> Files</a>
+                            <a class="nav-link" id="files" href="./Pages/files.html"><i class="fas fa-file-alt"></i> Files</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#Blog"><i class="fas fa-blog"></i> Blog</a>
@@ -48,7 +46,6 @@
                             <a class="nav-link" href="index.html"><i class="fas fa-envelope"></i> About us</a>
                         </li>
                     </ul>
-         
                     <div class="dark-mode-toggle ml-3" onclick="toggleDarkMode()">
                         <i class="fas fa-moon"></i>
                     </div>
@@ -56,7 +53,136 @@
             </div>
         </nav>
     </header>
-    <section class="loginSection" style="display: none;">  <div id="loginMainContainer" > </div>  </section>
+
+    <!-- Main Content Section -->
+    <main class="content-container-home-page">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Welcome to Boost Your Knowledge</h1>
+                <p>Explore a wide range of study materials, coding questions, and interview guides across various technologies.</p>
+                <a href="Pages/files.html" class="btn btn-primary">Start Learning</a>
+            </div>
+            <section class="carousel-section">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <h1>Our Featured Courses</h1>
+                        <div class="carousel-item active">
+                            <div class="carousel-slide-content">
+                                <h3>Explore React</h3>
+                                <p>Learn one of the most popular JavaScript libraries</p>
+                               <div class="img-wrapper">
+                                <img src="#" alt="">
+                               </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-slide-content">
+                                <h3>Slide 2</h3>
+                                <p>Description for Slide 2</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-slide-content">
+                                <h3>Slide 3</h3>
+                                <p>Description for Slide 3</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-slide-content">
+                                <h3>Slide 4</h3>
+                                <p>Description for Slide 4</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-slide-content">
+                                <h3>Slide 5</h3>
+                                <p>Description for Slide 5</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </section>
+            
+    </section>
+        
+ <section class="technology-highlights">
+            <div class="container">
+                <h2 class="section-title">Technologies We Cover</h2>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <a href="https://legacy.reactjs.org/" title="React js"> <img src="./Assets/React_icon.png" alt="React Logo">
+                        <h3>React</h3>
+                        <p>A JavaScript library for building user interfaces, maintained by Facebook.</p></a>
+                    </div>
+                    <div class="tech-card" title="Angular js">
+                        <a href="https://v17.angular.io/start">
+                            <img src="./Assets/angular_logo_logos_icon.png" alt="Angular Logo">
+                        
+                        <h3>Angular</h3>
+                        <p>A platform for building mobile and desktop web applications using TypeScript.</p></a>
+                    </div>
+                    <div class="tech-card">
+                        <a href="https://javascript.info/">
+                        <img src="./Assets/javascript.png" alt="JavaScript Logo">
+                        <h3>JavaScript</h3>
+                        <p>The programming language of the web, enabling interactive web pages and applications.</p></a>
+                    </div>
+                    <div class="tech-card">
+                        <a href="https://web.dev/learn/css">
+                        <img src="./Assets/css-icon.png" alt="CSS Logo">
+                        <h3>CSS</h3>
+                        <p>A style sheet language used for describing the presentation of a document written in HTML.</p></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">Why Choose Us?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Extensive Resources</h3>
+                        <p>Access a comprehensive library of study materials, coding questions, and interview guides.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Community Support</h3>
+                        <p>Join a community of learners and experts ready to help you succeed.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Quality Content</h3>
+                        <p>Our materials are curated by industry professionals to ensure high quality and relevance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>Interactive Learning</h3>
+                        <p>Engage with interactive quizzes and exercises to reinforce your learning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer Section -->
     <section class="footer-section">
         <footer class="footer">
             <div class="footer-content">
@@ -67,8 +193,8 @@
                 <div class="footer-section links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="../Hyper-portfolio/KnowledgeBooster.html">Home</a></li>
-                        <li><a href="../Hyper-portfolio/index.html">About</a></li>
+                        <li><a href="../KnowledgeBooster.html">Home</a></li>
+                        <li><a href="../index.html">About</a></li>
                     </ul>
                 </div>
                 <div class="footer-section social-media">
@@ -80,20 +206,26 @@
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
+                <div class="footer-section disclaimer">
+                    <h3>Disclaimer</h3>
+                    <p>
+                        The PDFs available on this platform are gathered from various sources, and some may belong
+                        to other authors. They are provided for educational purposes only. If any content infringes
+                        on your copyright, please notify us, and we will remove it.
+                    </p>
+                </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2024 Boost Your Knowledge | Designed by You
+                &copy; 2024 Boost Your Knowledge | <span id="footer-name"><a href="../index.html"> VINAY KUMAR
+                        PUDI</a></span>
             </div>
         </footer>
     </section>
 
-</body>
-
-
-<script src="Libraries/KnowledgeBooster.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="Libraries/KnowledgeBooster.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

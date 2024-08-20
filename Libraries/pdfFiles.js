@@ -1,279 +1,37 @@
 // JSON data for PDF links and card details
-const pdfData = {
-    'html-css-1': {
-        url: 'https://drive.google.com/file/d/1rTauQMkzfm02S3uxyL2_mKDVOrJY2a0d/preview',
-        title: 'HTML & CSS Basics',
-        description: 'Introduction to HTML and CSS.',
-        category: 'html',
-        dataCategory:"frontend",
-    },
-    'html-css-2': {
-        url: 'https://drive.google.com/file/d/1sUWeS6hQYb7MTdEFOIWCorBI4rPUIUx_/preview',
-        title: 'Advanced HTML & CSS',
-        description: 'Deep dive into HTML and CSS.',
-        category: 'html'
-        
-    },
-    'html-css-3': {
-        url: 'https://drive.google.com/file/d/1syooFeN_3AekujhrjCZXMXzeI9un6ypA/preview',
-        title: 'CSS Flexbox',
-        description: 'Learn Flexbox layout.',
-        category: 'html'
-    },
-    'html-css-4': {
-        url: 'https://drive.google.com/file/d/1t6Uhe-5BYHn5_A7mwATp16jLoYfcYrrG/preview',
-        title: 'CSS Grid',
-        description: 'Learn CSS Grid layout.',
-        category: 'html'
-    },
-    'js-1': {
-        url: 'https://drive.google.com/file/d/1rm3G7o2OkW24EffE5yuccc-EEhOmV2Dq/preview',
-        title: 'JavaScript Basics',
-        description: 'Introduction to JavaScript.',
-        category: 'javascript'
-    },
-    'js-2': {
-        url: '',  // URL is missing in the JSON data
-        title: 'Advanced JavaScript',
-        description: 'Deep dive into JavaScript.',
-        category: 'javascript'
-    },
-    'react-js-1': {
-        url: 'https://drive.google.com/file/d/1ridMuJU1P127v3x8IH0vKNq3sAlhOeOM/view',
-        title: 'React Basics',
-        description: 'Introduction to React.',
-        category: 'react'
-    },
-    'react-js-2': {
-        url: 'https://drive.google.com/file/d/1rkM7RIHmB4JHOKOtc3w7FqeKi65-sJQB/preview',
-        title: 'React Advanced',
-        description: 'Advanced concepts in React.',
-        category: 'react'
-    },
-    'react-js-3': {
-        url: 'https://drive.google.com/file/d/1r_Hvmprj-MmhbfOalF31yU34ylXDrk-6/preview',
-        title: 'React Hooks',
-        description: 'Learn React Hooks.',
-        category: 'react'
-    },
-    'react-js-4': {
-        url: 'https://drive.google.com/file/d/1re6roCDU8rWqdfLCnOtLMxFMntozojlW/preview',
-        title: 'React Context API',
-        description: 'Understanding Context API.',
-        category: 'react'
-    },
-    'dsa-1': {
-        url: 'https://drive.google.com/file/d/1rxTjrfVdLTXHNUc6Gc5wpghQVvOXNlxy/preview',
-        title: 'Data Structures Basics',
-        description: 'Introduction to Data Structures.',
-        category: 'dsa'
-    },
-    'dsa-2': {
-        url: 'https://drive.google.com/file/d/1ryvTI0qiEG_UEt-OLjBbvMZPzClbZqmz/preview',
-        title: 'Algorithms Basics',
-        description: 'Introduction to Algorithms.',
-        category: 'dsa'
-    },
-    'dsa-3': {
-        url: 'https://drive.google.com/file/d/1szo8VtfElXEg783P16Ds9JlrJ8ObZgvV/preview',
-        title: 'Advanced Algorithms',
-        description: 'Deep dive into Algorithms.',
-        category: 'dsa'
-    },
-    'mongo-db-1': {
-        url: 'https://drive.google.com/file/d/1sucxZf0txHuKDtbi9apSlkoGjkfRTl39/preview',
-        title: 'MongoDB Guide',
-        description: 'Learn MongoDB concepts.',
-        category: 'mongodb'
-    },
-    'sql-1': {
-        url: 'https://drive.google.com/file/d/1sfxVcTL4bavVSkzFqcns-AXNIApqdCf-/preview',
-        title: 'SQL Basics',
-        description: 'Introduction to SQL.',
-        category: 'sql'
-    },
-    'python-1': {
-        url: 'https://drive.google.com/file/d/1t5USIUD8K5XsBbK3AZSvQIlSvhqa8uAo/preview',
-        title: 'Python Basics',
-        description: 'Machine learing  Python.',
-        category: 'python'
-    },
-    'react-js-5': {
+const dataApi = '../pdfData.json'; // Path to your JSON file or API endpoint
 
-        url: 'https://drive.google.com/file/d/1v3fEXrTREuZp0FbQspAZIJ1nPAyDwbSe/preview',
-        title: 'React Libraries',
-        description: 'Top React Libraries and Tools you need.',
-        category: 'react'
-    },
-    'react-js-6': {
-        url: 'https://drive.google.com/file/d/1unfOaXb0y1iRcAYqhcOcTX-xCzWtwzJS/preview',
-        title: 'React useEffect()',
-        description: 'useEffect() in React JS',
-        category: 'react'
-    },
-    'react-js-7': {
-        url: 'https://drive.google.com/file/d/1y-u7YXv6C3RPdlHsODZFPMOYQCnSNmcu/preview',
-        title: 'React Tips',
-        description: 'An intro React Basics',
-        category: 'react'
-    },
-    'js-3': {
-        url: 'https://drive.google.com/file/d/1xwRrO5nLlMmzm1_DyqLAjehSSZ5e7eBR/preview',  // URL is missing in the JSON data
-        title: 'Funtions in javascript',
-        description: 'Types of Funtions in javascript',
-        category: 'javascript'
-    },
-    'js-4': {
-        url: 'https://drive.google.com/file/d/1xyNl4MNBTcpqR2miRAJg7Nwm0Hmb5guv/preview',  // URL is missing in the JSON data
-        title: 'Javascript Destructuring Concept',
-        description: 'Javascript Destructuring',
-        category: 'javascript'
-    },
-    'js-5': {
-        url: 'https://drive.google.com/file/d/1sS4PtCU6jYKN5P62P74pmZp6LpRWsOx9/preview',  // URL is missing in the JSON data
-        title: 'Javascript Concepts to Ace',
-        description: 'Technical Interview',
-        category: 'javascript'
-    },
-    'js-6': {
-        url: 'https://drive.google.com/file/d/1y0Ryq2wsRLx5stNJbhRBjBwwe3q5T9ih/preview',  // URL is missing in the JSON data
-        title: 'Javascript Local & Session Storage',
-        description: 'Stroing Data in Browser',
-        category: 'javascript'
-    },
-    'js-7': {
-        url: 'https://drive.google.com/file/d/1sYcqsA_j81zpG3V_gM8uspLomWRl1RRZ/preview',  // URL is missing in the JSON data
-        title: 'Javascript ES6 Features',
-        description: 'ES6 Features',
-        category: 'javascript'
-    },
-    'js-8': {
-        url: 'https://drive.google.com/file/d/1sTmsv0YF_95pXZHntxraJLhB7sLvINpj/preview',  // URL is missing in the JSON data
-        title: 'Javascript API',
-        description: 'API Terminology HandBook',
-        category: 'javascript'
-    },
-    'sql-2': {
-        url: 'https://drive.google.com/file/d/1szEVOC3Vpcv3P_3N6TlxHsCZnsqSKnGd/preview',
-        title: 'SQL',
-        description: 'SQL Notes',
-        category: 'sql'
-    },
-    'sql-3': {
-        url: 'https://drive.google.com/file/d/1sf6ha1EhYebG_CcHlTve28UFP45R3TBR/preview',
-        title: 'SQL Leetcode',
-        description: 'LeetCode SQL solutions',
-        category: 'sql'
-    },
-    'sql-4': {
-        url: 'https://drive.google.com/file/d/1umzbeFY_eVndpG3IDD52IsNwy6CicdC-/preview',
-        title: 'SQL ',
-        description: 'SQL Interview Questions',
-        category: 'sql'
-    },
-    'python-2': {
-        url: 'https://drive.google.com/file/d/1ut6Oyf-Q6MY5ZRFpNLYE71uDwRdilzpq/preview',
-        title: 'Python Basics',
-        description: 'Introduction to Python.',
-        category: 'python'
-    },
-    'react-js-8': {
-        url: 'https://drive.google.com/file/d/1zOCqXnGPbZyJ-gTH8ZHSyWt1k-RShS3X/preview',
-        title: 'React Js Questions',
-        description: 'Technical interview question',
-        category: 'react'
-    },
-    'html-css-5': {
-        url: 'https://drive.google.com/file/d/11-fTFB5oqMMy6nM7tdmVqNpHN4-aPV_Q/preview',
-        title: 'HTML semantic and non semantic html ',
-        description: 'semantic and non semantic html',
-        category: 'html'
-    },
-    'react-js-9': {
-        url: 'https://drive.google.com/file/d/1-pfxgm2cBQsK8YGJyI69qGGSlB1a7BSf/preview',
-        title: 'React Js ',
-        description: 'Hand Written book',
-        category: 'react'
-    },
-    'sql-5': {
-        url: 'https://drive.google.com/file/d/10dU5eZORsndBb5kYgTiSWwNdkFmr_Obv/preview',
-        title: 'SQL & NoSQL',
-        description: 'Interview questions',
-        category: 'sql'
-    },
-    'html-css-6': {
-        url: 'https://drive.google.com/file/d/10rzK833BJUmGPp9Fsx-PBdkdH4nSdhlp/preview',
-        title: 'CSS {V/S} SCSS',
-        description: 'Difference between css and scss',
-        category: 'html'
-    },
-    'git-1': {
-        url: 'https://drive.google.com/file/d/1--GXm7FKvl3BLz4-hQuXjXs6MsbiToph/preview',
-        title: 'Git {v/s} GitHub',
-        description: 'Difference between GIT and GITHUB',
-        category: 'git'
-    },
-    'git-2': {
-        url: 'https://drive.google.com/file/d/1-evO9wS1i6SCsUhbeqG1cw6cVadwmFV3/preview',
-        title: 'Git',
-        description: 'Revert a commit',
-        category: 'git'
-    },
-    'sysdesign-1': {
-        url: 'https://drive.google.com/file/d/1-64s9EFcKiJ9U9i8M9ODSPv-hfzkzqjq/preview',
-        title: 'System design',
-        description: 'System design by ByteByteGo.com',
-        category: 'sysdesign'
-    },
-   'react-js-10': {
-        url: 'https://drive.google.com/file/d/12D-IcjC0jNS71nza06AbxSd_AMv3q0i2/preview',
-        title: 'Data Flow in React Js ',
-        description: 'React js',
-        category: 'react'
-    },
-    'react-js-11': {
-        url: 'https://drive.google.com/file/d/12AWIGmm3zvEA8vah0FzKkplQ5qUrdLtC/preview',
-        title: ' React Js ',
-        description: 'React js interview questions',
-        category: 'react'
-    },
-    'testing-1': {
-        url: 'https://drive.google.com/file/d/124LQQw_JQXv7VP50vI9XSgujDwO-fv0l/preview',
-        title: 'Qualitative Analysis ',
-        description: 'Manual Testing',
-        category: 'testing'
-    },
-    'sql-6': {
-        url: 'https://drive.google.com/file/d/11vhchu0b8C7RLYOS7QASJg2UCzXmlp5A/preview',
-        title: 'SQL Leet code',
-        description: 'Sql 50 challenge',
-        category:'sql'
-    },
-    'git-3': {
-        url: 'https://drive.google.com/file/d/10WQnEkbIoxm7viKgg3kfu6NJYNsOMTLv/preview',
-        title: 'Git Commands',
-        description: 'By Bosscoder Academy',
-        category: 'git'
-    },
-    'git-4': {
-        url: 'https://drive.google.com/file/d/10WQnEkbIoxm7viKgg3kfu6NJYNsOMTLv/preview',
-        title: 'Git CheatSheet',
-        description: 'By InterviewBit',
-        category: 'git'
-    },
-    'html-css-7': {
-        url: 'https://drive.google.com/file/d/122qyVMbxL0iDG0X1BpSSMn4qfrZMhNHh/preview',
-        title: 'Frontend in 60 days',
-        description: 'By Bosscoder Accademy',
-        category: 'html'
-    },
-    'html-css-8': {
-        url: 'https://drive.google.com/file/d/10WPx_CyWskeF-6SDme08FsOGM3er876U/preview',
-        title: 'Css',
-        description: ' Css Pixels is over',
-        category: 'html'
-    },
-};
+let pdfData;
+
+// Fetch data from the API
+fetch(dataApi)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        pdfData = data.pdfFilesData; // Access the pdfFilesData object
+        console.log('Fetched Data:', pdfData);
+
+        const totalKeys = Object.keys(pdfData).length;
+        console.log(`Total number of entries: ${totalKeys}`);
+
+        // Iterate over each entry in pdfFilesData
+        for (const key in pdfData) {
+            if (pdfData.hasOwnProperty(key)) {
+                const pdfItem = pdfData[key];
+                const url = pdfItem.url;
+                const title = pdfItem.title;
+                const description = pdfItem.description;
+                const category = pdfItem.category;                
+
+            }
+        }
+    })
+    .catch(error => console.error('Error fetching data:', error));
+    
 
  function imageLoadOnCategory() {
     const cards = document.querySelectorAll('.card');
@@ -496,11 +254,15 @@ function openPDF(fileId) {
     const pdfUrl = pdfData[fileId]?.url;
     const iframe = document.getElementById('pdfIframe');
     const overlay = document.getElementById('pdfOverlay');
+    const bodyElement = document.body;
 
     if (pdfUrl && iframe && overlay) {
         console.log('Setting iframe src to:', pdfUrl);
         iframe.src = pdfUrl;
         overlay.style.display = 'flex'; // Show the overlay
+        bodyElement.style.overflow='hidden';
+        console.log("test1");
+
     } else {
         console.error('No PDF URL found for ID:', fileId);
         showToast('Sorry, File is not available');
@@ -511,11 +273,16 @@ function openPDF(fileId) {
 function closePDF() {
     const overlay = document.getElementById('pdfOverlay');
     const iframe = document.getElementById('pdfIframe');
-
+    const bodyElement = document.body;
     if (overlay && iframe) {
-        overlay.style.display = 'none'; // Hide the overlay
+        overlay.style.display = 'none';
         iframe.src = ''; // Clear the iframe source
+        if(bodyElement){
+            bodyElement.style.overflow='visible';
+            console.log("test2");
+        }
     }
+    openPDF(fileId);
 }
 
 // Function to show toast notifications

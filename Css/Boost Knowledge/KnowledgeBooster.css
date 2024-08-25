@@ -822,49 +822,42 @@ body {
         align-items: center;
         z-index: 9999;
     }
+    .loader-text{
+        position: relative;
+        font-size: 30px;
+        font-weight: 400;
+        padding-left: 10px;
+        @media (max-width:480px) {
+            font-size: 22px;
+        }
+    }
 }
 
 /* HTML: <div class="loader"></div> */
 .loader {
-    --R: 30px;
-    --g1: #514b82 96%, #0000;
-    --g2: #eeeeee 96%, #0000;
-    width: calc(2*var(--R));
+    width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
-    display: grid;
-    -webkit-mask: linear-gradient(#000 0 0);
-    animation: l30 2s infinite linear;
-}
-
-.loader::before,
-.loader::after {
-    content: "";
-    grid-area: 1/1;
-    width: 50%;
-    background:
-        radial-gradient(farthest-side, var(--g1)) calc(var(--R) + 0.866*var(--R) - var(--R)) calc(var(--R) - 0.5*var(--R) - var(--R)),
-        radial-gradient(farthest-side, var(--g1)) calc(var(--R) + 0.866*var(--R) - var(--R)) calc(var(--R) - 0.5*var(--R) - var(--R)),
-        radial-gradient(farthest-side, var(--g2)) calc(var(--R) + 0.5*var(--R) - var(--R)) calc(var(--R) - 0.866*var(--R) - var(--R)),
-        radial-gradient(farthest-side, var(--g1)) 0 calc(-1*var(--R)),
-        radial-gradient(farthest-side, var(--g2)) calc(var(--R) - 0.5*var(--R) - var(--R)) calc(var(--R) - 0.866*var(--R) - var(--R)),
-        radial-gradient(farthest-side, var(--g1)) calc(var(--R) - 0.866*var(--R) - var(--R)) calc(var(--R) - 0.5*var(--R) - var(--R)),
-        radial-gradient(farthest-side, var(--g2)) calc(-1*var(--R)) 0,
-        radial-gradient(farthest-side, var(--g1)) calc(var(--R) - 0.866*var(--R) - var(--R)) calc(var(--R) + 0.5*var(--R) - var(--R));
-    background-size: calc(2*var(--R)) calc(2*var(--R));
-    background-repeat: no-repeat;
-}
-
-.loader::after {
-    transform: rotate(180deg);
-    transform-origin: right;
-}
-
-@keyframes l30 {
-    100% {
-        transform: rotate(-1turn)
-    }
-}
+    border: 8px solid #514b82;
+    animation:
+      l20-1 0.8s infinite linear alternate,
+      l20-2 1.6s infinite linear;
+  }
+  @keyframes l20-1{
+     0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+     12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+     25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+     50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+     62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+     75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+     100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+  }
+  @keyframes l20-2{ 
+    0%    {transform:scaleY(1)  rotate(0deg)}
+    49.99%{transform:scaleY(1)  rotate(135deg)}
+    50%   {transform:scaleY(-1) rotate(0deg)}
+    100%  {transform:scaleY(-1) rotate(-135deg)}
+  }
 
 
 

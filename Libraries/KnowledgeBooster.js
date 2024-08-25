@@ -28,5 +28,29 @@ document.addEventListener('contextmenu', (event) => {
     event.preventDefault();
   });
   
-
-    
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.tech-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            480: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 4,
+            },
+        },
+    });
+});

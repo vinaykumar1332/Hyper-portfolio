@@ -299,6 +299,24 @@
             "title": "Qualitative Analysis",
             "description": "Manual Testing",
             "category": "testing"
+        },
+        "js-9": {
+            "url": "https://drive.google.com/file/d/1213cQKmdRubIXVdkMcXUCIgHovYOK4bl/preview",
+            "title": "Cookies",
+            "description": "Cookies in Javascript",
+            "category": "javascript"
+        },
+        "js-10": {
+            "url": "https://drive.google.com/file/d/10Xw0PcC3tnODwlQYzNYtQ6Gu5xdvDiZz/preview",
+            "title": "use cases of Closures?",
+            "description": "JavaScript Interview Question",
+            "category": "javascript"
+        },
+        "js-11": {
+            "url": "https://drive.google.com/file/d/109CvCDArAMR1yaQQXGU3dgwG-9B3lE_k/preview",
+            "title": "Diffrent types of Loops in Javascript",
+            "description": "Loops in Javascript",
+            "category": "javascript"
         }
     }
 }

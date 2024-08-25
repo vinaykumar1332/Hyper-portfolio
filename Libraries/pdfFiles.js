@@ -17,18 +17,9 @@ fetch(dataApi)
 
         const totalKeys = Object.keys(pdfData).length;
         console.log(`Total number of entries: ${totalKeys}`);
+         populateCards()
 
         // Iterate over each entry in pdfFilesData
-        for (const key in pdfData) {
-            if (pdfData.hasOwnProperty(key)) {
-                const pdfItem = pdfData[key];
-                const url = pdfItem.url;
-                const title = pdfItem.title;
-                const description = pdfItem.description;
-                const category = pdfItem.category;                
-
-            }
-        }
     })
     .catch(error => console.error('Error fetching data:', error));
     
@@ -107,24 +98,41 @@ function createCard(id, { title, description, category }) {
 
 // Function to populate cards
 function populateCards() {
+    // Check if pdfData is defined and is an object
+    if (!pdfData || typeof pdfData !== 'object') {
+        console.error('pdfData is undefined, null, or not an object!');
+        return;
+    }
+
     const cardContainer = document.getElementById('cardContainer');
+
     if (!cardContainer) {
         console.error('Card container not found!');
         return;
     }
 
-    cardContainer.innerHTML = ''; // Clear existing content
+    // Clear any existing cards
+    cardContainer.innerHTML = '';
 
+    // Loop through each item in pdfData and create a card
     Object.entries(pdfData).forEach(([id, data]) => {
         const card = createCard(id, data);
+
+        // Add an event listener for the 'click' event to open the corresponding PDF
         card.addEventListener('click', () => openPDF(id));
+
+        // Append the card to the container
         cardContainer.appendChild(card);
     });
 
     console.log('Cards populated successfully.');
-    
+
+    // Shuffle the cards after populating them
     shuffleCards();
+    lazyLoadInstance();
+    filterCards();
 }
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const mainFilterOptions = document.getElementById('mainFilterOptions');
@@ -245,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     resetButton.addEventListener('click', function () {
-        location.reload(); // Reload the page to reset all filters and show all cards
+        location.reload(true); // Reload the page to reset all filters and show all cards
     });
 });
 
@@ -282,7 +290,7 @@ function closePDF() {
             console.log("test2");
         }
     }
-    openPDF(fileId);
+   openPDF(fileId);
 }
 
 // Function to show toast notifications

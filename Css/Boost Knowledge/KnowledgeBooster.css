@@ -539,10 +539,14 @@ body {
             margin-right: 10px;
             padding-bottom: 20px;
         }
+
     }
 
     .card:hover {
         transform: scale(1.05);
+    }
+    img {
+        height: 300px;
     }
 
     .card img {
@@ -553,9 +557,10 @@ body {
         max-height: 200px;
 
         @media (max-width:480px) {
-            max-height: 150px;
+            /* height: 300px !important;
+            max-height: 150px ;
             align-items: center;
-            object-fit: fill;
+            object-fit: fill; */
         }
     }
 
@@ -1140,6 +1145,97 @@ select#filterOptions,
                 font-size: 20px;
             }
         }
+    }
+    
+}
+
+
+.blog-main-container{
+    display: flex;
+    max-width:1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    .blog-posts {
+        flex: 3;
+        @media (max-width:768px) {
+            flex: 2;
+        }
+        @media (max-width:480px) {
+            flex:1;
+            justify-content: center;
+        }
+    }
+    
+    .post {
+        background-color: #fff;
+        margin-bottom: 20px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .post h2 {
+        margin-top: 0;
+        font-size: 1.8rem;
+    }
+    
+    .post p {
+        color: #666;
+    }
+    
+    .read-more {
+        display: inline-block;
+        margin-top: 15px;
+        color: #0056b3;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+    
+    .read-more:hover {
+        color: #003a70;
+    }
+    
+    .latest-news {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+       
+        h2.Ttile-blog{
+         color:#000;
+         font-weight: 500;
+       }
+
+    }
+    
+    .latest-news h2 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .news-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    
+    .news-article {
+        align-items: center;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        border: 1px solid #222;
+    }
+    
+    .news-article h2 {
+        font-size: 1.5rem;
+        margin: 0;
+        
+    }
+    
+    .news-article .tech-p{
+          display: flex;
+          
     }
     
 }

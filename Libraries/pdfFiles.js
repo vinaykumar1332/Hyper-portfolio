@@ -91,9 +91,7 @@ function createCard(id, { title, description, category }) {
             <button class="view-btn">View PDF</button>
         </div>
     `;
-
     return card;
-    
 }
 
 // Function to populate cards

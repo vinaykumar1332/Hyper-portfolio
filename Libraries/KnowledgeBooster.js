@@ -28,6 +28,7 @@ document.addEventListener('contextmenu', (event) => {
     event.preventDefault();
   });
   
+
   document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.tech-swiper', {
         slidesPerView: 1,
@@ -54,3 +55,34 @@ document.addEventListener('contextmenu', (event) => {
         },
     });
 });
+
+
+//--Blog-post--
+const apiKey = '412947d281084af4a939c6e7c3c87a78';
+const newsContainer = document.getElementById('newsContainer');
+
+async function fetchTechNews() {
+    try {
+        const response = await fetch(`https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=${apiKey}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch news');
+        }
+        const data = await response.json();
+
+        data.articles.forEach(article => {
+            const articleElement = document.createElement('div');
+            articleElement.classList.add('news-article');
+            articleElement.innerHTML = `
+                <h2><a href="${article.url}" target="_blank">${article.title}</a></h2>
+                <p class="tech-p"><a href="${article.url}" target="_blank">Read more</p>
+            `;
+            newsContainer.appendChild(articleElement);
+        });
+    } catch (error) {
+        console.error('Error fetching tech news:', error);
+        newsContainer.innerHTML = `<p>Sorry, we couldn't load the latest tech news at this time.</p>`;
+    }
+}
+
+// Call the function to fetch news on page load
+fetchTechNews();

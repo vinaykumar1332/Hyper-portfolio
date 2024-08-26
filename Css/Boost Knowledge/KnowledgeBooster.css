@@ -1150,92 +1150,128 @@ select#filterOptions,
 }
 
 
-.blog-main-container{
+.blog-main-container {
     display: flex;
-    max-width:1200px;
+    max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
-    .blog-posts {
-        flex: 3;
-        @media (max-width:768px) {
-            flex: 2;
-        }
-        @media (max-width:480px) {
-            flex:1;
-            justify-content: center;
-        }
-    }
-    
-    .post {
-        background-color: #fff;
-        margin-bottom: 20px;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .post h2 {
-        margin-top: 0;
-        font-size: 1.8rem;
-    }
-    
-    .post p {
-        color: #666;
-    }
-    
-    .read-more {
-        display: inline-block;
-        margin-top: 15px;
-        color: #0056b3;
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s ease;
-    }
-    
-    .read-more:hover {
-        color: #003a70;
-    }
-    
-    .latest-news {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 20px;
-       
-        h2.Ttile-blog{
-         color:#000;
-         font-weight: 500;
-       }
+    justify-content: flex-start; /* Align content to the right */
+}
 
+/* Latest News as an Aside */
+.side-news {
+    flex: 1;
+    max-width: 30%; /* Set the width for the sidebar */
+      position: relative;
+      right: 130px; 
+      @media (max-width:920px) {
+        right: 50px;
+        margin-left: 20px;
+      }
+      @media (max-width:768px) {
+        right: 0px;
+        justify-content: center;
+        
+      }
+}
+
+.latest-news {
+    padding: 20px;
+    background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    .news-container{
+        .news-article{
+            h2.tech-h2{
+                font-size: 20px;
+                a{
+                    color: #1f1f1f;
+                    padding-bottom: 10px;
+                }
+            }
+            p.tech-p{
+                padding: 5px 3px;
+                max-width:max-content;
+                background: #007bff;
+                margin-top: 5px !important;
+                border-radius: 4px;
+                border-color: 1px solid #713abe;
+                a{
+                    color: #ffff;
+                    font-size: 16px;
+                    text-decoration: none;
+                    font-weight: 500;
+                }
+                
+            }
+        }
     }
-    
-    .latest-news h2 {
-        font-size: 2rem;
-        text-align: center;
+}
+
+.latest-news h2.Ttile-blog {
+    color: #000;
+    font-weight: 500;
+    background: linear-gradient(90deg, #0072ff 0%, #00c6ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.news-article {
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #222;
+}
+
+.news-article h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #222;
+}
+
+
+
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .blog-main-container {
+        flex-direction: column;
+        align-items: center; /* Center the aside on smaller screens */
+    }
+
+    .side-news {
+        max-width: 100%; /* Make the sidebar full width on smaller screens */
+        margin-left: 0;
+        
+        .news-article h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #222;
+        }
+    }
+
+    .latest-news {
         margin-bottom: 20px;
     }
-    
-    .news-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
+
+}
+
+@media (max-width: 480px) {
+    .blog-main-container {
+        padding: 0 10px;
     }
-    
-    .news-article {
-        align-items: center;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        border: 1px solid #222;
+
+    .latest-news {
+        padding: 15px;
     }
-    
-    .news-article h2 {
-        font-size: 1.5rem;
-        margin: 0;
-        
-    }
-    
-    .news-article .tech-p{
-          display: flex;
-          
-    }
-    
 }

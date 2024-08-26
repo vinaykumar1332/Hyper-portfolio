@@ -73,7 +73,7 @@ async function fetchTechNews() {
             const articleElement = document.createElement('div');
             articleElement.classList.add('news-article');
             articleElement.innerHTML = `
-                <h2><a href="${article.url}" target="_blank">${article.title}</a></h2>
+                <h2 class="tech-h2"><a href="${article.url}" target="_blank">${article.title}</a></h2>
                 <p class="tech-p"><a href="${article.url}" target="_blank">Read more</p>
             `;
             newsContainer.appendChild(articleElement);

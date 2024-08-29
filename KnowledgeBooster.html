@@ -9,8 +9,10 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="expires" content="Wed, 21 Oct 2026 07:28:00 GMT">
-    <meta name="description" content="Boost Your Knowledge: Access a wide range of study files, coding questions, and interview materials across various technologies including React, Angular, HTML, CSS, JavaScript, and jQuery.">
-    <meta name="keywords" content="study files, coding questions, interview materials, React, Angular, HTML, CSS, JavaScript, jQuery, technology PDFs">
+    <meta name="description"
+        content="Boost Your Knowledge: Access a wide range of study files, coding questions, and interview materials across various technologies including React, Angular, HTML, CSS, JavaScript, and jQuery.">
+    <meta name="keywords"
+        content="study files, coding questions, interview materials, React, Angular, HTML, CSS, JavaScript, jQuery, technology PDFs">
     <meta name="Vinay kumar pudi" content="Boost Your Knowledge">
     <meta name="google" content="nositelinkssearchbox">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -18,18 +20,11 @@
     <link rel="stylesheet" href="Css/Boost Knowledge/homePage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <title>Boost Your Knowledge</title>
 </head>
 
 <body>
-    <style>
-        .content-container-home-page {
-            & .hero-section {
-                background: url('/Assets/images/Heo-image-background.jpg');
-            }
-        }
-    </style>
     <header class="Navigation-container">
         <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container">
@@ -45,7 +40,8 @@
                             <a class="nav-link" href="#Home"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files" href="./Pages/files.html"><i class="fas fa-file-alt"></i> Learning</a>
+                            <a class="nav-link" id="files" href="./Pages/files.html"><i class="fas fa-file-alt"></i>
+                                Learning</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./Pages/Blog.html"><i class="fas fa-blog"></i> Blog</a>
@@ -65,203 +61,312 @@
     <!-- Main Content Section -->
     <main class="content-container-home-page">
         <!-- Hero Section -->
-        <section class="hero-section">
+        <section class="hero-section" style="background-image: url(/Assets/Tech-cards-png/Heo-image-background.jpg);">
             <div class="hero-content">
                 <h1>Welcome to Boost Your Knowledge</h1>
-                <p>Explore a wide range of study materials, coding questions, and interview guides across various technologies.</p>
+                <p>Explore a wide range of study materials, coding questions, and interview guides across various
+                    technologies.</p>
                 <a href="Pages/files.html" class="btn btn-primary" title="Files page">Start Learning</a>
             </div>
-            <!-- <section class="carousel-section">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <h1>Our Featured Courses</h1>
-                        <div class="carousel-item active">
-                            <div class="carousel-slide-content">
-                                <h3>Explore React</h3>
-                                <p>Learn one of the most popular JavaScript libraries</p>
-                               <div class="img-wrapper">
-                                <img src="#" alt="">
-                               </div>
-                            </div>
+        </section>
+
+        <section class="technology-highlights">
+            <div class="container">
+                <h2 class="section-title">Technologies We Cover</h2>
+                <div class="swiper tech-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide tech-card">
+                            <a href="https://legacy.reactjs.org/" title="React js">
+                                <img src="./Assets/Tech-cards-png/React_icon.png" alt="React Logo">
+                                <h3>React</h3>
+                                <p>A JavaScript library for building user interfaces, maintained by Facebook. React
+                                    allows developers to create large web applications that can change data, without
+                                    reloading the page. It is known for its component-based architecture, which enables
+                                    reusable code and a more modular approach to development. With a strong ecosystem
+                                    and community support, React is widely used for creating dynamic, high-performance
+                                    user interfaces, particularly in single-page applications (SPAs).</p>
+                            </a>
                         </div>
-                        <div class="carousel-item">
-                            <div class="carousel-slide-content">
-                                <h3>Slide 2</h3>
-                                <p>Description for Slide 2</p>
-                            </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://v17.angular.io/start" title="Angular js">
+                                <img src="./Assets/Tech-cards-png/angular_logo_logos_icon.png" alt="Angular Logo">
+                                <h3>Angular</h3>
+                                <p>A platform for building mobile and desktop web applications using TypeScript.</p>
+                            </a>
                         </div>
-                        <div class="carousel-item">
-                            <div class="carousel-slide-content">
-                                <h3>Slide 3</h3>
-                                <p>Description for Slide 3</p>
-                            </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://javascript.info/">
+                                <img src="./Assets/Tech-cards-png/javascript.png" alt="JavaScript Logo">
+                                <h3>JavaScript</h3>
+                                <p>The programming language of the web, enabling interactive web pages and applications.
+                                </p>
+                            </a>
                         </div>
-                        <div class="carousel-item">
-                            <div class="carousel-slide-content">
-                                <h3>Slide 4</h3>
-                                <p>Description for Slide 4</p>
-                            </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://web.dev/learn/css">
+                                <img src="./Assets/Tech-cards-png/css-icon.png" alt="CSS Logo">
+                                <h3>CSS</h3>
+                                <p>A style sheet language used for describing the presentation of a document written in
+                                    HTML.</p>
+                            </a>
                         </div>
-                        <div class="carousel-item">
-                            <div class="carousel-slide-content">
-                                <h3>Slide 5</h3>
-                                <p>Description for Slide 5</p>
-                            </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://jquery.com/">
+                                <img src="./Assets/Tech-cards-png/Jquery.png" alt="CSS Logo">
+                                <h3>JQuery</h3>
+                                <p>A style sheet language used for describing the presentation of a document written in
+                                    HTML.</p>
+                            </a>
+                        </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://getbootstrap.com/" title="Bootstrap">
+                                <img src="./Assets/Tech-cards-png/bootstrap.png" alt="Bootstrap Logo">
+                                <h3>Bootstrap</h3>
+                                <p>A popular front-end framework for developing responsive and mobile-first websites.
+                                </p>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide tech-card">
+                            <a href="https://nodejs.org/" title="Node.js">
+                                <img src="./Assets/Tech-cards-png/nodejs.png" alt="Node.js Logo">
+                                <h3>Node.js</h3>
+                                <p>An open-source, cross-platform JavaScript runtime environment for executing
+                                    JavaScript code outside a browser.</p>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide tech-card">
+                            <a href="https://www.python.org/" title="Python">
+                                <img src="./Assets/Tech-cards-png/python.png" alt="Python Logo">
+                                <h3>Python</h3>
+                                <p>A high-level, general-purpose programming language known for its readability and
+                                    versatility.</p>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide tech-card">
+                            <a href="https://www.docker.com/" title="Docker">
+                                <img src="./Assets/Tech-cards-png/Dockor.png" alt="Docker Logo">
+                                <h3>Docker</h3>
+                                <p>A set of platform-as-a-service products that use OS-level virtualization to deliver
+                                    software in packages called containers.</p>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide tech-card">
+                            <a href="https://www.mongodb.com/" title="MongoDB">
+                                <img src="./Assets/Tech-cards-png/mogodb.png" alt="MongoDB Logo">
+                                <h3>MongoDB</h3>
+                                <p>A source-available cross-platform document-oriented database program, classified as a
+                                    NoSQL database.</p>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide tech-card">
+                            <a href="https://aws.amazon.com/" title="AWS">
+                                <img src="./Assets/Tech-cards-png/aws.png" alt="AWS Logo">
+                                <h3>AWS</h3>
+                                <p>A comprehensive and widely adopted cloud platform, offering over 200 fully-featured
+                                    services from data centers globally.</p>
+                            </a>
+                        </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://www.ruby-lang.org/en/" title="Ruby">
+                                <img src="./Assets/Tech-cards-png/ruby.png" alt="Ruby Logo">
+                                <h3>Ruby</h3>
+                                <p>A dynamic, open-source programming language with a focus on simplicity and
+                                    productivity, known for its elegant syntax.</p>
+                            </a>
+                        </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://www.java.com/" title="Java">
+                                <img src="./Assets/Tech-cards-png/java.png" alt="Java Logo">
+                                <h3>Java</h3>
+                                <p>A high-level, class-based, object-oriented programming language that is widely used
+                                    for building enterprise-scale applications.</p>
+                            </a>
+                        </div>
+
+                        <div class="swiper-slide tech-card">
+                            <a href="https://www.mysql.com/" title="MySQL">
+                                <img src="./Assets/Tech-cards-png/mysql.png" alt="MySQL Logo">
+                                <h3>MySQL</h3>
+                                <p>An open-source relational database management system, widely used for web database
+                                    applications.</p>
+                            </a>
+                        </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://www.typescriptlang.org/" title="TypeScript">
+                                <img src="./Assets/Tech-cards-png/typescript.png" alt="TypeScript Logo">
+                                <h3>TypeScript</h3>
+                                <p>A strongly typed superset of JavaScript that compiles to plain JavaScript, providing
+                                    static types for large codebases.</p>
+                            </a>
+                        </div>
+                        <div class="swiper-slide tech-card">
+                            <a href="https://www.php.net/" title="PHP">
+                                <img src="./Assets/Tech-cards-png/php.png" height="100px" alt="PHP Logo">
+                                <h3>PHP</h3>
+                                <p>A widely-used open-source scripting language especially suited for web development,
+                                    embedded into HTML.</p>
+                            </a>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-            </section> -->
-            
-    </section>
-        
-    <section class="technology-highlights">
-        <div class="container">
-            <h2 class="section-title">Technologies We Cover</h2>
-            <div class="swiper tech-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide tech-card">
-                        <a href="https://legacy.reactjs.org/" title="React js">
-                            <img src="./Assets/Tech-cards-png/React_icon.png" alt="React Logo">
-                            <h3>React</h3>
-                            <p>A JavaScript library for building user interfaces, maintained by Facebook. React allows developers to create large web applications that can change data, without reloading the page. It is known for its component-based architecture, which enables reusable code and a more modular approach to development. With a strong ecosystem and community support, React is widely used for creating dynamic, high-performance user interfaces, particularly in single-page applications (SPAs).</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide tech-card">
-                        <a href="https://v17.angular.io/start" title="Angular js">
-                            <img src="./Assets/Tech-cards-png/angular_logo_logos_icon.png" alt="Angular Logo">
-                            <h3>Angular</h3>
-                            <p>A platform for building mobile and desktop web applications using TypeScript.</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide tech-card">
-                        <a href="https://javascript.info/">
-                            <img src="./Assets/Tech-cards-png/javascript.png" alt="JavaScript Logo">
-                            <h3>JavaScript</h3>
-                            <p>The programming language of the web, enabling interactive web pages and applications.</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide tech-card">
-                        <a href="https://web.dev/learn/css">
-                            <img src="./Assets/Tech-cards-png/css-icon.png" alt="CSS Logo">
-                            <h3>CSS</h3>
-                            <p>A style sheet language used for describing the presentation of a document written in HTML.</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide tech-card">
-                        <a href="https://jquery.com/">
-                            <img src="./Assets/Tech-cards-png/Jquery.png" alt="CSS Logo">
-                            <h3>JQuery</h3>
-                            <p>A style sheet language used for describing the presentation of a document written in HTML.</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide tech-card">
-                        <a href="https://getbootstrap.com/" title="Bootstrap">
-                            <img src="./Assets/Tech-cards-png/bootstrap.png" alt="Bootstrap Logo">
-                            <h3>Bootstrap</h3>
-                            <p>A popular front-end framework for developing responsive and mobile-first websites.</p>
-                        </a>
-                    </div>
-                    
-                    <div class="swiper-slide tech-card">
-                        <a href="https://nodejs.org/" title="Node.js">
-                            <img src="./Assets/Tech-cards-png/nodejs.png" alt="Node.js Logo">
-                            <h3>Node.js</h3>
-                            <p>An open-source, cross-platform JavaScript runtime environment for executing JavaScript code outside a browser.</p>
-                        </a>
-                    </div>
-                    
-                    <div class="swiper-slide tech-card">
-                        <a href="https://www.python.org/" title="Python">
-                            <img src="./Assets/Tech-cards-png/python.png" alt="Python Logo">
-                            <h3>Python</h3>
-                            <p>A high-level, general-purpose programming language known for its readability and versatility.</p>
-                        </a>
-                    </div>
-                    
-                    <div class="swiper-slide tech-card">
-                        <a href="https://www.docker.com/" title="Docker">
-                            <img src="./Assets/Tech-cards-png/Dockor.png" alt="Docker Logo">
-                            <h3>Docker</h3>
-                            <p>A set of platform-as-a-service products that use OS-level virtualization to deliver software in packages called containers.</p>
-                        </a>
-                    </div>
-                    
-                    <div class="swiper-slide tech-card">
-                        <a href="https://www.mongodb.com/" title="MongoDB">
-                            <img src="./Assets/Tech-cards-png/mogodb.png" alt="MongoDB Logo">
-                            <h3>MongoDB</h3>
-                            <p>A source-available cross-platform document-oriented database program, classified as a NoSQL database.</p>
-                        </a>
-                    </div>
-                    
-                    <div class="swiper-slide tech-card">
-                        <a href="https://aws.amazon.com/" title="AWS">
-                            <img src="./Assets/Tech-cards-png/aws.png" alt="AWS Logo">
-                            <h3>AWS</h3>
-                            <p>A comprehensive and widely adopted cloud platform, offering over 200 fully-featured services from data centers globally.</p>
-                        </a>
-                    </div>        
-                    <div class="swiper-slide tech-card">
-                        <a href="https://www.ruby-lang.org/en/" title="Ruby">
-                            <img src="./Assets/Tech-cards-png/ruby.png" alt="Ruby Logo">
-                            <h3>Ruby</h3>
-                            <p>A dynamic, open-source programming language with a focus on simplicity and productivity, known for its elegant syntax.</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide tech-card">
-                        <a href="https://www.java.com/" title="Java">
-                            <img src="./Assets/Tech-cards-png/java.png" alt="Java Logo">
-                            <h3>Java</h3>
-                            <p>A high-level, class-based, object-oriented programming language that is widely used for building enterprise-scale applications.</p>
-                        </a>
-                    </div>
-                    
-                    <div class="swiper-slide tech-card">
-                        <a href="https://www.mysql.com/" title="MySQL">
-                            <img src="./Assets/Tech-cards-png/mysql.png" alt="MySQL Logo">
-                            <h3>MySQL</h3>
-                            <p>An open-source relational database management system, widely used for web database applications.</p>
-                        </a>
-                    </div>
-                    <div class="swiper-slide tech-card">
-                        <a href="https://www.typescriptlang.org/" title="TypeScript">
-                            <img src="./Assets/Tech-cards-png/typescript.png" alt="TypeScript Logo">
-                            <h3>TypeScript</h3>
-                            <p>A strongly typed superset of JavaScript that compiles to plain JavaScript, providing static types for large codebases.</p>
-                        </a>
-                    </div>    
-                    <div class="swiper-slide tech-card">
-                        <a href="https://www.php.net/" title="PHP">
-                            <img src="./Assets/Tech-cards-png/php.png" height="100px" alt="PHP Logo">
-                            <h3>PHP</h3>
-                            <p>A widely-used open-source scripting language especially suited for web development, embedded into HTML.</p>
-                        </a>
-                    </div>                                      
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Navigation -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
             </div>
-        </div>
-    </section>
-    
+        </section>
+
+        <section class="interactive-sidebar">
+            <h2 class="section-title">Roadmap</h2>
+            <aside class="sidebar">
+                <button id="sider-btn-1" class="sidebar-btn" onclick="showContent('frontend')"> <i
+                        class="fa fa-laptop-code" aria-hidden="true"></i> Frontend</button>
+                <button class="sidebar-btn" onclick="showContent('backend')"> <i class="fa fa-server"
+                        aria-hidden="true"></i> Backend</button>
+                <button class="sidebar-btn" onclick="showContent('database')"><i class="fa fa-database"
+                        aria-hidden="true"></i> Database</button>
+                <button class="sidebar-btn" onclick="showContent('devops')"><i class="fa fa-cogs"
+                        aria-hidden="true"></i> DevOps</button>
+                <button class="sidebar-btn" onclick="showContent('AI')"><i class="fa-solid fa-microchip"></i> Artificial
+                    Intelligence</button>
+            </aside>
+            <div class="content-area">
+
+                <div id="frontend" class="content-box">
+                    <h3>Frontend Development</h3>
+                    <p>
+                        Frontend development is the art and science of creating the visible interface of a web
+                        application or website. It involves crafting the user experience, including the layout, design,
+                        and interactivity.
+                    </p>
+                    <p>
+                        To master frontend development, you'll need to be proficient in the following core
+                        technologies:</br>
+                        * **HTML (HyperText Markup Language):** Defines the structure and content of a web page using
+                        tags and elements.
+                        * **CSS (Cascading Style Sheets):** Styles the appearance of HTML elements, controlling layout,
+                        colors, fonts, and more.
+                        * **JavaScript:** Adds interactivity and dynamic behavior to web pages, handling user
+                        interactions, animations, and data manipulation.
+                    </p>
+                    <p>
+                        In addition to these foundational technologies, popular frontend frameworks like React and
+                        Angular can streamline development and enhance efficiency. React is a JavaScript library known
+                        for its component-based architecture and virtual DOM, while Angular is a full-featured framework
+                        that provides a comprehensive set of tools for building complex web applications.
+                    </p>
+                </div>
+                <div id="backend" class="content-box" style="display: none;">
+                    <h3>Backend Development</h3>
+                    <p>
+                        Backend development focuses on the server-side of web applications, handling data storage,
+                        retrieval, and processing. It involves creating the logic and infrastructure that powers the
+                        frontend.
+                    </p>
+                    <p>
+                        Popular backend technologies include:
+                        * **Node.js:** A JavaScript runtime environment that allows you to build server-side
+                        applications using JavaScript.
+                        * **Express.js:** A popular Node.js framework that provides a robust foundation for building web
+                        applications.
+                        * **Databases:** Relational databases like MySQL and PostgreSQL, and NoSQL databases like
+                        MongoDB, are essential for storing and managing data.
+                    </p>
+                    <p>
+                        Backend developers are responsible for tasks such as:
+                        * Building APIs (Application Programming Interfaces) to communicate with the frontend.
+                        * Implementing server-side logic and business rules.
+                        * Integrating with third-party services.
+                        * Ensuring data security and performance.
+                    </p>
+                </div>
+
+                <div id="database" class="content-box" style="display: none;">
+                    <h3>Database Management</h3>
+                    <p>
+                        Databases are crucial for storing, organizing, and retrieving data in web applications. Database
+                        management involves designing, creating, and maintaining databases to meet specific
+                        requirements.
+                    </p>
+                    <p>
+                        Key skills in database management include:
+                        * **SQL (Structured Query Language):** A standard language for interacting with relational
+                        databases.
+                        * **Data modeling:** Designing database structures to efficiently store and retrieve
+                        information.
+                        * **Normalization:** Organizing data to minimize redundancy and improve data integrity.
+                        * **Query optimization:** Writing efficient SQL queries to improve performance.
+                    </p>
+                    <p>
+                        Popular database management systems include:
+                        * **MySQL:** A widely used open-source relational database.
+                        * **PostgreSQL:** Another popular open-source relational database with advanced features.
+                        * **MongoDB:** A popular NoSQL database that stores data in document-oriented format.
+                    </p>
+                </div>
+
+                <div id="devops" class="content-box" style="display: none;">
+                    <h3>DevOps</h3>
+                    <p>
+                        DevOps is a cultural and technical approach that bridges the gap between software development
+                        and IT operations. It focuses on collaboration, automation, and continuous delivery to improve
+                        the efficiency and reliability of software development processes.
+                    </p>
+                    <p>
+                        Key DevOps practices and tools include:
+                        * **CI/CD (Continuous Integration/Continuous Delivery):** Automating the building, testing, and
+                        deployment of code.
+                        * **Version control:** Using tools like Git to track changes to code and collaborate with
+                        others.
+                        * **Containerization:** Packaging applications and their dependencies into containers using
+                        tools like Docker.
+                        * **Orchestration:** Managing containers at scale using platforms like Kubernetes.
+                        * **Cloud platforms:** Leveraging cloud services like AWS, Azure, or GCP for infrastructure and
+                        deployment.
+                    </p>
+                    <p>
+                        DevOps professionals play a vital role in ensuring that software is delivered efficiently,
+                        reliably, and with high quality.
+                    </p>
+                </div>
+                <div id="AI" class="content-box" style="display: none;">
+                    <h3>Artificial Intelligence</h3>
+                    <p>
+                        Artificial Intelligence (AI) is a broad field of computer science that aims to create
+                        intelligent agents, which are systems that can reason, learn, and act autonomously. AI
+                        encompasses a wide range of technologies and applications, from machine learning and natural
+                        language processing to robotics and computer vision.
+                    </p>
+                    <p>
+                        Some of the key areas of AI research and development include:
+                        * **Machine learning:** Algorithms that allow computers to learn from data and improve their
+                        performance over time.
+                        * **Natural language processing:** Enabling computers to understand and generate human language.
+                        * **Computer vision:** Teaching computers to interpret and understand visual information from
+                        images and videos.
+                        * **Robotics:** Designing and building robots capable of performing tasks in the real world.
+                        * **Expert systems:** Creating systems that can reason and solve problems at an expert level.
+                    </p>
+                    <p>
+                        AI has the potential to revolutionize various industries and aspects of our lives, from
+                        healthcare and finance to transportation and entertainment. As AI technology continues to
+                        advance, we can expect to see even more innovative and impactful applications in the years to
+                        come.
+                    </p>
+                </div>
+            </div>
+
+            </div>
+        </section>
+
+
+
         <section class="features-section">
             <div class="container">
                 <h2 class="section-title">Why Choose Us?</h2>
@@ -269,7 +374,8 @@
                     <div class="feature-card">
                         <i class="fas fa-book"></i>
                         <h3>Extensive Resources</h3>
-                        <p>Access a comprehensive library of study materials, coding questions, and interview guides.</p>
+                        <p>Access a comprehensive library of study materials, coding questions, and interview guides.
+                        </p>
                     </div>
                     <div class="feature-card">
                         <i class="fas fa-users"></i>
@@ -289,7 +395,7 @@
                 </div>
             </div>
         </section>
-        
+
     </main>
 
     <!-- Footer Section -->
@@ -331,12 +437,23 @@
             </div>
         </footer>
     </section>
-<script>  
-document.addEventListener('DOMContentLoaded',function(){
-    document.addEventListener('contextmenu', (event) => {
-    event.preventDefault();
-  });
-});</script>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            document.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+          });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                if (window.location.pathname.endsWith('.html')) {
+                const newUrl = window.location.pathname.replace('.html', '');
+                history.replaceState(null, '', newUrl);
+            }
+            }, 2000);
+          
+        });
+
+    </script>
     <script src="Libraries/KnowledgeBooster.js"></script>
     <!-- <script src="../Libraries/knowleged_min_file.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

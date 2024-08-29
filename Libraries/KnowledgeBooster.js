@@ -10,6 +10,37 @@ function toggleDarkMode() {
     }
 }
 
+function showContent(section) {
+    // Hide all content boxes
+    const contentBoxes = document.querySelectorAll('.content-box');
+    
+    contentBoxes.forEach(box => {
+        box.style.display = 'none';
+        
+    });
+
+    // Show the selected content box
+    const selectedBox = document.getElementById(section);
+    if (selectedBox) {
+        selectedBox.style.display = 'block';
+    }
+ 
+}
+document.addEventListener('DOMContentLoaded', function() {
+    // Find the button element with the ID "sider-btn-1"
+    var button = document.getElementById('sider-btn-1');
+  
+    // Check if the button element exists
+    if (button) {
+      // Simulate a click event on the button
+      button.click();
+    } else {
+      console.error('Button with ID "sider-btn-1" not found.');
+    }
+  });
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // Select the carousel element

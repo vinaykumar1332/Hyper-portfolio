@@ -23,6 +23,13 @@
 </head>
 
 <body>
+    <style>
+        .content-container-home-page {
+            & .hero-section {
+                background: url('/Assets/images/Heo-image-background.jpg');
+            }
+        }
+    </style>
     <header class="Navigation-container">
         <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container">
@@ -38,7 +45,7 @@
                             <a class="nav-link" href="#Home"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files" href="./Pages/files.html"><i class="fas fa-file-alt"></i> Files</a>
+                            <a class="nav-link" id="files" href="./Pages/files.html"><i class="fas fa-file-alt"></i> Learning</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./Pages/Blog.html"><i class="fas fa-blog"></i> Blog</a>
@@ -324,7 +331,12 @@
             </div>
         </footer>
     </section>
-
+<script>  
+document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+  });
+});</script>
     <script src="Libraries/KnowledgeBooster.js"></script>
     <!-- <script src="../Libraries/knowleged_min_file.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

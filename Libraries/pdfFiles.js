@@ -13,6 +13,7 @@ fetch(dataApi)
     })
     .then(data => {
         pdfData = data.pdfFilesData; // Access the pdfFilesData object
+        
         console.log('Fetched Data:', pdfData);
 
         const totalKeys = Object.keys(pdfData).length;
@@ -209,6 +210,9 @@ document.addEventListener('DOMContentLoaded', function () {
     filterOptions.addEventListener('change', function () {
         const selectedSubcategory = this.value;
         console.log(selectedSubcategory);
+        function triggerYoutube(selectedSubcategory){
+          selectedSubcategory
+        }
 
         cards.forEach(card => {
             if (selectedSubcategory === 'all' || card.getAttribute('data-subcategory') === selectedSubcategory) {
@@ -220,12 +224,15 @@ document.addEventListener('DOMContentLoaded', function () {
         resultsCategory(selectedSubcategory);
         function resultsCategory(selectedSubcategory) {
             console.log(selectedSubcategory + ' selected');
+          
             
             // Get the first element with the class 'resultsCategory'
             const resultsCategoryElement = document.querySelector('.resultsCategory');
             
             if (resultsCategoryElement) {
                 resultsCategoryElement.innerHTML = selectedSubcategory;
+                triggerYoutube();
+                
             } else {
                 console.error('Element with class "resultsCategory" not found!');
             }

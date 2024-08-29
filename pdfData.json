@@ -4,7 +4,8 @@
             "url": "https://drive.google.com/file/d/1rTauQMkzfm02S3uxyL2_mKDVOrJY2a0d/preview",
             "title": "HTML & CSS Basics",
             "description": "Introduction to HTML and CSS.",
-            "category": "html"
+            "category": "html",
+            "video-url":"https://youtu.be/MDLn5-zSQQI"
         },
         "html-css-2": {
             "url": "https://drive.google.com/file/d/1sUWeS6hQYb7MTdEFOIWCorBI4rPUIUx_/preview",
@@ -320,3 +321,4 @@
         }
     }
 }
+

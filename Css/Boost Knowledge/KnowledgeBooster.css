@@ -1149,7 +1149,7 @@ select#filterOptions,
     
 }
 
-
+/**--blog-page--*/
 .blog-main-container {
     display: flex;
     max-width: 1200px;
@@ -1273,5 +1273,89 @@ select#filterOptions,
 
     .latest-news {
         padding: 15px;
+    }
+}
+/* Learning Resources Section */
+.learning-resources {
+    flex: 2;
+    max-width: 70%; /* Adjust the width relative to the tech news aside */
+    margin-left: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.resource-title {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #007bff;
+}
+
+.resource-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.resource-article {
+    flex: 1 1 calc(50% - 20px);
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.resource-article h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.resource-article ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.resource-article ul li {
+    margin-bottom: 10px;
+}
+
+.resource-article ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.resource-article ul li a:hover {
+    color: #0056b3;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .blog-main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-news {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .learning-resources {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .resource-container {
+        flex-direction: column;
+    }
+
+    .resource-article {
+        flex: 1 1 100%;
     }
 }

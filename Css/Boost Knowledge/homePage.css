@@ -3,7 +3,7 @@
 /* Parent Selector */
 .content-container-home-page {
     & .hero-section {
-        background: url('/Assets/images/Heo-image-background.jpg') no-repeat center center; /* Add your background image URL */
+        background: url('/https://github.com/vinaykumar1332/Hyper-portfolio/blob/main/Assets/images/Heo-image-background.jpg') no-repeat center center; /* Add your background image URL */
         background-size: cover; /* Ensure the image covers the entire section */
         padding: 80px 0;
         text-align: center;

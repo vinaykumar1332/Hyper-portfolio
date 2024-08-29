@@ -38,7 +38,7 @@
                             <a class="nav-link" href="../KnowledgeBooster.html"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files" href="files.html"><i class="fas fa-file-alt"></i> Files</a>
+                            <a class="nav-link" id="files" href="files.html"><i class="fas fa-file-alt"></i>Learning</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./Blog.html"><i class="fas fa-blog"></i> Blog</a>
@@ -113,6 +113,11 @@
                 </div>
             </div>
         </section>
+        <section class="youTude-video">
+            <div>
+                <iframe id="videoFrame" src="" frameborder="0" width="300" height="200" allowfullscreen></iframe>
+            </div>
+        </section>
         <section class="footer-section">
             <footer class="footer">
                 <div class="footer-content">
@@ -182,6 +187,12 @@
                     showCards();
                 });
             });
+
+            document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+  });
+});
 
         </script>
     </main>

@@ -39,7 +39,7 @@
                             <a class="nav-link" href="../KnowledgeBooster.html"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="files" href="../Pages/files.html"><i class="fas fa-file-alt"></i> Files</a>
+                            <a class="nav-link" id="files" href="../Pages/files.html"><i class="fas fa-file-alt"></i>Learning</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./Blog.html"><i class="fas fa-blog"></i> Blog</a>
@@ -63,6 +63,9 @@
                 <div id="newsContainer" class="news-container"></div>
             </section>
         </aside>
+        <div>
+            <iframe width="514" height="214" src="https://www.youtube.com/embed/MDLn5-zSQQI" title="HTML Tutorial For Beginners |HTML In 10 Minutes | HTML Basics For Beginners | Simplilearn" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
     </main>
 
 
@@ -104,6 +107,47 @@
             </div>
         </footer>
     </section>
+    <script>
+        //--Blog-post--
+const apiKey = '412947d281084af4a939c6e7c3c87a78';
+const newsContainer = document.getElementById('newsContainer');
+
+async function fetchTechNews() {
+    try {
+        const response = await fetch(`https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=${apiKey}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch news');
+        }
+        const data = await response.json();
+
+        data.articles.forEach(article => {
+            const articleElement = document.createElement('div');
+            articleElement.classList.add('news-article');
+            articleElement.innerHTML = `
+                <h2 class="tech-h2"><a href="${article.url}" target="_blank">${article.title}</a></h2>
+                <p class="tech-p"><a href="${article.url}" target="_blank">Read more</p>
+            `;
+            newsContainer.appendChild(articleElement);
+        });
+    } catch (error) {
+        console.error('Error fetching tech news:', error);
+        newsContainer.innerHTML = `<p>Sorry, we couldn't load the latest tech news at this time.</p>`;
+    }
+}
+
+// Call the function to fetch news on page load
+fetchTechNews();
+
+
+
+
+  document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+  });
+});
+
+    </script>
     <script src="/Libraries/KnowledgeBooster.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>

@@ -40,23 +40,30 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Select the carousel element
-    var myCarousel = document.querySelector('#carouselExampleIndicators');
+  document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".show-more-btn");
     
-    // Initialize the carousel with auto-sliding
-    var carousel = new bootstrap.Carousel(myCarousel, {
-        interval: 5000, // Set the interval for auto-sliding (5000ms = 5 seconds)
-        ride: 'carousel' // Enables auto-sliding
-    });
+    buttons.forEach(button => {
+        button.addEventListener("click", function() {
+            const content = this.previousElementSibling;
+            const chevron = this.querySelector(".chevron");
 
-    // Optional: You can add custom controls or functionality if needed
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+                this.innerHTML = 'Show Less <span class="chevron">&#x25B2;</span>';
+                chevron.classList.add("rotate");
+            } else {
+                content.style.display = "none";
+                this.innerHTML = 'Show More <span class="chevron">&#x25BC;</span>';
+                chevron.classList.remove("rotate");
+            }
+        });
+    });
 });
 
 
-  
+
+
 
   document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.tech-swiper', {
@@ -84,3 +91,85 @@ document.addEventListener('DOMContentLoaded', function() {
         },
     });
 });
+
+
+// --- faq's
+document.addEventListener('DOMContentLoaded', function() {
+    const faqContainer = document.getElementById('faq-container');
+    const showMoreBtn = document.getElementById('show-more-btn');
+    const preloader = document.getElementById('preloader');  // Get the preloader element
+    let currentPage = 1;
+    const faqsPerPage = 5;
+    let isLoading = false;
+
+    function loadFAQs(page, perPage) {
+        if (isLoading) return;
+
+        isLoading = true;
+        showMoreBtn.classList.add('loading');
+        preloader.style.display = 'block';  // Show the preloader
+        
+        fetch('faqs.json')  // Replace with your JSON file path
+            .then(response => response.json())
+            .then(data => {
+                const start = (page - 1) * perPage;
+                const end = start + perPage;
+                const faqs = data.slice(start, end);
+
+                if (faqs.length > 0) {
+                    faqs.forEach(faq => {
+                        const faqItem = document.createElement('div');
+                        faqItem.className = 'faq-item';
+
+                        const faqQuestion = document.createElement('div');
+                        faqQuestion.className = 'faq-question';
+                        faqQuestion.textContent = faq.question;
+                        faqQuestion.innerHTML = `
+                        ${faq.question}
+                        <span class="chevron">&#9662;</span> `;
+
+                        const faqAnswer = document.createElement('div');
+                        faqAnswer.className = 'faq-answer';
+                        faqAnswer.textContent = faq.answer;
+
+                        faqQuestion.addEventListener('click', function() {
+                            const isVisible = faqAnswer.style.display === 'block';
+                            faqAnswer.style.display = isVisible ? 'none' : 'block';
+                        });
+
+                        faqItem.appendChild(faqQuestion);
+                        faqItem.appendChild(faqAnswer);
+
+                        faqContainer.appendChild(faqItem);
+                    });
+
+                    currentPage++;
+                } else {
+                    showMoreBtn.style.display = 'none';  // Hide the button if no more FAQs
+                }
+                 
+                setTimeout(()=>{
+                    
+                    preloader.style.display = 'none';  // Hide the preloader
+                    isLoading = false;
+                    showMoreBtn.classList.remove('loading');
+                    },1000);
+               
+            })
+            .catch(error => {
+                console.error('Error loading FAQs:', error);
+                preloader.style.display = 'none';  // Hide the preloader even if there's an error
+                isLoading = false;
+                showMoreBtn.classList.remove('loading');
+            });
+    }
+
+    // Initial load
+    loadFAQs(currentPage, faqsPerPage);
+
+    // Show more button click handler
+    showMoreBtn.addEventListener('click', function() {
+        loadFAQs(currentPage, faqsPerPage);
+    });
+});
+

@@ -1,0 +1,84 @@
+
+    [
+        {
+            "question": "What is the difference between HTML, CSS, and JavaScript?",
+            "answer": "HTML (HyperText Markup Language) provides the structure of a web page, defining the content and its organization. CSS (Cascading Style Sheets) styles the content, controlling its appearance, layout, and formatting. JavaScript adds interactivity to web pages, enabling dynamic elements, user interactions, and data manipulation."
+        },
+        {
+            "question": "What is a responsive website?",
+            "answer": "A responsive website automatically adjusts its layout and content to fit different screen sizes and devices, ensuring a seamless user experience across desktops, tablets, and smartphones."
+        },
+        {
+            "question": "What is the difference between a server and a client?",
+            "answer": "A server is a computer system that processes requests and sends responses to other computers, known as clients. Clients can be devices like desktops, laptops, smartphones, or tablets that initiate requests to servers."
+        },
+        {
+            "question": "What is API and how is it used?",
+            "answer": "API stands for Application Programming Interface. It's a set of rules and protocols that allow different software components to communicate and exchange data. APIs are used to build web applications, integrate different services, and create custom solutions."
+        },
+        {
+            "question": "What is SQL and what is it used for?",
+            "answer": "SQL (Structured Query Language) is a programming language used to interact with relational databases. It allows you to create, modify, and retrieve data from tables, as well as perform various operations like selecting, inserting, updating, and deleting data."
+        },
+        {
+            "question": "What is the difference between a primary key and a foreign key?",
+            "answer": "A primary key is a unique identifier for each row in a table, ensuring data integrity and preventing duplicate entries. A foreign key is a column in one table that references the primary key in another table, establishing a relationship between the two."
+        },
+        {
+            "question": "What is artificial intelligence?",
+            "answer": "Artificial intelligence (AI) is the simulation of human intelligence in machines, enabling them to perform tasks that typically require human intelligence, such as learning, reasoning, problem-solving, and perception."
+        },
+        {
+            "question": "What is machine learning?",
+            "answer": "Machine learning is a subset of AI that involves training algorithms on large datasets to identify patterns and make predictions or decisions without being explicitly programmed. It's used in various applications like image recognition, natural language processing, and recommendation systems."
+        },
+        {
+            "question": "What is the difference between supervised and unsupervised learning?",
+            "answer": "Supervised learning involves training models on labeled data, where the correct output is provided for each input. Unsupervised learning, on the other hand, works with unlabeled data, allowing the algorithm to discover patterns and structures within the data."
+        },
+        {
+            "question": "What is the role of a database in web development?",
+            "answer": "A database is essential for storing and managing data in web applications. It provides a structured way to organize information and enables efficient retrieval and manipulation of data."
+        },
+        {
+            "question": "What is the purpose of a CSS framework?",
+            "answer": "CSS frameworks provide pre-built styles and components, accelerating web development and ensuring consistency across different pages and projects. They often include grids, typography, buttons, forms, and other elements that can be customized to match your design preferences."
+        },
+        {
+            "question": "What is the difference between a static website and a dynamic website?",
+            "answer": "A static website has fixed content that doesn't change, while a dynamic website can generate content on the fly based on user input or other factors. Dynamic websites often use server-side scripting languages like PHP, Python, or Ruby to create interactive experiences."
+        },
+        {
+            "question": "What is the role of a backend developer?",
+            "answer": "A backend developer focuses on the server-side of web applications, handling tasks like database interactions, server configuration, API development, and business logic. They work behind the scenes to ensure the application functions smoothly and efficiently."
+        },
+        {
+            "question": "What is a full-stack developer?",
+            "answer": "A full-stack developer is proficient in both frontend and backend development. They have a strong understanding of HTML, CSS, JavaScript, and server-side languages like Python, Ruby, or Node.js, allowing them to work on all aspects of a web application."
+        },
+        {
+            "question": "What is the purpose of a version control system?",
+            "answer": "A version control system (VCS) tracks changes to files over time, allowing developers to collaborate effectively, manage different versions of their code, and revert to previous states if necessary. Popular VCS tools include Git, SVN, and Mercurial."
+        },
+        {
+            "question": "What is the difference between HTTP and HTTPS?",
+            "answer": "HTTP (Hypertext Transfer Protocol) is the foundation of the World Wide Web, enabling communication between clients and servers. HTTPS (Hypertext Transfer Protocol Secure) is a more secure version of HTTP that uses encryption to protect data transmitted between the client and server."
+        },
+        {
+            "question": "What is a web server?",
+            "answer": "A web server is a computer program that delivers web pages to clients. It processes requests from clients, retrieves the requested content from the server's file system or database, and sends the content back to the client."
+        },
+        {
+            "question": "What is the difference between a relational database and a NoSQL database?",
+            "answer": "A relational database organizes data into tables with rows and columns, following a structured schema. NoSQL databases are more flexible and can store data in various formats, such as key-value pairs, documents, or graphs. They are often used for large-scale, high-performance applications."
+        },
+        {
+            "question": "What is a cloud database?",
+            "answer": "A cloud database is a database service hosted on a cloud platform, providing scalable and accessible data storage and management. Popular cloud database options include Amazon RDS, Google Cloud SQL, and Azure SQL Database."
+        },
+        {
+            "question": "What is a database management system (DBMS)?",
+            "answer": "A DBMS is software used to create, manage, and access databases. It provides tools for defining data structures, querying data, ensuring data integrity, and controlling access to the database."
+        }
+        
+    ]

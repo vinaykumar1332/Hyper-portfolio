@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.css">
     <title>Boost Your Knowledge</title>
 </head>
 
@@ -237,136 +238,316 @@
                     Intelligence</button>
             </aside>
             <div class="content-area">
-
                 <div id="frontend" class="content-box">
-                    <h3>Frontend Development</h3>
+                    <h3>Frontend Development Roadmap</h3>
                     <p>
                         Frontend development is the art and science of creating the visible interface of a web
                         application or website. It involves crafting the user experience, including the layout, design,
                         and interactivity.
                     </p>
                     <p>
-                        To master frontend development, you'll need to be proficient in the following core
-                        technologies:</br>
-                        * **HTML (HyperText Markup Language):** Defines the structure and content of a web page using
-                        tags and elements.
-                        * **CSS (Cascading Style Sheets):** Styles the appearance of HTML elements, controlling layout,
-                        colors, fonts, and more.
-                        * **JavaScript:** Adds interactivity and dynamic behavior to web pages, handling user
-                        interactions, animations, and data manipulation.
+                        Below is a roadmap to guide you through the process of becoming a proficient frontend developer.
                     </p>
-                    <p>
-                        In addition to these foundational technologies, popular frontend frameworks like React and
-                        Angular can streamline development and enhance efficiency. React is a JavaScript library known
-                        for its component-based architecture and virtual DOM, while Angular is a full-featured framework
-                        that provides a comprehensive set of tools for building complex web applications.
-                    </p>
+                    <div id="moreContent" class="more-content">
+                        <p>
+                            <strong>1. Learn HTML (HyperText Markup Language):</strong><br>
+                            HTML is the foundation of all web pages. It defines the structure of a web page using tags and elements. 
+                            Start by learning basic tags like <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code>, 
+                            and understand how to create headings, paragraphs, links, images, and lists.
+                        </p>
+                        <p>
+                            <strong>2. Learn CSS (Cascading Style Sheets):</strong><br>
+                            CSS controls the appearance of HTML elements. It allows you to style your web pages by setting colors, fonts, 
+                            spacing, and layout. Learn about the box model, positioning, Flexbox, and Grid to create responsive designs that 
+                            look great on any device.
+                        </p>
+                        <p>
+                            <strong>3. Learn JavaScript:</strong><br>
+                            JavaScript adds interactivity to your web pages. It allows you to create dynamic content, respond to user actions, 
+                            and manipulate the DOM (Document Object Model). Start with basic concepts like variables, functions, and loops, 
+                            then move on to more advanced topics like event handling, asynchronous programming, and APIs.
+                        </p>
+                        <p>
+                            <strong>4. Explore Frontend Frameworks:</strong><br>
+                            Frameworks like React and Angular can make your development process more efficient. React is a library for building 
+                            user interfaces with components, while Angular is a full-fledged framework that provides tools for building complex 
+                            applications. Choose one to start with and learn how to build single-page applications (SPAs).
+                        </p>
+                        <p>
+                            <strong>5. Version Control with Git:</strong><br>
+                            Git is a version control system that tracks changes in your code. Learn to create repositories, make commits, 
+                            and manage branches. GitHub is a platform where you can host your Git repositories and collaborate with others.
+                        </p>
+                        <p>
+                            <strong>6. Learn About Responsive Design:</strong><br>
+                            Responsive design ensures that your website looks good on all devices, from desktops to smartphones. Use media queries, 
+                            Flexbox, and Grid to create layouts that adapt to different screen sizes. Learn about mobile-first design, 
+                            which prioritizes the mobile user experience.
+                        </p>
+                        <p>
+                            <strong>7. Master Web Performance Optimization:</strong><br>
+                            Optimize your web pages to load quickly and efficiently. Learn about image optimization, lazy loading, 
+                            and minimizing HTTP requests. Use tools like Lighthouse to analyze and improve your website's performance.
+                        </p>
+                        <p>
+                            <strong>8. Learn Testing and Debugging:</strong><br>
+                            Testing ensures your code works as expected. Learn about unit testing with tools like Jest, and end-to-end testing with Cypress. 
+                            Debugging involves finding and fixing errors in your code, using browser developer tools.
+                        </p>
+                        <p>
+                            <strong>9. Deployment and Hosting:</strong><br>
+                            Once your website is ready, you'll need to deploy it to the web. Learn how to use services like Netlify, 
+                            Vercel, or GitHub Pages to host your site. Understand the basics of domains, DNS, and SSL certificates.
+                        </p>
+                        <p>
+                            <strong>10. Keep Learning and Stay Updated:</strong><br>
+                            Frontend development is constantly evolving. Follow blogs, participate in communities, and keep up with new tools 
+                            and technologies. Regularly practice by building projects and contributing to open-source.
+                        </p>
+                        <div class="tech-tags-con">
+                            <button class="tech-tags"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html" target="_blank" rel="noopener">HTML5</a></button>
+                            <button class="tech-tags"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener">CSS3</a></button>
+                            <button class="tech-tags"><a href="https://reactjs.org/" target="_blank" rel="noopener">JavaScript</a></button>
+                            <button class="tech-tags"><a href="https://reactjs.org/" target="_blank"rel="noopener">React</a></button>
+                            <button class="tech-tags"><a href="https://angular.io/" target="_blank"rel="noopener">Angular</a></button>
+                          <button class="tech-tags"><a href="https://vuejs.org/" target="_blank" rel="noopener">Vue</a></button>
+                        </div>
+                    </div>
+                  
+                    <button id="showMoreBtn" class="show-more-btn"> Show More <span class="chevron">&#x25BC;</span></button>
                 </div>
+
                 <div id="backend" class="content-box" style="display: none;">
-                    <h3>Backend Development</h3>
+                    <h3>Backend Development Roadmap</h3>
                     <p>
                         Backend development focuses on the server-side of web applications, handling data storage,
-                        retrieval, and processing. It involves creating the logic and infrastructure that powers the
-                        frontend.
+                        retrieval, and processing. It involves creating the logic and infrastructure that powers the frontend.
                     </p>
                     <p>
-                        Popular backend technologies include:
-                        * **Node.js:** A JavaScript runtime environment that allows you to build server-side
-                        applications using JavaScript.
-                        * **Express.js:** A popular Node.js framework that provides a robust foundation for building web
-                        applications.
-                        * **Databases:** Relational databases like MySQL and PostgreSQL, and NoSQL databases like
-                        MongoDB, are essential for storing and managing data.
+                        Below is a roadmap to guide you through the process of becoming a proficient backend developer.
                     </p>
-                    <p>
-                        Backend developers are responsible for tasks such as:
-                        * Building APIs (Application Programming Interfaces) to communicate with the frontend.
-                        * Implementing server-side logic and business rules.
-                        * Integrating with third-party services.
-                        * Ensuring data security and performance.
-                    </p>
+                    <div id="moreContent" class="more-content">
+                        <p>
+                            <strong>1. Learn a Server-Side Language:</strong><br>
+                            Start with a programming language commonly used for backend development. Popular choices include JavaScript (Node.js), 
+                            Python, Java, and Ruby. Learn the syntax, basic concepts like loops and conditionals, and how to write and run scripts.
+                        </p>
+                        <p>
+                            <strong>2. Understand Databases:</strong><br>
+                            Learn how to interact with databases to store and retrieve data. Understand the difference between relational databases 
+                            (like MySQL, PostgreSQL) and NoSQL databases (like MongoDB). Practice writing SQL queries and using an ORM (Object-Relational Mapping) tool.
+                        </p>
+                        <p>
+                            <strong>3. Learn About APIs (Application Programming Interfaces):</strong><br>
+                            Backend developers often build APIs that the frontend can use to fetch data. Learn how to create RESTful APIs, understand 
+                            HTTP methods (GET, POST, PUT, DELETE), and handle JSON data. Explore GraphQL as an alternative to REST.
+                        </p>
+                        <p>
+                            <strong>4. Security and Authentication:</strong><br>
+                            Security is crucial in backend development. Learn about common security practices like hashing passwords, securing API endpoints, 
+                            and using authentication methods like JWT (JSON Web Tokens) or OAuth.
+                        </p>
+                        <p>
+                            <strong>5. Master a Framework:</strong><br>
+                            Use a backend framework to streamline your development. For Node.js, Express.js is a popular choice. For Python, consider Django or Flask. 
+                            Frameworks provide built-in tools for routing, middleware, and database interactions.
+                        </p>
+                        <p>
+                            <strong>6. Learn About Deployment and Hosting:</strong><br>
+                            Once your application is ready, you’ll need to deploy it to a server. Learn about web servers (like Nginx or Apache), 
+                            cloud platforms (like AWS, Azure, or Heroku), and containerization with Docker. Practice deploying a simple application.
+                        </p>
+                        <p>
+                            <strong>7. Monitoring and Performance:</strong><br>
+                            Learn how to monitor your application in production to ensure it’s running smoothly. Use tools like Prometheus, Grafana, 
+                            and New Relic to track performance and set up alerts for potential issues.
+                        </p>
+                        <div class="tech-tags-con">
+                            <button class="tech-tags"><a href="https://www.python.org/" target="_blank" rel="noopener">Python</a></button>
+                            <button class="tech-tags"><a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a></button>
+                            <button class="tech-tags"><a href="https://ruby-lang.org/" target="_blank" rel="noopener">Ruby</a></button>
+                            <button class="tech-tags"><a href="https://www.php.net/" target="_blank" rel="noopener">PHP</a></button>
+                            <button class="tech-tags"><a href="https://go.dev/" target="_blank" rel="noopener">Go</a></button>
+                        </div>
+                    </div>
+                    <button id="showMoreBtn" class="show-more-btn">Show More<span class="chevron">&#x25BC;</span></button>
                 </div>
+                
 
                 <div id="database" class="content-box" style="display: none;">
-                    <h3>Database Management</h3>
+                    <h3>Database Management Roadmap</h3>
                     <p>
-                        Databases are crucial for storing, organizing, and retrieving data in web applications. Database
-                        management involves designing, creating, and maintaining databases to meet specific
-                        requirements.
+                        Database management involves designing, creating, and maintaining databases to store, organize, and retrieve data in web applications.
                     </p>
                     <p>
-                        Key skills in database management include:
-                        * **SQL (Structured Query Language):** A standard language for interacting with relational
-                        databases.
-                        * **Data modeling:** Designing database structures to efficiently store and retrieve
-                        information.
-                        * **Normalization:** Organizing data to minimize redundancy and improve data integrity.
-                        * **Query optimization:** Writing efficient SQL queries to improve performance.
+                        Below is a roadmap to guide you through the process of becoming proficient in database management.
                     </p>
-                    <p>
-                        Popular database management systems include:
-                        * **MySQL:** A widely used open-source relational database.
-                        * **PostgreSQL:** Another popular open-source relational database with advanced features.
-                        * **MongoDB:** A popular NoSQL database that stores data in document-oriented format.
-                    </p>
+                    <div id="moreContent" class="more-content">
+                        <p>
+                            <strong>1. Learn SQL (Structured Query Language):</strong><br>
+                            SQL is the standard language for interacting with relational databases. Start with basic commands like SELECT, INSERT, UPDATE, 
+                            and DELETE. Practice writing complex queries involving JOINs, GROUP BY, and subqueries.
+                        </p>
+                        <p>
+                            <strong>2. Understand Data Modeling:</strong><br>
+                            Learn how to design database schemas that efficiently store data and support your application's needs. Understand the concepts 
+                            of tables, relationships (one-to-one, one-to-many, many-to-many), and normalization.
+                        </p>
+                        <p>
+                            <strong>3. Explore Different Types of Databases:</strong><br>
+                            Learn the differences between relational databases (like MySQL, PostgreSQL) and NoSQL databases (like MongoDB, Cassandra). 
+                            Understand when to use each type based on your application’s needs.
+                        </p>
+                        <p>
+                            <strong>4. Learn About Indexing and Query Optimization:</strong><br>
+                            Indexing improves the speed of data retrieval operations. Learn how to create and use indexes to optimize queries, 
+                            and understand the trade-offs involved. Practice writing efficient SQL queries.
+                        </p>
+                        <p>
+                            <strong>5. Master Database Administration:</strong><br>
+                            Learn how to manage and maintain a database, including backup and recovery, user permissions, and security. 
+                            Understand how to monitor database performance and troubleshoot issues.
+                        </p>
+                        <p>
+                            <strong>6. Learn About NoSQL Databases:</strong><br>
+                            NoSQL databases store data in non-relational formats like key-value pairs, documents, or graphs. Learn about the different 
+                            types of NoSQL databases and when to use them.
+                        </p>
+                        <div class="tech-tags-con">
+                        <button class="tech-tags"><a href="https://www.postgresql.org/" target="_blank" rel="noopener">PostgreSQL</a></button>
+                        <button class="tech-tags"><a href="https://www.mysql.com/" target="_blank" rel="noopener">MySQL</a></button>
+                        <button class="tech-tags"><a href="https://www.mongodb.com/" target="_blank" rel="noopener">MongoDB</a></button>
+                        <button class="tech-tags"><a href="https://cassandra.apache.org/" target="_blank" rel="noopener">Apache Cassandra</a></button>
+                        </div>
+                    </div>
+                    <button id="showMoreBtn" class="show-more-btn">Show More<span class="chevron">&#x25BC;</span></button>
                 </div>
-
                 <div id="devops" class="content-box" style="display: none;">
-                    <h3>DevOps</h3>
+                    <h3>DevOps Roadmap</h3>
                     <p>
-                        DevOps is a cultural and technical approach that bridges the gap between software development
-                        and IT operations. It focuses on collaboration, automation, and continuous delivery to improve
-                        the efficiency and reliability of software development processes.
+                        DevOps combines development and operations to improve the efficiency and reliability of software delivery. It focuses on automation, 
+                        collaboration, and continuous delivery.
                     </p>
                     <p>
-                        Key DevOps practices and tools include:
-                        * **CI/CD (Continuous Integration/Continuous Delivery):** Automating the building, testing, and
-                        deployment of code.
-                        * **Version control:** Using tools like Git to track changes to code and collaborate with
-                        others.
-                        * **Containerization:** Packaging applications and their dependencies into containers using
-                        tools like Docker.
-                        * **Orchestration:** Managing containers at scale using platforms like Kubernetes.
-                        * **Cloud platforms:** Leveraging cloud services like AWS, Azure, or GCP for infrastructure and
-                        deployment.
+                        Below is a roadmap to guide you through the process of becoming proficient in DevOps.
                     </p>
-                    <p>
-                        DevOps professionals play a vital role in ensuring that software is delivered efficiently,
-                        reliably, and with high quality.
-                    </p>
+                    <div id="moreContent" class="more-content">
+                        <p>
+                            <strong>1. Learn Version Control with Git:</strong><br>
+                            Git is essential for tracking changes to code and collaborating with other developers. Learn how to create repositories, 
+                            commit changes, and manage branches. Use platforms like GitHub or GitLab for hosting repositories.
+                        </p>
+                        <p>
+                            <strong>2. Understand Continuous Integration/Continuous Delivery (CI/CD):</strong><br>
+                            CI/CD automates the process of building, testing, and deploying code. Learn how to set up a CI/CD pipeline using tools 
+                            like Jenkins, Travis CI, or GitHub Actions.
+                        </p>
+                        <p>
+                            <strong>3. Learn About Containerization:</strong><br>
+                            Containers package applications and their dependencies into a single unit, making them easy to deploy and scale. 
+                            Learn how to use Docker to create and manage containers.
+                        </p>
+                        <p>
+                            <strong>4. Master Container Orchestration:</strong><br>
+                            For large-scale deployments, you need to manage containers across multiple servers. Kubernetes is the leading platform for container 
+                            orchestration. Learn how to deploy, scale, and manage applications with Kubernetes.
+                        </p>
+                        <p>
+                            <strong>5. Explore Cloud Platforms:</strong><br>
+                            Cloud platforms like AWS, Azure, and Google Cloud provide the infrastructure and tools needed for DevOps. 
+                            Learn how to deploy and manage applications on the cloud, including services like EC2, S3, and Lambda.
+                        </p>
+                        <p>
+                            <strong>6. Learn Infrastructure as Code (IaC):</strong><br>
+                            IaC allows you to manage and provision infrastructure using code. Tools like Terraform and Ansible help automate infrastructure management. 
+                            Learn how to define infrastructure in code and manage it with version control.
+                        </p>
+                        <p>
+                            <strong>7. Monitoring and Logging:</strong><br>
+                            Monitoring ensures that your applications run smoothly in production. Learn to use tools like Prometheus, Grafana, and ELK stack for monitoring 
+                            and logging, and set up alerts for potential issues.
+                        </p>
+                        <div class="tech-tags-con">
+                            <button class="tech-tags"><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></button>
+                            <button class="tech-tags"><a href="https://kubernetes.io/" target="_blank" rel="noopener">Kubernetes</a></button>
+                            <button class="tech-tags"><a href="https://www.ansible.com/" target="_blank" rel="noopener">Ansible</a></button>
+                            <button class="tech-tags"><a href="https://www.terraform.io/" target="_blank" rel="noopener">Terraform</a></button>
+                            <button class="tech-tags"><a href="https://jenkins.io/" target="_blank" rel="noopener">Jenkins</a></button>
+                        </div>
+                    </div>
+                    <button id="showMoreBtn" class="show-more-btn">Show More<span class="chevron">&#x25BC;</span></button>
                 </div>
+                
                 <div id="AI" class="content-box" style="display: none;">
-                    <h3>Artificial Intelligence</h3>
+                    <h3>Artificial Intelligence Roadmap</h3>
                     <p>
-                        Artificial Intelligence (AI) is a broad field of computer science that aims to create
-                        intelligent agents, which are systems that can reason, learn, and act autonomously. AI
-                        encompasses a wide range of technologies and applications, from machine learning and natural
-                        language processing to robotics and computer vision.
+                        Artificial Intelligence (AI) involves creating systems that can reason, learn, and act autonomously. It covers a wide range 
+                        of technologies like machine learning, natural language processing, and robotics.
                     </p>
                     <p>
-                        Some of the key areas of AI research and development include:
-                        * **Machine learning:** Algorithms that allow computers to learn from data and improve their
-                        performance over time.
-                        * **Natural language processing:** Enabling computers to understand and generate human language.
-                        * **Computer vision:** Teaching computers to interpret and understand visual information from
-                        images and videos.
-                        * **Robotics:** Designing and building robots capable of performing tasks in the real world.
-                        * **Expert systems:** Creating systems that can reason and solve problems at an expert level.
+                        Below is a roadmap to guide you through the process of becoming proficient in AI.
                     </p>
-                    <p>
-                        AI has the potential to revolutionize various industries and aspects of our lives, from
-                        healthcare and finance to transportation and entertainment. As AI technology continues to
-                        advance, we can expect to see even more innovative and impactful applications in the years to
-                        come.
-                    </p>
+                    <div id="aiMoreContent" class="more-content" style="display: none;">
+                        <p>
+                            <strong>1. Learn the Basics of AI:</strong><br>
+                            Start with understanding the fundamental concepts of AI, including what AI is and its different types (e.g., narrow AI vs. general AI). 
+                            Explore AI applications across various fields like healthcare, finance, and transportation.
+                        </p>
+                        <p>
+                            <strong>2. Get Started with Machine Learning (ML):</strong><br>
+                            Machine learning is a critical aspect of AI where systems learn from data. Familiarize yourself with different types of ML algorithms 
+                            (supervised, unsupervised, and reinforcement learning). Begin with a programming language like Python, which is widely used in ML, 
+                            and learn about libraries such as TensorFlow and Scikit-learn.
+                        </p>
+                        <p>
+                            <strong>3. Dive into Deep Learning:</strong><br>
+                            Deep learning is a subset of machine learning focused on neural networks with many layers (deep neural networks). Understand how 
+                            deep learning models, such as convolutional neural networks (CNNs) and recurrent neural networks (RNNs), are used for tasks like image 
+                            recognition and natural language processing.
+                        </p>
+                        <p>
+                            <strong>4. Explore Natural Language Processing (NLP):</strong><br>
+                            NLP is an AI field that deals with the interaction between computers and human languages. Learn about techniques for processing and 
+                            analyzing text, such as tokenization, sentiment analysis, and language modeling. Tools like NLTK and spaCy are useful for NLP tasks.
+                        </p>
+                        <p>
+                            <strong>5. Study Computer Vision:</strong><br>
+                            Computer vision enables machines to interpret and make decisions based on visual inputs like images and videos. Learn about key concepts 
+                            such as image processing, object detection, and facial recognition. OpenCV is a popular library for computer vision projects.
+                        </p>
+                        <p>
+                            <strong>6. Understand Robotics and Autonomous Systems:</strong><br>
+                            AI is also crucial in robotics, where it is used to create autonomous systems capable of performing tasks without human intervention. 
+                            Learn about robotic perception, control systems, and path planning. Dive into frameworks like ROS (Robot Operating System) for developing 
+                            robotic applications.
+                        </p>
+                        <p>
+                            <strong>7. Practice with Real-World Projects:</strong><br>
+                            Apply your AI knowledge by working on real-world projects. Build AI models, participate in AI competitions on platforms like Kaggle, 
+                            and contribute to open-source AI projects. Real-world experience is crucial for mastering AI.
+                        </p>
+                        <p>
+                            <strong>8. Stay Updated with AI Research:</strong><br>
+                            AI is a rapidly evolving field. Keep up with the latest research by reading AI journals, attending conferences, and following AI researchers 
+                            and companies on social media. Staying informed about advancements in AI will help you remain competitive in the field.
+                        </p>
+                    </div>
+                    <button class="show-more-btn">Show More<span class="chevron">&#x25BC;</span></button>
+                </div>
+                
+        </section>
+        <section class="faq-sec">
+            <h2>FAQ section</h2>
+            <div class="faq-container" id="faq-container">
+                <!-- FAQs will be dynamically loaded here -->
+
+                <div id="preloader" class="preloader" style="display: none;">
+                    <div class="spinner"></div>
                 </div>
             </div>
-
-            </div>
+            <button id="show-more-btn" class="show-more-btn">Show More</button>
         </section>
-
-
-
+        
         <section class="features-section">
             <div class="container">
                 <h2 class="section-title">Why Choose Us?</h2>
@@ -458,7 +639,6 @@
     <!-- <script src="../Libraries/knowleged_min_file.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 </body>

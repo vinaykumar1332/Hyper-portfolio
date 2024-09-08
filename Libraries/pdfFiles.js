@@ -84,7 +84,9 @@ function createCard(id, { title, description, category }) {
     card.setAttribute('data-category', category);
     imageLoadOnCategory();
     card.innerHTML = `
+       <div class="card-image-wrapper">
         <img src="" data-src="../Assets/images/${category}.jpg" class="lazy-load" alt="${title}">
+        </div>
         <div class="content">
             <h2 class="card-h2">${title}</h2>
             <p class="card-p">${description}</p>

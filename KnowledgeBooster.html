@@ -17,7 +17,7 @@
     <meta name="google" content="nositelinkssearchbox">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="Css/Boost Knowledge/KnowledgeBooster.css">
-    <link rel="stylesheet" href="Css/Boost Knowledge/homePage.css">
+    <link rel="stylesheet" href="Css/Boost Knowledge/homePage.css" media="all">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
@@ -67,7 +67,10 @@
                 <h1>Welcome to Boost Your Knowledge</h1>
                 <p>Explore a wide range of study materials, coding questions, and interview guides across various
                     technologies.</p>
-                <a href="Pages/files.html" class="btn btn-primary" title="Files page">Start Learning</a>
+                    <form>
+                        <button  title="Learning button" class="btn btn-primary" formaction="/Pages/files.html" >Start Learning</button>
+                    </form>
+               
             </div>
         </section>
 
@@ -78,7 +81,7 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide tech-card">
                             <a href="https://legacy.reactjs.org/" title="React js">
-                                <img src="./Assets/Tech-cards-png/React_icon.png" alt="React Logo">
+                                <img src="./Assets/Tech-cards-png/React_icon.png"  loading="lazy" alt="React Logo">
                                 <h3>React</h3>
                                 <p>A JavaScript library for building user interfaces, maintained by Facebook. React
                                     allows developers to create large web applications that can change data, without
@@ -90,14 +93,14 @@
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://v17.angular.io/start" title="Angular js">
-                                <img src="./Assets/Tech-cards-png/angular_logo_logos_icon.png" alt="Angular Logo">
+                                <img src="./Assets/Tech-cards-png/angular_logo_logos_icon.png" loading="lazy" alt="Angular Logo">
                                 <h3>Angular</h3>
                                 <p>A platform for building mobile and desktop web applications using TypeScript.</p>
                             </a>
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://javascript.info/">
-                                <img src="./Assets/Tech-cards-png/javascript.png" alt="JavaScript Logo">
+                                <img src="./Assets/Tech-cards-png/javascript.png" loading="lazy" alt="JavaScript Logo">
                                 <h3>JavaScript</h3>
                                 <p>The programming language of the web, enabling interactive web pages and applications.
                                 </p>
@@ -105,7 +108,7 @@
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://web.dev/learn/css">
-                                <img src="./Assets/Tech-cards-png/css-icon.png" alt="CSS Logo">
+                                <img src="./Assets/Tech-cards-png/css-icon.png"loading="lazy" alt="CSS Logo">
                                 <h3>CSS</h3>
                                 <p>A style sheet language used for describing the presentation of a document written in
                                     HTML.</p>
@@ -113,7 +116,7 @@
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://jquery.com/">
-                                <img src="./Assets/Tech-cards-png/Jquery.png" alt="CSS Logo">
+                                <img src="./Assets/Tech-cards-png/Jquery.png"loading="lazy" alt="CSS Logo">
                                 <h3>JQuery</h3>
                                 <p>A style sheet language used for describing the presentation of a document written in
                                     HTML.</p>
@@ -121,7 +124,7 @@
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://getbootstrap.com/" title="Bootstrap">
-                                <img src="./Assets/Tech-cards-png/bootstrap.png" alt="Bootstrap Logo">
+                                <img src="./Assets/Tech-cards-png/bootstrap.png" loading="lazy" alt="Bootstrap Logo">
                                 <h3>Bootstrap</h3>
                                 <p>A popular front-end framework for developing responsive and mobile-first websites.
                                 </p>
@@ -130,7 +133,7 @@
 
                         <div class="swiper-slide tech-card">
                             <a href="https://nodejs.org/" title="Node.js">
-                                <img src="./Assets/Tech-cards-png/nodejs.png" alt="Node.js Logo">
+                                <img src="./Assets/Tech-cards-png/nodejs.png" loading="lazy" alt="Node.js Logo">
                                 <h3>Node.js</h3>
                                 <p>An open-source, cross-platform JavaScript runtime environment for executing
                                     JavaScript code outside a browser.</p>
@@ -139,7 +142,7 @@
 
                         <div class="swiper-slide tech-card">
                             <a href="https://www.python.org/" title="Python">
-                                <img src="./Assets/Tech-cards-png/python.png" alt="Python Logo">
+                                <img src="./Assets/Tech-cards-png/python.png" loading="lazy" alt="Python Logo">
                                 <h3>Python</h3>
                                 <p>A high-level, general-purpose programming language known for its readability and
                                     versatility.</p>
@@ -148,7 +151,7 @@
 
                         <div class="swiper-slide tech-card">
                             <a href="https://www.docker.com/" title="Docker">
-                                <img src="./Assets/Tech-cards-png/Dockor.png" alt="Docker Logo">
+                                <img src="./Assets/Tech-cards-png/Dockor.png" loading="lazy" alt="Docker Logo">
                                 <h3>Docker</h3>
                                 <p>A set of platform-as-a-service products that use OS-level virtualization to deliver
                                     software in packages called containers.</p>
@@ -157,7 +160,7 @@
 
                         <div class="swiper-slide tech-card">
                             <a href="https://www.mongodb.com/" title="MongoDB">
-                                <img src="./Assets/Tech-cards-png/mogodb.png" alt="MongoDB Logo">
+                                <img src="./Assets/Tech-cards-png/mogodb.png" loading="lazy" alt="MongoDB Logo">
                                 <h3>MongoDB</h3>
                                 <p>A source-available cross-platform document-oriented database program, classified as a
                                     NoSQL database.</p>
@@ -166,7 +169,7 @@
 
                         <div class="swiper-slide tech-card">
                             <a href="https://aws.amazon.com/" title="AWS">
-                                <img src="./Assets/Tech-cards-png/aws.png" alt="AWS Logo">
+                                <img src="./Assets/Tech-cards-png/aws.png" loading="lazy" alt="AWS Logo">
                                 <h3>AWS</h3>
                                 <p>A comprehensive and widely adopted cloud platform, offering over 200 fully-featured
                                     services from data centers globally.</p>
@@ -174,7 +177,7 @@
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://www.ruby-lang.org/en/" title="Ruby">
-                                <img src="./Assets/Tech-cards-png/ruby.png" alt="Ruby Logo">
+                                <img src="./Assets/Tech-cards-png/ruby.png"loading="lazy" alt="Ruby Logo">
                                 <h3>Ruby</h3>
                                 <p>A dynamic, open-source programming language with a focus on simplicity and
                                     productivity, known for its elegant syntax.</p>
@@ -182,7 +185,7 @@
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://www.java.com/" title="Java">
-                                <img src="./Assets/Tech-cards-png/java.png" alt="Java Logo">
+                                <img src="./Assets/Tech-cards-png/java.png" loading="lazy" alt="Java Logo">
                                 <h3>Java</h3>
                                 <p>A high-level, class-based, object-oriented programming language that is widely used
                                     for building enterprise-scale applications.</p>
@@ -191,7 +194,7 @@
 
                         <div class="swiper-slide tech-card">
                             <a href="https://www.mysql.com/" title="MySQL">
-                                <img src="./Assets/Tech-cards-png/mysql.png" alt="MySQL Logo">
+                                <img src="./Assets/Tech-cards-png/mysql.png" loading="lazy" alt="MySQL Logo">
                                 <h3>MySQL</h3>
                                 <p>An open-source relational database management system, widely used for web database
                                     applications.</p>
@@ -199,7 +202,7 @@
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://www.typescriptlang.org/" title="TypeScript">
-                                <img src="./Assets/Tech-cards-png/typescript.png" alt="TypeScript Logo">
+                                <img src="./Assets/Tech-cards-png/typescript.png" loading="lazy" alt="TypeScript Logo">
                                 <h3>TypeScript</h3>
                                 <p>A strongly typed superset of JavaScript that compiles to plain JavaScript, providing
                                     static types for large codebases.</p>
@@ -207,7 +210,7 @@
                         </div>
                         <div class="swiper-slide tech-card">
                             <a href="https://www.php.net/" title="PHP">
-                                <img src="./Assets/Tech-cards-png/php.png" height="100px" alt="PHP Logo">
+                                <img src="./Assets/Tech-cards-png/php.png" loading="lazy" height="100px" alt="PHP Logo">
                                 <h3>PHP</h3>
                                 <p>A widely-used open-source scripting language especially suited for web development,
                                     embedded into HTML.</p>
@@ -305,12 +308,14 @@
                             and technologies. Regularly practice by building projects and contributing to open-source.
                         </p>
                         <div class="tech-tags-con">
-                            <button class="tech-tags"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html" target="_blank" rel="noopener">HTML5</a></button>
-                            <button class="tech-tags"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener">CSS3</a></button>
-                            <button class="tech-tags"><a href="https://reactjs.org/" target="_blank" rel="noopener">JavaScript</a></button>
-                            <button class="tech-tags"><a href="https://reactjs.org/" target="_blank"rel="noopener">React</a></button>
-                            <button class="tech-tags"><a href="https://angular.io/" target="_blank"rel="noopener">Angular</a></button>
-                          <button class="tech-tags"><a href="https://vuejs.org/" target="_blank" rel="noopener">Vue</a></button>
+                            <form action="">
+                            <button class="tech-tags" formaction="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html">HTML5</button>
+                            <button class="tech-tags" formaction="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS3</button>
+                            <button class="tech-tags" formaction="https://reactjs.org/"">JavaScript</button>
+                            <button class="tech-tags" formaction="https://reactjs.org/">React</button>
+                            <button class="tech-tags" formaction="https://angular.io/">Angular</button>
+                          <button class="tech-tags" formaction="https://vuejs.org/">Vue</button>
+                        </form>
                         </div>
                     </div>
                   
@@ -363,11 +368,13 @@
                             and New Relic to track performance and set up alerts for potential issues.
                         </p>
                         <div class="tech-tags-con">
-                            <button class="tech-tags"><a href="https://www.python.org/" target="_blank" rel="noopener">Python</a></button>
-                            <button class="tech-tags"><a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a></button>
-                            <button class="tech-tags"><a href="https://ruby-lang.org/" target="_blank" rel="noopener">Ruby</a></button>
-                            <button class="tech-tags"><a href="https://www.php.net/" target="_blank" rel="noopener">PHP</a></button>
-                            <button class="tech-tags"><a href="https://go.dev/" target="_blank" rel="noopener">Go</a></button>
+                            <form action=""></form>
+                            <button class="tech-tags" formaction="https://www.python.org/">Python</button>
+                            <button class="tech-tags" formaction="https://nodejs.org/">Node.js</button>
+                            <button class="tech-tags" formaction="https://ruby-lang.org/">Ruby</button>
+                            <button class="tech-tags" formaction="https://www.php.net/">PHP</button>
+                            <button class="tech-tags" formaction="https://go.dev/">Go</button>
+                        </form>
                         </div>
                     </div>
                     <button id="showMoreBtn" class="show-more-btn">Show More<span class="chevron">&#x25BC;</span></button>
@@ -414,10 +421,12 @@
                             types of NoSQL databases and when to use them.
                         </p>
                         <div class="tech-tags-con">
-                        <button class="tech-tags"><a href="https://www.postgresql.org/" target="_blank" rel="noopener">PostgreSQL</a></button>
-                        <button class="tech-tags"><a href="https://www.mysql.com/" target="_blank" rel="noopener">MySQL</a></button>
-                        <button class="tech-tags"><a href="https://www.mongodb.com/" target="_blank" rel="noopener">MongoDB</a></button>
-                        <button class="tech-tags"><a href="https://cassandra.apache.org/" target="_blank" rel="noopener">Apache Cassandra</a></button>
+                       <form >
+                        <button class="tech-tags" formaction="https://www.postgresql.org/">PostgreSQL</button>
+                        <button class="tech-tags" formaction="https://www.mysql.com/">MySQL</button>
+                        <button class="tech-tags" formaction="https://www.mongodb.com/">MongoDB</button>
+                        <button class="tech-tags" formaction="//cassandra.apache.org/">Apache Cassandra</button>
+                       </form>
                         </div>
                     </div>
                     <button id="showMoreBtn" class="show-more-btn">Show More<span class="chevron">&#x25BC;</span></button>
@@ -468,11 +477,13 @@
                             and logging, and set up alerts for potential issues.
                         </p>
                         <div class="tech-tags-con">
-                            <button class="tech-tags"><a href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></button>
-                            <button class="tech-tags"><a href="https://kubernetes.io/" target="_blank" rel="noopener">Kubernetes</a></button>
-                            <button class="tech-tags"><a href="https://www.ansible.com/" target="_blank" rel="noopener">Ansible</a></button>
-                            <button class="tech-tags"><a href="https://www.terraform.io/" target="_blank" rel="noopener">Terraform</a></button>
-                            <button class="tech-tags"><a href="https://jenkins.io/" target="_blank" rel="noopener">Jenkins</a></button>
+                            <form>
+                            <button class="tech-tags" formaction="https://docs.docker.com>Docker</button>
+                            <button class="tech-tags" formaction="https://kubernetes.io/">Kubernetes</button>
+                            <button class="tech-tags" formaction="https://www.ansible.com/">Ansible</button>
+                            <button class="tech-tags" formaction="https://www.terraform.io/">Terraform</button>
+                            <button class="tech-tags" formaction="https://jenkins.io/">Jenkins</button>
+                        </form>
                         </div>
                     </div>
                     <button id="showMoreBtn" class="show-more-btn">Show More<span class="chevron">&#x25BC;</span></button>
@@ -536,17 +547,17 @@
                 </div>
                 
         </section>
-        <section class="faq-sec">
+        <!-- <section class="faq-sec">
             <h2>FAQ section</h2>
             <div class="faq-container" id="faq-container">
-                <!-- FAQs will be dynamically loaded here -->
+                FAQs will be dynamically loaded here
 
                 <div id="preloader" class="preloader" style="display: none;">
                     <div class="spinner"></div>
                 </div>
             </div>
-            <button id="show-more-btn" class="show-more-btn">Show More</button>
-        </section>
+            
+        </section> -->
         
         <section class="features-section">
             <div class="container">
@@ -619,20 +630,20 @@
         </footer>
     </section>
     <script>
-        document.addEventListener('DOMContentLoaded',function(){
-            document.addEventListener('contextmenu', (event) => {
-            event.preventDefault();
-          });
-        });
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(() => {
-                if (window.location.pathname.endsWith('.html')) {
-                const newUrl = window.location.pathname.replace('.html', '');
-                history.replaceState(null, '', newUrl);
-            }
-            }, 2000);
+        // document.addEventListener('DOMContentLoaded',function(){
+        //     document.addEventListener('contextmenu', (event) => {
+        //     event.preventDefault();
+        //   });
+        // });
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     setTimeout(() => {
+        //         if (window.location.pathname.endsWith('.html')) {
+        //         const newUrl = window.location.pathname.replace('.html', '');
+        //         history.replaceState(null, '', newUrl);
+        //     }
+        //     }, 2000);
           
-        });
+        // });
 
     </script>
     <script src="Libraries/KnowledgeBooster.js"></script>
@@ -640,6 +651,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 

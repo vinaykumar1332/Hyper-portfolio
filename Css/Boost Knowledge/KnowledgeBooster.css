@@ -545,22 +545,25 @@ body {
     .card:hover {
         transform: scale(1.05);
     }
+
     img {
         height: 300px;
     }
 
-    .card img {
-        background-color: #1f1f1f;
-        width: 100%;
-        height: 50%;
-        object-fit: fill;
-        max-height: 200px;
+    .card {
+        img {
+            background-color: #1f1f1f;
+            width: 100%;
+            height: 50%;
+            object-fit: fill;
+            max-height: 200px;
 
-        @media (max-width:480px) {
-            /* height: 300px !important;
-            max-height: 150px ;
-            align-items: center;
-            object-fit: fill; */
+            @media (max-width:480px) {
+                height: 300px !important;
+                max-height: 150px;
+                align-items: center;
+                object-fit: fill;
+            }
         }
     }
 
@@ -582,7 +585,16 @@ body {
     }
 
     .content {
+        .card-h2{
+         @media (max-width:480px) {
+            font-size: 1em;
+         }
+         @media (max-width:780px) {
+            font-size: 1.3em;
+         }
+        }
         .card {
+        
             p {
                 padding-bottom: 3px;
 
@@ -718,7 +730,7 @@ body {
             border-radius: 10px;
             padding: 12px;
             margin: 0px 0px 20px 0px;
-        
+
             &:hover {
                 background-color: #5a2d9c;
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
@@ -754,21 +766,21 @@ body {
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.2s ease;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-       
+
     }
-    
+
     /* Hover effect */
     #resetButton:hover {
         background-color: #0056b3;
         transform: scale(1.05);
     }
-    
+
     /* Click effect */
     #resetButton:active {
         background-color: #004494;
         transform: scale(0.98);
     }
-    
+
     /* Responsive styles for tablets (portrait) */
     @media (max-width: 768px) {
         #resetButton {
@@ -776,7 +788,7 @@ body {
             font-size: 14px;
         }
     }
-    
+
     /* Responsive styles for mobile devices */
     @media (max-width: 480px) {
         #resetButton {
@@ -788,24 +800,26 @@ body {
             align-self: center;
         }
     }
-    
+
     /* Additional Animation on Click */
     @keyframes button-click {
         0% {
             transform: scale(1);
         }
+
         50% {
             transform: scale(0.95);
         }
+
         100% {
             transform: scale(1);
         }
     }
-    
+
     #resetButton:active {
         animation: button-click 0.2s ease-in-out;
     }
-    
+
 
 
 }
@@ -827,11 +841,13 @@ body {
         align-items: center;
         z-index: 9999;
     }
-    .loader-text{
+
+    .loader-text {
         position: relative;
         font-size: 30px;
         font-weight: 400;
         padding-left: 10px;
+
         @media (max-width:480px) {
             font-size: 22px;
         }
@@ -845,24 +861,57 @@ body {
     border-radius: 50%;
     border: 8px solid #514b82;
     animation:
-      l20-1 0.8s infinite linear alternate,
-      l20-2 1.6s infinite linear;
-  }
-  @keyframes l20-1{
-     0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
-     12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
-     25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
-     50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
-     62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
-     75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
-     100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
-  }
-  @keyframes l20-2{ 
-    0%    {transform:scaleY(1)  rotate(0deg)}
-    49.99%{transform:scaleY(1)  rotate(135deg)}
-    50%   {transform:scaleY(-1) rotate(0deg)}
-    100%  {transform:scaleY(-1) rotate(-135deg)}
-  }
+        l20-1 0.8s infinite linear alternate,
+        l20-2 1.6s infinite linear;
+}
+
+@keyframes l20-1 {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%)
+    }
+
+    12.5% {
+        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+    }
+
+    62.5% {
+        clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%)
+    }
+
+    100% {
+        clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%)
+    }
+}
+
+@keyframes l20-2 {
+    0% {
+        transform: scaleY(1) rotate(0deg)
+    }
+
+    49.99% {
+        transform: scaleY(1) rotate(135deg)
+    }
+
+    50% {
+        transform: scaleY(-1) rotate(0deg)
+    }
+
+    100% {
+        transform: scaleY(-1) rotate(-135deg)
+    }
+}
 
 
 
@@ -899,7 +948,7 @@ body {
     }
 
     .close-btn-container {
-      
+
 
         & .close-btn {
             position: absolute;
@@ -909,7 +958,7 @@ body {
             cursor: pointer;
             color: #ffffff;
             padding: 15px 7px 15px 7px;
-           background: transparent;
+            background: transparent;
 
 
             i.fa-regular.fa-circle-xmark {
@@ -1077,7 +1126,8 @@ select#filterOptions,
                 max-width: 300px;
             }
 
-            & .main-filter-options, .filter-options {
+            & .main-filter-options,
+            .filter-options {
                 cursor: pointer;
                 min-width: 150px;
                 width: 150px;
@@ -1088,8 +1138,8 @@ select#filterOptions,
                 appearance: none;
                 background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23333' d='M10 12l5-5H5l5 5z'/%3E%3C/svg%3E");
                 background-repeat: no-repeat;
-                background-position: right 10px center;
-                background-position: top 30px ;
+                background-position: right 13px center;
+                background-position: top 30px;
                 background-size: 16px;
                 transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
 
@@ -1114,30 +1164,32 @@ select#filterOptions,
         background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23333' d='M10 12l5-5H5l5 5z'/%3E%3C/svg%3E");
         transform: rotate(180deg);
     }
+
     #no-results-message {
         font-size: 20px;
         color: #555;
         margin: 0;
-        position:relative;
+        position: relative;
         top: 40px;
-    
+
         @media (max-width: 768px) {
             color: #1f1f1f;
             font-weight: 600;
             font-size: 18px;
-            padding: 0px 0px 20px 40px ;
+            padding: 0px 0px 20px 40px;
         }
-    
+
         @media (max-width: 480px) {
             font-size: 17px;
         }
-        & .resultsCategory{
+
+        & .resultsCategory {
             font-weight: bold;
             font-style: italic;
             font-size: 22px;
             color: var(--nav-bg-color);
 
-            & ::first-letter{
+            & ::first-letter {
                 text-transform: uppercase;
             }
 
@@ -1146,7 +1198,7 @@ select#filterOptions,
             }
         }
     }
-    
+
 }
 
 /**--blog-page--*/
@@ -1155,24 +1207,28 @@ select#filterOptions,
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
-    justify-content: flex-start; /* Align content to the right */
+    justify-content: flex-start;
+    /* Align content to the right */
 }
 
 /* Latest News as an Aside */
 .side-news {
     flex: 1;
-    max-width: 30%; /* Set the width for the sidebar */
-      position: relative;
-      right: 130px; 
-      @media (max-width:920px) {
+    max-width: 30%;
+    /* Set the width for the sidebar */
+    position: relative;
+    right: 130px;
+
+    @media (max-width:920px) {
         right: 50px;
         margin-left: 20px;
-      }
-      @media (max-width:768px) {
+    }
+
+    @media (max-width:768px) {
         right: 0px;
         justify-content: center;
-        
-      }
+
+    }
 }
 
 .latest-news {
@@ -1181,29 +1237,32 @@ select#filterOptions,
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 
-    .news-container{
-        .news-article{
-            h2.tech-h2{
+    .news-container {
+        .news-article {
+            h2.tech-h2 {
                 font-size: 20px;
-                a{
+
+                a {
                     color: #1f1f1f;
                     padding-bottom: 10px;
                 }
             }
-            p.tech-p{
+
+            p.tech-p {
                 padding: 5px 3px;
-                max-width:max-content;
+                max-width: max-content;
                 background: #007bff;
                 margin-top: 5px !important;
                 border-radius: 4px;
                 border-color: 1px solid #713abe;
-                a{
+
+                a {
                     color: #ffff;
                     font-size: 16px;
                     text-decoration: none;
                     font-weight: 500;
                 }
-                
+
             }
         }
     }
@@ -1246,13 +1305,15 @@ select#filterOptions,
 @media (max-width: 768px) {
     .blog-main-container {
         flex-direction: column;
-        align-items: center; /* Center the aside on smaller screens */
+        align-items: center;
+        /* Center the aside on smaller screens */
     }
 
     .side-news {
-        max-width: 100%; /* Make the sidebar full width on smaller screens */
+        max-width: 100%;
+        /* Make the sidebar full width on smaller screens */
         margin-left: 0;
-        
+
         .news-article h2 {
             font-size: 1.5rem;
             margin: 0;
@@ -1275,10 +1336,12 @@ select#filterOptions,
         padding: 15px;
     }
 }
+
 /* Learning Resources Section */
 .learning-resources {
     flex: 2;
-    max-width: 70%; /* Adjust the width relative to the tech news aside */
+    max-width: 70%;
+    /* Adjust the width relative to the tech news aside */
     margin-left: 30px;
     padding: 20px;
     background: #f9f9f9;

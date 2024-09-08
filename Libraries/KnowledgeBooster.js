@@ -94,82 +94,93 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // --- faq's
-document.addEventListener('DOMContentLoaded', function() {
-    const faqContainer = document.getElementById('faq-container');
-    const showMoreBtn = document.getElementById('show-more-btn');
-    const preloader = document.getElementById('preloader');  // Get the preloader element
-    let currentPage = 1;
-    const faqsPerPage = 5;
-    let isLoading = false;
+// document.addEventListener('DOMContentLoaded', function() {
+//     const faqContainer = document.getElementById('faq-container');
+//     const preloader = document.getElementById('preloader');
+//     let currentPage = 1;
+//     const faqsPerPage = 5;
+//     let isLoading = false;
 
-    function loadFAQs(page, perPage) {
-        if (isLoading) return;
+//     function loadFAQs(page, perPage) {
+//         if (isLoading) return;
 
-        isLoading = true;
-        showMoreBtn.classList.add('loading');
-        preloader.style.display = 'block';  // Show the preloader
+//         isLoading = true;
+//       // Show the preloader
         
-        fetch('faqs.json')  // Replace with your JSON file path
-            .then(response => response.json())
-            .then(data => {
-                const start = (page - 1) * perPage;
-                const end = start + perPage;
-                const faqs = data.slice(start, end);
+//         fetch('faqs.json')  // Replace with your JSON file path
+//             .then(response => response.json())
+//             .then(data => {
+//                 const start = (page - 1) * perPage;
+//                 const end = start + perPage;
+//                 const faqs = data.slice(start, end);
 
-                if (faqs.length > 0) {
-                    faqs.forEach(faq => {
-                        const faqItem = document.createElement('div');
-                        faqItem.className = 'faq-item';
+//                 if (faqs.length > 0) {
+//                     faqs.forEach(faq => {
+//                         const faqItem = document.createElement('div');
+//                         faqItem.className = 'faq-item';
 
-                        const faqQuestion = document.createElement('div');
-                        faqQuestion.className = 'faq-question';
-                        faqQuestion.textContent = faq.question;
-                        faqQuestion.innerHTML = `
-                        ${faq.question}
-                        <span class="chevron">&#9662;</span> `;
+//                         const faqQuestion = document.createElement('button');
+//                         faqQuestion.className = 'faq-question';
+//                         faqQuestion.setAttribute('aria-expanded', 'false');
+//                         faqQuestion.setAttribute('aria-controls', `faq-answer-${faq.id}`);
+//                         faqQuestion.innerHTML = `
+//                         ${faq.question}
+//                         <span class="chevron">&#9662;</span>`;
 
-                        const faqAnswer = document.createElement('div');
-                        faqAnswer.className = 'faq-answer';
-                        faqAnswer.textContent = faq.answer;
+//                         const faqAnswer = document.createElement('div');
+//                         faqAnswer.className = 'faq-answer';
+//                         faqAnswer.setAttribute('id', `faq-answer-${faq.id}`);
+//                         faqAnswer.setAttribute('role', 'region');
+//                         faqAnswer.setAttribute('aria-hidden', 'true');
+//                         faqAnswer.textContent = faq.answer;
+//                         faqAnswer.style.display = 'none';
 
-                        faqQuestion.addEventListener('click', function() {
-                            const isVisible = faqAnswer.style.display === 'block';
-                            faqAnswer.style.display = isVisible ? 'none' : 'block';
-                        });
+//                         faqQuestion.addEventListener('click', function() {
+//                             const isVisible = faqAnswer.style.display === 'block';
+//                             faqAnswer.style.display = isVisible ? 'none' : 'block';
+//                             faqAnswer.setAttribute('aria-hidden', isVisible ? 'true' : 'false');
+//                             faqQuestion.setAttribute('aria-expanded', !isVisible);
+//                             faqQuestion.querySelector('.chevron').innerHTML = isVisible ? '&#9662;' : '&#9652;';
+//                         });
 
-                        faqItem.appendChild(faqQuestion);
-                        faqItem.appendChild(faqAnswer);
+//                         faqItem.appendChild(faqQuestion);
+//                         faqItem.appendChild(faqAnswer);
 
-                        faqContainer.appendChild(faqItem);
-                    });
+//                         faqContainer.appendChild(faqItem);
+//                     });
 
-                    currentPage++;
-                } else {
-                    showMoreBtn.style.display = 'none';  // Hide the button if no more FAQs
-                }
+//                     currentPage++;
+//                 } else {
+//                     window.removeEventListener('scroll', handleScroll);  // Stop listening to scroll if no more FAQs
+//                 }
                  
-                setTimeout(()=>{
-                    
-                    preloader.style.display = 'none';  // Hide the preloader
-                    isLoading = false;
-                    showMoreBtn.classList.remove('loading');
-                    },1000);
+//                 setTimeout(()=>{
+//                     preloader.style.display = 'none';  // Hide the preloader
+//                     isLoading = false;
+//                 },1000);
                
-            })
-            .catch(error => {
-                console.error('Error loading FAQs:', error);
-                preloader.style.display = 'none';  // Hide the preloader even if there's an error
-                isLoading = false;
-                showMoreBtn.classList.remove('loading');
-            });
-    }
+//             })
+//             .catch(error => {
+//                 console.error('Error loading FAQs:', error);
+//                 preloader.style.display = 'none';  // Hide the preloader even if there's an error
+//                 isLoading = false;
+//             });
+//     }
 
-    // Initial load
-    loadFAQs(currentPage, faqsPerPage);
+//     function handleScroll() {
+//         const scrollPosition = window.innerHeight + window.scrollY;
+//         const threshold = document.body.offsetHeight - 500;
 
-    // Show more button click handler
-    showMoreBtn.addEventListener('click', function() {
-        loadFAQs(currentPage, faqsPerPage);
-    });
-});
+//         if (scrollPosition >= threshold && !isLoading) {
+//             loadFAQs(currentPage, faqsPerPage);
+//         }
+//     }
+
+//     // Initial load
+//     loadFAQs(currentPage, faqsPerPage);
+
+//     // Attach scroll event listener
+//     window.addEventListener('scroll', handleScroll);
+// });
+
 

@@ -148,6 +148,10 @@ body {
         background-color: var(--nav-bg-color);
         transition: background-color 0.3s;
         padding-bottom: 15px;
+
+        @media (max-width:786px) {
+            padding: 8px 15px;
+        }
     }
 
     .fa-duotone.fa-solid.fa-bars {
@@ -227,7 +231,7 @@ body {
         }
 
         .navbar-collapse {
-            padding-left: 45px;
+            padding-left: 36px;
             text-align: center;
         }
     }
@@ -546,20 +550,31 @@ body {
         transform: scale(1.05);
     }
 
-    img {
-        height: 300px;
+    .card .card-image-wrapper {
+        width: 100%;
+        height: 200px;
+        background: #000;
+
+
+        @media (max-width:480px) {
+            height: 280px !important;
+            max-height: 150px;
+            align-items: center;
+            object-fit: fill;
+        }
     }
 
     .card {
         img {
             background-color: #1f1f1f;
+            max-width: 100%;
             width: 100%;
-            height: 50%;
+            height: 320px;
             object-fit: fill;
             max-height: 200px;
 
             @media (max-width:480px) {
-                height: 300px !important;
+                height: 280px !important;
                 max-height: 150px;
                 align-items: center;
                 object-fit: fill;
@@ -585,16 +600,18 @@ body {
     }
 
     .content {
-        .card-h2{
-         @media (max-width:480px) {
-            font-size: 1em;
-         }
-         @media (max-width:780px) {
-            font-size: 1.3em;
-         }
+        .card-h2 {
+            @media (max-width:480px) {
+                font-size: 1em;
+            }
+
+            @media (max-width:780px) {
+                font-size: 1.3em;
+            }
         }
+
         .card {
-        
+
             p {
                 padding-bottom: 3px;
 
@@ -1420,5 +1437,28 @@ select#filterOptions,
 
     .resource-article {
         flex: 1 1 100%;
+    }
+}
+
+
+/*-----Tictok----*/
+/* Container to center the button */
+.blog-main-container{
+    display: flex;
+    flex-direction: column;
+    .ticTok-container{
+        max-width: 100%;
+        .tictok-warpper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            .tictok-btn{
+                background: #ffff;
+                border-radius: 8px; /* Optional: to round corners */
+                cursor: pointer; /* Make it look clickable */
+                transition: transform 0.2s ease; /* Add a hover effect */
+            }
+        }
     }
 }

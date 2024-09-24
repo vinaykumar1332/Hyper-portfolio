@@ -2374,6 +2374,11 @@ li {
       }
 
       /* Close button */
+      #redirect-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
       .close-button {
         position: absolute;
         top: 3px;
@@ -2383,19 +2388,26 @@ li {
         transition: color 0.3s;
         color: var(--text-color);
 
+        .fa-circle-arrow-right{
+          align-items: center;
+           }
+
         @media (max-width: 600px) {
           color: var(--container-color);
           font-size: 28px;
           position: absolute;
           top: 2px;
         }
+        
 
         & .fa-window-close {
           animation: pulse 2s infinite;
+          align-items: center;
         }
 
 
       }
+    }
 
       .close-button:hover {
         color: hsl(250, 69%, 61%);

@@ -1,9 +1,6 @@
 // JSON data for PDF links and card details
-const dataApi = '../pdfData.json'; // Path to your JSON file or API endpoint
-
+const dataApi = '../pdfData.json'; 
 let pdfData;
-
-// Fetch data from the API
 fetch(dataApi)
     .then(response => {
         if (!response.ok) {
@@ -17,9 +14,7 @@ fetch(dataApi)
 
         const totalKeys = Object.keys(pdfData).length;
         console.log(`Total number of entries: ${totalKeys}`);
-         populateCards()
-
-        // Iterate over each entry in pdfFilesData
+         populateCards();
     })
     .catch(error => console.error('Error fetching data:', error));
     
@@ -174,8 +169,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for main category filter
     mainFilterOptions.addEventListener('change', function () {
         const selectedCategory = this.value;
-
-        // Show/Hide cards based on selected category
         cards.forEach(card => {
             if (selectedCategory === 'select' || card.getAttribute('data-category') === selectedCategory) {
                 card.style.display = 'block';
@@ -183,8 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.style.display = 'none';
             }
         });
-
-        // Clear and populate subcategory options
+        console.error(selectedCategory);
         filterOptions.innerHTML = '<option value="all">Select Technology</option>';
         if (subcategories[selectedCategory]) {
             subcategories[selectedCategory].forEach(subcategory => {
@@ -201,11 +193,18 @@ document.addEventListener('DOMContentLoaded', function () {
             filterOptions.style.display = 'none';
             resetButton.style.display = 'none'; // Hide the reset button
         }
-
-
-        console.log(selectedCategory);
         filterCards();
+        updateUrlWithCategory();
     });
+    function updateUrlWithSubcategory(selectedSubcategory) {
+        const baseUrl = window.location.origin + window.location.pathname; 
+        const encodedSubcategory = encodeURIComponent(selectedSubcategory);
+        const newUrl = `${baseUrl}?subcategory=${encodedSubcategory}`;
+        window.history.pushState({ path: newUrl }, '', newUrl);
+        console.log(newUrl);
+        return newUrl;
+    }
+    
 
     // Event listener for subcategory filter
     filterOptions.addEventListener('change', function () {
@@ -232,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Element with class "resultsCategory" not found!');
             }
         }
-        
+        updateUrlWithSubcategory(selectedSubcategory)
     });
 
     // Event listener for reset button
@@ -253,6 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     resetButton.addEventListener('click', function () {
+        const baseUrl = window.location.origin + window.location.pathname;
+       window.history.pushState({ path: baseUrl }, '', baseUrl);
+
         location.reload(true); // Reload the page to reset all filters and show all cards
     });
 });
@@ -268,14 +270,20 @@ function openPDF(fileId) {
         console.log('Setting iframe src to:', pdfUrl);
         iframe.src = pdfUrl;
         overlay.style.display = 'flex'; // Show the overlay
-        bodyElement.style.overflow='hidden';
-        console.log("test1");
+        bodyElement.style.overflow = 'hidden'; // Disable body scrolling
 
+        // Update the URL with the fileId or the PDF URL
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('pdf', fileId);  // You could use `pdfUrl` instead of `fileId`
+        const newUrl = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
+        window.history.pushState({ path: newUrl }, '', newUrl);
+        console.log("URL updated:", newUrl);
     } else {
         console.error('No PDF URL found for ID:', fileId);
         showToast('Sorry, File is not available');
     }
 }
+
 
 // Function to close the PDF overlay
 function closePDF() {
@@ -290,6 +298,11 @@ function closePDF() {
             console.log("test2");
         }
     }
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete('pdf');
+    const baseUrl = window.location.origin + window.location.pathname;
+    const newUrl = `${baseUrl}?${urlParams.toString()}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
    openPDF(fileId);
 }
 
@@ -395,7 +408,6 @@ function lazyLoadInstance() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const image = entry.target;
-                console.log(`Loading image: ${image.dataset.src}`);  // Debugging line
                 image.src = image.dataset.src;
                 image.classList.remove('lazy-load');
                 observer.unobserve(image);

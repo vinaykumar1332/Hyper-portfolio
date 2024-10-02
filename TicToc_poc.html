@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TikTok Video Carousel</title>
+    </head>
+
+    <body>
+        <style>
+            /* General reset */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+            }
+
+            .tiktok-carousel {
+                padding-top: 20px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                width: 100%;
+                max-width: 1266px;
+                margin: 0 auto;
+                @media (max-width:786px) {
+                    display: flex;
+                    align-self: center;
+                    max-width: 350px;
+                    height: 200px;
+                    justify-content: center;
+                    align-content: center;
+                }
+            }
+
+            .carousel-container {
+                display: flex;
+                overflow-x: scroll;
+                scroll-behavior: smooth;
+                gap: 15px;
+                width: 100%;
+                padding: 10px;
+            }
+
+            .carousel-container::-webkit-scrollbar {
+                display: none;
+                /* Hide scroll bar */
+            }
+
+            .carousel-item {
+                min-width: 400px;
+                flex-shrink: 0;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+                @media (max-width:786px) {
+                    min-width: 280px;
+                }
+            }
+
+            .scroll-btn {
+                background-color: rgba(0, 0, 0, 0.5);
+                border: none;
+                color: white;
+                font-size: 24px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                z-index: 100;
+                padding: 10px;
+                border-radius: 50%;
+            }
+
+            .left-btn {
+                left: 10px;
+            }
+
+            .right-btn {
+                right: 10px;
+            }
+
+            .scroll-btn:hover {
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+            .tiktok-embed{
+                height: 480px;
+                width: 200px;
+                @media (max-width:786px) {
+                    height: 240px;
+                    width: 180px;
+                }
+            }
+        </style>
+        <section class="tiktok-carousel">
+            <button class="scroll-btn left-btn" id="scroll-left-btn">&#8249;</button>
+            <div class="carousel-container" id="carousel-container">
+                <!-- Embed TikTok videos here -->
+                <div class="carousel-item">
+                    <blockquote class="tiktok-embed"
+                        cite="https://www.tiktok.com/@upfieldlife/video/7369174334583082273"
+                        data-video-id="7369174334583082273" style="max-width: 605px;min-width: 325px;">
+                        <section> <a target="_blank" title="@upfieldlife"
+                                href="https://www.tiktok.com/@upfieldlife?refer=embed">@upfieldlife</a> 🌟 Another <a
+                                title="proudupfielder" target="_blank"
+                                href="https://www.tiktok.com/tag/proudupfielder?refer=embed">#ProudUpfielder</a> moment!
+                            🚀 Exciting news: Our new @Floraplantbased paper packaging tub has officially launched in
+                            the UK! They are currently exclusive to @sainsburys, join Upfielder Julie on her adventure
+                            to find it in store! Have you spotted one yet? Let us know! <a title="upfield"
+                                target="_blank" href="https://www.tiktok.com/tag/upfield?refer=embed">#Upfield</a> <a
+                                title="upfieldlife" target="_blank"
+                                href="https://www.tiktok.com/tag/upfieldlife?refer=embed">#Upfieldlife</a> <a
+                                title="upfielderadventures" target="_blank"
+                                href="https://www.tiktok.com/tag/upfielderadventures?refer=embed">#UpfielderAdventures</a>
+                            <a title="proudmoment" target="_blank"
+                                href="https://www.tiktok.com/tag/proudmoment?refer=embed">#ProudMoment</a> <a
+                                title="paperpackaging" target="_blank"
+                                href="https://www.tiktok.com/tag/paperpackaging?refer=embed">#paperpackaging</a> <a
+                                title="newlaunch" target="_blank"
+                                href="https://www.tiktok.com/tag/newlaunch?refer=embed">#NewLaunch</a> <a
+                                title="innovation" target="_blank"
+                                href="https://www.tiktok.com/tag/innovation?refer=embed">#Innovation</a> <a
+                                title="sustainable" target="_blank"
+                                href="https://www.tiktok.com/tag/sustainable?refer=embed">#Sustainable</a> <a
+                                title="r&d" target="_blank"
+                                href="https://www.tiktok.com/tag/r%26d?refer=embed">#R&#38;D</a> <a title="jointheteam"
+                                target="_blank"
+                                href="https://www.tiktok.com/tag/jointheteam?refer=embed">#JoinTheTeam</a> <a
+                                target="_blank" title="♬ original sound  - Upfieldlife"
+                                href="https://www.tiktok.com/music/original-sound-Upfieldlife-7369174430654335776?refer=embed">♬
+                                original sound - Upfieldlife</a>
+                        </section>
+                    </blockquote>
+                    <script async src="https://www.tiktok.com/embed.js"></script>
+                </div>
+                <div class="carousel-item">
+                    <blockquote class="tiktok-embed"
+                        cite="https://www.tiktok.com/@upfieldlife/video/7288680711291161888"
+                        data-video-id="7288680711291161888" style="max-width: 605px;min-width: 325px;">
+                        <section> <a target="_blank" title="@upfieldlife"
+                                href="https://www.tiktok.com/@upfieldlife?refer=embed">@upfieldlife</a> Upfield Life
+                            shares what it&#39;s like working at a global plant-based food company. It&#39;s not all
+                            work...there&#39;s plenty of play too. Upfielders in India had a ball at their ‘Sports Day
+                            Championship’.   Run, skip and jump your way to our career page through the link in our bio…
+                              <a title="upfield" target="_blank"
+                                href="https://www.tiktok.com/tag/upfield?refer=embed">#upfield</a> <a
+                                title="upfieldlife" target="_blank"
+                                href="https://www.tiktok.com/tag/upfieldlife?refer=embed">#upfieldlife</a> <a
+                                title="proudupfielder" target="_blank"
+                                href="https://www.tiktok.com/tag/proudupfielder?refer=embed">#proudupfielder</a> <a
+                                title="upfieldcareers" target="_blank"
+                                href="https://www.tiktok.com/tag/upfieldcareers?refer=embed">#upfieldcareers</a>  <a
+                                title="upfieldpurpose" target="_blank"
+                                href="https://www.tiktok.com/tag/upfieldpurpose?refer=embed">#upfieldpurpose</a> <a
+                                title="upfieldindia" target="_blank"
+                                href="https://www.tiktok.com/tag/upfieldindia?refer=embed">#upfieldindia</a> <a
+                                title="proudupfielderindia" target="_blank"
+                                href="https://www.tiktok.com/tag/proudupfielderindia?refer=embed">#proudupfielderindia</a>
+                            <a title="india" target="_blank"
+                                href="https://www.tiktok.com/tag/india?refer=embed">#India</a>  <a title="celebration"
+                                target="_blank"
+                                href="https://www.tiktok.com/tag/celebration?refer=embed">#celebration</a>  <a
+                                title="recruiting" target="_blank"
+                                href="https://www.tiktok.com/tag/recruiting?refer=embed">#recruiting</a> <a
+                                title="recruitment" target="_blank"
+                                href="https://www.tiktok.com/tag/recruitment?refer=embed">#recruitment</a> <a
+                                title="hiring" target="_blank"
+                                href="https://www.tiktok.com/tag/hiring?refer=embed">#hiring</a> <a title="jobs"
+                                target="_blank" href="https://www.tiktok.com/tag/jobs?refer=embed">#jobs</a> <a
+                                title="careers" target="_blank"
+                                href="https://www.tiktok.com/tag/careers?refer=embed">#careers</a>  <a title="vacancy"
+                                target="_blank" href="https://www.tiktok.com/tag/vacancy?refer=embed">#vacancy</a> <a
+                                title="applynow" target="_blank"
+                                href="https://www.tiktok.com/tag/applynow?refer=embed">#applynow</a> <a target="_blank"
+                                title="♬ Touchdown Gameday (Sped Up) - SNC"
+                                href="https://www.tiktok.com/music/Touchdown-Gameday-Sped-Up-7267574382573291521?refer=embed">♬
+                                Touchdown Gameday (Sped Up) - SNC</a>
+                        </section>
+                    </blockquote>
+                    <script async src="https://www.tiktok.com/embed.js"></script>
+                </div>
+                <div class="carousel-item">
+                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@upfieldlife/video/7372191629140135200" data-video-id="7372191629140135200" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@upfieldlife" href="https://www.tiktok.com/@upfieldlife?refer=embed">@upfieldlife</a> 🌍✈️ Join Upfielder Mona who is one of our Regional Representatives on the Young Advisory Board as she visits our Young Upfielders in Turkey! 🇹🇷✨ She’s kicked off our first Young Upfielder Factory tour to help paint the full picture of Upfield and connect our office and factory Young Upfielders together. Want to join the adventure? Follow the link in our bio to our careers site! 🚀 <a title="upfield" target="_blank" href="https://www.tiktok.com/tag/upfield?refer=embed">#Upfield</a> <a title="upfieldlife" target="_blank" href="https://www.tiktok.com/tag/upfieldlife?refer=embed">#Upfieldlife</a> <a title="proudupfielder" target="_blank" href="https://www.tiktok.com/tag/proudupfielder?refer=embed">#proudupfielder</a> <a title="proudyoungupfielder" target="_blank" href="https://www.tiktok.com/tag/proudyoungupfielder?refer=embed">#proudyoungupfielder</a> <a title="youngupfieldercommunity" target="_blank" href="https://www.tiktok.com/tag/youngupfieldercommunity?refer=embed">#YoungUpfielderCommunity</a> <a title="turkey" target="_blank" href="https://www.tiktok.com/tag/turkey?refer=embed">#Turkey</a> <a title="istanbul" target="_blank" href="https://www.tiktok.com/tag/istanbul?refer=embed">#Istanbul</a> <a title="corlu" target="_blank" href="https://www.tiktok.com/tag/corlu?refer=embed">#Corlu</a> <a title="factorytour" target="_blank" href="https://www.tiktok.com/tag/factorytour?refer=embed">#FactoryTour</a> <a title="traveladventures" target="_blank" href="https://www.tiktok.com/tag/traveladventures?refer=embed">#TravelAdventures</a> <a title="workopportunity" target="_blank" href="https://www.tiktok.com/tag/workopportunity?refer=embed">#Workopportunity</a> <a target="_blank" title="♬ original sound  - Upfieldlife" href="https://www.tiktok.com/music/original-sound-Upfieldlife-7372192897636633376?refer=embed">♬ original sound  - Upfieldlife</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+                </div>
+                <div class="carousel-item">
+                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@upfieldlife/video/7343657360730230049" data-video-id="7343657360730230049" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@upfieldlife" href="https://www.tiktok.com/@upfieldlife?refer=embed">@upfieldlife</a> 🌏✨ Hot off the press! 📣 Our brand-new Indonesia office is officially open for business, where innovation meets culture. 🚀 Curious about joining the adventure? Swipe up to explore opportunities on our career site by following the link in our bio! 🌐👩‍💻 <a title="upfield" target="_blank" href="https://www.tiktok.com/tag/upfield?refer=embed">#upfield</a>  <a title="proudupfielder" target="_blank" href="https://www.tiktok.com/tag/proudupfielder?refer=embed">#proudupfielder</a>  <a title="upfieldlife" target="_blank" href="https://www.tiktok.com/tag/upfieldlife?refer=embed">#upfieldlife</a>  <a title="plantbased" target="_blank" href="https://www.tiktok.com/tag/plantbased?refer=embed">#plantbased</a>  <a title="futureoffood" target="_blank" href="https://www.tiktok.com/tag/futureoffood?refer=embed">#FutureOfFood</a>  <a title="joinus" target="_blank" href="https://www.tiktok.com/tag/joinus?refer=embed">#joinus</a>  <a title="officegoals" target="_blank" href="https://www.tiktok.com/tag/officegoals?refer=embed">#officegoals</a>  <a title="officevibes" target="_blank" href="https://www.tiktok.com/tag/officevibes?refer=embed">#officevibes</a>  <a title="foodie🚀🔥" target="_blank" href="https://www.tiktok.com/tag/foodie%F0%9F%9A%80%F0%9F%94%A5?refer=embed">#foodie🚀🔥</a> <a target="_blank" title="♬ original sound  - Upfieldlife" href="https://www.tiktok.com/music/original-sound-Upfieldlife-7343657409661553440?refer=embed">♬ original sound  - Upfieldlife</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+                </div>
+                <div class="carousel-item">
+                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@upfieldlife/video/7247880635543604506" data-video-id="7247880635543604506" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@upfieldlife" href="https://www.tiktok.com/@upfieldlife?refer=embed">@upfieldlife</a> Both, both is good ⚖️😌.          <a title="business" target="_blank" href="https://www.tiktok.com/tag/business?refer=embed">#business</a> <a title="upfield" target="_blank" href="https://www.tiktok.com/tag/upfield?refer=embed">#upfield</a> <a title="upfieldlife" target="_blank" href="https://www.tiktok.com/tag/upfieldlife?refer=embed">#upfieldlife</a> <a title="officelife" target="_blank" href="https://www.tiktok.com/tag/officelife?refer=embed">#officelife</a> <a title="marketing" target="_blank" href="https://www.tiktok.com/tag/marketing?refer=embed">#marketing</a> <a title="technology" target="_blank" href="https://www.tiktok.com/tag/technology?refer=embed">#technology</a> <a title="corporate" target="_blank" href="https://www.tiktok.com/tag/corporate?refer=embed">#corporate</a> <a title="interview" target="_blank" href="https://www.tiktok.com/tag/interview?refer=embed">#interview</a> <a title="qanda" target="_blank" href="https://www.tiktok.com/tag/qanda?refer=embed">#qanda</a> <a title="marketingtech" target="_blank" href="https://www.tiktok.com/tag/marketingtech?refer=embed">#marketingtech</a> <a title="digitalmarketing" target="_blank" href="https://www.tiktok.com/tag/digitalmarketing?refer=embed">#digitalmarketing</a> <a title="newhire" target="_blank" href="https://www.tiktok.com/tag/newhire?refer=embed">#newhire</a> <a title="graduate" target="_blank" href="https://www.tiktok.com/tag/graduate?refer=embed">#graduate</a> <a title="careeradvice" target="_blank" href="https://www.tiktok.com/tag/careeradvice?refer=embed">#careeradvice</a> <a title="unilife" target="_blank" href="https://www.tiktok.com/tag/unilife?refer=embed">#unilife</a> <a title="uniadvice" target="_blank" href="https://www.tiktok.com/tag/uniadvice?refer=embed">#uniadvice</a> <a title="marketingtips" target="_blank" href="https://www.tiktok.com/tag/marketingtips?refer=embed">#marketingtips</a> <a title="tipsandtricks" target="_blank" href="https://www.tiktok.com/tag/tipsandtricks?refer=embed">#tipsandtricks</a> <a title="workskills" target="_blank" href="https://www.tiktok.com/tag/workskills?refer=embed">#workskills</a> <a title="lifeskills" target="_blank" href="https://www.tiktok.com/tag/lifeskills?refer=embed">#lifeskills</a> <a title="behindthescenes" target="_blank" href="https://www.tiktok.com/tag/behindthescenes?refer=embed">#behindthescenes</a> <a title="sustainablebusiness" target="_blank" href="https://www.tiktok.com/tag/sustainablebusiness?refer=embed">#sustainablebusiness</a>  <a title="hiring" target="_blank" href="https://www.tiktok.com/tag/hiring?refer=embed">#hiring</a> <a title="linkedin" target="_blank" href="https://www.tiktok.com/tag/linkedin?refer=embed">#linkedin</a>  <a title="linkedintips" target="_blank" href="https://www.tiktok.com/tag/linkedintips?refer=embed">#linkedintips</a> <a target="_blank" title="♬ original sound - Upfieldlife" href="https://www.tiktok.com/music/original-sound-7247880599216982810?refer=embed">♬ original sound - Upfieldlife</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+                </div>
+                <div class="carousel-item">
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@upfieldlife/video/7248942997952335130" data-video-id="7248942997952335130" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@upfieldlife" href="https://www.tiktok.com/@upfieldlife?refer=embed">@upfieldlife</a> ✨Honesty is key✨😌 Props to Chef Dunk for the unrehearsed high-five, highlight of my day. <a title="cheflife" target="_blank" href="https://www.tiktok.com/tag/cheflife?refer=embed">#cheflife</a> <a title="upfield" target="_blank" href="https://www.tiktok.com/tag/upfield?refer=embed">#upfield</a> <a title="upfieldlife" target="_blank" href="https://www.tiktok.com/tag/upfieldlife?refer=embed">#upfieldlife</a> <a title="proudupfielder" target="_blank" href="https://www.tiktok.com/tag/proudupfielder?refer=embed">#proudupfielder</a> <a title="careeradvice" target="_blank" href="https://www.tiktok.com/tag/careeradvice?refer=embed">#careeradvice</a> <a title="cheftips" target="_blank" href="https://www.tiktok.com/tag/cheftips?refer=embed">#cheftips</a> <a title="cookingadvice" target="_blank" href="https://www.tiktok.com/tag/cookingadvice?refer=embed">#cookingadvice</a> <a title="foodcareer" target="_blank" href="https://www.tiktok.com/tag/foodcareer?refer=embed">#foodcareer</a> <a title="restaurantcareer" target="_blank" href="https://www.tiktok.com/tag/restaurantcareer?refer=embed">#restaurantcareer</a> <a title="kitchencareer" target="_blank" href="https://www.tiktok.com/tag/kitchencareer?refer=embed">#kitchencareer</a> <a title="careergoals" target="_blank" href="https://www.tiktok.com/tag/careergoals?refer=embed">#careergoals</a> <a title="lifeadvice" target="_blank" href="https://www.tiktok.com/tag/lifeadvice?refer=embed">#lifeadvice</a> <a title="foodservice" target="_blank" href="https://www.tiktok.com/tag/foodservice?refer=embed">#foodservice</a> <a title="linkedin" target="_blank" href="https://www.tiktok.com/tag/linkedin?refer=embed">#linkedin</a> <a title="hiring" target="_blank" href="https://www.tiktok.com/tag/hiring?refer=embed">#hiring</a> <a title="cooking" target="_blank" href="https://www.tiktok.com/tag/cooking?refer=embed">#cooking</a> <a title="hospitality" target="_blank" href="https://www.tiktok.com/tag/hospitality?refer=embed">#hospitality</a> <a title="culinaryschool" target="_blank" href="https://www.tiktok.com/tag/culinaryschool?refer=embed">#culinaryschool</a> <a title="chefadvice" target="_blank" href="https://www.tiktok.com/tag/chefadvice?refer=embed">#chefadvice</a> <a title="violife" target="_blank" href="https://www.tiktok.com/tag/violife?refer=embed">#violife</a> <a title="ukchef" target="_blank" href="https://www.tiktok.com/tag/ukchef?refer=embed">#ukchef</a> <a title="vegan" target="_blank" href="https://www.tiktok.com/tag/vegan?refer=embed">#vegan</a> <a title="plantbased" target="_blank" href="https://www.tiktok.com/tag/plantbased?refer=embed">#plantbased</a> <a target="_blank" title="♬ original sound - Upfieldlife" href="https://www.tiktok.com/music/original-sound-7248942969359829787?refer=embed">♬ original sound - Upfieldlife</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+                </div>
+
+            </div>
+            <button class="scroll-btn right-btn" id="scroll-right-btn">&#8250;</button>
+        </section>
+
+        <script src="https://www.tiktok.com/embed.js"></script>
+        <script src="scripts.js"></script>
+        <script>
+            const carouselContainer = document.getElementById('carousel-container');
+        const scrollLeftBtn = document.getElementById('scroll-left-btn');
+        const scrollRightBtn = document.getElementById('scroll-right-btn');
+        
+        // Scroll left
+        scrollLeftBtn.addEventListener('click', () => {
+            carouselContainer.scrollLeft -= 410; // Adjust the value to scroll left by the width of one item
+        });
+        
+        // Scroll right
+        scrollRightBtn.addEventListener('click', () => {
+            carouselContainer.scrollLeft += 410; // Adjust the value to scroll right by the width of one item
+        });
+        
+        </script>
+</body>
+
+
+</html>

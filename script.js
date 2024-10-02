@@ -770,13 +770,16 @@ document.addEventListener("DOMContentLoaded", function () {
   var popup = document.getElementById("popup");
   var closeButton = document.getElementById("close-button");
   var clickButton = document.getElementById("click-button");
-  var popupShown = false;
+  
+  // Retrieve popup status from localStorage
+  var popupShown = localStorage.getItem("popupShown") === "true";
 
   // Function to show the popup
   function showPopup() {
     if (!popupShown) {
       popup.classList.add("show-popup");
       popupShown = true;
+      localStorage.setItem("popupShown", "true"); // Save popup state to localStorage
     }
   }
 
@@ -785,7 +788,8 @@ document.addEventListener("DOMContentLoaded", function () {
     popup.classList.add("hide-popup");
     setTimeout(() => {
       popup.classList.remove("show-popup");
-      popupShown = false; // Reset popupShown when the popup is hidden
+      popupShown = true; // Keep popup as shown to prevent it from showing again
+      localStorage.setItem("popupShown", "true"); // Save state so it doesn't show again
     }, 400); // Match this duration with the CSS transition duration
   }
 
@@ -795,10 +799,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Improved scroll event listener to prevent duplicate popups
   var scrolledPastTrigger = false;
-  window.addEventListener('load', function () {
+  window.addEventListener("load", function () {
     window.addEventListener("scroll", function () {
       setTimeout(() => {
-        if (window.scrollY > 550 && !scrolledPastTrigger) {
+        if (window.scrollY > 550 && !scrolledPastTrigger && !popupShown) {
           showPopup();
           scrolledPastTrigger = true; // Set flag to prevent repeated show
         } else if (window.scrollY <= 550) {
@@ -808,4 +812,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-

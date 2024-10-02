@@ -2374,10 +2374,7 @@ li {
       }
 
       /* Close button */
-      #redirect-btn{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+
 
       .close-button {
         position: absolute;
@@ -2407,14 +2404,28 @@ li {
 
 
       }
-    }
+    
 
       .close-button:hover {
         color: hsl(250, 69%, 61%);
       }
+
+      #redirect-btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        #click-button{
+          align-self: center;
+          .fa-circle-arrow-right{
+            
+          }
+        }
+      }
     }
   }
 }
+
+
 
 .show-popup {
   display: block;

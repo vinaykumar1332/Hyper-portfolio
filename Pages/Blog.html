@@ -5,36 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TikTok User Info</title>
     <style>
-        .user-info-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
+       /* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .user-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+}
 
-        .user-details {
-            text-align: center;
-        }
+/* Profile Container */
+.user-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 20px;
+    max-width:50%;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #333;  /* Thin border around the profile */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Light shadow for elevation */
+}
 
-        .user-details p {
-            font-size: 16px;
-            color: #333;
-        }
+/* Avatar Styling */
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensure image covers the container without distortion */
+    border: 2px solid #eee; /* Subtle border around the avatar */
+    margin-right: 20px; /* Spacing between avatar and user details */
+}
+
+/* User Details */
+.user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Styling the Username */
+.user-details h2 {
+    font-size: 22px;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* Styling Open ID and Union ID */
+.user-details p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 3px;
+}
+
     </style>
 </head>
 <body>
     <div class="user-info-container">
         <img id="avatar" class="user-avatar" src="" alt="User Avatar">
         <div class="user-details">
+            <h2 id="userName">User Name : Loading...</h2>
             <p id="openId">Open ID: Loading...</p>
             <p id="unionId">Union ID: Loading...</p>
         </div>
@@ -42,9 +77,9 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const accessToken = 'Bearer act.ZoOrgxyKTdj6bZilAz35C9lQ7yvvc1iUc04qVwWoHHL7JeEcW6iYk92rwBvR!4565.va'; // Replace with your access token
+            const accessToken = 'act.ZoOrgxyKTdj6bZilAz35C9lQ7yvvc1iUc04qVwWoHHL7JeEcW6iYk92rwBvR!4565.va'; // Replace with your access token
 
-            fetch('https://open.tiktokapis.com/v2/user/info/', {
+            fetch('https://open.tiktokapis.com/v2/user/info/?fields=open_id,union_id,avatar_url,user.info.basic,display_name', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
@@ -58,7 +93,10 @@
                     document.getElementById('avatar').src = data.data.user.avatar_url;
                     document.getElementById('openId').textContent = `Open ID: ${data.data.user.open_id}`;
                     document.getElementById('unionId').textContent = `Union ID: ${data.data.user.union_id}`;
-                } else {
+                    document.getElementById('userName').textContent = `${data.data.user.display_name}`;
+                    console.log(data);
+                } 
+                else {
                     console.error("Error fetching user info: ", data.error.message);
                     document.getElementById('openId').textContent = "Error fetching user info";
                 }

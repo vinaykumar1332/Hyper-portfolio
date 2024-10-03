@@ -3,181 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok Video Carousel</title>
-    
+    <title>TikTok User Info</title>
+    <style>
+        .user-info-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .user-details {
+            text-align: center;
+        }
+
+        .user-details p {
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-h1 {
-    color: #ff0050;
-}
-
-.carousel {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-}
-
-.carousel-track-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-track li {
-    list-style: none;
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-
-.carousel img {
-    width: 100%;
-    height: auto;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 2rem;
-    z-index: 1;
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
-@media (min-width: 768px) {
-    .carousel-track li {
-        flex: 0 0 50%;
-    }
-}
-
-@media (min-width: 1024px) {
-    .carousel-track li {
-        flex: 0 0 33.333%;
-    }
-}
-
-    </style>
-    <div class="container">
-        <h1>TikTok Videos Carousel</h1>
-        <div class="carousel" id="videoCarousel">
-            <button class="carousel-button prev" id="prevBtn">&#10094;</button>
-            <div class="carousel-track-container">
-                <ul class="carousel-track" id="carouselTrack">
-                    <!-- Videos will be dynamically inserted here -->
-                </ul>
-            </div>
-            <button class="carousel-button next" id="nextBtn">&#10095;</button>
+    <div class="user-info-container">
+        <img id="avatar" class="user-avatar" src="" alt="User Avatar">
+        <div class="user-details">
+            <p id="openId">Open ID: Loading...</p>
+            <p id="unionId">Union ID: Loading...</p>
         </div>
     </div>
 
-    <script >
-        // TikTok API URLs
-const videoListUrl = "https://open.tiktokapis.com/v2/video/list/";
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const accessToken = 'Bearer act.ZoOrgxyKTdj6bZilAz35C9lQ7yvvc1iUc04qVwWoHHL7JeEcW6iYk92rwBvR!4565.va'; // Replace with your access token
 
-// Access token (replace with your actual access token)
-const accessToken ='Bearer act.ZoOrgxyKTdj6bZilAz35C9lQ7yvvc1iUc04qVwWoHHL7JeEcW6iYk92rwBvR!4565.va';  // Replace with the real token
-
-// Fetch videos using TikTok API
-async function fetchTikTokVideos() {
-    try {
-        const response = await fetch(videoListUrl, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
+            fetch('https://open.tiktokapis.com/v2/user/info/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error.code === 'ok') {
+                    // Display user information
+                    document.getElementById('avatar').src = data.data.user.avatar_url;
+                    document.getElementById('openId').textContent = `Open ID: ${data.data.user.open_id}`;
+                    document.getElementById('unionId').textContent = `Union ID: ${data.data.user.union_id}`;
+                } else {
+                    console.error("Error fetching user info: ", data.error.message);
+                    document.getElementById('openId').textContent = "Error fetching user info";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('openId').textContent = "Failed to load user info";
+            });
         });
-        const data = await response.json();
-
-        const { data: { videos } } = data;
-        populateCarousel(videos);
-    } catch (error) {
-        console.error('Error fetching videos:', error);
-    }
-}
-
-// Function to dynamically insert video thumbnails into the carousel
-function populateCarousel(videos) {
-    const carouselTrack = document.getElementById('carouselTrack');
-
-    videos.forEach(video => {
-        const videoCard = document.createElement('li');
-
-        videoCard.innerHTML = `
-            <img src="${video.cover_image_url}" alt="${video.title}">
-            <p>${video.title}</p>
-        `;
-
-        carouselTrack.appendChild(videoCard);
-    });
-}
-
-// Carousel functionality
-function setupCarousel() {
-    const track = document.getElementById('carouselTrack');
-    const prevButton = document.getElementById('prevBtn');
-    const nextButton = document.getElementById('nextBtn');
-    let currentSlide = 0;
-
-    const moveToSlide = (track, currentSlide) => {
-        const slideWidth = track.querySelector('li').getBoundingClientRect().width;
-        const amountToMove = currentSlide * slideWidth;
-        track.style.transform = `translateX(-${amountToMove}px)`;
-    };
-
-    prevButton.addEventListener('click', () => {
-        if (currentSlide > 0) {
-            currentSlide--;
-            moveToSlide(track, currentSlide);
-        }
-    });
-
-    nextButton.addEventListener('click', () => {
-        const totalSlides = track.children.length;
-        if (currentSlide < totalSlides - 1) {
-            currentSlide++;
-            moveToSlide(track, currentSlide);
-        }
-    });
-}
-
-// Fetch TikTok videos on page load
-fetchTikTokVideos();
-
-// Set up the carousel navigation
-setupCarousel();
-
     </script>
 </body>
 </html>

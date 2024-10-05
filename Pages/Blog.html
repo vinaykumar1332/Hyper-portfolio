@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TikTok User Info</title>
     <style>
-       /* General reset */
-/* General reset */
 * {
     margin: 0;
     padding: 0;
@@ -28,8 +26,8 @@ body {
     margin: 50px auto;
     background-color: #fff;
     border-radius: 10px;
-    border: 1px solid #ff5a79;  /* Thin border around the profile */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Light shadow for elevation */
+    border: 1px solid #ff5a79;  
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
 }
 
 /* Avatar Styling */
@@ -38,9 +36,9 @@ body {
     height: 100px;
     padding: 3px;
     border-radius: 50%;
-    object-fit: cover; /* Ensure image covers the container without distortion */
-    border: 2px solid #ff5a79; /* Subtle border around the avatar */
-    margin-right: 20px; /* Spacing between avatar and user details */
+    object-fit: cover; 
+    border: 2px solid #ff5a79; 
+    margin-right: 20px;
 }
 
 /* User Details */
@@ -65,29 +63,109 @@ body {
     margin-bottom: 3px;
 }
 
-/* RESPONSIVENESS */
+/* Carousel Title */
+.carousel-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
 
-/* For mobile screens (up to 600px width) */
+/* Carousel Styles */
+.tiktokCarousel {
+    margin: 0 auto;
+    padding: 0 20px; /* Reduced padding for better responsiveness */
+}
+
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease; 
+}
+
+.carousel-item {
+    flex: 0 0 calc(100% / 3); 
+    margin-right: 10px;
+    text-align: center;
+    background-color: #fff; /* Added background color for items */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Added padding for content */
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+    border-radius: 50%; /* Rounded buttons */
+}
+
+/* Next and Previous Button Positions */
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+.embed-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background-color: #000;
+}
+
+.embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.tiktok-content-wrapper{
+    padding: 10px;
+}
+
+/* Responsive Design */
 @media (max-width: 600px) {
     .user-info-container {
-        flex-direction: column; /* Stack the avatar and user details */
+        flex-direction: column; 
         text-align: center;
         padding: 15px;
-        max-width: 90%; /* Take up more space on mobile screens */
+        max-width: 90%; 
     }
 
     .user-avatar {
-        margin: 0 auto 15px; /* Center the avatar and add margin below */
+        margin: 0 auto 15px; 
         width: 80px;
         height: 80px;
     }
 
     .user-details h2 {
-        font-size: 20px; /* Slightly smaller text size */
+        font-size: 20px; 
     }
 
     .user-details p {
-        font-size: 14px; /* Adjust text size for smaller screens */
+        font-size: 14px; 
+    }
+
+    .carousel-item {
+        flex: 0 0 100%; /* Make items full width */
     }
 }
 
@@ -110,106 +188,16 @@ body {
     .user-details p {
         font-size: 15px;
     }
-}
-/* Carousel Container */
-.carousel-container {
-    position: relative;
-    max-width: 100%;
-    overflow: hidden;
-    margin: 20px auto;
-}
 
-/* Carousel Wrapper */
-.carousel-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Track for moving items */
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-/* Each carousel item */
-.carousel-item {
-    min-width: 33.33%; /* Show 3 items per view */
-    text-align: center;
-    padding: 10px;
-}
-
-.carousel-item img {
-    width: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.carousel-item h5 {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #333;
-}
-
-.carousel-item p {
-    font-size: 14px;
-    color: #666;
-    margin: 5px 0;
-}
-
-.carousel-item .video-stats {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-.carousel-item .video-stats span {
-    font-weight: bold;
-    color: #333;
-}
-
-.carousel-item .share-link {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 14px;
-    text-decoration: none;
-    color: #1DA1F2;
-    font-weight: bold;
-}
-
-/* Carousel Controls (Left/Right) */
-.carousel-control {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 10px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-}
-
-.carousel-control.prev {
-    left: 0;
-}
-
-.carousel-control.next {
-    right: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
     .carousel-item {
-        min-width: 50%; /* Show 2 items on tablet */
+        flex: 0 0 calc(100% / 2); /* Two items on tablet */
     }
 }
 
-@media (max-width: 480px) {
+/* For larger screens */
+@media (min-width: 1025px) {
     .carousel-item {
-        min-width: 100%; /* Show 1 item on mobile */
+        flex: 0 0 calc(100% / 3); /* Three items on desktop */
     }
 }
 
@@ -233,17 +221,56 @@ body {
 
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const accessToken = 'act.TnPomscz0k9UfsIYsw5BQbwQbwCPAs5YmfdTsPjcFTpSVlhXkx7DfX5dyoBj!4571.va'; // Replace with your access token
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+   
+    let accessToken = 'act.TnPomscz0k9UfsIYsw5BQbwQbwCPAs5YmfdTsPjcFTpSVlhXkx7DfX5dyoBj!4571.va'; // Replace with your access token
+    let refreshToken = 'demo-refresh-token';
+    let tokenExpiryTime;
 
-            fetch('https://open.tiktokapis.com/v2/user/info/?fields=open_id,union_id,avatar_url,user.info.basic,display_name', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`,
-                    'Content-Type': 'application/json'
-                }
+   
+    function setTokenExpiry(expiresIn) {
+        tokenExpiryTime = Date.now() + expiresIn * 1000; 
+        setTimeout(refreshAccessToken, (expiresIn - 300) * 1000); 
+        console.log(`Token expires in ${expiresIn / 60} minutes.`);
+    }
+
+ 
+    function refreshAccessToken() {
+        console.log('Refreshing token...');
+        fetch('https://open.tiktokapis.com/v2/oauth/token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                grant_type: 'refresh_token',
+                refresh_token: 'rft.XmLvWQskLzMsBiahUbgjYkzSc9cJGJXe5pbFEXfJXvLCCrNjqdiFOS58wUBL!4603.va',
+                client_key: 'sbaw5eg838glrm3m2u',
+                client_secret: '0LKbEy16sVKvuGO8v25Skiy8SEoFiaSZ'
             })
+        })
+            .then(response => response.json())
+            .then(data => {
+                accessToken = data.access_token;
+                refreshToken = data.refresh_token || refreshToken;
+                setTokenExpiry(data.expires_in);
+                console.log('Token refreshed successfully');
+            })
+            .catch(error => {
+                console.error('Error refreshing token:', error);
+            });
+    }
+
+  
+    function fetchUserInfo() {
+        fetch('https://open.tiktokapis.com/v2/user/info/?fields=open_id,union_id,avatar_url,user.info.basic,display_name', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 if (data.error.code === 'ok') {
@@ -253,8 +280,7 @@ body {
                     document.getElementById('unionId').textContent = `Union ID: ${data.data.user.union_id}`;
                     document.getElementById('userName').textContent = `${data.data.user.display_name}`;
                     console.log(data);
-                } 
-                else {
+                } else {
                     console.error("Error fetching user info: ", data.error.message);
                     document.getElementById('openId').textContent = "Error fetching user info";
                 }
@@ -263,24 +289,22 @@ body {
                 console.error('Error:', error);
                 document.getElementById('openId').textContent = "Failed to load user info";
             });
-        });
-    </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const accessToken = 'act.TnPomscz0k9UfsIYsw5BQbwQbwCPAs5YmfdTsPjcFTpSVlhXkx7DfX5dyoBj!4571.va'; // Replace with your actual access token
+    }
 
-        function fetchTikTokVideos() {
-            fetch('https://open.tiktokapis.com/v2/video/list/?fields=cover_image_url,id,create_time,share_url,video_description,duration,height,width,title,embed_html,embed_link,like_count,comment_count,share_count,view_count', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`,
-                    'Content-Type': 'application/json'
-                }
-            })
+    // Fetch TikTok videos
+    function fetchTikTokVideos() {
+        fetch('https://open.tiktokapis.com/v2/video/list/?fields=cover_image_url,id,create_time,share_url,video_description,duration,height,width,title,embed_html,embed_link,like_count,comment_count,share_count,view_count', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 if (data.error.code === 'ok') {
                     renderCarousel(data.data.videos);
+                    console.log(data);
                 } else {
                     console.error("Error fetching videos: ", data.error.message);
                 }
@@ -288,82 +312,107 @@ body {
             .catch(error => {
                 console.error('Error:', error);
             });
-        }
+    }
 
-        function renderCarousel(videos) {
-            const carouselContainer = document.getElementById('videoCarousel');
-            let carouselHTML = '';
+    // Render videos in a carousel
+    function renderCarousel(videos) {
+        const carouselContainer = document.getElementById('videoCarousel');
+        let carouselHTML = '';
 
-            videos.forEach((video) => {
-                const { cover_image_url, title, video_description, like_count, comment_count, share_count, view_count, share_url } = video;
-                
-                carouselHTML += `
-                    <div class="carousel-item">
-                        <img src="${cover_image_url}" alt="${title}">
-                        <h5>${title}</h5>
-                        <p>${video_description}</p>
-                        <div class="video-stats">
-                            <span>❤️ ${like_count}</span>
-                            <span>💬 ${comment_count}</span>
-                            <span>🔁 ${share_count}</span>
-                            <span>👁️ ${view_count}</span>
-                        </div>
-                        <a href="${share_url}" target="_blank" class="share-link">Watch on TikTok</a>
+        videos.forEach((video) => {
+            const { embed_html, title, video_description, like_count, comment_count, share_count, view_count, share_url } = video;
+
+            carouselHTML += `
+                <div class="carousel-item">
+                    <div class="embed-container">
+                        ${embed_html} <!-- Embed the video -->
                     </div>
-                `;
-            });
-
-            carouselContainer.innerHTML = `
-                <div class="carousel-wrapper">
-                    <button class="carousel-control prev">❮</button>
-                    <div class="carousel-track">
-                        ${carouselHTML}
+                    <div class="tiktok-content-wrapper">
+                    <h5>${title}</h5>
+                    <p>${video_description}</p>
+                    <div class="video-stats">
+                        <span>❤️ ${like_count}</span>
+                        <span>💬 ${comment_count}</span>
+                        <span>🔁 ${share_count}</span>
+                        <span>👁️ ${view_count}</span>
                     </div>
-                    <button class="carousel-control next">❯</button>
+                    <a href="${share_url}" target="_blank" class="share-link">Watch on TikTok</a>
+                </div>
                 </div>
             `;
+        });
 
-            addCarouselFunctionality();
+        carouselContainer.innerHTML = `
+            <div class="carousel-wrapper">
+                <button class="carousel-control prev">❮</button>
+                <div class="carousel-track">
+                    ${carouselHTML}
+                </div>
+                <button class="carousel-control next">❯</button>
+            </div>
+        `;
+
+        addCarouselFunctionality();
+    }
+
+    // Carousel functionality
+    function addCarouselFunctionality() {
+        const track = document.querySelector('.carousel-track');
+        const items = document.querySelectorAll('.carousel-item');
+        const nextButton = document.querySelector('.next');
+        const prevButton = document.querySelector('.prev');
+
+        let index = 0;
+        let itemsToShow = 3; // Default for desktop
+        const totalItems = items.length;
+
+        function updateCarousel() {
+            const width = items[0].clientWidth;
+            track.style.transform = `translateX(-${index * width}px)`;
         }
 
-        function addCarouselFunctionality() {
-            const track = document.querySelector('.carousel-track');
-            const items = document.querySelectorAll('.carousel-item');
-            const nextButton = document.querySelector('.next');
-            const prevButton = document.querySelector('.prev');
-
-            let index = 0;
-            const totalItems = items.length;
-
-            function updateCarousel() {
-                const width = items[0].clientWidth;
-                track.style.transform = `translateX(-${index * width}px)`;
+    
+        function adjustCarousel() {
+            const screenWidth = window.innerWidth;
+            if (screenWidth >= 1024) {
+                itemsToShow = 3; // Desktop
+            } else if (screenWidth >= 768) {
+                itemsToShow = 2; // Tablet
+            } else {
+                itemsToShow = 1; // Mobile
             }
-
-            nextButton.addEventListener('click', () => {
-                if (index < totalItems - 3) {
-                    index++;
-                } else {
-                    index = 0; // Loop back to the start
-                }
-                updateCarousel();
-            });
-
-            prevButton.addEventListener('click', () => {
-                if (index > 0) {
-                    index--;
-                } else {
-                    index = totalItems - 3; // Loop back to the end
-                }
-                updateCarousel();
-            });
-
-            window.addEventListener('resize', updateCarousel);
+            updateCarousel();
         }
 
-        fetchTikTokVideos();
-    });
-</script>
+        nextButton.addEventListener('click', () => {
+            if (index < totalItems - itemsToShow) {
+                index++;
+            } else {
+                index = 0; // Loop back to the start
+            }
+            updateCarousel();
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (index > 0) {
+                index--;
+            } else {
+                index = totalItems - itemsToShow; // Loop back to the end
+            }
+            updateCarousel();
+        });
+
+        window.addEventListener('resize', adjustCarousel);
+        adjustCarousel(); // Set initial state
+    }
+
+    setTokenExpiry(3600); // Set token expiry for 1 hour
+    fetchUserInfo(); // Fetch TikTok user information
+    fetchTikTokVideos(); // Fetch TikTok videos
+});
+
+   </script>
+
 
 
 </body>

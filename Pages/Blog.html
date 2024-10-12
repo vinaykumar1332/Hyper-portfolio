@@ -17,11 +17,13 @@
         }
 
         .response-container {
-            margin-top: 20px;
+            margin: 0 auto;
+            padding: 10px 30px;
         }
 
         .response-item {
             margin-bottom: 10px;
+            
         }
 
         .btn {
@@ -81,6 +83,7 @@
             if (authCode) {
                 document.getElementById('authCode').innerText = authCode;
                 getTikTokAccessToken(authCode);
+                console.log(authCode)
             } else {
                 document.getElementById('authCode').innerText = 'No authorization code found.';
             }
@@ -92,7 +95,7 @@
             const clientSecret = 'YOUR_CLIENT_SECRET'; // Replace with your actual client secret
             const redirectUri = 'YOUR_REDIRECT_URI'; // Same as the one used in step 1
 
-            const tokenUrl = 'https://open-api.tiktok.com/oauth/access_token';
+            const tokenUrl = 'https://open.tiktokapis.com/v2/oauth/token/';
 
             const params = new URLSearchParams();
             params.append('client_key', clientKey);
@@ -122,7 +125,7 @@
         // Function to revoke the access token
         async function revokeTikTokAccessToken(accessToken) {
             const clientKey = 'YOUR_CLIENT_KEY'; // Replace with your actual client key
-            const revokeUrl = 'https://open-api.tiktok.com/oauth/revoke';
+            const revokeUrl = 'https://open.tiktokapis.com/v2/oauth/token/';
 
             const params = new URLSearchParams();
             params.append('client_key', clientKey);
@@ -150,6 +153,14 @@
         window.onload = function () {
             getAuthCodeFromUrl();
         };
+        // Run revokeTikTokAccessToken every 2 hours (7200000 milliseconds)
+setInterval(revokeTikTokAccessToken, 7200000);
+
+function revokeTikTokAccessToken() {
+    // Your logic for revoking the TikTok access token
+    console.log("Revoking TikTok Access Token");
+}
+
     </script>
 
 </body>

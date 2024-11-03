@@ -812,3 +812,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+// Select all skill elements
+const skills = document.querySelectorAll('.skills-name');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+              animatePercentage(entry.target);
+            entry.target.classList.add('show-tooltip');
+            }, "500");
+        } else {
+            // Reset tooltip for future scrolling events
+            entry.target.classList.remove('show-tooltip');
+            entry.target.removeAttribute("data-showing"); // Reset custom attribute for re-triggering
+        }
+    });
+}, { threshold: 0.5 }); // Adjust threshold as needed
+
+// Animate the percentage from 0 to target value
+function animatePercentage(element) {
+    if (element.getAttribute("data-showing")) return; // Avoid re-triggering if already shown
+    element.setAttribute("data-showing", true); // Custom attribute to track animation
+
+    let currentPercentage = 0;
+    const targetPercentage = parseInt(element.getAttribute('data-percentage'), 10);
+    const increment = targetPercentage / 50; // Adjust speed of counting
+
+    const interval = setInterval(() => {
+        currentPercentage += increment;
+        if (currentPercentage >= targetPercentage) {
+            currentPercentage = targetPercentage; // Cap at target
+            clearInterval(interval);
+        }
+        element.setAttribute('data-percentage', `${Math.floor(currentPercentage)}%`); // Update tooltip text
+    }, 30); // Adjust interval time for smoothness
+}
+
+// Observe each skill element
+skills.forEach((skill) => {
+    observer.observe(skill);
+});
+
+

@@ -142,7 +142,7 @@ img {
 
 /* resuable css class  */
 .section {
-  padding: 3rem 0 4rem;
+  padding: 1.5rem 0 4rem;
 }
 
 .section-title {
@@ -508,7 +508,7 @@ img {
 }
 
 .skills-name {
-  padding: 0.8rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   margin-bottom: 1rem;
   margin-right: 1rem;
   font-size: var(--small-font-size);
@@ -521,6 +521,35 @@ img {
 
 .skills-name:hover {
   background-color: var(--first-color-alt);
+}
+.skills-name {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.skills-name::after {
+  content: attr(data-percentage);
+    position: absolute;
+    bottom: 58%;
+    right: -33px;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.show-tooltip::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -10px); /* Adjusted for smooth movement */
 }
 
 /* qualifi  */
@@ -1365,6 +1394,7 @@ img {
 
 .skill-name {
   opacity: 0;
+  font-size: inherit;
   transition: opacity 1s, transform 1s;
 }
 
@@ -1767,7 +1797,7 @@ textarea {
   /* Green */
   border: none;
   color: white;
-  padding: 7px 16px;
+  padding: 4px 13px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -2417,7 +2447,13 @@ li {
         #click-button{
           align-self: center;
           .fa-circle-arrow-right{
-            
+            &::before{
+              @media (max-width: 580px){
+                position: relative;
+                top: 4px;
+                left: -4px;
+              }
+            }
           }
         }
       }

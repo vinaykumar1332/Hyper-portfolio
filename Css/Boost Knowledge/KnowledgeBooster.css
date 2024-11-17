@@ -456,7 +456,7 @@ body {
                 color: #713abe;
 
                 @media (max-width:480px) {
-                    font-size: 24px;
+                    font-size: 26px;
                 }
             }
 
@@ -475,7 +475,7 @@ body {
         display: flex;
         gap: 10px;
         margin-top: 10px;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
 
@@ -492,6 +492,30 @@ body {
             max-width: 300px;
             border-width: 1px soild #000;
         }
+
+        .search-text-drop {
+            span {
+                font-size: 18px;
+                font-weight: 500;
+                padding: 2px;
+                em {
+                    color: #713abe;
+                    font-style: italic;
+                    transition: all 0.3s ease;
+                }
+                @media (max-width: 480px) {
+                    font-size: 14px;
+                    font-weight: 600;
+                    padding: 1px;
+                    em {
+                        color: #713abe;
+                        font-style: italic;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        
 
         #no-results-message {
             color: #9C27B0;
@@ -529,12 +553,13 @@ body {
         overflow: hidden;
         cursor: pointer;
         transition: transform 0.2s;
+        border-color: #3f3f3f;
 
         /* margin-bottom: auto; */
         @media (max-width:480px) {
             margin-left: 17px;
             margin-right: 17px;
-            max-height: 300px;
+            max-height: 350px;
             margin-bottom: 0px;
         }
 
@@ -580,7 +605,47 @@ body {
                 object-fit: fill;
             }
         }
+
+        .like-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            border: none;
+            background: transparent;
+            padding: 0px;
+
+            .like-btn {
+                font-size: 20px;
+                color: #ccc;
+                /* Default (unliked) color */
+                transition: color 0.3s ease;
+            }
+
+            .like-btn.liked {
+                color: #e63946;
+                /* Red for liked */
+            }
+
+            .notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                background-color: #28a745;
+                color: white;
+                border-radius: 5px;
+                font-size: 14px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                display: none;
+                /* Hidden by default */
+            }
+        }
     }
+
 
     .card .content {
         padding: 15px;
@@ -593,6 +658,14 @@ body {
     .card h2 {
         font-size: 1.5em;
         margin-bottom: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        text-overflow: ellipsis;
+    }
+
+    .card p {
+        padding-bottom: 3px;
         white-space: nowrap;
         overflow: hidden;
         display: block;
@@ -619,61 +692,104 @@ body {
         }
     }
 
-    .card-p {
-        padding-bottom: 3px;
-        white-space: nowrap;
-        overflow: hidden;
-        display: block;
-        text-overflow: ellipsis;
+
+    .card-btn-container {
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width:680px) {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        @media (max-width:480px) {
+            justify-content: space-between;
+            flex-direction: row;
+            gap: 5px;
+        }
+
+        .view-btn,
+        .Download-pdf-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--nav-bg-color) 0%, #0073e6 100%);
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            /* Needed for pseudo-element positioning */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            overflow: hidden;
+            /* Hides any overflow from the pseudo-element border */
+
+
+            /* Animated Border */
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+                /* Match the button's border radius */
+                border: 2px solid #fff;
+                /* Border color */
+                opacity: 0;
+                transform: scale(1.2);
+                /* Scale up for the animation */
+                transition: opacity 0.3s ease, transform 0.3s ease;
+            }
+
+            /* Hover effects */
+            &:hover {
+                background: linear-gradient(135deg, #0073e6 0%, var(--nav-bg-color) 100%);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Hover effect for border animation */
+            &:hover::before {
+                opacity: 1;
+                transform: scale(1);
+                /* Scale down to align with button edges */
+            }
+
+            /* Active state */
+            &:active {
+                transform: translateY(1px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        /* Responsive font size */
+        @media (max-width: 988px) {
+
+            .view-btn,
+            .Download-pdf-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .view-btn,
+            .Download-pdf-btn {
+                font-size: 12px;
+                padding: 10px 18px;
+            }
+        }
     }
 
     /* Base button styling */
-    .view-btn {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        color: #fff;
-        background-color: var(--nav-bg-color);
-        /* Primary blue color */
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 
-    /* Hover state */
-    .view-btn:hover {
-        background-color: #0056b3;
-        /* Darker blue for hover */
-        transform: translateY(-3px);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Active/click state */
-    .view-btn:active {
-        background-color: #003d80;
-        /* Even darker blue for active state */
-        transform: translateY(0);
-        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Responsive font size */
-    @media (max-width: 768px) {
-        .view-btn {
-            font-size: 14px;
-            padding: 8px 16px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .view-btn {
-            font-size: 12px;
-            padding: 6px 12px;
-        }
-    }
 
 
     .card p {
@@ -696,7 +812,7 @@ body {
         height: 100%;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1280px) {
         .cardContainer {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -715,22 +831,53 @@ body {
         }
     }
 
-    .cardsResults {
-        p#cardCount {
-            position: relative;
-            color: #222;
-            font-weight: 600;
-            display: flex;
-            padding: 5px;
-            margin: 0px 0px 0px 30px;
-            top: 30px;
+    .result-sort-container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
 
-            @media (max-width:480px) {
-                padding: 20px 0px 5px 0px;
+        .cardsResults {
+            p#cardCount {
+                position: relative;
+                color: #222;
+                font-weight: 600;
+                display: flex;
+                padding: 5px;
+                margin: 0px 0px 0px 30px;
+                top: 30px;
+                max-width: max-content;
+
+                @media (max-width:480px) {
+                    padding: 20px 0px 5px 0px;
+                }
+
             }
-
         }
+
+        /* .sort-container-main{
+        .sort-container{
+            .fa-arrow-down-wide-short{
+                position: relative;
+            }
+            .sort-options {
+                appearance: none; 
+                width: 100%;
+                top: 25px;
+                left: -15px;
+                padding: 4px 20px;
+                font-size: 16px;
+                color: #333;
+                background-color: #fff;
+                outline: none;
+                position: relative;
+                cursor: pointer;
+                border: none;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+        }
+    } */
     }
+
 
     .loadmoreCotainer {
         position: relative;
@@ -803,20 +950,13 @@ body {
         #resetButton {
             padding: 8px 18px;
             font-size: 14px;
+            max-width: max-content;
+            position: relative;
+            left: 35%;
         }
     }
 
-    /* Responsive styles for mobile devices */
-    @media (max-width: 480px) {
-        #resetButton {
-            padding: 10px 18px;
-            font-size: 14px;
-            width: 100%;
-            max-width: max-content;
-            font-weight: 600;
-            align-self: center;
-        }
-    }
+
 
     /* Additional Animation on Click */
     @keyframes button-click {
@@ -969,20 +1109,21 @@ body {
 
         & .close-btn {
             position: absolute;
-            top: -1px;
-            right: 20px;
+            top: 23px;
+            right: 23px;
             font-size: 24px;
             cursor: pointer;
+            border-radius: 30px;
             color: #ffffff;
-            padding: 15px 7px 15px 7px;
-            background: transparent;
+            padding: 32px 15px 7px 8px;
+            background-color: #3f3f3f;
 
 
             i.fa-regular.fa-circle-xmark {
-                color: #ffffff;
+                color: cyan;
                 position: relative;
-                top: 20px;
-                left: -10px;
+                top: -11px;
+                left: 3px;
                 font-size: 30px;
 
                 &:hover {
@@ -1073,6 +1214,12 @@ select#filterOptions,
     max-width: -webkit-fill-available;
     width: 100%;
     border: 2px solid #5a2d9c;
+    border-radius: 10px;
+    font-weight: 600;
+
+    &:nth-child(1) {
+        font-weight: 650;
+    }
 }
 
 .search-container {
@@ -1088,21 +1235,8 @@ select#filterOptions,
     border-radius: 2px;
     outline: none;
     border: 2px solid #5a2d9c;
+    border-radius: 10px;
 }
-
-.search-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    font-size: 18px;
-    /* Adjust font size as needed */
-    color: #666;
-    pointer-events: none;
-    /* Prevent accidental clicks on the icon */
-
-}
-
 /*---filter correction---*/
 .files-container {
     div.search-drop-main {
@@ -1117,16 +1251,42 @@ select#filterOptions,
             position: relative;
             display: flex;
             align-items: center;
+            width: 420px;
 
             @media (max-width: 768px) {
                 flex-direction: column;
+                width: 100%;
+                max-width: 220px;
+
             }
 
-            & .search-bar {
+             .search-bar {
                 @media (max-width: 768px) {
                     max-width: 300px;
                     width: 250px;
                 }
+            }
+
+            .search-icon {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                font-size: 18px;
+                /* Adjust font size as needed */
+                color: #666;
+                pointer-events: none;
+                @media (max-width: 768px) {
+                    right: 1px;
+                }
+            }
+        }
+    }
+
+    .select-container {
+        #mainFilterOptions {
+            @media (min-width: 768px) {
+                width: 160px;
             }
         }
     }
@@ -1155,13 +1315,43 @@ select#filterOptions,
                 appearance: none;
                 background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23333' d='M10 12l5-5H5l5 5z'/%3E%3C/svg%3E");
                 background-repeat: no-repeat;
-                background-position: right 13px center;
-                background-position: top 30px;
-                background-size: 16px;
+                background-position: right 7px center;
+                /* Adjusted position */
+                background-size: 18px;
+                /* Reduced size for better appearance */
+                border: 1px solid #ddd;
+                /* Added border for better visibility */
+                border-radius: 4px;
+                /* Added border-radius for smoother edges */
                 transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+
+                &.open {
+                    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23333' d='M10 8l5 5H5l5-5z'/%3E%3C/svg%3E");
+                    /* Rotated icon */
+                    transform: rotate(180deg);
+                    /* Rotate the arrow icon */
+                    border-color: #aaa;
+                    /* Optional: Change border color on open */
+                    background-color: #f0f0f0;
+                    /* Optional: Change background color on open */
+                }
+
+                /* Hover state for better interactivity */
+                &:hover {
+                    border-color: #aaa;
+                    background-color: #f0f0f0;
+                    transform: scale(1.02);
+                    /* Slightly enlarges on hover */
+                }
 
                 @media (min-width: 768px) {
                     width: 250px;
+
+                }
+
+                @media (max-width: 768px) {
+                    background-size: 24px;
+
                 }
             }
 
@@ -1443,21 +1633,27 @@ select#filterOptions,
 
 /*-----Tictok----*/
 /* Container to center the button */
-.blog-main-container{
+.blog-main-container {
     display: flex;
     flex-direction: column;
-    .ticTok-container{
+
+    .ticTok-container {
         max-width: 100%;
-        .tictok-warpper{
+
+        .tictok-warpper {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 60vh;
-            .tictok-btn{
+
+            .tictok-btn {
                 background: #ffff;
-                border-radius: 8px; /* Optional: to round corners */
-                cursor: pointer; /* Make it look clickable */
-                transition: transform 0.2s ease; /* Add a hover effect */
+                border-radius: 8px;
+                /* Optional: to round corners */
+                cursor: pointer;
+                /* Make it look clickable */
+                transition: transform 0.2s ease;
+                /* Add a hover effect */
             }
         }
     }

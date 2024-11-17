@@ -16,6 +16,8 @@
         content="study files, coding questions, interview materials, React, Angular, HTML, CSS, JavaScript, jQuery, technology PDFs">
     <meta name="Vinay kumar pudi" content="Boost Your Knowledge">
     <meta name="google" content="nositelinkssearchbox">
+    <meta name="rating" content="safe for kids">
+    <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="../Css/Boost Knowledge/KnowledgeBooster.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -69,11 +71,14 @@
                     <div class="search-drop-main">
                         <div class="search-filter">
                             <div class="search-container">
-                                <input type="text" placeholder="Search PDFs..." class="search-bar"><i
+                                <input type="text" placeholder="Search for study materials..." class="search-bar"><i
                                     class="fa fa-search search-icon" aria-hidden="true"></i></input>
-
+                            </div>
+                            <div class="search-text-drop">
+                                <span>Use keywords or <em>select an option</em></span>
                             </div>
                             <div class="filter-container">
+                                <div class="select-container">
                                 <select title="select options" class="main-filter-options" id="mainFilterOptions">
                                     <option value="select">Select Category</option>
                                     <option value="frontend">Frontend</option>
@@ -82,17 +87,36 @@
                                     <option value="devops">DevOps</option>
                                     <option value="other">Other</option>
                                 </select>
-
-                                <select class="filter-options" id="filterOptions" style="display:none;">
-                                    <option value="all">Select Technology</option>
+                                </div>
+                                <div class="select-container">
+                                <select class="filter-options" id="filterOptions" style="display:none;">\
+        
+                                    <option value="all">Technology</option>
                                     <!-- Subcategory options will be populated here dynamically -->
+                                   
                                 </select>
+                                
+                                </div>
                                 <button id="resetButton" style="display:none;" title="Clear"><i class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
-                        <div class="cardsResults">
-                            <p id="cardCount"> Results: 0</p>
-                        </div>
+                        <section class="result-sort-container">
+                            <div class="cardsResults">
+                                <p id="cardCount"> Results: 0</p>
+                            </div>
+                            <!-- <div class="sort-container-main">
+                                <div class="sort-container">
+                                    <select title="select options" id="sortOptions" class="sort-options">
+                                        <option value="default">Sort By</option>
+                                        <option value="titleAsc">Title: A-Z</option>
+                                        <option value="titleDesc">Title: Z-A</option>
+                                        <option value="categoryAsc">Category: A-Z</option>
+                                        <option value="categoryDesc">Category: Z-A</option>
+                                    </select>
+                                </div>
+                                <i class="fa-solid fa-arrow-down-wide-short"></i>
+                            </div> -->
+                        </section>
                         <div id="results">
                             <p id="no-results-message" style="display: none;">"Oops! No <span class="resultsCategory"></span> files are available right now.</p>
                             <!-- Results will be displayed here -->

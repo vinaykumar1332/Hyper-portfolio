@@ -318,6 +318,42 @@
             "title": "Diffrent types of Loops in Javascript",
             "description": "Loops in Javascript",
             "category": "javascript"
+        },
+        "js-12": {
+            "url": "https://drive.google.com/file/d/1kWCZ9KpPTFTqojP5mN9r6VAUFzN9SHJ_/preview",
+            "title": "List 15+ most used array method in Javascript",
+            "description": "arrys in Javascript",
+            "category": "javascript"
+        },
+        "node-1": {
+            "url": "https://drive.google.com/file/d/1kUpQMhZF4h5S3cCN-NZExI-ROq7E--Gi/preview",
+            "title": "Node Js",
+            "description": "Node Js HandBook",
+            "category": "Nodejs"
+        },
+        "sql-7": {
+            "url": "https://drive.google.com/file/d/12LVTpqHKNQWNpn7iG2WODjpk6No4eXKW/preview",
+            "title": "DBMS",
+            "description": "DBMS interview questions",
+            "category": "sql"
+        },
+        "docker-1":{
+            "url":"https://drive.google.com/file/d/1m5ktovTm1CXpat32E_qiQPLn-frc-spl/preview",
+            "title": "Docker",
+            "description": "What is Docker",
+            "category": "docker"
+        },
+        "angular-1":{
+            "url":"https://drive.google.com/file/d/1mKgwDdAicXPw8XABRl5vej_5wlsynr_-/preview",
+            "title": "Learning Angular",
+            "description": "O REILLY",
+            "category": "angular"
+        },
+        "angular-2":{
+            "url":"https://drive.google.com/file/d/1mEMHeLxUmn9RgBwmGmT6R-feCHsI9W4J/preview",
+            "title": "Learn Angular",
+            "description": "Tutorial Point",
+            "category": "angular"
         }
     }
 }

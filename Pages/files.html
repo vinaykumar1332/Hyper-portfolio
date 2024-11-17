@@ -79,46 +79,47 @@
                             </div>
                             <div class="filter-container">
                                 <div class="select-container">
-                                <select title="select options" class="main-filter-options" id="mainFilterOptions">
-                                    <option value="select">Select Category</option>
-                                    <option value="frontend">Frontend</option>
-                                    <option value="backend">Backend</option>
-                                    <option value="database">Database</option>
-                                    <option value="devops">DevOps</option>
-                                    <option value="other">Other</option>
-                                </select>
+                                    <select title="select options" class="main-filter-options" id="mainFilterOptions">
+                                        <option value="select">Select Category</option>
+                                        <option value="frontend">Frontend</option>
+                                        <option value="backend">Backend</option>
+                                        <option value="database">Database</option>
+                                        <option value="devops">DevOps</option>
+                                        <option value="other">Other</option>
+                                    </select>
                                 </div>
                                 <div class="select-container">
-                                <select class="filter-options" id="filterOptions" style="display:none;">\
-        
-                                    <option value="all">Technology</option>
-                                    <!-- Subcategory options will be populated here dynamically -->
-                                   
-                                </select>
-                                
+                                    <select class="filter-options" id="filterOptions" style="display:none;">\
+
+                                        <option value="all">Technology</option>
+                                        <!-- Subcategory options will be populated here dynamically -->
+
+                                    </select>
+
                                 </div>
-                                <button id="resetButton" style="display:none;" title="Clear"><i class="fa-solid fa-x"></i></button>
+                                <button id="resetButton" style="display:none;" title="Clear"><i
+                                        class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
                         <section class="result-sort-container">
                             <div class="cardsResults">
                                 <p id="cardCount"> Results: 0</p>
                             </div>
-                            <!-- <div class="sort-container-main">
+                            <div class="sort-container-main">
                                 <div class="sort-container">
+                                    <span><i class="fa-solid fa-arrow-down-wide-short sort-icon"></i></span>
                                     <select title="select options" id="sortOptions" class="sort-options">
-                                        <option value="default">Sort By</option>
                                         <option value="titleAsc">Title: A-Z</option>
                                         <option value="titleDesc">Title: Z-A</option>
-                                        <option value="categoryAsc">Category: A-Z</option>
-                                        <option value="categoryDesc">Category: Z-A</option>
+                                        <option value="newest">Newest</option>
+                                        <option value="popular">Popular</option>
                                     </select>
                                 </div>
-                                <i class="fa-solid fa-arrow-down-wide-short"></i>
-                            </div> -->
+                            </div>
                         </section>
                         <div id="results">
-                            <p id="no-results-message" style="display: none;">"Oops! No <span class="resultsCategory"></span> files are available right now.</p>
+                            <p id="no-results-message" style="display: none;">"Oops! No <span
+                                    class="resultsCategory"></span> files are available right now.</p>
                             <!-- Results will be displayed here -->
                         </div>
                 </header>
@@ -177,7 +178,7 @@
             </footer>
         </section>
         <!-- <script src="../Libraries/knowleged_min_file.js"></script> -->
-         <script src="../Libraries/KnowledgeBooster.js"></script>
+        <script src="../Libraries/KnowledgeBooster.js"></script>
         <script src="../Libraries/pdfFiles.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -208,11 +209,11 @@
                 });
             });
 
-//             document.addEventListener('DOMContentLoaded',function(){
-//     document.addEventListener('contextmenu', (event) => {
-//     event.preventDefault();
-//   });
-// });
+            //             document.addEventListener('DOMContentLoaded',function(){
+            //     document.addEventListener('contextmenu', (event) => {
+            //     event.preventDefault();
+            //   });
+            // });
 
         </script>
     </main>

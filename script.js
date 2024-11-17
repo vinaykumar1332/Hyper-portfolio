@@ -854,3 +854,5 @@ skills.forEach((skill) => {
     observer.observe(skill);
 });
 
+
+

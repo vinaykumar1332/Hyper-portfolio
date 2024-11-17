@@ -96,7 +96,6 @@ function createCard(id, { title, description, category }) {
     card.classList.add('card');
     card.setAttribute('data-id', id);
     card.setAttribute('data-category', category);
-    imageLoadOnCategory();
     card.innerHTML = `
        <div class="card-image-wrapper">
         <img src="" data-src="../Assets/images/${category}.jpg" class="lazy-load" alt="${title}">
@@ -115,6 +114,7 @@ function createCard(id, { title, description, category }) {
         </div>
     `;
     return card;
+    
 }
 
 // Function to populate cards
@@ -132,26 +132,28 @@ function populateCards() {
     Object.entries(pdfData).forEach(([id, data]) => {
         const card = createCard(id, data);
         const viewButton = card.querySelector('.view-btn');
-        const downloadButton = card.querySelector('.Download-pdf-btn')
+        const downloadButton = card.querySelector('.Download-pdf-btn');
         if (viewButton) {
             viewButton.addEventListener('click', (event) => {
-                event.stopPropagation(); 
+                event.stopPropagation();
                 openPDF(id);
             });
         }
         if(downloadButton){
-            downloadButton.addEventListener('click', (event) =>{
+            downloadButton.addEventListener('click', (event) => {
                 event.stopPropagation();
                 downloadPDfUrl(id);
-            })
+            });
         }
         cardContainer.appendChild(card);
     });
     console.log('Cards populated successfully.');
     shuffleCards();
     lazyLoadInstance();
+    imageLoadOnCategory();  // Call once after all cards are populated
     filterCards();
 }
+
 
 
 
@@ -266,134 +268,64 @@ document.addEventListener('DOMContentLoaded', function () {
         cards.forEach(card => {
             card.style.display = 'block'; // Ensure all cards are displayed
         });
-    });
-    resetButton.addEventListener('click', function () {
         const baseUrl = window.location.origin + window.location.pathname;
         window.history.pushState({ path: baseUrl }, '', baseUrl);
-        location.reload(true); 
-        clearLocalStorageData();
+        location.reload(true); // Reload the page
+        clearLocalStorageData(); // Clear the local storage data
     });
+    
 });
 // //sort
-// document.addEventListener('DOMContentLoaded', function () {
-//     const sortOptions = document.getElementById('sortOptions');
-//     const cardContainer = document.getElementById('cardContainer');
-
-//     // Function to sort cards
-//     sortOptions.addEventListener('change', function () {
-//         const sortBy = this.value;
-//         let sortedData;
-
-//         switch (sortBy) {
-//             case 'titleAsc':
-//                 sortedData = Object.entries(pdfData).sort((a, b) =>
-//                     a[1].title.localeCompare(b[1].title)
-//                 );
-//                 break;
-//             case 'titleDesc':
-//                 sortedData = Object.entries(pdfData).sort((a, b) =>
-//                     b[1].title.localeCompare(a[1].title)
-//                 );
-//                 break;
-//             case 'categoryAsc':
-//                 sortedData = Object.entries(pdfData).sort((a, b) =>
-//                     a[1].category.localeCompare(b[1].category)
-//                 );
-//                 break;
-//             case 'categoryDesc':
-//                 sortedData = Object.entries(pdfData).sort((a, b) =>
-//                     b[1].category.localeCompare(a[1].category)
-//                 );
-//                 break;
-//             default:
-//                 // Default sorting logic (e.g., original order)
-//                 sortedData = Object.entries(pdfData);
-//                 break;
-//         }
-
-//         // Repopulate cards with sorted data
-//         cardContainer.innerHTML = ''; // Clear the existing cards
-//         sortedData.forEach(([id, data]) => {
-//             const card = createCard(id, data);
-//             cardContainer.appendChild(card);
-//         });
-//         lazyLoadInstance();
-//         filterCards();
-//         imageLoadOnCategory();
-//         console.log('Cards sorted by:', sortBy);
-
-//     });
-// }
 document.addEventListener('DOMContentLoaded', function () {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    document.body.appendChild(notification);
+    const sortOptions = document.getElementById('sortOptions');
+    const cardContainer = document.getElementById('cardContainer');
 
-    // Get all card elements
-    const cards = document.querySelectorAll('.card');
+    // Function to sort cards
+    sortOptions.addEventListener('change', function () {
+        const sortBy = this.value;
+        let sortedData;
 
-    // Convert NodeList to an array and randomly select 15 cards
-    const cardsArray = Array.from(cards);
-    const randomCards = getRandomCards(cardsArray, 15); // Get 15 random cards
-
-    // Add the 'liked' class to 15 random cards
-    randomCards.forEach(card => {
-        const likeBtn = card.querySelector('.like-btn');
-        if (likeBtn) {
-            likeBtn.classList.add('liked');  // Mark the card as liked
+        switch (sortBy) {
+            case 'titleAsc':
+                sortedData = Object.entries(pdfData).sort((a, b) =>
+                    a[1].title.localeCompare(b[1].title)
+                );
+                break;
+            case 'titleDesc':
+                sortedData = Object.entries(pdfData).sort((a, b) =>
+                    b[1].title.localeCompare(a[1].title)
+                );
+                break;
+                case 'newest':
+                sortedData = Object.entries(pdfData).sort((a, b) =>
+                    new Date(b[1].date) - new Date(a[1].date) // Assuming `date` is a property
+                );
+                break;
+            case 'popular':
+                sortedData = Object.entries(pdfData).sort((a, b) =>
+                    b[1].popularity - a[1].popularity // Assuming `popularity` is a property
+                );
+                break;
+            default:
+                // Default sorting logic (e.g., original order)
+                sortedData = Object.entries(pdfData);
+                break;
         }
-    });
 
-    // Initialize like buttons with event delegation
-    cards.forEach(card => {
-        const likeButton = card.querySelector('button');
-
-        // Check if the button exists
-        if (!likeButton) {
-            console.log('Like button not found!');
-            return;
-        }
-
-        // Handle click event using event delegation
-        likeButton.addEventListener('click', function (event) {
-            const likeBtn = card.querySelector('.like-btn');  // The heart icon button
-
-            console.log('Like button clicked!');
-
-            // If already liked, unlike the card
-            if (likeBtn.classList.contains('liked')) {
-                likeBtn.classList.remove('liked');
-                console.log('Card unliked');
-            } else {
-                // Like the card
-                likeBtn.classList.add('liked');
-                console.log('Card liked');
-                // Show thank-you notification
-                showNotification('Thank you for liking!');
-            }
+        // Repopulate cards with sorted data
+        cardContainer.innerHTML = ''; // Clear the existing cards
+        sortedData.forEach(([id, data]) => {
+            const card = createCard(id, data);
+            cardContainer.appendChild(card);
         });
+        lazyLoadInstance();
+        filterCards();
+        imageLoadOnCategory();
+        populateCards();
+        console.log('Cards sorted by:', sortBy);
+
     });
-
-    // Function to show notification
-    function showNotification(message) {
-        notification.textContent = message;
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 2000); // Hide after 2 seconds
-    }
-
-    // Function to get random cards
-    function getRandomCards(cardsArray, count) {
-        let result = [];
-        let shuffled = cardsArray.sort(() => 0.5 - Math.random()); // Shuffle the cards
-        result = shuffled.slice(0, count); // Get the first 'count' cards (15 in this case)
-        return result;
-    }
 });
-
-
-
 // Function to set the PDF URL in the iframe and show the overlay
 function openPDF(fileId) {
     const pdfUrl = pdfData[fileId]?.url;
@@ -674,4 +606,128 @@ document.querySelectorAll('.main-filter-options, .filter-options').forEach((drop
     dropdown.addEventListener('click', function () {
         this.classList.toggle('open');
     });
+});
+//likes 
+document.addEventListener('DOMContentLoaded', function () {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    document.body.appendChild(notification);
+
+    // Get all card elements
+    const cards = document.querySelectorAll('.card');
+
+    // Convert NodeList to an array and randomly select 15 cards
+    const cardsArray = Array.from(cards);
+    const randomCards = getRandomCards(cardsArray, 15); // Get 15 random cards
+
+    // Add the 'liked' class to 15 random cards
+    randomCards.forEach(card => {
+        const likeBtn = card.querySelector('.like-btn');
+        if (likeBtn) {
+            likeBtn.classList.add('liked');  // Mark the card as liked
+        }
+    });
+
+    // Initialize like buttons with event delegation
+    cards.forEach(card => {
+        const likeButton = card.querySelector('button');
+
+        // Check if the button exists
+        if (!likeButton) {
+            console.log('Like button not found!');
+            return;
+        }
+
+        // Handle click event using event delegation
+        likeButton.addEventListener('click', function (event) {
+            const likeBtn = card.querySelector('.like-btn');  // The heart icon button
+
+            console.log('Like button clicked!');
+
+            // If already liked, unlike the card
+            if (likeBtn.classList.contains('liked')) {
+                likeBtn.classList.remove('liked');
+                console.log('Card unliked');
+            } else {
+                // Like the card
+                likeBtn.classList.add('liked');
+                console.log('Card liked');
+                // Show thank-you notification
+                showNotification('Thank you for liking!');
+            }
+        });
+    });
+
+    // Function to show notification
+    function showNotification(message) {
+        notification.textContent = message;
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 2000); // Hide after 2 seconds
+    }
+
+    // Function to get random cards
+    function getRandomCards(cardsArray, count) {
+        let result = [];
+        let shuffled = cardsArray.sort(() => 0.5 - Math.random()); // Shuffle the cards
+        result = shuffled.slice(0, count); // Get the first 'count' cards (15 in this case)
+        return result;
+    }
+});
+
+
+let loadedCards = 0; // Keep track of loaded cards
+const totalCards = Object.keys(pdfData).length; // Total number of cards
+const cardContainer = document.getElementById('cardContainer');
+const preloaderContainer = document.getElementById('preloader-container');
+
+// Function to load a batch of cards based on screen size
+function loadMoreCards() {
+    const cardsToLoad = window.innerWidth <= 768 ? 6 : 12; // 6 for mobile, 12 for desktop
+    const nextBatch = Math.min(loadedCards + cardsToLoad, totalCards); // Avoid exceeding total cards
+
+    for (let i = loadedCards; i < nextBatch; i++) {
+        const card = createCard(i, pdfData[i]);
+        const viewButton = card.querySelector('.view-btn');
+        const downloadButton = card.querySelector('.Download-pdf-btn');
+        
+        if (viewButton) {
+            viewButton.addEventListener('click', (event) => {
+                event.stopPropagation(); 
+                openPDF(i);
+            });
+        }
+        if (downloadButton) {
+            downloadButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                downloadPDfUrl(i);
+            });
+        }
+        cardContainer.appendChild(card);
+    }
+
+    loadedCards = nextBatch; // Update the number of loaded cards
+    if (loadedCards >= totalCards) {
+        window.removeEventListener('scroll', handleScroll); // No need to load more cards
+        preloaderContainer.style.display = 'none'; // Hide preloader when done
+    }
+}
+
+// Scroll event handler to detect when the user reaches the bottom
+function handleScroll() {
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const bottomPosition = document.documentElement.scrollHeight;
+
+    if (scrollPosition >= bottomPosition - 200 && loadedCards < totalCards) {
+        // Show preloader when near bottom of page
+        preloaderContainer.style.display = 'block';
+        loadMoreCards(); // Load the next batch of cards
+    }
+}
+
+// Initial loading of cards when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadMoreCards(); // Load initial batch
+    window.addEventListener('scroll', handleScroll); // Add scroll event listener
 });

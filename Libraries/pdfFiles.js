@@ -153,10 +153,6 @@ function populateCards() {
     imageLoadOnCategory();  // Call once after all cards are populated
     filterCards();
 }
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const mainFilterOptions = document.getElementById('mainFilterOptions');
     const filterOptions = document.getElementById('filterOptions');
@@ -234,9 +230,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(newUrl);
         return newUrl;
     }
-    
-    
-  
     filterOptions.addEventListener('change', function () {
         const selectedSubcategory = this.value;
         console.log(selectedSubcategory);
@@ -275,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
 });
-// //sort
+// sort by functionlaity
 document.addEventListener('DOMContentLoaded', function () {
     const sortOptions = document.getElementById('sortOptions');
     const cardContainer = document.getElementById('cardContainer');
@@ -731,3 +724,24 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMoreCards(); // Load initial batch
     window.addEventListener('scroll', handleScroll); // Add scroll event listener
 });
+//scroll to top
+// Get the button element
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+// Show or hide the button based on scroll position
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollToTopBtn.style.display = 'block';
+    } else {
+        scrollToTopBtn.style.display = 'none';
+    }
+});
+
+// Scroll to the top smoothly when button is clicked
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+

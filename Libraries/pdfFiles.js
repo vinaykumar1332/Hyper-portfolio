@@ -19,7 +19,6 @@ if (localStorage.getItem('pdfData')) {
             pdfData = data.pdfFilesData; // Access the pdfFilesData object
             console.log('Fetched Data:', pdfData);
             const totalKeys = Object.keys(pdfData).length;
-            console.log(`Total number of entries: ${totalKeys}`);
             localStorage.setItem('pdfData', JSON.stringify(pdfData));
             populateCards();
         })
@@ -61,7 +60,6 @@ function imageLoadOnCategory() {
             const imagePath = imagePaths[category];
             img.setAttribute('data-src', imagePath);
         } else {
-            console.error(`Image path not found for category: ${category}`);
         }
     });
     // Optional: Initialize lazy loading if you're using a lazy loading library
@@ -265,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.history.pushState({ path: baseUrl }, '', baseUrl);
         location.reload(true); // Reload the page
         clearLocalStorageData(); // Clear the local storage data
+        window.checkLikedCards('likedCards', 'liked');
     });
     
 });
@@ -456,7 +455,7 @@ function filterCards() {
     });
 
     cardCount.innerHTML = ` Results: ${visibleCardCount}`;
-
+    const sortOptions = document.querySelector('.sort-container-main');
     const noResultsCont = document.querySelector('#results');
     const noResultsMsg = noResultsCont.querySelector('#no-results-message');
 
@@ -464,12 +463,14 @@ function filterCards() {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'block';
             noResultsCont.style.display = 'block';
+            sortOptions.style.display="none";
 
         }
     } else {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'none';
             noResultsCont.style.display = 'none';
+            sortOptions.style.display="block";
         }
     }
 }
@@ -601,77 +602,64 @@ document.querySelectorAll('.main-filter-options, .filter-options').forEach((drop
     });
 });
 //likes 
-document.addEventListener('DOMContentLoaded', function () {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    document.body.appendChild(notification);
+document.addEventListener('DOMContentLoaded', () => {
+    const maxLikes = 10; // Maximum number of likes allowed
+    const likedCards = new Set(JSON.parse(localStorage.getItem('likedCards')) || []); // Load from localStorage
 
-    // Get all card elements
-    const cards = document.querySelectorAll('.card');
+    // Function to update the like state in the UI
+    const updateLikeState = () => {
+        document.querySelectorAll('.card').forEach((card) => {
+            const cardId = card.getAttribute('data-id'); // Use data-id as the unique identifier
+            const likeBtn = card.querySelector('.like-btn'); // Like button inside the card
 
-    // Convert NodeList to an array and randomly select 15 cards
-    const cardsArray = Array.from(cards);
-    const randomCards = getRandomCards(cardsArray, 15); // Get 15 random cards
-
-    // Add the 'liked' class to 15 random cards
-    randomCards.forEach(card => {
-        const likeBtn = card.querySelector('.like-btn');
-        if (likeBtn) {
-            likeBtn.classList.add('liked');  // Mark the card as liked
-        }
-    });
-
-    // Initialize like buttons with event delegation
-    cards.forEach(card => {
-        const likeButton = card.querySelector('button');
-
-        // Check if the button exists
-        if (!likeButton) {
-            console.log('Like button not found!');
-            return;
-        }
-
-        // Handle click event using event delegation
-        likeButton.addEventListener('click', function (event) {
-            const likeBtn = card.querySelector('.like-btn');  // The heart icon button
-
-            console.log('Like button clicked!');
-
-            // If already liked, unlike the card
-            if (likeBtn.classList.contains('liked')) {
-                likeBtn.classList.remove('liked');
-                console.log('Card unliked');
+            if (likedCards.has(cardId)) {
+                likeBtn.classList.add('liked'); // Add liked class
             } else {
-                // Like the card
-                likeBtn.classList.add('liked');
-                console.log('Card liked');
-                // Show thank-you notification
-                showNotification('Thank you for liking!');
+                likeBtn.classList.remove('liked'); // Remove liked class
             }
         });
+    };
+
+    // Function to handle the like action
+    const handleLike = (button) => {
+        const card = button.closest('.card'); // Find the parent card
+        const cardId = card.getAttribute('data-id'); // Get the card's unique ID
+
+        if (likedCards.has(cardId)) {
+            likedCards.delete(cardId); // Remove the card ID from the set
+        } else {
+            if (likedCards.size >= maxLikes) {
+                showToast("You can have reached the maximum number of likes");
+                return;
+            }
+            likedCards.add(cardId); // Add the card ID to the set
+        }
+        localStorage.setItem('likedCards', JSON.stringify([...likedCards]));
+        updateLikeState();
+    };
+
+    const checkLikedCards = (storageKey, targetClass) => {
+        const storedLikedCards = JSON.parse(localStorage.getItem(storageKey)) || [];
+        document.querySelectorAll('[data-id]').forEach((element) => {
+            const dataId = element.getAttribute('data-id');
+            if (storedLikedCards.includes(dataId)) {
+                element.classList.add(targetClass); 
+            } else {
+
+            }
+        });
+    };
+    document.body.addEventListener('click', (e) => {
+        if (e.target.classList.contains('like-btn')) {
+            handleLike(e.target);
+        }
     });
-
-    // Function to show notification
-    function showNotification(message) {
-        notification.textContent = message;
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 2000); // Hide after 2 seconds
-    }
-
-    // Function to get random cards
-    function getRandomCards(cardsArray, count) {
-        let result = [];
-        let shuffled = cardsArray.sort(() => 0.5 - Math.random()); // Shuffle the cards
-        result = shuffled.slice(0, count); // Get the first 'count' cards (15 in this case)
-        return result;
-    }
+    updateLikeState();
+    window.checkLikedCards = checkLikedCards;
 });
 
-
-let loadedCards = 0; // Keep track of loaded cards
-const totalCards = Object.keys(pdfData).length; // Total number of cards
+let loadedCards = 0; 
+const totalCards = Object.keys(pdfData).length; 
 const cardContainer = document.getElementById('cardContainer');
 const preloaderContainer = document.getElementById('preloader-container');
 

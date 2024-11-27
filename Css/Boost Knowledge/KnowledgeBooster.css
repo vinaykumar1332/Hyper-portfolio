@@ -31,6 +31,10 @@ body {
     color: var(--nav-text-color);
     transition: background-color 0.3s, color 0.3s;
 }
+:root{
+   --font-family:var('Poppins', sans-serif)  
+    
+}
 
 /*-----Generic---*/
 /* styles.css */
@@ -50,12 +54,12 @@ body {
 
 #toast-container {
     position: fixed;
-    top: 30px;
-    /* Increased top padding for better visibility */
-    right: 40px;
-    z-index: 9999;
-    border-radius: 10px;
-}
+    top: 10%;
+    left: auto;
+    right: 5px;
+    max-width: 320px;
+    width: 100%;
+
 
 .toast {
     border-radius: 10px;
@@ -71,20 +75,17 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     width: 100%;
-    /* Adjust width as needed */
-    max-width: 600px;
-    /* Set a maximum width */
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    max-width: 100%;
 
     /* Simpler font family */
     &.show {
         background-color: #2980b9;
         /* Moderate blue background */
         color: #ffffff;
-        /* White text color for contrast */
-        font-size: 18px;
-        font-weight: 700;
+        font-weight: 500;
         opacity: 1;
+        display: flex;
+        flex-direction: column;
     }
 
     .toast-back {
@@ -98,12 +99,10 @@ body {
     }
 
     .toast-message {
-        flex-grow: 1;
-        overflow: hidden;
-        /* Ensure text doesn't overflow */
-        text-overflow: ellipsis;
-        white-space: nowrap;
         font-size: 16px;
+        font-family: inherit;
+        display: flex;
+        text-align: center;
     }
 
     .progress-bar {
@@ -120,8 +119,7 @@ body {
 
     .progress-bar-fill {
         height: 100%;
-        background-color: #29c692;
-        /* Green color for better contrast */
+        background: var(--nav-hover-text-color);
         width: 0%;
     }
 
@@ -139,7 +137,7 @@ body {
         }
     }
 }
-
+}
 /*----navigation-conatiner---*/
 .Navigation-container {
     padding: 0px;
@@ -614,24 +612,51 @@ body {
             top: 10px;
             right: 10px;
             cursor: pointer;
+            
             button {
                 border: none;
                 background: transparent;
                 padding: 0px;
-
+                
                 .like-btn {
-                    font-size: 20px;
+                    font-size: 24px; /* Slightly larger size for better visibility */
                     color: #ccc;
+                    transition: all 0.3s ease; /* Smooth transition for all properties */
                     animation: pulseLike 0.6s ease-in-out;
+                    transform-origin: center;
+                    @media (max-width:480px) {
+                        font-size: 18px;
+                    }
                 }
-               
+                
                 .like-btn.liked {
-                    color: #e63946;
-                    /* Red for liked */
+                    color: #e63946; /* Red for liked */
+                    transform: scale(1.2); /* Slightly grow the icon */
+                    animation: fillHeart 0.3s ease-in-out; /* Animation for fill effect */
                 }
-
+        
+                /* Hover animation for a more dynamic feel */
+                .like-btn:hover {
+                    transform: scale(1.3); /* Increase size on hover */
+                    color: #ff5c8d; /* Light pinkish color for hover */
+                    transition: transform 0.2s ease, color 0.2s ease;
+                }
             }
         }
+        
+        /* Animation for the pulsing effect */
+        @keyframes pulseLike {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
     }
     
 
@@ -852,9 +877,11 @@ body {
                 display: flex;
                 align-items: center;
                 padding: 10px 15px;
+                position: relative;
+                top: 0px;
 
                 span {
-                    i.sort-icon {
+                    i.fa-sort {
                         position: relative;
                         top: 38px;
                         left: 27px;
@@ -938,6 +965,17 @@ body {
 
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes fillHeart {
+    0% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
     }
 }
 

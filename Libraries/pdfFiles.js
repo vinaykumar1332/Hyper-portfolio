@@ -106,7 +106,7 @@ function createCard(id, { title, description, category }) {
             <button class="Download-pdf-btn">Download <i class="fa-solid fa-download"></i></button>
             </div>  
               <div class="like-container">
-              <button>
+              <button role="button">
               <i class="fa fa-heart like-btn" aria-hidden="true"></i></button>
         </div>
         </div>
@@ -637,25 +637,29 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('likedCards', JSON.stringify([...likedCards]));
         updateLikeState();
     };
-
-    const checkLikedCards = (storageKey, targetClass) => {
-        const storedLikedCards = JSON.parse(localStorage.getItem(storageKey)) || [];
-        document.querySelectorAll('[data-id]').forEach((element) => {
-            const dataId = element.getAttribute('data-id');
-            if (storedLikedCards.includes(dataId)) {
-                element.classList.add(targetClass); 
-            } else {
-
-            }
-        });
-    };
+    window.addEventListener('load', function () {
+        const checkLikedCards = (storageKey, targetClass) => {
+            const storedLikedCards = JSON.parse(localStorage.getItem(storageKey)) || [];
+            document.querySelectorAll('[data-id]').forEach((element) => {
+                const dataId = element.getAttribute('data-id');
+                if (storedLikedCards.includes(dataId)) {
+                    element.classList.add(targetClass); 
+                    console("likes add");
+                } else {
+    
+                }
+            });
+        };
+        updateLikeState();
+        window.checkLikedCards = checkLikedCards;
+      })
+      
     document.body.addEventListener('click', (e) => {
         if (e.target.classList.contains('like-btn')) {
             handleLike(e.target);
         }
     });
-    updateLikeState();
-    window.checkLikedCards = checkLikedCards;
+  
 });
 
 let loadedCards = 0; 

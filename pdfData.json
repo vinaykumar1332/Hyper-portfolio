@@ -301,6 +301,12 @@
             "description": "Manual Testing",
             "category": "testing"
         },
+        "testing-2": {
+            "url": "https://drive.google.com/file/d/1HUYylEJ1rb16fQzeLdw9T_MiXRwFpv0L/preview",
+            "title": "The Automated",
+            "description": "Automated text book",
+            "category": "testing"
+        },
         "js-9": {
             "url": "https://drive.google.com/file/d/1213cQKmdRubIXVdkMcXUCIgHovYOK4bl/preview",
             "title": "Cookies",

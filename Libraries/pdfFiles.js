@@ -1,71 +1,30 @@
-// JSON data for PDF links and card details
-const dataApi = '../pdfData.json';
+const dataApi = 'https://api.jsonbin.io/v3/b/6770c6bdacd3cb34a8c0e413/latest'; // Use the correct endpoint
+const apiKey = '$2a$10$usr7CFwnNJEbmm9wmLSiY.Sb5okVepyvx6vbKma7qdBPp5MLqVChi'; // Replace <API_KEY> with your actual JSONBin API key
 let pdfData;
-if (localStorage.getItem('pdfData')) {
-    pdfData = JSON.parse(localStorage.getItem('pdfData'));
-    console.log('Loaded data from local storage:', pdfData);
-    const totalKeys = Object.keys(pdfData).length;
-    console.log(`Total number of entries: ${totalKeys}`);
-    populateCards();
-} else {
-    fetch(dataApi)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            pdfData = data.pdfFilesData; // Access the pdfFilesData object
-            console.log('Fetched Data:', pdfData);
-            const totalKeys = Object.keys(pdfData).length;
-            localStorage.setItem('pdfData', JSON.stringify(pdfData));
-            populateCards();
-        })
-        .catch(error => console.error('Error fetching data:', error));
-}
 
-// Clear local storage (optional function to clear when needed)
-function clearLocalStorageData() {
-    localStorage.removeItem('pdfData');
-    console.log('Local storage cleared');
-}
-
-
-function imageLoadOnCategory() {
-    const cards = document.querySelectorAll('.card');
-    const imagePaths = {
-        html: '../Assets/images/html-css.jpg',
-        javascript: '../Assets/images/javascript.jpeg',
-        react: '../Assets/images/react.png',
-        dsa: '../Assets/images/dsa.jpeg',
-        sql: '../Assets/images/sql.png',
-        python: '../Assets/images/python.png',
-        mongodb: '../Assets/images/mongodb.jpeg',
-        git: '../Assets/images/Git&Github.png',
-        sysdesign: '../Assets/images/system design.jfif',
-        testing: '../Assets/images/testing.png',
-        Nodejs: '../Assets/images/node-js.webp',
-        angular:'../Assets/images/angularjs.png',
-        docker:'../Assets/images/docker.png'
-
-        // Add other categories and their corresponding image paths here
-    };
-
-    cards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        const img = card.querySelector('img.lazy-load');
-
-        if (imagePaths[category]) {
-            const imagePath = imagePaths[category];
-            img.setAttribute('data-src', imagePath);
-        } else {
+// Fetch data from JSONBin API
+fetch(dataApi, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': apiKey,
+    },
+})
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    });
-    // Optional: Initialize lazy loading if you're using a lazy loading library
-};
-
-
+        return response.json();
+    })
+    .then(data => {
+        pdfData = data.record.pdfFilesData;
+        console.log('Fetched Data:', pdfData);
+        const totalKeys = Object.keys(pdfData).length;
+        console.log(`Total number of entries: ${totalKeys}`);
+        populateCards();
+        loadMoreCards();
+    })
+    .catch(error => console.error('Error fetching data:', error));
 // Function to shuffle cards
 function shuffleCards() {
     const cardContainer = document.getElementById('cardContainer');
@@ -96,7 +55,7 @@ function createCard(id, { title, description, category }) {
     card.setAttribute('data-category', category);
     card.innerHTML = `
        <div class="card-image-wrapper">
-        <img src="" data-src="../Assets/images/${category}.jpg" class="lazy-load" alt="${title}">
+        <img src="" data-src="../Assets/images/${category}.jpg" class="lazy-load" alt="${title}"  width="600" height="400" style="aspect-ratio: 3 / 2;">
         </div>
         <div class="content">
             <h2 class="card-h2">${title}</h2>
@@ -106,13 +65,13 @@ function createCard(id, { title, description, category }) {
             <button class="Download-pdf-btn">Download <i class="fa-solid fa-download"></i></button>
             </div>  
               <div class="like-container">
-              <button role="button">
+              <button role="button" aria-label="Like button">
               <i class="fa fa-heart like-btn" aria-hidden="true"></i></button>
         </div>
         </div>
     `;
     return card;
-    
+
 }
 
 // Function to populate cards
@@ -137,7 +96,7 @@ function populateCards() {
                 openPDF(id);
             });
         }
-        if(downloadButton){
+        if (downloadButton) {
             downloadButton.addEventListener('click', (event) => {
                 event.stopPropagation();
                 downloadPDfUrl(id);
@@ -151,6 +110,7 @@ function populateCards() {
     imageLoadOnCategory();  // Call once after all cards are populated
     filterCards();
 }
+
 document.addEventListener('DOMContentLoaded', function () {
     const mainFilterOptions = document.getElementById('mainFilterOptions');
     const filterOptions = document.getElementById('filterOptions');
@@ -198,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.style.display = 'none';
             }
         });
-       
+
         filterOptions.innerHTML = '<option value="all">Select Technology</option>';
         if (subcategories[selectedCategory]) {
             subcategories[selectedCategory].forEach(subcategory => {
@@ -265,8 +225,42 @@ document.addEventListener('DOMContentLoaded', function () {
         clearLocalStorageData(); // Clear the local storage data
         window.checkLikedCards('likedCards', 'liked');
     });
-    
+
 });
+//images load
+function imageLoadOnCategory() {
+    const cards = document.querySelectorAll('.card');
+    const imagePaths = {
+        html: '../Assets/images/html-css.jpg',
+        javascript: '../Assets/images/javascript.jpeg',
+        react: '../Assets/images/react.png',
+        dsa: '../Assets/images/dsa.jpeg',
+        sql: '../Assets/images/sql.png',
+        python: '../Assets/images/python.png',
+        mongodb: '../Assets/images/mongodb.jpeg',
+        git: '../Assets/images/Git&Github.png',
+        sysdesign: '../Assets/images/system design.jfif',
+        testing: '../Assets/images/testing.png',
+        Nodejs: '../Assets/images/node-js.webp',
+        angular: '../Assets/images/angularjs.png',
+        docker: '../Assets/images/docker.png'
+
+        // Add other categories and their corresponding image paths here
+    };
+
+    cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const img = card.querySelector('img.lazy-load');
+
+        if (imagePaths[category]) {
+            const imagePath = imagePaths[category];
+            img.setAttribute('data-src', imagePath);
+        } else {
+        }
+    });
+    // Optional: Initialize lazy loading if you're using a lazy loading library
+};
+
 // sort by functionlaity
 document.addEventListener('DOMContentLoaded', function () {
     const sortOptions = document.getElementById('sortOptions');
@@ -288,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     b[1].title.localeCompare(a[1].title)
                 );
                 break;
-                case 'newest':
+            case 'newest':
                 sortedData = Object.entries(pdfData).sort((a, b) =>
                     new Date(b[1].date) - new Date(a[1].date) // Assuming `date` is a property
                 );
@@ -324,7 +318,6 @@ function openPDF(fileId) {
     const iframe = document.getElementById('pdfIframe');
     const overlay = document.getElementById('pdfOverlay');
     const bodyElement = document.body;
-
 
     if (pdfUrl && iframe && overlay) {
         console.log('Setting iframe src to:', pdfUrl);
@@ -463,14 +456,14 @@ function filterCards() {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'block';
             noResultsCont.style.display = 'block';
-            sortOptions.style.display="none";
+            sortOptions.style.display = "none";
 
         }
     } else {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'none';
             noResultsCont.style.display = 'none';
-            sortOptions.style.display="block";
+            sortOptions.style.display = "block";
         }
     }
 }
@@ -643,84 +636,27 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-id]').forEach((element) => {
                 const dataId = element.getAttribute('data-id');
                 if (storedLikedCards.includes(dataId)) {
-                    element.classList.add(targetClass); 
+                    element.classList.add(targetClass);
                     console("likes add");
                 } else {
-    
+
                 }
             });
         };
         updateLikeState();
         window.checkLikedCards = checkLikedCards;
-      })
-      
+    })
+
     document.body.addEventListener('click', (e) => {
         if (e.target.classList.contains('like-btn')) {
             handleLike(e.target);
         }
     });
-  
+
 });
 
-let loadedCards = 0; 
-const totalCards = Object.keys(pdfData).length; 
-const cardContainer = document.getElementById('cardContainer');
-const preloaderContainer = document.getElementById('preloader-container');
-
-// Function to load a batch of cards based on screen size
-function loadMoreCards() {
-    const cardsToLoad = window.innerWidth <= 768 ? 6 : 12; // 6 for mobile, 12 for desktop
-    const nextBatch = Math.min(loadedCards + cardsToLoad, totalCards); // Avoid exceeding total cards
-
-    for (let i = loadedCards; i < nextBatch; i++) {
-        const card = createCard(i, pdfData[i]);
-        const viewButton = card.querySelector('.view-btn');
-        const downloadButton = card.querySelector('.Download-pdf-btn');
-        
-        if (viewButton) {
-            viewButton.addEventListener('click', (event) => {
-                event.stopPropagation(); 
-                openPDF(i);
-            });
-        }
-        if (downloadButton) {
-            downloadButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                downloadPDfUrl(i);
-            });
-        }
-        cardContainer.appendChild(card);
-    }
-
-    loadedCards = nextBatch; // Update the number of loaded cards
-    if (loadedCards >= totalCards) {
-        window.removeEventListener('scroll', handleScroll); // No need to load more cards
-        preloaderContainer.style.display = 'none'; // Hide preloader when done
-    }
-}
-
-// Scroll event handler to detect when the user reaches the bottom
-function handleScroll() {
-    const scrollPosition = window.scrollY + window.innerHeight;
-    const bottomPosition = document.documentElement.scrollHeight;
-
-    if (scrollPosition >= bottomPosition - 200 && loadedCards < totalCards) {
-        // Show preloader when near bottom of page
-        preloaderContainer.style.display = 'block';
-        loadMoreCards(); // Load the next batch of cards
-    }
-}
-
-// Initial loading of cards when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    loadMoreCards(); // Load initial batch
-    window.addEventListener('scroll', handleScroll); // Add scroll event listener
-});
 //scroll to top
-// Get the button element
 const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
-// Show or hide the button based on scroll position
 window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
         scrollToTopBtn.style.display = 'block';
@@ -728,7 +664,6 @@ window.addEventListener('scroll', () => {
         scrollToTopBtn.style.display = 'none';
     }
 });
-
 // Scroll to the top smoothly when button is clicked
 scrollToTopBtn.addEventListener('click', () => {
     window.scrollTo({
@@ -736,4 +671,122 @@ scrollToTopBtn.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => { 
+
+    
+});
+
+function showLoginOverlay() {
+    if (!document.getElementById('loginOverlayParent')) {
+        const parentDiv = document.createElement('div');
+        parentDiv.id = 'loginOverlayParent';
+        parentDiv.className = 'overlay-parent';
+        parentDiv.innerHTML = `
+        <div class="overlay">
+        <button class="close-btn" onclick="closeLoginOverlay()">
+            <i class="fa fa-window-close" aria-hidden="true"></i>
+        </button>
+        <div class="overlay-content">
+            <form id="loginForm" class="login-form" onsubmit="validateLogin(event)">
+                <h2>Login</h2>
+                <div class="input-group">
+                    <i class="fa fa-user input-icon"></i>
+                    <input type="text" id="username" placeholder="Username or Email" required />
+                </div>
+                <div class="input-group">
+                    <i class="fa fa-lock input-icon"></i>
+                    <input type="password" id="password" placeholder="Password" required />
+                </div>
+                <p id="loginErrorMessage" class="error-msg hidden">Invalid username or password. Please try again.</p>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+        `;
+        document.body.appendChild(parentDiv);
+        setTimeout(() => parentDiv.classList.add('visible'), 10);
+    }
+}
+
+
+const apiKeyLogin = '$2a$10$usr7CFwnNJEbmm9wmLSiY.Sb5okVepyvx6vbKma7qdBPp5MLqVChi';
+const binId = '6770f510ad19ca34f8e27334';
+const apiUrl = `https://api.jsonbin.io/v3/b/${binId}/latest`;
+
+// Fetch user data and store in localStorage
+function fetchUserData() {
+    fetch(apiUrl, {
+        method: 'GET',
+        headers: { 'X-Master-Key': apiKeyLogin },
+    })
+        .then((response) => {
+            if (!response.ok) throw new Error('Failed to fetch user data.');
+            return response.json();
+        })
+        .then((data) => {
+            // Store the users' data in localStorage
+            localStorage.setItem('users', JSON.stringify(data.record.users));
+            console.log('User data fetched and stored in localStorage.');
+        })
+        .catch((error) => {
+            console.error('Error fetching user data:', error);
+        });
+}
+
+// Validate login credentials
+function validateLogin(event) {
+    event.preventDefault();
+
+    const usernameOrEmail = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const loginErrorMessage = document.getElementById('loginErrorMessage');
+
+    if (!usernameOrEmail || !password) {
+        loginErrorMessage.textContent = 'Please enter both username and password.';
+        loginErrorMessage.classList.remove('hidden');
+        return;
+    }
+
+    // Get users data from localStorage
+    const users = JSON.parse(localStorage.getItem('users'));
+
+    if (users) {
+        const user = users.find(
+            (u) =>
+                (u.username === usernameOrEmail || u.email === usernameOrEmail) &&
+                u.password === password
+        );
+
+        if (user) {
+            alert('Login successful!');
+            closeLoginOverlay();
+        } else {
+            loginErrorMessage.textContent = 'Invalid username or password. Please try again.';
+            loginErrorMessage.classList.remove('hidden');
+        }
+    } else {
+        loginErrorMessage.textContent = 'No user data found. Please refresh the page.';
+        loginErrorMessage.classList.remove('hidden');
+    }
+}
+
+// Close Login Overlay
+function closeLoginOverlay() {
+    const parentDiv = document.getElementById('loginOverlayParent');
+    if (parentDiv) {
+        parentDiv.classList.remove('visible');
+        setTimeout(() => parentDiv.remove(), 300);
+    }
+}
+
+// Open Login Overlay
+function openLoginOverlay() {
+    const loginOverlayParent = document.getElementById('loginOverlayParent');
+    loginOverlayParent.classList.add('active');
+}
+
+// Fetch user data when the script loads
+fetchUserData();
+
 

@@ -44,11 +44,15 @@
                         <li class="nav-item">
                             <a class="nav-link" id="files" href="files.html"><i class="fas fa-file-alt"></i>Learning</a>
                         </li>
+                      
                         <li class="nav-item">
                             <a class="nav-link" href="./Blog.html"><i class="fas fa-blog"></i> Feeds</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../index.html"><i class="fas fa-envelope"></i> About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showLoginOverlay()"><i class="fa-regular fa-user"></i> Login</a>
                         </li>
                     </ul>
                     <div class="dark-mode-toggle ml-3" onclick="toggleDarkMode()">
@@ -126,12 +130,47 @@
                         </div>
                 </header>
 
-                <main id="cardContainer" class="cardContainer">
+                <section id="cardContainer" class="cardContainer">
                     <!-- Add more cards as needed -->
-                </main>
-            </div>
-            <div id="toast-container"></div>
+                </section>
+                <section class="Preloader-container" id="preloader-container" style="display:none;">
+                    <div id="preloader">
+                        <div class="loader"></div>
+                    </div>
+                </section>
+                <div id="toast-container"></div>
         </section>
+       <section class="login-container">
+        <div id="loginOverlay" class="overlay hidden">
+            <div class="overlay-content">
+              <div id="loginPage" class="login-page">
+                <h2>Login</h2>
+                <form id="loginForm">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="loginUsernameOrEmail"
+                      placeholder="Username or Email"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      id="loginPassword"
+                      placeholder="Password"
+                      required
+                    />
+                  </div>
+                  <div id="loginErrorMessage" class="error-message hidden">
+                    Invalid username or password!
+                  </div>
+                  <button type="submit" class="btn">Login</button>
+                </form>
+              </div>
+            </div>
+          </div>          
+       </section>
         <section class="pdfPreview">
             <div id="pdfOverlay" class="overlay">
                 <div class="overlay-content">
@@ -144,7 +183,7 @@
         <section class="scroll-top-container">
             <button id="scrollToTopBtn" class="scroll-to-top" title="Go to top">
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
-            </button>            
+            </button>
         </section>
         <section class="footer-section">
             <footer class="footer">
@@ -186,27 +225,18 @@
         </section>
         <script src="../Libraries/min files/knowledgeBooster.js"></script>
         <!-- <script src="../Libraries/pdfFiles.js"></script> -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" defer></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                // Show preloader
                 const preloader = document.getElementById('preloader');
                 preloader.style.display = 'flex';
-
-                // Populate the cards
                 populateCards();
-
-                // Initialize lazy loading for images
                 lazyLoadInstance();
-
-                // Delay hiding the preloader for 2 seconds after cards are populated
                 setTimeout(() => {
                     preloader.style.display = 'none';
                 }, 1000);
-
-                // Add event listeners for search and filter
                 document.querySelector('.search-bar')?.addEventListener('input', filterCards);
                 document.getElementById('filterOptions')?.addEventListener('change', filterCards);
                 document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
@@ -214,13 +244,6 @@
                     showCards();
                 });
             });
-
-            //             document.addEventListener('DOMContentLoaded',function(){
-            //     document.addEventListener('contextmenu', (event) => {
-            //     event.preventDefault();
-            //   });
-            // });
-
         </script>
     </main>
 </body>

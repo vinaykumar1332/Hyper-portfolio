@@ -1,30 +1,31 @@
-const dataApi = 'https://api.jsonbin.io/v3/b/6770c6bdacd3cb34a8c0e413/latest'; // Use the correct endpoint
-const apiKey = '$2a$10$usr7CFwnNJEbmm9wmLSiY.Sb5okVepyvx6vbKma7qdBPp5MLqVChi'; // Replace <API_KEY> with your actual JSONBin API key
+const dataApi = '../pdfData.json';
 let pdfData;
 
 // Fetch data from JSONBin API
-fetch(dataApi, {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': apiKey,
-    },
-})
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        pdfData = data.record.pdfFilesData;
-        console.log('Fetched Data:', pdfData);
-        const totalKeys = Object.keys(pdfData).length;
-        console.log(`Total number of entries: ${totalKeys}`);
-        populateCards();
-        loadMoreCards();
-    })
-    .catch(error => console.error('Error fetching data:', error));
+if (localStorage.getItem('pdfData')) {
+    pdfData = JSON.parse(localStorage.getItem('pdfData'));
+    console.log('Loaded data from local storage:', pdfData);
+    const totalKeys = Object.keys(pdfData).length;
+    console.log(`Total number of entries: ${totalKeys}`);
+    populateCards();
+} else {
+    fetch(dataApi)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            pdfData = data.pdfFilesData; // Access the pdfFilesData object
+            console.log('Fetched Data:', pdfData);
+            const totalKeys = Object.keys(pdfData).length;
+            localStorage.setItem('pdfData', JSON.stringify(pdfData));
+            populateCards();
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
 // Function to shuffle cards
 function shuffleCards() {
     const cardContainer = document.getElementById('cardContainer');
@@ -463,7 +464,7 @@ function filterCards() {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'none';
             noResultsCont.style.display = 'none';
-            sortOptions.style.display = "block";
+            sortOptions.style.display = "none";
         }
     }
 }
@@ -684,55 +685,103 @@ function showLoginOverlay() {
         parentDiv.className = 'overlay-parent';
         parentDiv.innerHTML = `
         <div class="overlay">
-        <button class="close-btn" onclick="closeLoginOverlay()">
-            <i class="fa fa-window-close" aria-hidden="true"></i>
-        </button>
-        <div class="overlay-content">
-            <form id="loginForm" class="login-form" onsubmit="validateLogin(event)">
-                <h2>Login</h2>
-                <div class="input-group">
-                    <i class="fa fa-user input-icon"></i>
-                    <input type="text" id="username" placeholder="Username or Email" required />
-                </div>
-                <div class="input-group">
-                    <i class="fa fa-lock input-icon"></i>
-                    <input type="password" id="password" placeholder="Password" required />
-                </div>
-                <p id="loginErrorMessage" class="error-msg hidden">Invalid username or password. Please try again.</p>
-                <button type="submit" class="btn-primary">Login</button>
-            </form>
+            <button class="close-btn" onclick="closeLoginOverlay()">
+                <i class="fa fa-window-close" aria-hidden="true"></i>
+            </button>
+            <div class="overlay-content">
+                <form id="loginForm" class="login-form hidden" onsubmit="validateLogin(event)">
+                    <h2>Login</h2>
+                    <div class="input-group">
+                        <i class="fa fa-user input-icon"></i>
+                        <input type="text" id="username" placeholder="Username or Email" required />
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-lock input-icon"></i>
+                        <input type="password" id="password" placeholder="Password" required />
+                    </div>
+                    <p id="loginErrorMessage" class="error-msg hidden">Invalid username or password. Please try again.</p>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p class="switch-form">
+                        Not a member? <span onclick="showSignUpForm()">Sign Up Now</span>
+                    </p>
+                </form>
+                <form id="signUpForm" class="signup-form" onsubmit="handleSignUp(event)">
+                    <h2>Sign Up</h2>
+                    <div class="input-group">
+                        <i class="fa fa-user input-icon"></i>
+                        <input type="text" id="newUsername" placeholder="Username" required />
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-envelope input-icon"></i>
+                        <input type="email" id="newEmail" placeholder="Email" required />
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-lock input-icon"></i>
+                        <input type="password" id="newPassword" placeholder="Password" required />
+                    </div>
+                    <p id="signupErrorMessage" class="error-msg hidden">Error signing up. Please try again.</p>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                    <p class="switch-form">
+                        Already a member? <span onclick="showLoginForm()">Login Now</span>
+                    </p>
+                </form>
+            </div>
         </div>
-    </div>
         `;
         document.body.appendChild(parentDiv);
         setTimeout(() => parentDiv.classList.add('visible'), 10);
     }
 }
 
-
-const apiKeyLogin = '$2a$10$usr7CFwnNJEbmm9wmLSiY.Sb5okVepyvx6vbKma7qdBPp5MLqVChi';
-const binId = '6770f510ad19ca34f8e27334';
-const apiUrl = `https://api.jsonbin.io/v3/b/${binId}/latest`;
-
-// Fetch user data and store in localStorage
-function fetchUserData() {
-    fetch(apiUrl, {
-        method: 'GET',
-        headers: { 'X-Master-Key': apiKeyLogin },
-    })
-        .then((response) => {
-            if (!response.ok) throw new Error('Failed to fetch user data.');
-            return response.json();
-        })
-        .then((data) => {
-            // Store the users' data in localStorage
-            localStorage.setItem('users', JSON.stringify(data.record.users));
-            console.log('User data fetched and stored in localStorage.');
-        })
-        .catch((error) => {
-            console.error('Error fetching user data:', error);
-        });
+function showSignUpForm() {
+    document.getElementById('loginForm').classList.add('hidden');
+    document.getElementById('signUpForm').classList.remove('hidden');
 }
+
+function showLoginForm() {
+    document.getElementById('signUpForm').classList.add('hidden');
+    document.getElementById('loginForm').classList.remove('hidden');
+}
+
+function closeLoginOverlay() {
+    const overlay = document.getElementById('loginOverlayParent');
+    overlay.classList.remove('visible');
+    setTimeout(() => overlay.remove(), 500);
+}
+
+// Mock JSON data
+let users = [];
+
+async function handleSignUp(event) {
+    event.preventDefault();
+    const username = document.getElementById('newUsername').value;
+    const email = document.getElementById('newEmail').value;
+    const password = document.getElementById('newPassword').value;
+
+    const newUser = { username, email, password };
+
+    // Simulating saving data to a JSON file
+    users.push(newUser);
+    alert('Sign-up successful! Please log in.');
+    showLoginForm();
+}
+
+async function validateLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const user = users.find(user => user.username === username && user.password === password);
+
+    if (user) {
+        alert('Login successful!');
+        closeLoginOverlay();
+    } else {
+        document.getElementById('loginErrorMessage').classList.remove('hidden');
+    }
+}
+
+
 
 // Validate login credentials
 function validateLogin(event) {
@@ -747,10 +796,7 @@ function validateLogin(event) {
         loginErrorMessage.classList.remove('hidden');
         return;
     }
-
-    // Get users data from localStorage
     const users = JSON.parse(localStorage.getItem('users'));
-
     if (users) {
         const user = users.find(
             (u) =>
@@ -786,7 +832,131 @@ function openLoginOverlay() {
     loginOverlayParent.classList.add('active');
 }
 
-// Fetch user data when the script loads
-fetchUserData();
 
 
+jQuery(document).ready(function () {
+    const items = jQuery(".packshot-3-card-component .item");
+    let defaultIndex = 1; // Default index for desktop (middle card)
+
+    // Function to activate a card
+    function setActiveCard(selectedItem) {
+        if (!selectedItem || selectedItem.length === 0) return; // Null check for selectedItem
+
+        items.removeClass("active");
+        selectedItem.addClass("active");
+        const video = selectedItem.find("video")[0];
+        if (video) {
+            video.play();
+        }
+
+        // Pause videos of other cards
+        items.not(selectedItem).each(function () {
+            const video = jQuery(this).find("video")[0];
+            if (video) {
+                video.pause();
+            }
+        });
+    }
+
+    // Function to set default card
+    function setDefaultActiveCard() {
+        // Adjust defaultIndex based on screen width
+        if (jQuery(window).width() <= 992) {
+            defaultIndex = 0; // First card for tablet/mobile
+        } else {
+            defaultIndex = 1; // Middle card for desktop
+        }
+
+        // Set default active card
+        const defaultCard = items.eq(defaultIndex);
+        if (!defaultCard || defaultCard.length === 0) return; // Null check for defaultCard
+
+        items.removeClass("active");
+        defaultCard.addClass("active");
+        const video = defaultCard.find("video")[0];
+        if (video) {
+            video.play();
+        }
+    }
+
+    // Desktop hover functionality
+    items.on("mouseenter", function () {
+        if (jQuery(window).width() > 992) {
+            setActiveCard(jQuery(this));
+        }
+    });
+
+    // Reset to default card on mouse leave for desktop
+    items.on("mouseleave", function () {
+        if (jQuery(window).width() > 992) {
+            setDefaultActiveCard();
+        }
+    });
+
+    // Intersection Observer for mobile/tablet
+    function setupIntersectionObserver() {
+        // Check if Intersection Observer is supported
+        if (!("IntersectionObserver" in window)) return; // Null check for Intersection Observer support
+
+        // Remove existing active class and pause all videos
+        items.removeClass("active");
+        items.each(function () {
+            const video = jQuery(this).find("video")[0];
+            if (video) {
+                video.pause();
+            }
+        });
+
+        const observerOptions = {
+            root: null, // Uses the viewport as the container
+            threshold: 0.5, // 50% of the card must be visible to trigger
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const item = jQuery(entry.target);
+                if (!item || item.length === 0) return; // Null check for item
+
+                const video = item.find("video")[0];
+                if (entry.isIntersecting) {
+                    // Add active class and play video
+                    item.addClass("active");
+                    if (video) {
+                        video.play();
+                    }
+                } else {
+                    // Remove active class and pause video
+                    item.removeClass("active");
+                    if (video) {
+                        video.pause();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all items
+        items.each(function () {
+            if (this) observer.observe(this); // Null check for this
+        });
+    }
+
+    // Apply default card and observer on page load and window resize
+    function applyResponsiveBehavior() {
+        if (jQuery(window).width() <= 992) {
+            // For mobile/tablet, set default card and setup Intersection Observer
+            setDefaultActiveCard();
+            setupIntersectionObserver();
+        } else {
+            // For desktop, set default card
+            setDefaultActiveCard();
+        }
+    }
+
+    // Initial setup
+    applyResponsiveBehavior();
+
+    // Reapply behavior on window resize
+    jQuery(window).on("resize", function () {
+        applyResponsiveBehavior();
+    });
+});

@@ -834,233 +834,62 @@ function openLoginOverlay() {
 
 
 
-jQuery(document).ready(function () {
-    const items = jQuery(".packshot-3-card-component .item");
-    let defaultIndex = 1; // Default index for desktop (middle card)
+document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".packshot-3-card-component .item");
+    let defaultIndex = 1;
+    let observer = null;
 
-    // Function to activate a card
     function setActiveCard(selectedItem) {
-        if (!selectedItem || selectedItem.length === 0) return; // Null check for selectedItem
-
-        items.removeClass("active");
-        selectedItem.addClass("active");
-        const video = selectedItem.find("video")[0];
-        if (video) {
-            video.play();
-        }
-
-        // Pause videos of other cards
-        items.not(selectedItem).each(function () {
-            const video = jQuery(this).find("video")[0];
-            if (video) {
-                video.pause();
-            }
+        if (!selectedItem) return;
+        items.forEach((item) => {
+            item.classList.remove("active");
+            const video = item.querySelector("video");
+            if (video) video.pause();
         });
+        selectedItem.classList.add("active");
+        const activeVideo = selectedItem.querySelector("video");
+        if (activeVideo) activeVideo.play();
     }
 
-    // Function to set default card
     function setDefaultActiveCard() {
-        // Adjust defaultIndex based on screen width
-        if (jQuery(window).width() <= 992) {
-            defaultIndex = 0; // First card for tablet/mobile
-        } else {
-            defaultIndex = 1; // Middle card for desktop
-        }
-
-        // Set default active card
-        const defaultCard = items.eq(defaultIndex);
-        if (!defaultCard || defaultCard.length === 0) return; // Null check for defaultCard
-
-        items.removeClass("active");
-        defaultCard.addClass("active");
-        const video = defaultCard.find("video")[0];
-        if (video) {
-            video.play();
-        }
+        items.forEach((item) => item.classList.remove("active"));
+        defaultIndex = window.innerWidth <= 992 ? 0 : 1;
+        const defaultCard = items[defaultIndex];
+        if (defaultCard) setActiveCard(defaultCard);
     }
 
-    // Desktop hover functionality
-    items.on("mouseenter", function () {
-        if (jQuery(window).width() > 992) {
-            setActiveCard(jQuery(this));
-        }
-    });
-
-    // Reset to default card on mouse leave for desktop
-    items.on("mouseleave", function () {
-        if (jQuery(window).width() > 992) {
-            setDefaultActiveCard();
-        }
-    });
-
-    // Intersection Observer for mobile/tablet
     function setupIntersectionObserver() {
-        // Check if Intersection Observer is supported
-        if (!("IntersectionObserver" in window)) return; // Null check for Intersection Observer support
+        if (observer) observer.disconnect();
+        if (window.innerWidth > 992) return;
 
-        // Remove existing active class and pause all videos
-        items.removeClass("active");
-        items.each(function () {
-            const video = jQuery(this).find("video")[0];
-            if (video) {
-                video.pause();
-            }
-        });
-
-        const observerOptions = {
-            root: null, // Uses the viewport as the container
-            threshold: 0.5, // 50% of the card must be visible to trigger
-        };
-
-        const observer = new IntersectionObserver((entries) => {
+        observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                const item = jQuery(entry.target);
-                if (!item || item.length === 0) return; // Null check for item
-
-                const video = item.find("video")[0];
+                const item = entry.target;
+                const video = item.querySelector("video");
                 if (entry.isIntersecting) {
-                    // Add active class and play video
-                    item.addClass("active");
-                    if (video) {
-                        video.play();
-                    }
+                    items.forEach((item) => item.classList.remove("active"));
+                    item.classList.add("active");
+                    if (video) video.play();
                 } else {
-                    // Remove active class and pause video
-                    item.removeClass("active");
-                    if (video) {
-                        video.pause();
-                    }
+                    if (video) video.pause();
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.5 });
 
-        // Observe all items
-        items.each(function () {
-            if (this) observer.observe(this); // Null check for this
-        });
+        items.forEach((item) => observer.observe(item));
     }
 
-    // Apply default card and observer on page load and window resize
     function applyResponsiveBehavior() {
-        if (jQuery(window).width() <= 992) {
-            // For mobile/tablet, set default card and setup Intersection Observer
-            setDefaultActiveCard();
-            setupIntersectionObserver();
-        } else {
-            // For desktop, set default card
-            setDefaultActiveCard();
-        }
+        setDefaultActiveCard();
+        setupIntersectionObserver();
     }
 
-    // Initial setup
-    applyResponsiveBehavior();
-
-    // Reapply behavior on window resize
-    jQuery(window).on("resize", function () {
-        applyResponsiveBehavior();
-    });
-});
-
-
-const items = jQuery(".packshot-3-card-component .item");
-let defaultIndex = 1; // Default index for desktop (middle card)
-
-// Function to set the active card
-function setActiveCard(selectedItem) {
-    if (!selectedItem || selectedItem.length === 0) return; // Null check for selectedItem
-
-    items.removeClass("active");
-    selectedItem.addClass("active");
-
-    const video = selectedItem.find("video")[0];
-    if (video) {
-        video.play();
-    }
-
-    // Pause videos of other cards
-    items.not(selectedItem).each(function () {
-        const video = jQuery(this).find("video")[0];
-        if (video) {
-            video.pause();
-        }
-    });
-}
-
-// Function to set the default active card
-function setDefaultActiveCard() {
-    items.removeClass("active"); // Reset all cards first
-
-    if (jQuery(window).width() <= 992) {
-        defaultIndex = 0; // First card for tablet/mobile
-    } else {
-        defaultIndex = 1; // Middle card for desktop
-    }
-
-    const defaultCard = items.eq(defaultIndex);
-    if (!defaultCard || defaultCard.length === 0) return; // Null check for defaultCard
-
-    defaultCard.addClass("active");
-
-    const video = defaultCard.find("video")[0];
-    if (video) {
-        video.play();
-    }
-}
-
-// Intersection Observer for mobile/tablet views
-function setupIntersectionObserver() {
-    if (!("IntersectionObserver" in window)) return; // Null check for IntersectionObserver support
-
-    const observerOptions = {
-        root: null,
-        threshold: 0.5,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        // Remove `active` class from all cards to avoid conflicts
-        items.removeClass("active");
-
-        entries.forEach((entry) => {
-            const item = jQuery(entry.target);
-
-            if (!item || item.length === 0) return; // Null check for item
-
-            const video = item.find("video")[0];
-            if (entry.isIntersecting) {
-                items.removeClass("active"); // Ensure only one active card
-                item.addClass("active");
-                if (video) {
-                    video.play();
-                }
-            } else {
-                item.removeClass("active");
-                if (video) {
-                    video.pause();
-                }
-            }
+    items.forEach((item) => {
+        item.addEventListener("mouseenter", function () {
+            if (window.innerWidth > 992) setActiveCard(item);
         });
-    }, observerOptions);
-
-    items.each(function () {
-        if (this) observer.observe(this); // Null check for this
     });
-}
 
-// Apply behavior based on screen size
-function applyResponsiveBehavior() {
-    if (jQuery(window).width() <= 992) {
-        items.removeClass("active"); // Reset all cards to avoid conflicts
-        setupIntersectionObserver(); // Enable intersection observer for mobile/tablet
-        setDefaultActiveCard(); // Ensure the first card is active initially
-    } else {
-        items.removeClass("active"); // Reset all cards
-        setDefaultActiveCard(); // Set the middle card as default for desktop
-    }
-}
-
-// Run behavior on page load and screen resize
-applyResponsiveBehavior();
-
-jQuery(window).on("resize", function () {
     applyResponsiveBehavior();
+    window.addEventListener("resize", applyResponsiveBehavior);
 });

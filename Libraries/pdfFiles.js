@@ -1,4 +1,4 @@
-const dataApi = '../pdfData.json';
+const dataApi = '../../Json/pdfData.json';
 let pdfData;
 
 // Fetch data from JSONBin API
@@ -62,7 +62,7 @@ function createCard(id, { title, description, category }) {
             <h2 class="card-h2">${title}</h2>
             <p class="card-p">${description}</p>
             <div class="card-btn-container">
-            <button class="view-btn"> <i class="fa-regular fa-eye"></i> View PDF</button>
+            <button class="view-btn"> <i class="fa-regular fa-eye"></i> Preview</button>
             <button class="Download-pdf-btn">Download <i class="fa-solid fa-download"></i></button>
             </div>  
               <div class="like-container">
@@ -673,10 +673,6 @@ scrollToTopBtn.addEventListener('click', () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => { 
-
-    
-});
 
 function showLoginOverlay() {
     if (!document.getElementById('loginOverlayParent')) {
@@ -684,60 +680,36 @@ function showLoginOverlay() {
         parentDiv.id = 'loginOverlayParent';
         parentDiv.className = 'overlay-parent';
         parentDiv.innerHTML = `
+        <div id="loginOverlayParent" class="overlay-parent visible">
+    <div class="overlay-container">
         <div class="overlay">
             <button class="close-btn" onclick="closeLoginOverlay()">
                 <i class="fa fa-window-close" aria-hidden="true"></i>
             </button>
             <div class="overlay-content">
-                <form id="loginForm" class="login-form hidden" onsubmit="validateLogin(event)">
+                <form id="loginForm" class="login-form" onsubmit="validateLogin(event)">
                     <h2>Login</h2>
                     <div class="input-group">
                         <i class="fa fa-user input-icon"></i>
-                        <input type="text" id="username" placeholder="Username or Email" required />
+                        <input type="text" id="username" placeholder="Username or Email" required="">
                     </div>
                     <div class="input-group">
                         <i class="fa fa-lock input-icon"></i>
-                        <input type="password" id="password" placeholder="Password" required />
+                        <input type="password" id="password" placeholder="Password" required="">
                     </div>
-                    <p id="loginErrorMessage" class="error-msg hidden">Invalid username or password. Please try again.</p>
+                     <p id="loginErrorMessage" class="error-msg hidden"></p>
                     <button type="submit" class="btn-primary">Login</button>
-                    <p class="switch-form">
-                        Not a member? <span onclick="showSignUpForm()">Sign Up Now</span>
-                    </p>
-                </form>
-                <form id="signUpForm" class="signup-form" onsubmit="handleSignUp(event)">
-                    <h2>Sign Up</h2>
-                    <div class="input-group">
-                        <i class="fa fa-user input-icon"></i>
-                        <input type="text" id="newUsername" placeholder="Username" required />
-                    </div>
-                    <div class="input-group">
-                        <i class="fa fa-envelope input-icon"></i>
-                        <input type="email" id="newEmail" placeholder="Email" required />
-                    </div>
-                    <div class="input-group">
-                        <i class="fa fa-lock input-icon"></i>
-                        <input type="password" id="newPassword" placeholder="Password" required />
-                    </div>
-                    <p id="signupErrorMessage" class="error-msg hidden">Error signing up. Please try again.</p>
-                    <button type="submit" class="btn-primary">Sign Up</button>
-                    <p class="switch-form">
-                        Already a member? <span onclick="showLoginForm()">Login Now</span>
-                    </p>
                 </form>
             </div>
         </div>
+    </div>
+</div>
+
         `;
         document.body.appendChild(parentDiv);
         setTimeout(() => parentDiv.classList.add('visible'), 10);
     }
 }
-
-function showSignUpForm() {
-    document.getElementById('loginForm').classList.add('hidden');
-    document.getElementById('signUpForm').classList.remove('hidden');
-}
-
 function showLoginForm() {
     document.getElementById('signUpForm').classList.add('hidden');
     document.getElementById('loginForm').classList.remove('hidden');
@@ -747,74 +719,6 @@ function closeLoginOverlay() {
     const overlay = document.getElementById('loginOverlayParent');
     overlay.classList.remove('visible');
     setTimeout(() => overlay.remove(), 500);
-}
-
-// Mock JSON data
-let users = [];
-
-async function handleSignUp(event) {
-    event.preventDefault();
-    const username = document.getElementById('newUsername').value;
-    const email = document.getElementById('newEmail').value;
-    const password = document.getElementById('newPassword').value;
-
-    const newUser = { username, email, password };
-
-    // Simulating saving data to a JSON file
-    users.push(newUser);
-    alert('Sign-up successful! Please log in.');
-    showLoginForm();
-}
-
-async function validateLogin(event) {
-    event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    const user = users.find(user => user.username === username && user.password === password);
-
-    if (user) {
-        alert('Login successful!');
-        closeLoginOverlay();
-    } else {
-        document.getElementById('loginErrorMessage').classList.remove('hidden');
-    }
-}
-
-
-
-// Validate login credentials
-function validateLogin(event) {
-    event.preventDefault();
-
-    const usernameOrEmail = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const loginErrorMessage = document.getElementById('loginErrorMessage');
-
-    if (!usernameOrEmail || !password) {
-        loginErrorMessage.textContent = 'Please enter both username and password.';
-        loginErrorMessage.classList.remove('hidden');
-        return;
-    }
-    const users = JSON.parse(localStorage.getItem('users'));
-    if (users) {
-        const user = users.find(
-            (u) =>
-                (u.username === usernameOrEmail || u.email === usernameOrEmail) &&
-                u.password === password
-        );
-
-        if (user) {
-            alert('Login successful!');
-            closeLoginOverlay();
-        } else {
-            loginErrorMessage.textContent = 'Invalid username or password. Please try again.';
-            loginErrorMessage.classList.remove('hidden');
-        }
-    } else {
-        loginErrorMessage.textContent = 'No user data found. Please refresh the page.';
-        loginErrorMessage.classList.remove('hidden');
-    }
 }
 
 // Close Login Overlay
@@ -831,3 +735,55 @@ function openLoginOverlay() {
     const loginOverlayParent = document.getElementById('loginOverlayParent');
     loginOverlayParent.classList.add('active');
 }
+
+// Function to validate login
+async function validateLogin(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const usernameInput = document.getElementById("username").value.trim();
+    const passwordInput = document.getElementById("password").value.trim();
+    const errorMessage = document.getElementById("loginErrorMessage");
+
+    try {
+        const response = await fetch("../../Json/loginData.json");
+        if (!response.ok) throw new Error("Unable to fetch user data.");
+        const users = await response.json();
+        const user = users.find(user => user.username === usernameInput && user.password === passwordInput);
+
+        if (user) {
+            // Successful login
+            errorMessage.classList.add("hidden");
+            showNotification("You have successfully logged in!", "success");
+            closeLoginOverlay();
+        } else {
+            // Invalid login
+            showNotification("Invalid username or password. Please try again.", "error");
+        }
+    } catch (error) {
+        console.error("Error fetching or processing user data:", error);
+        showNotification("An error occurred. Please try again later.", "error");
+    }
+}
+
+// Function to show notifications
+function showNotification(message, type) {
+    const overlayContainer = document.querySelector(".overlay-container"); // Fixed selector
+    if (!overlayContainer) {
+        console.error("Overlay container not found");
+        return;
+    }
+    const notification = document.createElement("div");
+    notification.classList.add("notification--login-overlay", type);
+    notification.textContent = message;
+    overlayContainer.appendChild(notification);
+    setTimeout(() => {
+        notification.classList.add("show");
+    }, 100);
+    setTimeout(() => {
+        notification.classList.remove("show");
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
+    }, 3000); 
+}
+

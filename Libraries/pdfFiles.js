@@ -1,4 +1,4 @@
-const dataApi = '../../Json/pdfData.json';
+const dataApi = '../Json/pdfData.json';
 let pdfData;
 
 // Fetch data from JSONBin API
@@ -745,7 +745,7 @@ async function validateLogin(event) {
     const errorMessage = document.getElementById("loginErrorMessage");
 
     try {
-        const response = await fetch("../../Json/loginData.json");
+        const response = await fetch("../Json/loginData.json");
         if (!response.ok) throw new Error("Unable to fetch user data.");
         const users = await response.json();
         const user = users.find(user => user.username === usernameInput && user.password === passwordInput);

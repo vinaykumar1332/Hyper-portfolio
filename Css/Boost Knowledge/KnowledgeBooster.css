@@ -691,10 +691,6 @@ body {
 
     .card p {
         padding-bottom: 3px;
-        white-space: nowrap;
-        overflow: hidden;
-        display: block;
-        text-overflow: ellipsis;
     }
 
     .content {
@@ -818,12 +814,9 @@ body {
 
 
     .card p {
-        color: #555;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        color:#000;
         padding-bottom: 3px;
+        font-weight: 400;
 
     }
 
@@ -840,17 +833,18 @@ body {
     @media (max-width: 1280px) {
         .cardContainer {
             grid-template-columns: repeat(2, 1fr);
+            padding-top: 30px;
         }
     }
 
     @media (max-width: 480px) {
         .cardContainer {
             grid-template-columns: 1fr;
-            padding: 20px 5px;
+            padding: 30px 15px;
         }
     }
 
-    @media (min-width: 480px) {
+    @media (min-width: 576px) {
         .cardContainer {
             padding: 30px 25px;
         }
@@ -862,8 +856,8 @@ body {
         flex-direction: row;
 
         .cardsResults {
+            position: absolute;
             p#cardCount {
-                position: relative;
                 color: #222;
                 font-weight: 600;
                 display: flex;
@@ -1971,4 +1965,61 @@ select#filterOptions,
 
 .notification--login-overlay.error {
     background-color: #f44336; /* Red for error */
+}
+
+.cookie-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 90%;
+    width: 400px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    animation: slide-up 0.4s ease-out;
+
+    #rejectCookies{
+        background: #333;
+        color: white;
+    }
+}
+
+.cookie-popup p {
+    margin: 0 0 15px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.cookie-popup .button-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cookie-popup button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.cookie-popup .accept {
+    background-color: var(--brand-color-1); /* Green */
+    color: white;
+    box-shadow: 0 
 }

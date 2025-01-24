@@ -25,29 +25,26 @@ if (localStorage.getItem('pdfData')) {
         })
         .catch(error => console.error('Error fetching data:', error));
 }
+function clearStorage() {
+    localStorage.removeItem('pdfData');
+    sessionStorage.removeItem('cookieConsent'); 
+    console.log('Local and session storage cleared.');
+}
+
 
 // Function to shuffle cards
 function shuffleCards() {
     const cardContainer = document.getElementById('cardContainer');
     const cards = Array.from(cardContainer.children);
-
-    // Shuffle the array of cards
     for (let i = cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [cards[i], cards[j]] = [cards[j], cards[i]];
     }
-
-    // Append shuffled cards back to the container
     cards.forEach(card => cardContainer.appendChild(card));
 }
-// Event listener to shuffle cards on DOM content loaded
 document.addEventListener('DOMContentLoaded', function () {
     shuffleCards();
 });
-
-//Sort
-
-
 // Function to create a card element
 function createCard(id, { title, description, category }) {
     const card = document.createElement('div');
@@ -78,12 +75,12 @@ function createCard(id, { title, description, category }) {
 // Function to populate cards
 function populateCards() {
     if (!pdfData || typeof pdfData !== 'object') {
-        console.error('pdfData is undefined, null, or not an object!');
+      
         return;
     }
     const cardContainer = document.getElementById('cardContainer');
     if (!cardContainer) {
-        console.error('Card container not found!');
+  
         return;
     }
     cardContainer.innerHTML = '';
@@ -105,7 +102,7 @@ function populateCards() {
         }
         cardContainer.appendChild(card);
     });
-    console.log('Cards populated successfully.');
+
     shuffleCards();
     lazyLoadInstance();
     imageLoadOnCategory();  // Call once after all cards are populated
@@ -223,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const baseUrl = window.location.origin + window.location.pathname;
         window.history.pushState({ path: baseUrl }, '', baseUrl);
         location.reload(true); // Reload the page
+        clearStorage();
         clearLocalStorageData(); // Clear the local storage data
         window.checkLikedCards('likedCards', 'liked');
     });
@@ -245,8 +243,6 @@ function imageLoadOnCategory() {
         Nodejs: '../Assets/images/node-js.webp',
         angular: '../Assets/images/angularjs.png',
         docker: '../Assets/images/docker.png'
-
-        // Add other categories and their corresponding image paths here
     };
 
     cards.forEach(card => {
@@ -259,7 +255,6 @@ function imageLoadOnCategory() {
         } else {
         }
     });
-    // Optional: Initialize lazy loading if you're using a lazy loading library
 };
 
 // sort by functionlaity
@@ -309,9 +304,10 @@ document.addEventListener('DOMContentLoaded', function () {
         filterCards();
         imageLoadOnCategory();
         populateCards();
-        console.log('Cards sorted by:', sortBy);
+      
 
     });
+    clearStorage()
 });
 // Function to set the PDF URL in the iframe and show the overlay
 function openPDF(fileId) {
@@ -319,12 +315,14 @@ function openPDF(fileId) {
     const iframe = document.getElementById('pdfIframe');
     const overlay = document.getElementById('pdfOverlay');
     const bodyElement = document.body;
+    const scrollToTopContainer = document.querySelector('.scroll-top-container');
 
     if (pdfUrl && iframe && overlay) {
         console.log('Setting iframe src to:', pdfUrl);
         iframe.src = pdfUrl;
         overlay.style.display = 'flex'; // Show the overlay
         bodyElement.style.overflow = 'hidden'; // Disable body scrolling
+        scrollToTopContainer.style.display = 'none'; // Hide the scroll to top button
         console.log(pdfUrl);
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('pdf', fileId);  // You could use `pdfUrl` instead of `fileId`
@@ -358,8 +356,10 @@ function closePDF() {
     const overlay = document.getElementById('pdfOverlay');
     const iframe = document.getElementById('pdfIframe');
     const bodyElement = document.body;
+    const scrollToTopContainer = document.querySelector('.scroll-top-container');
     if (overlay && iframe) {
         overlay.style.display = 'none';
+        scrollToTopContainer.style.display = 'block';
         iframe.src = ''; // Clear the iframe source
         if (bodyElement) {
             bodyElement.style.overflow = 'visible';
@@ -784,6 +784,45 @@ function showNotification(message, type) {
         setTimeout(() => {
             notification.remove();
         }, 500);
-    }, 3000); 
+    }, 3000);
 }
+
+// cookie consent
+document.addEventListener("DOMContentLoaded", () => {
+    const userChoice = sessionStorage.getItem("cookieConsent");
+
+    if (!userChoice) {
+        const cookiePopupHTML = `
+            <div class="cookie-popup" id="cookiePopup">
+<p>We use cookies to improve your experience. By using our website, you agree to our cookie policy <i class="fa-solid fa-cookie"></i>.</p>
+<div class="button-group">
+    <button class="accept" id="acceptCookies"><i class="fa-solid fa-check"></i> Accept</button>
+    <button class="reject" id="rejectCookies"><i class="fa-solid fa-x"></i> Decline</button>
+</div>
+</div>
+        `;
+        document.body.insertAdjacentHTML("beforeend", cookiePopupHTML);
+        document.getElementById("acceptCookies").addEventListener("click", () => {
+            handleUserChoice("accepted");
+        });
+
+        document.getElementById("rejectCookies").addEventListener("click", () => {
+            handleUserChoice("rejected");
+        });
+        function handleUserChoice(choice) {
+            sessionStorage.setItem("cookieConsent", choice);
+            hidePopup();
+        }
+        function hidePopup() {
+            const popup = document.getElementById("cookiePopup");
+            if (popup) {
+                popup.style.display = "none";
+            }
+        }
+    }
+});
+
+
+
+
 

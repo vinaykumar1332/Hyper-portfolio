@@ -695,6 +695,7 @@ body {
 
     .content {
         .card-h2 {
+            font-weight: 600;
             @media (max-width:480px) {
                 font-size: 1em;
             }
@@ -1413,12 +1414,15 @@ select#filterOptions,
         margin: 0;
         position: relative;
         top: 40px;
-
+          em{
+            color:var(--brand-color-1);
+            font-size: 24px;
+          }
         @media (max-width: 768px) {
             color: #1f1f1f;
             font-weight: 600;
             font-size: 18px;
-            padding: 0px 0px 20px 40px;
+            padding: 20px 0px 20px 40px;
         }
 
         @media (max-width: 480px) {
@@ -1872,6 +1876,13 @@ select#filterOptions,
                                     }
                                 }
                             }
+                        }
+                    }
+                    .admin-msg{
+                        h4{
+                            font-size: 15px;
+                            padding: 20px;
+                            font-weight: 400;
                         }
                     }
                 }

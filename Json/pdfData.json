@@ -295,6 +295,24 @@
             "description": "React JS interview questions",
             "category": "react"
         },
+        "react-js-12": {
+            "url": "https://drive.google.com/file/d/1T1rwKIMq7gWpUnJN8NLrQ6t2X0usCrjx/preview",
+            "title": "React JS Book",
+            "description": "React JS Hand written Notes",
+            "category": "react"
+        },
+        "react-js-13": {
+            "url": "https://drive.google.com/file/d/1W5-EcxvqUh1ZdzJPGvbabder_ZTHmVHW/preview",
+            "title": "30 Days of React",
+            "description": "An intro to React Basics.",
+            "category": "react"
+        },
+        "react-js-14": {
+            "url": "https://drive.google.com/file/d/1Vv_3Zf2uudr7NuFnllgwwXK1mAp0IDsY/preview",
+            "title": "Fecth data using React Js",
+            "description": "Different ways to Fetch Data using React.",
+            "category": "react"
+        },
         "testing-1": {
             "url": "https://drive.google.com/file/d/124LQQw_JQXv7VP50vI9XSgujDwO-fv0l/preview",
             "title": "Qualitative Analysis",
@@ -305,6 +323,12 @@
             "url": "https://drive.google.com/file/d/1HUYylEJ1rb16fQzeLdw9T_MiXRwFpv0L/preview",
             "title": "The Automated",
             "description": "Automated text book",
+            "category": "testing"
+        },
+        "testing-3": {
+            "url": "https://drive.google.com/file/d/1VwW4mTiSwadaFerjqH4JFGJmq_SsrJSg/preview",
+            "title": "Manual Testing",
+            "description": "121 Manual Testing interview Questions & Answers",
             "category": "testing"
         },
         "js-9": {
@@ -343,6 +367,12 @@
             "description": "DBMS interview questions",
             "category": "sql"
         },
+        "sql-8": {
+            "url": "https://drive.google.com/file/d/1W799DAZgih5mWdB3y7eR1g_nCPDYfui2/preview",
+            "title": "SQL QUERIES",
+            "description": "126 Complex SQL queries ",
+            "category": "sql"
+        },
         "docker-1":{
             "url":"https://drive.google.com/file/d/1m5ktovTm1CXpat32E_qiQPLn-frc-spl/preview",
             "title": "Docker",
@@ -360,6 +390,25 @@
             "title": "Learn Angular",
             "description": "Tutorial Point",
             "category": "angular"
+        },
+        "java-1":{
+            "url":"https://drive.google.com/file/d/1W-86K1Goj_ClANacxTbvl0vac-1KA7uh/preview",
+            "title": "Java",
+            "description": "Java interview questions",
+            "category": "java"
+        },
+        "java-2":{
+            "url":"https://drive.google.com/file/d/1VinhxIDgLuR9Lx_luXsukEP_FqkeQRnK/preview",
+            "title": "Spring Boot",
+            "description": "Spring Boot interview questions",
+            "category": "java"
+        },
+        "AI-1":{
+            "url":"https://drive.google.com/file/d/1VsTLv1rNP_aOnB2s-impEy-mk3n_IUrW/preview",
+            "title": "Artificial intelligence (AI)",
+            "description": "Machine learning A-Z",
+            "category": "ai"
         }
+
     }
 }

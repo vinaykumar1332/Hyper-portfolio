@@ -223,6 +223,11 @@ document.addEventListener('DOMContentLoaded', function () {
             { value: 'bash', text: 'Bash' },
             { value: 'sysdesign', text: 'System Design' },
             { value: 'testing', text: 'Testing' },
+            { value: 'ai', text: 'AI' },
+            
+        ],
+        Artificial_Intelligence: [
+            { value: 'ai', text: 'AI' },
         ]
     };
 
@@ -322,7 +327,9 @@ function imageLoadOnCategory() {
         testing: '../Assets/images/testing.png',
         Nodejs: '../Assets/images/node-js.webp',
         angular: '../Assets/images/angularjs.png',
-        docker: '../Assets/images/docker.png'
+        docker: '../Assets/images/docker.png',
+        java:"../Assets/images/java.jpeg",
+        ai:"../Assets/images/AI.webp"
     };
 
     cards.forEach(card => {
@@ -337,58 +344,7 @@ function imageLoadOnCategory() {
     });
 };
 
-// sort by functionlaity
-document.addEventListener('DOMContentLoaded', function () {
-    const sortOptions = document.getElementById('sortOptions');
-    const cardContainer = document.getElementById('cardContainer');
 
-    // Function to sort cards
-    sortOptions.addEventListener('change', function () {
-        const sortBy = this.value;
-        let sortedData;
-
-        switch (sortBy) {
-            case 'titleAsc':
-                sortedData = Object.entries(pdfData).sort((a, b) =>
-                    a[1].title.localeCompare(b[1].title)
-                );
-                break;
-            case 'titleDesc':
-                sortedData = Object.entries(pdfData).sort((a, b) =>
-                    b[1].title.localeCompare(a[1].title)
-                );
-                break;
-            case 'newest':
-                sortedData = Object.entries(pdfData).sort((a, b) =>
-                    new Date(b[1].date) - new Date(a[1].date) // Assuming `date` is a property
-                );
-                break;
-            case 'popular':
-                sortedData = Object.entries(pdfData).sort((a, b) =>
-                    b[1].popularity - a[1].popularity // Assuming `popularity` is a property
-                );
-                break;
-            default:
-                // Default sorting logic (e.g., original order)
-                sortedData = Object.entries(pdfData);
-                break;
-        }
-
-        // Repopulate cards with sorted data
-        cardContainer.innerHTML = ''; // Clear the existing cards
-        sortedData.forEach(([id, data]) => {
-            const card = createCard(id, data);
-            cardContainer.appendChild(card);
-        });
-        lazyLoadInstance();
-        filterCards();
-        imageLoadOnCategory();
-        populateCards();
-      
-
-    });
-    clearStorage()
-});
 // Function to set the PDF URL in the iframe and show the overlay
 function openPDF(fileId) {
     const pdfUrl = pdfData[fileId]?.url;
@@ -421,6 +377,16 @@ function downloadPDfUrl(fileId) {
         console.error('Invalid fileId or pdfData not defined.');
         return;
     }
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+        const isConfirmed = confirm("Please log in to download the PDF. Do you want to log in?");
+        if (isConfirmed) {
+            showLoginOverlay(); 
+        }
+        return;
+    }
+
     const downloadPdfUrl = pdfData[fileId].url.replace("/preview", "/edit");
     if (downloadPdfUrl) {
         console.log('Opening modified PDF URL in a new tab:', downloadPdfUrl);
@@ -429,8 +395,18 @@ function downloadPDfUrl(fileId) {
         console.error('Failed to modify PDF URL.');
     }
 }
+function updateNavbar() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const loginNavLink = document.querySelector('.nav-link[href="#"]');
 
-
+    if (isLoggedIn) {
+        const username = localStorage.getItem("username");
+        loginNavLink.textContent =  `Hello 👤, ${username} ` ;  
+    } else {
+        loginNavLink.textContent = 'Login';
+    }
+}
+document.addEventListener('DOMContentLoaded', updateNavbar);
 // Function to close the PDF overlay
 function closePDF() {
     const overlay = document.getElementById('pdfOverlay');
@@ -579,53 +555,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPage++;
         showCards();
     });
-});
-
-//--results count 
-document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.getElementById('searchInput');
-    const filterSelect = document.getElementById('filterSelect');
-    const cardContainer = document.getElementById('cardContainer');
-
-    // Create and insert the results count element
-    const resultsCount = document.createElement('p');
-    resultsCount.id = 'resultsCount';
-    filterSelect.parentNode.insertBefore(resultsCount, cardContainer);
-
-    searchInput.addEventListener('input', filterCards);
-    filterSelect.addEventListener('change', filterCards);
-
-    function filterCards() {
-        const searchText = searchInput.value.toLowerCase();
-        const selectedCategory = filterSelect.value;
-        const cards = cardContainer.getElementsByClassName('card');
-
-        let visibleCardCount = 0;
-
-        for (let card of cards) {
-            const cardText = card.textContent.toLowerCase();
-            const cardCategory = card.getAttribute('data-category');
-            const isTextMatch = cardText.includes(searchText);
-            const isCategoryMatch = selectedCategory === 'all' || cardCategory === selectedCategory;
-
-            if (isTextMatch && isCategoryMatch) {
-                card.style.display = 'block';
-                visibleCardCount++;
-            } else {
-                card.style.display = 'none';
-            }
-        }
-
-        updateCardCount(visibleCardCount);
-    }
-
-    function updateCardCount(count) {
-        resultsCount.textContent = `Results : ${count}`;
-    }
-
-    // Initial count
-    filterCards();
-
 });
 
 //filter search and reuslts count
@@ -785,6 +714,9 @@ function showLoginOverlay() {
                      <p id="loginErrorMessage" class="error-msg hidden"></p>
                     <button type="submit" class="btn-primary">Login</button>
                 </form>
+                <div class="admin-msg">
+                <h4>Please contact admin for download access <i class="fa-solid fa-arrow-up-right-from-square"></i><a href="https://vinaykumar1332.github.io/Hyper-portfolio/#contact"> Click here</a></h4>
+                </div>
             </div>
         </div>
     </div>
@@ -811,7 +743,7 @@ function closeLoginOverlay() {
     const parentDiv = document.getElementById('loginOverlayParent');
     if (parentDiv) {
         parentDiv.classList.remove('visible');
-        setTimeout(() => parentDiv.remove(), 300);
+        setTimeout(() => parentDiv.remove(), 500);
     }
 }
 
@@ -837,6 +769,13 @@ async function validateLogin(event) {
 
         if (user) {
             // Successful login
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("username", user.username);  // Save the username
+
+            // Update the navbar to show user's name
+            const loginNavLink = document.querySelector('.nav-link[href="#"]');
+            loginNavLink.textContent = `Hello, ${user.username}`; // Update text to username
+
             errorMessage.classList.add("hidden");
             showNotification("You have successfully logged in!", "success");
             closeLoginOverlay();
@@ -849,6 +788,7 @@ async function validateLogin(event) {
         showNotification("An error occurred. Please try again later.", "error");
     }
 }
+
 
 // Function to show notifications
 function showNotification(message, type) {

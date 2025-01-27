@@ -84,9 +84,7 @@ let pdfData;
 // Fetch data from JSONBin API
 if (localStorage.getItem('pdfData')) {
     pdfData = JSON.parse(localStorage.getItem('pdfData'));
-    console.log('Loaded data from local storage:', pdfData);
     const totalKeys = Object.keys(pdfData).length;
-    console.log(`Total number of entries: ${totalKeys}`);
     populateCards();
 } else {
     fetch(dataApi)
@@ -395,17 +393,7 @@ function downloadPDfUrl(fileId) {
         console.error('Failed to modify PDF URL.');
     }
 }
-function updateNavbar() {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-    const loginNavLink = document.querySelector('.nav-link[href="#"]');
 
-    if (isLoggedIn) {
-        const username = localStorage.getItem("username");
-        loginNavLink.textContent =  `Hello 👤, ${username} ` ;  
-    } else {
-        loginNavLink.textContent = 'Login';
-    }
-}
 document.addEventListener('DOMContentLoaded', updateNavbar);
 // Function to close the PDF overlay
 function closePDF() {
@@ -685,52 +673,81 @@ const scrollToTopBtn = document.getElementById('scrollToTopBtn');
         });
     });
 
-
-
-
-function showLoginOverlay() {
-    if (!document.getElementById('loginOverlayParent')) {
-        const parentDiv = document.createElement('div');
-        parentDiv.id = 'loginOverlayParent';
-        parentDiv.className = 'overlay-parent';
-        parentDiv.innerHTML = `
-        <div id="loginOverlayParent" class="overlay-parent visible">
-    <div class="overlay-container">
-        <div class="overlay">
-            <button class="close-btn" onclick="closeLoginOverlay()">
-                <i class="fa fa-window-close" aria-hidden="true"></i>
-            </button>
-            <div class="overlay-content">
-                <form id="loginForm" class="login-form" onsubmit="validateLogin(event)">
-                    <h2>Login</h2>
-                    <div class="input-group">
-                        <i class="fa fa-user input-icon"></i>
-                        <input type="text" id="username" placeholder="Username or Email" required="">
-                    </div>
-                    <div class="input-group">
-                        <i class="fa fa-lock input-icon"></i>
-                        <input type="password" id="password" placeholder="Password" required="">
-                    </div>
-                     <p id="loginErrorMessage" class="error-msg hidden"></p>
-                    <button type="submit" class="btn-primary">Login</button>
-                </form>
-                <div class="admin-msg">
-                <h4>Please contact admin for download access <i class="fa-solid fa-arrow-up-right-from-square"></i><a href="https://vinaykumar1332.github.io/Hyper-portfolio/#contact"> Click here</a></h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-        `;
-        document.body.appendChild(parentDiv);
-        setTimeout(() => parentDiv.classList.add('visible'), 10);
+    function updateNavbar() {
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+        const loginNavLink = document.querySelector('.nav-link[href="#"]');
+    
+        if (isLoggedIn) {
+            const username = localStorage.getItem("username");
+            loginNavLink.textContent =  `Hello 👤, ${username} ` ;  
+            loginNavLink.classList.add('active');
+        } else {
+            loginNavLink.textContent = 'Login';
+            loginNavLink.classList.remove('active');
+        }
     }
-}
-function showLoginForm() {
-    document.getElementById('signUpForm').classList.add('hidden');
-    document.getElementById('loginForm').classList.remove('hidden');
-}
+
+
+    function showLoginOverlay() {
+        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    
+        if (isLoggedIn) {
+            // User is already logged in, ask for logout confirmation
+            const isConfirmed = confirm("You are already logged in. Do you want to logout?");
+            if (isConfirmed) {
+                // Clear local storage and show a logout notification
+                localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("username");
+                showNotification("You have successfully logged out.", "success");
+
+                updateNavbar();
+            }
+            return; // Exit the function
+        }
+    
+        // If the user is not logged in, show the login overlay
+        if (!document.getElementById('loginOverlayParent')) {
+            const parentDiv = document.createElement('div');
+            parentDiv.id = 'loginOverlayParent';
+            parentDiv.className = 'overlay-parent';
+            parentDiv.innerHTML = `
+                <div id="loginOverlayParent" class="overlay-parent visible">
+                    <div class="overlay-container">
+                        <div class="overlay">
+                            <button class="close-btn" onclick="closeLoginOverlay()">
+                                <i class="fa fa-window-close" aria-hidden="true"></i>
+                            </button>
+                            <div class="overlay-content">
+                                <form id="loginForm" class="login-form" onsubmit="validateLogin(event)">
+                                    <h2>Login</h2>
+                                    <div class="input-group">
+                                        <i class="fa fa-user input-icon"></i>
+                                        <input type="text" id="username" placeholder="Username or Email" required="">
+                                    </div>
+                                    <div class="input-group">
+                                        <i class="fa fa-lock input-icon"></i>
+                                        <input type="password" id="password" placeholder="Password" required="">
+                                    </div>
+                                    <p id="loginErrorMessage" class="error-msg hidden"></p>
+                                    <button type="submit" class="btn-primary">Login</button>
+                                </form>
+                                <div class="admin-msg">
+                                    <h4>
+                                        Please contact admin for download access 
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        <a href="https://vinaykumar1332.github.io/Hyper-portfolio/#contact"> Click here</a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(parentDiv);
+            setTimeout(() => parentDiv.classList.add('visible'), 10);
+        }
+    }
+    
 
 function closeLoginOverlay() {
     const overlay = document.getElementById('loginOverlayParent');
@@ -753,6 +770,7 @@ function openLoginOverlay() {
     loginOverlayParent.classList.add('active');
 }
 
+
 // Function to validate login
 async function validateLogin(event) {
     event.preventDefault(); // Prevent form submission
@@ -771,11 +789,8 @@ async function validateLogin(event) {
             // Successful login
             localStorage.setItem("isLoggedIn", "true");
             localStorage.setItem("username", user.username);  // Save the username
-
-            // Update the navbar to show user's name
-            const loginNavLink = document.querySelector('.nav-link[href="#"]');
-            loginNavLink.textContent = `Hello, ${user.username}`; // Update text to username
-
+            updateNavbar(); 
+            
             errorMessage.classList.add("hidden");
             showNotification("You have successfully logged in!", "success");
             closeLoginOverlay();

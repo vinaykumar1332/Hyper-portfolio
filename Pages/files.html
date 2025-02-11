@@ -3,11 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="version" content="1a-11-24">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta http-equiv="Expires" content="0">
     <meta http-equiv="expires" content="Wed, 21 Oct 2026 07:28:00 GMT">
     <meta name="description"
@@ -16,6 +17,10 @@
         content="study files, coding questions, interview materials, React, Angular, HTML, CSS, JavaScript, jQuery, technology PDFs">
     <meta name="Vinay kumar pudi" content="Boost Your Knowledge">
     <meta name="google" content="nositelinkssearchbox">
+    <meta name="rating" content="safe for kids">
+    <meta name="robots" content="index, follow">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
     <link rel="stylesheet" href="../Css/Boost Knowledge/KnowledgeBooster.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -27,7 +32,7 @@
     <header class="Navigation-container">
         <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="/KnowledgeBooster.html">
+                <a class="navbar-brand" href="../KnowledgeBooster.html">
                     <i class="fas fa-lightbulb blinking-icon"></i> Boost your Knowledge
                 </a>
                 <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -41,11 +46,16 @@
                         <li class="nav-item">
                             <a class="nav-link" id="files" href="files.html"><i class="fas fa-file-alt"></i>Learning</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="./Blog.html"><i class="fas fa-blog"></i> Feeds</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../index.html"><i class="fas fa-envelope"></i> About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showLoginOverlay()"><i class="fa-regular fa-user"></i>
+                                Login</a>
                         </li>
                     </ul>
                     <div class="dark-mode-toggle ml-3" onclick="toggleDarkMode()">
@@ -69,41 +79,90 @@
                     <div class="search-drop-main">
                         <div class="search-filter">
                             <div class="search-container">
-                                <input type="text" placeholder="Search PDFs..." class="search-bar"><i
+                                <input type="text" placeholder="Search for study materials..." class="search-bar"><i
                                     class="fa fa-search search-icon" aria-hidden="true"></i></input>
-
+                            </div>
+                            <div class="search-text-drop">
+                                <span>Use keywords or <em>select an option</em></span>
                             </div>
                             <div class="filter-container">
-                                <select title="select options" class="main-filter-options" id="mainFilterOptions">
-                                    <option value="select">Select Category</option>
-                                    <option value="frontend">Frontend</option>
-                                    <option value="backend">Backend</option>
-                                    <option value="database">Database</option>
-                                    <option value="devops">DevOps</option>
-                                    <option value="other">Other</option>
-                                </select>
+                                <div class="select-container">
+                                    <select title="select options" class="main-filter-options" id="mainFilterOptions">
+                                        <option value="select">Select Category</option>
+                                        <option value="frontend">Frontend</option>
+                                        <option value="backend">Backend</option>
+                                        <option value="database">Database</option>
+                                        <option value="devops">DevOps</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="select-container">
+                                    <select class="filter-options" id="filterOptions" style="display:none;">\
 
-                                <select class="filter-options" id="filterOptions" style="display:none;">
-                                    <option value="all">Select Technology</option>
-                                    <!-- Subcategory options will be populated here dynamically -->
-                                </select>
-                                <button id="resetButton" style="display:none;" title="Clear"><i class="fa-solid fa-x"></i></button>
+                                        <option value="all">Technology</option>
+                                        <!-- Subcategory options will be populated here dynamically -->
+
+                                    </select>
+
+                                </div>
+                                <button id="resetButton" style="display:none;" title="Clear"><i
+                                        class="fa-solid fa-x"></i></button>
                             </div>
                         </div>
-                        <div class="cardsResults">
-                            <p id="cardCount"> Results: 0</p>
-                        </div>
+                        <section class="result-sort-container">
+                            <div class="cardsResults">
+                                <p id="cardCount"> Results: 0</p>
+                            </div>
+                            <div class="sort-container-main">
+                                <div class="sort-container">
+                                    <span><i class="fas fa-sort"></i></span>
+                                    <select title="select options" id="sortOptions" class="sort-options">
+                                        <option value="titleAsc">Title: A-Z</option>
+                                        <option value="titleDesc">Title: Z-A</option>
+                                        <option value="newest">Newest</option>
+                                        <option value="liked">Liked</option>
+                                        <option value="popular">Popular</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
                         <div id="results">
-                            <p id="no-results-message" style="display: none;">"Oops! No <span class="resultsCategory"></span> files are available right now.</p>
+                            <p id="no-results-message" style="display: none;"> <em>"Oops!" </em><i class="fa-regular fa-face-frown-open"></i>  No <span
+                                    class="resultsCategory"></span>  files are available right now.</p>
                             <!-- Results will be displayed here -->
                         </div>
                 </header>
 
-                <main id="cardContainer" class="cardContainer">
+                <section id="cardContainer" class="cardContainer">
                     <!-- Add more cards as needed -->
-                </main>
+                </section>
+                <section class="Preloader-container" id="preloader-container" style="display:none;">
+                    <div id="preloader">
+                        <div class="loader"></div>
+                    </div>
+                </section>
+                <div id="toast-container"></div>
+        </section>
+        <section class="login-container">
+            <div id="loginOverlay" class="overlay hidden">
+                <div class="overlay-content">
+                    <div id="loginPage" class="login-page">
+                        <h2>Login</h2>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <input type="text" id="loginUsernameOrEmail" placeholder="Username or Email" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" id="loginPassword" placeholder="Password" required />
+                            </div>
+                            <div id="loginErrorMessage" class="error-message hidden">
+                                Invalid username or password!
+                            </div>
+                            <button type="submit" class="btn">Login</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div id="toast-container"></div>
         </section>
         <section class="pdfPreview">
             <div id="pdfOverlay" class="overlay">
@@ -113,6 +172,11 @@
                     <iframe id="pdfIframe" src="" frameborder="0" width="300" height="200" allowfullscreen></iframe>
                 </div>
             </div>
+        </section>
+        <section class="scroll-top-container">
+            <button id="scrollToTopBtn" class="scroll-to-top" title="Go to top">
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+            </button>
         </section>
         <section class="footer-section">
             <footer class="footer">
@@ -152,30 +216,19 @@
                 </div>
             </footer>
         </section>
-        <!-- <script src="../Libraries/knowleged_min_file.js"></script> -->
-         <script src="../Libraries/KnowledgeBooster.js"></script>
-        <script src="../Libraries/pdfFiles.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- <script src="../Libraries/min files/knowledgeBooster.js"></script> -->
+        <script src="../Libraries/KnowledgeBooster.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" defer></script> -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                // Show preloader
                 const preloader = document.getElementById('preloader');
                 preloader.style.display = 'flex';
-
-                // Populate the cards
-                populateCards();
-
-                // Initialize lazy loading for images
                 lazyLoadInstance();
-
-                // Delay hiding the preloader for 2 seconds after cards are populated
                 setTimeout(() => {
                     preloader.style.display = 'none';
                 }, 1000);
-
-                // Add event listeners for search and filter
                 document.querySelector('.search-bar')?.addEventListener('input', filterCards);
                 document.getElementById('filterOptions')?.addEventListener('change', filterCards);
                 document.getElementById('loadMoreBtn')?.addEventListener('click', () => {
@@ -183,13 +236,6 @@
                     showCards();
                 });
             });
-
-//             document.addEventListener('DOMContentLoaded',function(){
-//     document.addEventListener('contextmenu', (event) => {
-//     event.preventDefault();
-//   });
-// });
-
         </script>
     </main>
 </body>

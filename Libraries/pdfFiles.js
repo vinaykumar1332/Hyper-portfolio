@@ -1,133 +1,113 @@
-// JSON data for PDF links and card details
-const dataApi = '../pdfData.json'; 
+const dataApi = '../Json/pdfData.json';
 let pdfData;
-fetch(dataApi)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        pdfData = data.pdfFilesData; // Access the pdfFilesData object
-        console.log('Fetched Data:', pdfData);
 
-        const totalKeys = Object.keys(pdfData).length;
-        console.log(`Total number of entries: ${totalKeys}`);
-         populateCards();
-    })
-    .catch(error => console.error('Error fetching data:', error));
-    
-
- function imageLoadOnCategory() {
-    const cards = document.querySelectorAll('.card');
-    const imagePaths = {
-        html: '../Assets/images/html-css.jpg',
-        javascript: '../Assets/images/javascript.jpeg',
-        react: '../Assets/images/react.png',
-        dsa:'../Assets/images/dsa.jpeg',
-        sql:'../Assets/images/sql.png',
-        python:'../Assets/images/python.png',
-        mongodb:'../Assets/images/mongodb.jpeg',
-        git:'../Assets/images/Git&Github.png',
-        sysdesign:'../Assets/images/system design.jfif',
-        testing: '../Assets/images/testing.png',
-        
-        // Add other categories and their corresponding image paths here
-    };
-
-    cards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        const img = card.querySelector('img.lazy-load');
-        
-        if (imagePaths[category]) {
-            const imagePath = imagePaths[category];
-            img.setAttribute('data-src', imagePath);
-        } else {
-            console.error(`Image path not found for category: ${category}`);
-        }
-    });
-    // Optional: Initialize lazy loading if you're using a lazy loading library
-};
+// Fetch data from JSONBin API
+if (localStorage.getItem('pdfData')) {
+    pdfData = JSON.parse(localStorage.getItem('pdfData'));
+    console.log('Loaded data from local storage:', pdfData);
+    const totalKeys = Object.keys(pdfData).length;
+    console.log(`Total number of entries: ${totalKeys}`);
+    populateCards();
+} else {
+    fetch(dataApi)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            pdfData = data.pdfFilesData; // Access the pdfFilesData object
+            console.log('Fetched Data:', pdfData);
+            const totalKeys = Object.keys(pdfData).length;
+            localStorage.setItem('pdfData', JSON.stringify(pdfData));
+            populateCards();
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+function clearStorage() {
+    localStorage.removeItem('pdfData');
+    sessionStorage.removeItem('cookieConsent'); 
+    console.log('Local and session storage cleared.');
+}
 
 
 // Function to shuffle cards
 function shuffleCards() {
     const cardContainer = document.getElementById('cardContainer');
     const cards = Array.from(cardContainer.children);
-
-    // Shuffle the array of cards
     for (let i = cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [cards[i], cards[j]] = [cards[j], cards[i]];
     }
-
-    // Append shuffled cards back to the container
     cards.forEach(card => cardContainer.appendChild(card));
 }
-// Event listener to shuffle cards on DOM content loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     shuffleCards();
 });
-
-
 // Function to create a card element
 function createCard(id, { title, description, category }) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.setAttribute('data-id', id);
     card.setAttribute('data-category', category);
-    imageLoadOnCategory();
     card.innerHTML = `
        <div class="card-image-wrapper">
-        <img src="" data-src="../Assets/images/${category}.jpg" class="lazy-load" alt="${title}">
+        <img src="" data-src="../Assets/images/${category}.jpg" class="lazy-load" alt="${title}"  width="600" height="400" style="aspect-ratio: 3 / 2;">
         </div>
         <div class="content">
             <h2 class="card-h2">${title}</h2>
             <p class="card-p">${description}</p>
-            <button class="view-btn">View PDF</button>
+            <div class="card-btn-container">
+            <button class="view-btn"> <i class="fa-regular fa-eye"></i> Preview</button>
+            <button class="Download-pdf-btn">Download <i class="fa-solid fa-download"></i></button>
+            </div>  
+              <div class="like-container">
+              <button role="button" aria-label="Like button">
+              <i class="fa fa-heart like-btn" aria-hidden="true"></i></button>
+        </div>
         </div>
     `;
     return card;
+
 }
 
 // Function to populate cards
 function populateCards() {
-    // Check if pdfData is defined and is an object
     if (!pdfData || typeof pdfData !== 'object') {
-        console.error('pdfData is undefined, null, or not an object!');
+      
         return;
     }
-
     const cardContainer = document.getElementById('cardContainer');
-
     if (!cardContainer) {
-        console.error('Card container not found!');
+  
         return;
     }
-
-    // Clear any existing cards
     cardContainer.innerHTML = '';
-
-    // Loop through each item in pdfData and create a card
     Object.entries(pdfData).forEach(([id, data]) => {
         const card = createCard(id, data);
-
-        // Add an event listener for the 'click' event to open the corresponding PDF
-        card.addEventListener('click', () => openPDF(id));
-
-        // Append the card to the container
+        const viewButton = card.querySelector('.view-btn');
+        const downloadButton = card.querySelector('.Download-pdf-btn');
+        if (viewButton) {
+            viewButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                openPDF(id);
+            });
+        }
+        if (downloadButton) {
+            downloadButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                downloadPDfUrl(id);
+            });
+        }
         cardContainer.appendChild(card);
     });
 
-    console.log('Cards populated successfully.');
-
-    // Shuffle the cards after populating them
     shuffleCards();
     lazyLoadInstance();
+    imageLoadOnCategory();  // Call once after all cards are populated
     filterCards();
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const mainFilterOptions = document.getElementById('mainFilterOptions');
@@ -143,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
             { value: 'angular', text: 'Angular' }
         ],
         backend: [
-            { value: 'nodejs', text: 'Node.js' },
+            { value: 'Nodejs', text: 'Node.js' },
             { value: 'java', text: 'Java' },
             { value: 'python', text: 'Python' }
         ],
@@ -176,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 card.style.display = 'none';
             }
         });
-        console.error(selectedCategory);
+
         filterOptions.innerHTML = '<option value="all">Select Technology</option>';
         if (subcategories[selectedCategory]) {
             subcategories[selectedCategory].forEach(subcategory => {
@@ -188,25 +168,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
             filterOptions.style.display = 'inline-block';
             resetButton.style.display = 'inline-block'; // Show the reset button
+            console.error(selectedCategory);
+            updateUrl('category', selectedCategory);
             return;
         } else {
             filterOptions.style.display = 'none';
             resetButton.style.display = 'none'; // Hide the reset button
         }
         filterCards();
-        updateUrlWithCategory();
     });
-    function updateUrlWithSubcategory(selectedSubcategory) {
-        const baseUrl = window.location.origin + window.location.pathname; 
+    function updateUrl(selectedCategory, selectedSubcategory) {
+        const baseUrl = window.location.origin + window.location.pathname;
+        const encodedCategory = encodeURIComponent(selectedCategory);
         const encodedSubcategory = encodeURIComponent(selectedSubcategory);
-        const newUrl = `${baseUrl}?subcategory=${encodedSubcategory}`;
+        const newUrl = `${baseUrl}?category=${encodedCategory}&subcategory=${encodedSubcategory}`;
         window.history.pushState({ path: newUrl }, '', newUrl);
         console.log(newUrl);
         return newUrl;
     }
-    
-
-    // Event listener for subcategory filter
     filterOptions.addEventListener('change', function () {
         const selectedSubcategory = this.value;
         console.log(selectedSubcategory);
@@ -221,58 +200,130 @@ document.addEventListener('DOMContentLoaded', function () {
         resultsCategory(selectedSubcategory);
         function resultsCategory(selectedSubcategory) {
             console.log(selectedSubcategory + ' selected');
-            
-            // Get the first element with the class 'resultsCategory'
             const resultsCategoryElement = document.querySelector('.resultsCategory');
-            
             if (resultsCategoryElement) {
                 resultsCategoryElement.innerHTML = selectedSubcategory;
             } else {
                 console.error('Element with class "resultsCategory" not found!');
             }
         }
-        updateUrlWithSubcategory(selectedSubcategory)
+        updateUrl('subcategory', selectedSubcategory);
     });
-
-    // Event listener for reset button
     resetButton.addEventListener('click', function () {
-        // Reset the main category dropdown
         mainFilterOptions.value = 'select';
-
-        // Hide the subcategory dropdown and clear options
         filterOptions.innerHTML = '<option value="all">Select Technology</option>';
         filterOptions.style.display = 'none';
-
-        // Hide the reset button
         resetButton.style.display = 'none';
-
-        // Show all cards explicitly
         cards.forEach(card => {
             card.style.display = 'block'; // Ensure all cards are displayed
         });
-    });
-    resetButton.addEventListener('click', function () {
         const baseUrl = window.location.origin + window.location.pathname;
-       window.history.pushState({ path: baseUrl }, '', baseUrl);
-
-        location.reload(true); // Reload the page to reset all filters and show all cards
+        window.history.pushState({ path: baseUrl }, '', baseUrl);
+        location.reload(true); // Reload the page
+        clearStorage();
+        clearLocalStorageData(); // Clear the local storage data
+        window.checkLikedCards('likedCards', 'liked');
     });
-});
 
+});
+//images load
+function imageLoadOnCategory() {
+    const cards = document.querySelectorAll('.card');
+    const imagePaths = {
+        html: '../Assets/images/html-css.jpg',
+        javascript: '../Assets/images/javascript.jpeg',
+        react: '../Assets/images/react.png',
+        dsa: '../Assets/images/dsa.jpeg',
+        sql: '../Assets/images/sql.png',
+        python: '../Assets/images/python.png',
+        mongodb: '../Assets/images/mongodb.jpeg',
+        git: '../Assets/images/Git&Github.png',
+        sysdesign: '../Assets/images/system design.jfif',
+        testing: '../Assets/images/testing.png',
+        Nodejs: '../Assets/images/node-js.webp',
+        angular: '../Assets/images/angularjs.png',
+        docker: '../Assets/images/docker.png'
+    };
+
+    cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const img = card.querySelector('img.lazy-load');
+
+        if (imagePaths[category]) {
+            const imagePath = imagePaths[category];
+            img.setAttribute('data-src', imagePath);
+        } else {
+        }
+    });
+};
+
+// sort by functionlaity
+document.addEventListener('DOMContentLoaded', function () {
+    const sortOptions = document.getElementById('sortOptions');
+    const cardContainer = document.getElementById('cardContainer');
+
+    // Function to sort cards
+    sortOptions.addEventListener('change', function () {
+        const sortBy = this.value;
+        let sortedData;
+
+        switch (sortBy) {
+            case 'titleAsc':
+                sortedData = Object.entries(pdfData).sort((a, b) =>
+                    a[1].title.localeCompare(b[1].title)
+                );
+                break;
+            case 'titleDesc':
+                sortedData = Object.entries(pdfData).sort((a, b) =>
+                    b[1].title.localeCompare(a[1].title)
+                );
+                break;
+            case 'newest':
+                sortedData = Object.entries(pdfData).sort((a, b) =>
+                    new Date(b[1].date) - new Date(a[1].date) // Assuming `date` is a property
+                );
+                break;
+            case 'popular':
+                sortedData = Object.entries(pdfData).sort((a, b) =>
+                    b[1].popularity - a[1].popularity // Assuming `popularity` is a property
+                );
+                break;
+            default:
+                // Default sorting logic (e.g., original order)
+                sortedData = Object.entries(pdfData);
+                break;
+        }
+
+        // Repopulate cards with sorted data
+        cardContainer.innerHTML = ''; // Clear the existing cards
+        sortedData.forEach(([id, data]) => {
+            const card = createCard(id, data);
+            cardContainer.appendChild(card);
+        });
+        lazyLoadInstance();
+        filterCards();
+        imageLoadOnCategory();
+        populateCards();
+      
+
+    });
+    clearStorage()
+});
 // Function to set the PDF URL in the iframe and show the overlay
 function openPDF(fileId) {
     const pdfUrl = pdfData[fileId]?.url;
     const iframe = document.getElementById('pdfIframe');
     const overlay = document.getElementById('pdfOverlay');
     const bodyElement = document.body;
+    const scrollToTopContainer = document.querySelector('.scroll-top-container');
 
     if (pdfUrl && iframe && overlay) {
         console.log('Setting iframe src to:', pdfUrl);
         iframe.src = pdfUrl;
         overlay.style.display = 'flex'; // Show the overlay
         bodyElement.style.overflow = 'hidden'; // Disable body scrolling
-
-        // Update the URL with the fileId or the PDF URL
+        scrollToTopContainer.style.display = 'none'; // Hide the scroll to top button
+        console.log(pdfUrl);
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('pdf', fileId);  // You could use `pdfUrl` instead of `fileId`
         const newUrl = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
@@ -282,6 +333,21 @@ function openPDF(fileId) {
         console.error('No PDF URL found for ID:', fileId);
         showToast('Sorry, File is not available');
     }
+
+}
+
+function downloadPDfUrl(fileId) {
+    if (!pdfData[fileId]) {
+        console.error('Invalid fileId or pdfData not defined.');
+        return;
+    }
+    const downloadPdfUrl = pdfData[fileId].url.replace("/preview", "/edit");
+    if (downloadPdfUrl) {
+        console.log('Opening modified PDF URL in a new tab:', downloadPdfUrl);
+        window.open(downloadPdfUrl, '_blank');
+    } else {
+        console.error('Failed to modify PDF URL.');
+    }
 }
 
 
@@ -290,20 +356,21 @@ function closePDF() {
     const overlay = document.getElementById('pdfOverlay');
     const iframe = document.getElementById('pdfIframe');
     const bodyElement = document.body;
+    const scrollToTopContainer = document.querySelector('.scroll-top-container');
     if (overlay && iframe) {
         overlay.style.display = 'none';
+        scrollToTopContainer.style.display = 'block';
         iframe.src = ''; // Clear the iframe source
-        if(bodyElement){
-            bodyElement.style.overflow='visible';
-            console.log("test2");
+        if (bodyElement) {
+            bodyElement.style.overflow = 'visible';
+            console.log("close pdf");
         }
     }
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete('pdf');
     const baseUrl = window.location.origin + window.location.pathname;
     const newUrl = `${baseUrl}?${urlParams.toString()}`;
-    window.history.pushState({ path: newUrl }, '', newUrl);
-   openPDF(fileId);
+    window.history.pushState({ path: newUrl }, '', newUrl)
 }
 
 // Function to show toast notifications
@@ -382,20 +449,22 @@ function filterCards() {
     });
 
     cardCount.innerHTML = ` Results: ${visibleCardCount}`;
-    
+    const sortOptions = document.querySelector('.sort-container-main');
     const noResultsCont = document.querySelector('#results');
     const noResultsMsg = noResultsCont.querySelector('#no-results-message');
-    
+
     if (visibleCardCount === 0) {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'block';
             noResultsCont.style.display = 'block';
-            
+            sortOptions.style.display = "none";
+
         }
     } else {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'none';
             noResultsCont.style.display = 'none';
+            sortOptions.style.display = "none";
         }
     }
 }
@@ -433,11 +502,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //--results count 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('searchInput');
     const filterSelect = document.getElementById('filterSelect');
     const cardContainer = document.getElementById('cardContainer');
-    
+
     // Create and insert the results count element
     const resultsCount = document.createElement('p');
     resultsCount.id = 'resultsCount';
@@ -450,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchText = searchInput.value.toLowerCase();
         const selectedCategory = filterSelect.value;
         const cards = cardContainer.getElementsByClassName('card');
-        
+
         let visibleCardCount = 0;
 
         for (let card of cards) {
@@ -473,14 +542,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateCardCount(count) {
         resultsCount.textContent = `Results : ${count}`;
     }
-   
-   // Initial count
+
+    // Initial count
     filterCards();
 
 });
 
 //filter search and reuslts count
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.querySelector('.search-bar');
     const filterSelect = document.getElementById('filterOptions');
     const cardContainer = document.getElementById('cardContainer');
@@ -493,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchText = searchInput.value.toLowerCase();
         const selectedCategory = filterSelect.value;
         const cards = cardContainer.getElementsByClassName('card');
-        
+
         let visibleCardCount = 0;
 
         for (let card of cards) {
@@ -520,9 +589,238 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial count
     filterCards();
 });
+//-filter drop down icon rotate
+document.querySelectorAll('.main-filter-options, .filter-options').forEach((dropdown) => {
+    dropdown.addEventListener('click', function () {
+        this.classList.toggle('open');
+    });
+});
+//likes 
+document.addEventListener('DOMContentLoaded', () => {
+    const maxLikes = 10; // Maximum number of likes allowed
+    const likedCards = new Set(JSON.parse(localStorage.getItem('likedCards')) || []); // Load from localStorage
+
+    // Function to update the like state in the UI
+    const updateLikeState = () => {
+        document.querySelectorAll('.card').forEach((card) => {
+            const cardId = card.getAttribute('data-id'); // Use data-id as the unique identifier
+            const likeBtn = card.querySelector('.like-btn'); // Like button inside the card
+
+            if (likedCards.has(cardId)) {
+                likeBtn.classList.add('liked'); // Add liked class
+            } else {
+                likeBtn.classList.remove('liked'); // Remove liked class
+            }
+        });
+    };
+
+    // Function to handle the like action
+    const handleLike = (button) => {
+        const card = button.closest('.card'); // Find the parent card
+        const cardId = card.getAttribute('data-id'); // Get the card's unique ID
+
+        if (likedCards.has(cardId)) {
+            likedCards.delete(cardId); // Remove the card ID from the set
+        } else {
+            if (likedCards.size >= maxLikes) {
+                showToast("You can have reached the maximum number of likes");
+                return;
+            }
+            likedCards.add(cardId); // Add the card ID to the set
+        }
+        localStorage.setItem('likedCards', JSON.stringify([...likedCards]));
+        updateLikeState();
+    };
+    window.addEventListener('load', function () {
+        const checkLikedCards = (storageKey, targetClass) => {
+            const storedLikedCards = JSON.parse(localStorage.getItem(storageKey)) || [];
+            document.querySelectorAll('[data-id]').forEach((element) => {
+                const dataId = element.getAttribute('data-id');
+                if (storedLikedCards.includes(dataId)) {
+                    element.classList.add(targetClass);
+                    console("likes add");
+                } else {
+
+                }
+            });
+        };
+        updateLikeState();
+        window.checkLikedCards = checkLikedCards;
+    })
+
+    document.body.addEventListener('click', (e) => {
+        if (e.target.classList.contains('like-btn')) {
+            handleLike(e.target);
+        }
+    });
+
+});
+
+//scroll to top
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollToTopBtn.style.display = 'block';
+    } else {
+        scrollToTopBtn.style.display = 'none';
+    }
+});
+// Scroll to the top smoothly when button is clicked
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
 
 
+function showLoginOverlay() {
+    if (!document.getElementById('loginOverlayParent')) {
+        const parentDiv = document.createElement('div');
+        parentDiv.id = 'loginOverlayParent';
+        parentDiv.className = 'overlay-parent';
+        parentDiv.innerHTML = `
+        <div id="loginOverlayParent" class="overlay-parent visible">
+    <div class="overlay-container">
+        <div class="overlay">
+            <button class="close-btn" onclick="closeLoginOverlay()">
+                <i class="fa fa-window-close" aria-hidden="true"></i>
+            </button>
+            <div class="overlay-content">
+                <form id="loginForm" class="login-form" onsubmit="validateLogin(event)">
+                    <h2>Login</h2>
+                    <div class="input-group">
+                        <i class="fa fa-user input-icon"></i>
+                        <input type="text" id="username" placeholder="Username or Email" required="">
+                    </div>
+                    <div class="input-group">
+                        <i class="fa fa-lock input-icon"></i>
+                        <input type="password" id="password" placeholder="Password" required="">
+                    </div>
+                     <p id="loginErrorMessage" class="error-msg hidden"></p>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
+        `;
+        document.body.appendChild(parentDiv);
+        setTimeout(() => parentDiv.classList.add('visible'), 10);
+    }
+}
+function showLoginForm() {
+    document.getElementById('signUpForm').classList.add('hidden');
+    document.getElementById('loginForm').classList.remove('hidden');
+}
+
+function closeLoginOverlay() {
+    const overlay = document.getElementById('loginOverlayParent');
+    overlay.classList.remove('visible');
+    setTimeout(() => overlay.remove(), 500);
+}
+
+// Close Login Overlay
+function closeLoginOverlay() {
+    const parentDiv = document.getElementById('loginOverlayParent');
+    if (parentDiv) {
+        parentDiv.classList.remove('visible');
+        setTimeout(() => parentDiv.remove(), 300);
+    }
+}
+
+// Open Login Overlay
+function openLoginOverlay() {
+    const loginOverlayParent = document.getElementById('loginOverlayParent');
+    loginOverlayParent.classList.add('active');
+}
+
+// Function to validate login
+async function validateLogin(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const usernameInput = document.getElementById("username").value.trim();
+    const passwordInput = document.getElementById("password").value.trim();
+    const errorMessage = document.getElementById("loginErrorMessage");
+
+    try {
+        const response = await fetch("../Json/loginData.json");
+        if (!response.ok) throw new Error("Unable to fetch user data.");
+        const users = await response.json();
+        const user = users.find(user => user.username === usernameInput && user.password === passwordInput);
+
+        if (user) {
+            // Successful login
+            errorMessage.classList.add("hidden");
+            showNotification("You have successfully logged in!", "success");
+            closeLoginOverlay();
+        } else {
+            // Invalid login
+            showNotification("Invalid username or password. Please try again.", "error");
+        }
+    } catch (error) {
+        console.error("Error fetching or processing user data:", error);
+        showNotification("An error occurred. Please try again later.", "error");
+    }
+}
+
+// Function to show notifications
+function showNotification(message, type) {
+    const overlayContainer = document.querySelector(".overlay-container"); // Fixed selector
+    if (!overlayContainer) {
+        console.error("Overlay container not found");
+        return;
+    }
+    const notification = document.createElement("div");
+    notification.classList.add("notification--login-overlay", type);
+    notification.textContent = message;
+    overlayContainer.appendChild(notification);
+    setTimeout(() => {
+        notification.classList.add("show");
+    }, 100);
+    setTimeout(() => {
+        notification.classList.remove("show");
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
+    }, 3000);
+}
+
+// cookie consent
+document.addEventListener("DOMContentLoaded", () => {
+    const userChoice = sessionStorage.getItem("cookieConsent");
+
+    if (!userChoice) {
+        const cookiePopupHTML = `
+            <div class="cookie-popup" id="cookiePopup">
+<p>We use cookies to improve your experience. By using our website, you agree to our cookie policy <i class="fa-solid fa-cookie"></i>.</p>
+<div class="button-group">
+    <button class="accept" id="acceptCookies"><i class="fa-solid fa-check"></i> Accept</button>
+    <button class="reject" id="rejectCookies"><i class="fa-solid fa-x"></i> Decline</button>
+</div>
+</div>
+        `;
+        document.body.insertAdjacentHTML("beforeend", cookiePopupHTML);
+        document.getElementById("acceptCookies").addEventListener("click", () => {
+            handleUserChoice("accepted");
+        });
+
+        document.getElementById("rejectCookies").addEventListener("click", () => {
+            handleUserChoice("rejected");
+        });
+        function handleUserChoice(choice) {
+            sessionStorage.setItem("cookieConsent", choice);
+            hidePopup();
+        }
+        function hidePopup() {
+            const popup = document.getElementById("cookiePopup");
+            if (popup) {
+                popup.style.display = "none";
+            }
+        }
+    }
+});
 
 
 

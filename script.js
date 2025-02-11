@@ -489,7 +489,7 @@ function startDownload() {
 function downloadFile(progressBar, button) {
   const link = document.createElement('a');
   link.href = '#';
-  link.download = 'NO-FILE.pdf';
+  link.download = 'NO-FILE1.pdf';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -853,5 +853,6 @@ function animatePercentage(element) {
 skills.forEach((skill) => {
     observer.observe(skill);
 });
+
 
 

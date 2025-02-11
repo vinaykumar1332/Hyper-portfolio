@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="version" content="1a.11.24">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -24,7 +25,157 @@
     <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.css">
     <title>Boost Your Knowledge</title>
 </head>
+<header>
+    <style>
+    body {
+        background-image: url(./Assests/Bgpattern.png);
+        background-size: cover;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
 
+    .packshot-conatiner {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 80px 50px;
+    }
+
+    .items {
+        display: flex;
+        gap: 20px; /* Equal spacing between all cards */
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .item {
+        flex: 1;
+        transition: transform 0.3s ease, flex 0.3s ease, z-index 0.3s ease;
+        position: relative;
+        text-align: center;
+    }
+
+    .item:hover {
+        flex: 1.2; /* Scale the hovered card slightly */
+        transform: scale(1.05); /* Scale effect for the hovered card */
+        z-index: 2; /* Bring the hovered card to the front */
+        border: 2px solid #3ccbda;
+    }
+
+    .items:hover .item:not(:hover) {
+        flex: 0.9; /* Slightly shrink non-hovered cards */
+        transform: scale(0.95); /* Scale down non-hovered cards */
+        z-index: 1;
+        border: 1px solid transparent;
+    }
+
+    .packshot-card {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .default-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .hover-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .item:hover .default-image {
+        opacity: 0; /* Hide the image on hover */
+    }
+
+    .item:hover .hover-video {
+        opacity: 1; /* Show the video on hover */
+        visibility: visible;
+    }
+
+    .packshot-card-text {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 10px 0;
+    }
+
+    .packshot-card-text h2 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .packshot-card-text p {
+        font-size: 14px;
+        margin: 0;
+        color: #3ccbda;
+    }
+
+    /* Responsive adjustments for tablets */
+    @media (max-width: 768px) {
+        .packshot-conatiner {
+            padding: 40px 20px;
+        }
+
+        .items {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        .item {
+            flex: 0 0 80%;
+            scroll-snap-align: center;
+        }
+
+        .packshot-card {
+            height: 350px;
+        }
+    }
+
+    /* Responsive adjustments for mobile */
+    @media (max-width: 480px) {
+        .packshot-conatiner {
+            padding: 20px;
+        }
+
+        .item {
+            flex: 0 0 70%;
+        }
+
+        .packshot-card {
+            height: 300px;
+        }
+
+        .packshot-card-text h2 {
+            font-size: 14px;
+        }
+
+        .packshot-card-text p {
+            font-size: 12px;
+        }
+    }
+
+
+    </style>
+</header>
 <body>
     <header class="Navigation-container">
         <nav class="navbar navbar-expand-md navbar-dark">
@@ -50,6 +201,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="index.html"><i class="fas fa-envelope"></i> About us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showLoginOverlay()"><i class="fa-regular fa-user"></i> Login</a>
+                        </li>
                     </ul>
                     <div class="dark-mode-toggle ml-3" onclick="toggleDarkMode()">
                         <i class="fas fa-moon"></i>
@@ -68,7 +222,7 @@
                 <p>Explore a wide range of study materials, coding questions, and interview guides across various
                     technologies.</p>
                     <form>
-                        <button  title="Learning button" class="btn btn-primary" formaction="/Pages/files.html" >Start Learning</button>
+                        <button  title="Learning button" class="btn btn-primary" formaction="Pages/files.html" >Start Learning</button>
                     </form>
                
             </div>
@@ -629,25 +783,10 @@
             </div>
         </footer>
     </section>
-    <script>
-        // document.addEventListener('DOMContentLoaded',function(){
-        //     document.addEventListener('contextmenu', (event) => {
-        //     event.preventDefault();
-        //   });
-        // });
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     setTimeout(() => {
-        //         if (window.location.pathname.endsWith('.html')) {
-        //         const newUrl = window.location.pathname.replace('.html', '');
-        //         history.replaceState(null, '', newUrl);
-        //     }
-        //     }, 2000);
-          
-        // });
-
     </script>
-    <script src="Libraries/KnowledgeBooster.js"></script>
-    <!-- <script src="../Libraries/knowleged_min_file.js"></script> -->
+    <!-- <script src="Libraries/KnowledgeBooster.js"></script> -->
+    <!-- <script src="Libraries/pdfFiles.js"></script> -->
+    <script src="Libraries/min files/knowledgeBooster.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

@@ -30,7 +30,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './'  # Change 'dist' to your correct folder
+          path: './dist'  # Change 'dist' to your correct folder
 
       - name: Deploy to GitHub Pages
         id: deployment

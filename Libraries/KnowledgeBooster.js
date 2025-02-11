@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterOptions = document.getElementById('filterOptions');
     const resetButton = document.getElementById('resetButton');
     const cards = document.querySelectorAll('.card');
+   
 
     const subcategories = {
         frontend: [
@@ -496,12 +497,14 @@ function filterCards() {
     const sortOptions = document.querySelector('.sort-container-main');
     const noResultsCont = document.querySelector('#results');
     const noResultsMsg = noResultsCont.querySelector('#no-results-message');
+    const searchTxtDrop = document.querySelectorAll('.search-text-drop')
 
     if (visibleCardCount === 0) {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'block';
             noResultsCont.style.display = 'block';
             sortOptions.style.display = "none";
+            searchTxtDrop.style.display="none";
 
         }
     } else {
@@ -865,4 +868,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     }
+});
+
+
+J(document).ready(function () {
+    // Check if #star-rating-title is empty
+    if ($.trim($('#star-rating-title').text()) === '') {
+        // Add 'is-empty' only to the closest parent with class 'component'
+        $('#star-rating-title').closest('.component').addClass('is-empty');
+    }
+});
+
+jQuery(document).ready(function () {
+    jQuery(".rate-here-container .stars-container").each(function () {
+        var content = jQuery(this).html().trim(); // Get the trimmed HTML content
+        var parentContainer = jQuery(this).closest('.my-recipe-star-rating'); // Find the closest relevant parent
+
+        if (content === "") {
+            parentContainer.addClass("is-empty").closest(".container").addClass("is-empty"); // Add 'is-empty' if empty
+        } else {
+            parentContainer.removeClass("is-empty").closest(".container").remove("is-empty"); // Remove 'is-empty' if not empty
+        }
+    });
 });

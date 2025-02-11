@@ -27,13 +27,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      - name: Debug - List Files Before Upload
-        run: ls -R  # This prints all files to check if index.html exists
+      - name: Debug - List Files
+        run: ls -R  # ✅ This prints all files for debugging
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './'  # ✅ Root directory where index.html is present
+          path: './'  # ✅ Ensure correct path (Root folder)
 
       - name: Deploy to GitHub Pages
         id: deployment

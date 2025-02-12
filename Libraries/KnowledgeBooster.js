@@ -871,23 +871,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-J(document).ready(function () {
-    // Check if #star-rating-title is empty
-    if ($.trim($('#star-rating-title').text()) === '') {
-        // Add 'is-empty' only to the closest parent with class 'component'
-        $('#star-rating-title').closest('.component').addClass('is-empty');
-    }
-});
-
-jQuery(document).ready(function () {
-    jQuery(".rate-here-container .stars-container").each(function () {
-        var content = jQuery(this).html().trim(); // Get the trimmed HTML content
-        var parentContainer = jQuery(this).closest('.my-recipe-star-rating'); // Find the closest relevant parent
-
-        if (content === "") {
-            parentContainer.addClass("is-empty").closest(".container").addClass("is-empty"); // Add 'is-empty' if empty
-        } else {
-            parentContainer.removeClass("is-empty").closest(".container").remove("is-empty"); // Remove 'is-empty' if not empty
-        }
-    });
-});

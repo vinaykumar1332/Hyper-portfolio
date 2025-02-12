@@ -2090,29 +2090,4 @@ select#filterOptions,
     box-shadow: 0 
 }
 
-#specifications {
-    .tab-item a.active {
-        color: var(--ingrident-title-active);
-        border-bottom: 4px solid var(--ingrident-title-border);
-    }
 
-    .tab-item a {
-        color: var(--ingrident-title);
-    }
-    .recipe-detail-instructions ol li::before{
-        color:var(--ingrident-list-color);
-        border: 2px solid var(--ingrident-list-border);
-    }
-    .tabs-controls {
-        border: 2px solid var(--ingrident-title-border);
-    }
-}
-
-:root{
-    --ingrident-title-active:var(--brand-color-1);
-    --ingrident-title-border:var(--brand-color-1);
-    --ingrident-list-color:var(--text-color);
-    --ingrident-list-border:var(--tag-color);
-    --ingrident-title:var(--text-color);
-    --ingrident-title-border:var(--brand-color-1)
-}

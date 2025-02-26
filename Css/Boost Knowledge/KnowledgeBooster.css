@@ -577,9 +577,23 @@ a.nav-link.active:focus {
         margin-bottom: 50px;
 
     }
-
     .card {
-        background-color: white;
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    }
+    
+    /* Smooth reveal with scale-up effect */
+    .card.show {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    
+    .card {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        background-color: #ffff;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         overflow: hidden;
@@ -600,6 +614,12 @@ a.nav-link.active:focus {
             margin-right: 10px;
             padding-bottom: 20px;
         }
+
+            &.show {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+
     }
     
     .card:hover {
@@ -2095,29 +2115,4 @@ select#filterOptions,
     box-shadow: 0 
 }
 
-#specifications {
-    .tab-item a.active {
-        color: var(--ingrident-title-active);
-        border-bottom: 4px solid var(--ingrident-title-border);
-    }
 
-    .tab-item a {
-        color: var(--ingrident-title);
-    }
-    .recipe-detail-instructions ol li::before{
-        color:var(--ingrident-list-color);
-        border: 2px solid var(--ingrident-list-border);
-    }
-    .tabs-controls {
-        border: 2px solid var(--ingrident-title-border);
-    }
-}
-
-:root{
-    --ingrident-title-active:var(--brand-color-1);
-    --ingrident-title-border:var(--brand-color-1);
-    --ingrident-list-color:var(--text-color);
-    --ingrident-list-border:var(--tag-color);
-    --ingrident-title:var(--text-color);
-    --ingrident-title-border:var(--brand-color-1)
-}

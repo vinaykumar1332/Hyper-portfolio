@@ -818,7 +818,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("cookieConsent", choice);
         hidePopup();
     }
-
     // Hide popup function
     function hidePopup() {
         const popup = document.getElementById("cookiePopup");
@@ -827,6 +826,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
-
-
-

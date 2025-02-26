@@ -583,12 +583,6 @@ a.nav-link.active:focus {
         transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
     }
     
-    /* Smooth reveal with scale-up effect */
-    .card.show {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-    
     .card {
         opacity: 0;
         transform: scale(0.8) translateY(50px);

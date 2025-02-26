@@ -48,144 +48,157 @@ function showContent(section) {
     });
 });
 
-
-
-
-
-  document.addEventListener('DOMContentLoaded', function () {
-    var swiper = new Swiper('.tech-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-            },
-            768: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 4,
-            },
-        },
-    });
-});
-const dataApi = '../Json/pdfData.json';
+// Constants and global variables
+const DATA_API = '../Json/pdfData.json';
 let pdfData;
+const maxLikes = 50;
+const likedCards = new Set(JSON.parse(localStorage.getItem('likedCards')) || []);
 
-// Fetch data from JSONBin API
-if (localStorage.getItem('pdfData')) {
-    pdfData = JSON.parse(localStorage.getItem('pdfData'));
-    const totalKeys = Object.keys(pdfData).length;
-    populateCards();
-} else {
-    fetch(dataApi)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            pdfData = data.pdfFilesData; // Access the pdfFilesData object
-            console.log('Fetched Data:', pdfData);
-            const totalKeys = Object.keys(pdfData).length;
+// Data fetching and storage management
+async function fetchAndStoreData() {
+    if (localStorage.getItem('pdfData')) {
+        pdfData = JSON.parse(localStorage.getItem('pdfData'));
+        populateCards();
+    } else {
+        try {
+            const response = await fetch(DATA_API);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+            pdfData = data.pdfFilesData;
             localStorage.setItem('pdfData', JSON.stringify(pdfData));
             populateCards();
-        })
-        .catch(error => console.error('Error fetching data:', error));
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 }
+
 function clearStorage() {
     localStorage.removeItem('pdfData');
-    sessionStorage.removeItem('cookieConsent'); 
-    console.log('Local and session storage cleared.');
+    sessionStorage.removeItem('cookieConsent');
+    console.log('Storage cleared');
 }
 
-
-// Function to shuffle cards
-function shuffleCards() {
-    const cardContainer = document.getElementById('cardContainer');
-    const cards = Array.from(cardContainer.children);
-    for (let i = cards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [cards[i], cards[j]] = [cards[j], cards[i]];
-    }
-    cards.forEach(card => cardContainer.appendChild(card));
-}
-document.addEventListener('DOMContentLoaded', function () {
-    shuffleCards();
-});
-// Function to create a card element
+// Card creation and management
 function createCard(id, { title, description, category }) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.setAttribute('data-id', id);
     card.setAttribute('data-category', category);
     card.innerHTML = `
-       <div class="card-image-wrapper">
-        <img src="" data-src="../Assets/images/${category}.jpg" class="lazy-load" alt="${title}"  width="600" height="400" style="aspect-ratio: 3 / 2;">
+        <div class="card-image-wrapper">
+            <img src="" data-src="../Assets/images/${category}.jpg" class="lazy-load" alt="${title}" width="600" height="400" style="aspect-ratio: 3 / 2;">
         </div>
         <div class="content">
             <h2 class="card-h2">${title}</h2>
             <p class="card-p">${description}</p>
             <div class="card-btn-container">
-            <button class="view-btn"> <i class="fa-regular fa-eye"></i> Preview</button>
-            <button class="Download-pdf-btn">Download <i class="fa-solid fa-download"></i></button>
-            </div>  
-              <div class="like-container">
-              <button role="button" aria-label="Like button">
-              <i class="fa fa-heart like-btn" aria-hidden="true"></i></button>
-        </div>
+                <button class="view-btn"><i class="fa-regular fa-eye"></i> Preview</button>
+                <button class="Download-pdf-btn">Download <i class="fa-solid fa-download"></i></button>
+            </div>
+            <div class="like-container">
+                <button role="button" aria-label="Like button" class="like-btn-wrapper">
+                    <i class="fa fa-heart like-btn" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
     `;
     return card;
-
 }
 
-// Function to populate cards
-function populateCards() {
-    if (!pdfData || typeof pdfData !== 'object') {
-      
-        return;
+function shuffleCards(container) {
+    const cards = Array.from(container.children);
+    for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
     }
+    cards.forEach(card => container.appendChild(card));
+}
+
+function updateLikeState() {
+    document.querySelectorAll('.card').forEach(card => {
+        const cardId = card.getAttribute('data-id');
+        const likeBtn = card.querySelector('.like-btn');
+        likeBtn.classList.toggle('liked', likedCards.has(cardId));
+    });
+}
+
+function populateCards(sortOption = 'all') {
+    if (!pdfData || typeof pdfData !== 'object') return;
+    
     const cardContainer = document.getElementById('cardContainer');
-    if (!cardContainer) {
-  
-        return;
-    }
+    if (!cardContainer) return;
+
     cardContainer.innerHTML = '';
-    Object.entries(pdfData).forEach(([id, data]) => {
+    const entries = sortOption === 'liked' 
+        ? Object.entries(pdfData).filter(([id]) => likedCards.has(id))
+        : Object.entries(pdfData);
+
+    entries.forEach(([id, data]) => {
         const card = createCard(id, data);
-        const viewButton = card.querySelector('.view-btn');
-        const downloadButton = card.querySelector('.Download-pdf-btn');
-        if (viewButton) {
-            viewButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                openPDF(id);
-            });
-        }
-        if (downloadButton) {
-            downloadButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                downloadPDfUrl(id);
-            });
-        }
+        
+        card.querySelector('.view-btn')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openPDF(id);
+        });
+        
+        card.querySelector('.Download-pdf-btn')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            downloadPDfUrl(id);
+        });
+
         cardContainer.appendChild(card);
     });
 
-    shuffleCards();
+    shuffleCards(cardContainer);
+    updateLikeState();
     lazyLoadInstance();
-    imageLoadOnCategory();  // Call once after all cards are populated
+    imageLoadOnCategory();
     filterCards();
 }
+
+// Like functionality
+function handleLike(button) {
+    const card = button.closest('.card');
+    const cardId = card.getAttribute('data-id');
+
+    if (likedCards.has(cardId)) {
+        likedCards.delete(cardId);
+    } else if (likedCards.size < maxLikes) {
+        likedCards.add(cardId);
+    } else {
+        showToast("Maximum number of likes reached");
+        return;
+    }
+    
+    localStorage.setItem('likedCards', JSON.stringify([...likedCards]));
+    updateLikeState();
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    fetchAndStoreData();
+
+    const sortSelect = document.getElementById('sortOptions');
+    
+    // Initial population based on default select value
+    populateCards(sortSelect.value);
+
+    // Event listeners
+    document.body.addEventListener('click', (e) => {
+        if (e.target.classList.contains('like-btn')) {
+            handleLike(e.target);
+        }
+    });
+
+    // Sort option change handler
+    sortSelect.addEventListener('change', (e) => {
+        const sortOption = e.target.value;
+        if (sortOption !== 'sort') { // Ignore the "Sort by" placeholder
+            populateCards(sortOption);
+        }
+    });
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     const mainFilterOptions = document.getElementById('mainFilterOptions');
@@ -494,7 +507,6 @@ function filterCards() {
     });
 
     cardCount.innerHTML = ` Results: ${visibleCardCount}`;
-    const sortOptions = document.querySelector('.sort-container-main');
     const noResultsCont = document.querySelector('#results');
     const noResultsMsg = noResultsCont.querySelector('#no-results-message');
     const searchTxtDrop = document.querySelectorAll('.search-text-drop')
@@ -503,7 +515,6 @@ function filterCards() {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'block';
             noResultsCont.style.display = 'block';
-            sortOptions.style.display = "none";
             searchTxtDrop.style.display="none";
 
         }
@@ -511,7 +522,6 @@ function filterCards() {
         if (noResultsMsg) {
             noResultsMsg.style.display = 'none';
             noResultsCont.style.display = 'none';
-            sortOptions.style.display = "none";
         }
     }
 }
@@ -595,67 +605,6 @@ document.querySelectorAll('.main-filter-options, .filter-options').forEach((drop
         this.classList.toggle('open');
     });
 });
-//likes 
-document.addEventListener('DOMContentLoaded', () => {
-    const maxLikes = 10; // Maximum number of likes allowed
-    const likedCards = new Set(JSON.parse(localStorage.getItem('likedCards')) || []); // Load from localStorage
-
-    // Function to update the like state in the UI
-    const updateLikeState = () => {
-        document.querySelectorAll('.card').forEach((card) => {
-            const cardId = card.getAttribute('data-id'); // Use data-id as the unique identifier
-            const likeBtn = card.querySelector('.like-btn'); // Like button inside the card
-
-            if (likedCards.has(cardId)) {
-                likeBtn.classList.add('liked'); // Add liked class
-            } else {
-                likeBtn.classList.remove('liked'); // Remove liked class
-            }
-        });
-    };
-
-    // Function to handle the like action
-    const handleLike = (button) => {
-        const card = button.closest('.card'); // Find the parent card
-        const cardId = card.getAttribute('data-id'); // Get the card's unique ID
-
-        if (likedCards.has(cardId)) {
-            likedCards.delete(cardId); // Remove the card ID from the set
-        } else {
-            if (likedCards.size >= maxLikes) {
-                showToast("You can have reached the maximum number of likes");
-                return;
-            }
-            likedCards.add(cardId); // Add the card ID to the set
-        }
-        localStorage.setItem('likedCards', JSON.stringify([...likedCards]));
-        updateLikeState();
-    };
-    window.addEventListener('load', function () {
-        const checkLikedCards = (storageKey, targetClass) => {
-            const storedLikedCards = JSON.parse(localStorage.getItem(storageKey)) || [];
-            document.querySelectorAll('[data-id]').forEach((element) => {
-                const dataId = element.getAttribute('data-id');
-                if (storedLikedCards.includes(dataId)) {
-                    element.classList.add(targetClass);
-                    console("likes add");
-                } else {
-
-                }
-            });
-        };
-        updateLikeState();
-        window.checkLikedCards = checkLikedCards;
-    })
-
-    document.body.addEventListener('click', (e) => {
-        if (e.target.classList.contains('like-btn')) {
-            handleLike(e.target);
-        }
-    });
-
-});
-
 //scroll to top
 const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
@@ -837,37 +786,43 @@ function showNotification(message, type) {
 
 // cookie consent
 document.addEventListener("DOMContentLoaded", () => {
-    const userChoice = sessionStorage.getItem("cookieConsent");
+    // Check localStorage first (persistent across sessions)
+    const userChoice = localStorage.getItem("cookieConsent");
 
+    // Only show popup if no choice has been made
     if (!userChoice) {
         const cookiePopupHTML = `
             <div class="cookie-popup" id="cookiePopup">
-<p>We use cookies to improve your experience. By using our website, you agree to our cookie policy <i class="fa-solid fa-cookie"></i>.</p>
-<div class="button-group">
-    <button class="accept" id="acceptCookies"><i class="fa-solid fa-check"></i> Accept</button>
-    <button class="reject" id="rejectCookies"><i class="fa-solid fa-x"></i> Decline</button>
-</div>
-</div>
+                <p>We use cookies to improve your experience. By using our website, you agree to our cookie policy <i class="fa-solid fa-cookie"></i>.</p>
+                <div class="button-group">
+                    <button class="accept" id="acceptCookies"><i class="fa-solid fa-check"></i> Accept</button>
+                    <button class="reject" id="rejectCookies"><i class="fa-solid fa-x"></i> Decline</button>
+                </div>
+            </div>
         `;
+        
+        // Add popup to DOM
         document.body.insertAdjacentHTML("beforeend", cookiePopupHTML);
-        document.getElementById("acceptCookies").addEventListener("click", () => {
-            handleUserChoice("accepted");
-        });
 
-        document.getElementById("rejectCookies").addEventListener("click", () => {
-            handleUserChoice("rejected");
-        });
-        function handleUserChoice(choice) {
-            sessionStorage.setItem("cookieConsent", choice);
-            hidePopup();
-        }
-        function hidePopup() {
-            const popup = document.getElementById("cookiePopup");
-            if (popup) {
-                popup.style.display = "none";
-            }
+        // Get references to buttons
+        const acceptBtn = document.getElementById("acceptCookies");
+        const rejectBtn = document.getElementById("rejectCookies");
+
+        // Event listeners
+        acceptBtn.addEventListener("click", () => handleUserChoice("accepted"));
+        rejectBtn.addEventListener("click", () => handleUserChoice("rejected"));
+    }
+
+    // Handle user's choice
+    function handleUserChoice(choice) {
+        localStorage.setItem("cookieConsent", choice);
+        hidePopup();
+    }
+    // Hide popup function
+    function hidePopup() {
+        const popup = document.getElementById("cookiePopup");
+        if (popup) {
+            popup.style.display = "none";
         }
     }
 });
-
-

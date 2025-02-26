@@ -615,14 +615,13 @@ a.nav-link.active:focus {
             padding-bottom: 20px;
         }
 
-        
             &.show {
                 opacity: 1;
                 transform: scale(1) translateY(0);
             }
 
     }
-
+    
     .card:hover {
         transform: scale(1.05);
     }
@@ -907,7 +906,11 @@ a.nav-link.active:focus {
         flex-direction: row;
 
         .cardsResults {
-            position: absolute;
+            position: relative;
+            top:50px;
+            @media (max-width:480px) {
+               top:28px;
+            }
             p#cardCount {
                 color: #222;
                 font-weight: 600;
@@ -919,6 +922,7 @@ a.nav-link.active:focus {
 
                 @media (max-width:480px) {
                     padding: 20px 0px 5px 0px;
+                
                 }
 
                 @media (min-width:480px) {
@@ -929,7 +933,6 @@ a.nav-link.active:focus {
         }
 
         .sort-container-main {
-            display: none;
             .sort-container {
                 display: flex;
                 align-items: center;
@@ -948,7 +951,9 @@ a.nav-link.active:focus {
                     }
                 }
             }
-
+            @media (max-width: 468px) {
+                top:20px;
+            }
             .sort-options {
                 appearance: none;
                 width: 100%;

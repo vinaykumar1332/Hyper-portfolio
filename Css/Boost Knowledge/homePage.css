@@ -58,58 +58,109 @@
                 margin-top: 20px;
                 font-size: 1.2rem;
             }
-
-            .btn.btn-primary {
-                font-family: 'Poppins', sans-serif;
+            .btn-primary {
+                /* Base styles */
+                padding: 12px 24px;
+                font-size: 16px;
                 font-weight: 500;
-                padding: 12px 25px;
-                border-radius: 25px;
+                color: white;
                 background-color: var(--nav-bg-color);
-                color: #ffffff;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
                 position: relative;
-                display: inline-block;
-                transition: background-color 0.3s ease, transform 0.3s ease, padding-right 0.3s ease;
-                margin-top: 30px;
-                font-size: 1rem;
                 overflow: hidden;
-                /* Ensure the icon stays within the button's boundaries */
-                border: 2px solid var(--nav-bg-color);
-                /* Border color matching the button */
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                /* Subtle box shadow */
-
+                transition: all 0.3s ease;
+                
+                /* Flex for icon alignment */
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
             }
-
-            .btn.btn-primary::after {
-                content: '>>';
-                font-family: 'Poppins', sans-serif;
-                font-weight: 900;
-                position: absolute;
-                right: 25px;
-                /* Position the icon off-screen initially */
-                top: 50%;
-                transform: translateY(-50%);
-                transition: right 0.3s ease, opacity 0.3s ease;
-                opacity: 0;
-                font-size: 22px;
+            
+            /* Default icon with animation */
+            .btn-primary::after {
+                content: '\2192'; /* Right arrow unicode - you can change this */
+                font-size: 14px;
+                opacity: 1; /* Visible by default */
+                transition: all 0.3s ease;
+                transform: rotate(0deg); /* Starting position */
             }
-
-            .btn.btn-primary:hover {
+            
+            /* Hover effects */
+            .btn-primary:hover {
                 background-color: #0056b3;
-                transform: translateY(-3px);
-                /* Add a slight lift effect on hover */
-                padding-right: 40px;
-                /* Increase padding-right to accommodate the icon on hover */
-                border-color: #003d80;
-                /* Change border color on hover */
-                box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-                /* Slightly larger shadow on hover */
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
             }
-
-            .btn.btn-primary:hover::after {
-                right: 10px;
-                /* Bring the icon into view on hover */
-                opacity: 1;
+            
+            .btn-primary:hover::after {
+                transform: translateX(5px) rotate(360deg); /* Moves right and spins */
+                color: #ffffff;
+            }
+            
+            /* Click animation */
+            .btn-primary:active {
+                transform: scale(0.95);
+                box-shadow: 0 2px 10px rgba(0, 123, 255, 0.2);
+            }
+            
+            .btn-primary:active::after {
+                transform: scale(1.2); /* Slight grow effect on click */
+            }
+            
+            /* Ripple effect on click */
+            .btn-primary::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            }
+            
+            /* Ripple animation keyframes */
+            @keyframes ripple {
+                to {
+                    width: 300px;
+                    height: 300px;
+                    opacity: 0;
+                }
+            }
+            
+            /* Bounce animation for icon */
+            @keyframes bounce {
+                0% { transform: translateX(0); }
+                50% { transform: translateX(5px); }
+                100% { transform: translateX(0); }
+            }
+            
+            /* Apply bounce animation on load */
+            .btn-primary {
+                animation: bounce 1.5s infinite ease-in-out;
+            }
+            
+            /* Stop bounce on hover and show spin instead */
+            .btn-primary:hover {
+                animation: none;
+            }
+            
+            /* Disabled state */
+            .btn-primary:disabled {
+                background-color: #6c757d;
+                cursor: not-allowed;
+                transform: none;
+                box-shadow: none;
+                animation: none;
+            }
+            
+            .btn-primary:disabled::after {
+                opacity: 0.5;
             }
 
         }

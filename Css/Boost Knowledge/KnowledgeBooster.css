@@ -1507,7 +1507,7 @@ select#filterOptions,
                 pointer-events: none;
 
                 @media (max-width: 768px) {
-                    right: 1px;
+                    right: 8px;
                 }
             }
         }

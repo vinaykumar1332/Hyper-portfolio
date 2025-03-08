@@ -200,13 +200,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements
     const mainFilterOptions = document.getElementById('mainFilterOptions');
     const filterOptions = document.getElementById('filterOptions');
     const resetButton = document.getElementById('resetButton');
     const cards = document.querySelectorAll('.card');
-   
 
+    // Check for required elements
+    if (!mainFilterOptions || !filterOptions || !resetButton) {
+        console.error('One or more filter elements not found');
+        return;
+    }
+
+    // Subcategory definitions
     const subcategories = {
         frontend: [
             { value: 'html', text: 'HTML & CSS' },
@@ -235,93 +242,107 @@ document.addEventListener('DOMContentLoaded', function () {
             { value: 'bash', text: 'Bash' },
             { value: 'sysdesign', text: 'System Design' },
             { value: 'testing', text: 'Testing' },
-            { value: 'ai', text: 'AI' },
-            
+            { value: 'ai', text: 'AI' }
         ],
         Artificial_Intelligence: [
-            { value: 'ai', text: 'AI' },
+            { value: 'ai', text: 'AI' }
         ]
     };
 
-    // Event listener for main category filter
-    mainFilterOptions.addEventListener('change', function () {
-        const selectedCategory = this.value;
-        cards.forEach(card => {
-            if (selectedCategory === 'select' || card.getAttribute('data-category') === selectedCategory) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
+    // Initialize filters from URL on page load
+    initializeFilters();
 
-        filterOptions.innerHTML = '<option value="all">Select Technology</option>';
-        if (subcategories[selectedCategory]) {
-            subcategories[selectedCategory].forEach(subcategory => {
-                const option = document.createElement('option');
-                option.value = subcategory.value;
-                option.text = subcategory.text;
+    // Event Listeners
+    mainFilterOptions.addEventListener('change', handleMainFilterChange);
+    filterOptions.addEventListener('change', handleSubFilterChange);
+    resetButton.addEventListener('click', resetFilters);
+
+    // Filter cards based on category and subcategory
+    function filterCards(category = 'select', subcategory = 'all') {
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            const cardSubcategory = card.getAttribute('data-subcategory') || cardCategory; // Fallback to category
+            const matchesCategory = category === 'select' || cardCategory === category;
+            const matchesSubcategory = subcategory === 'all' || cardSubcategory === subcategory;
+            // If subcategory is 'all', show all cards within the category (or all if category is 'select')
+            card.style.display = matchesCategory && (subcategory === 'all' || matchesSubcategory) ? 'block' : 'none';
+        });
+    }
+
+    // Populate subcategory dropdown with "All Technologies" option
+    function populateSubcategories(category) {
+        filterOptions.innerHTML = ''; // Clear existing options
+        filterOptions.appendChild(new Option('All Technologies', 'all')); // Default "show all" option
+        if (subcategories[category]) {
+            subcategories[category].forEach(({ value, text }) => {
+                const option = new Option(text, value);
                 filterOptions.appendChild(option);
             });
-
             filterOptions.style.display = 'inline-block';
-            resetButton.style.display = 'inline-block'; // Show the reset button
-            console.error(selectedCategory);
-            updateUrl('category', selectedCategory);
-            return;
+            resetButton.style.display = 'inline-block';
         } else {
             filterOptions.style.display = 'none';
-            resetButton.style.display = 'none'; // Hide the reset button
+            resetButton.style.display = 'none';
         }
-        filterCards();
-    });
-    function updateUrl(selectedCategory, selectedSubcategory) {
-        const baseUrl = window.location.origin + window.location.pathname;
-        const encodedCategory = encodeURIComponent(selectedCategory);
-        const encodedSubcategory = encodeURIComponent(selectedSubcategory);
-        const newUrl = `${baseUrl}?category=${encodedCategory}&subcategory=${encodedSubcategory}`;
-        window.history.pushState({ path: newUrl }, '', newUrl);
-        console.log(newUrl);
-        return newUrl;
     }
-    filterOptions.addEventListener('change', function () {
-        const selectedSubcategory = this.value;
-        console.log(selectedSubcategory);
 
-        cards.forEach(card => {
-            if (selectedSubcategory === 'all' || card.getAttribute('data-subcategory') === selectedSubcategory) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-        resultsCategory(selectedSubcategory);
-        function resultsCategory(selectedSubcategory) {
-            console.log(selectedSubcategory + ' selected');
-            const resultsCategoryElement = document.querySelector('.resultsCategory');
-            if (resultsCategoryElement) {
-                resultsCategoryElement.innerHTML = selectedSubcategory;
-            } else {
-                console.error('Element with class "resultsCategory" not found!');
-            }
+    // Update URL with current filter state
+    function updateUrl(category, subcategory) {
+        const params = new URLSearchParams();
+        if (category !== 'select') params.set('category', category);
+        if (subcategory !== 'all') params.set('subcategory', subcategory); // Only set subcategory if not 'all'
+        const newUrl = `${window.location.pathname}?${params.toString()}`;
+        window.history.pushState({ category, subcategory }, '', newUrl);
+        console.log('URL updated:', newUrl);
+    }
+
+    // Handle main filter change
+    function handleMainFilterChange() {
+        const category = mainFilterOptions.value;
+        populateSubcategories(category);
+        filterCards(category, filterOptions.value);
+        updateUrl(category, filterOptions.value);
+    }
+
+    // Handle subcategory filter change
+    function handleSubFilterChange() {
+        const subcategory = filterOptions.value;
+        filterCards(mainFilterOptions.value, subcategory);
+        updateResultsCategory(subcategory);
+        updateUrl(mainFilterOptions.value, subcategory);
+    }
+
+    // Update results category display
+    function updateResultsCategory(subcategory) {
+        const resultsElement = document.querySelector('.resultsCategory');
+        if (resultsElement) {
+            resultsElement.textContent = subcategory === 'all' ? 'All Technologies' : subcategory;
+        } else {
+            console.warn('Results category element not found');
         }
-        updateUrl('subcategory', selectedSubcategory);
-    });
-    resetButton.addEventListener('click', function () {
+    }
+
+    // Reset filters to default state
+    function resetFilters() {
         mainFilterOptions.value = 'select';
-        filterOptions.innerHTML = '<option value="all">Select Technology</option>';
+        filterOptions.innerHTML = '<option value="all">All Technologies</option>';
         filterOptions.style.display = 'none';
         resetButton.style.display = 'none';
-        cards.forEach(card => {
-            card.style.display = 'block'; // Ensure all cards are displayed
-        });
-        const baseUrl = window.location.origin + window.location.pathname;
-        window.history.pushState({ path: baseUrl }, '', baseUrl);
-        location.reload(true); // Reload the page
-        clearStorage();
-        clearLocalStorageData(); // Clear the local storage data
-        window.checkLikedCards('likedCards', 'liked');
-    });
+        filterCards();
+        updateUrl('select', 'all');
+    }
+    // Initialize filters from URL query parameters
+    function initializeFilters() {
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get('category') || 'select';
+        const subcategory = params.get('subcategory') || 'all';
 
+        mainFilterOptions.value = category;
+        populateSubcategories(category);
+        filterOptions.value = subcategory;
+        filterCards(category, subcategory);
+        updateResultsCategory(subcategory);
+    }
 });
 //images load
 function imageLoadOnCategory() {
@@ -355,8 +376,6 @@ function imageLoadOnCategory() {
         }
     });
 };
-
-
 // Function to set the PDF URL in the iframe and show the overlay
 function openPDF(fileId) {
     const pdfUrl = pdfData[fileId]?.url;

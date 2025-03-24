@@ -1,350 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="version" content="1a-11-24">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="Content-Security-Policy" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="expires" content="Wed, 21 Oct 2026 07:28:00 GMT">
+    <meta name="description"
+        content="Boost Your Knowledge: Access a wide range of study files, coding questions, and interview materials across various technologies including React, Angular, HTML, CSS, JavaScript, and jQuery.">
+    <meta name="keywords"
+        content="study files, coding questions, interview materials, React, Angular, HTML, CSS, JavaScript, jQuery, technology PDFs">
+    <meta name="Vinay kumar pudi" content="Boost Your Knowledge">
+    <meta name="google" content="nositelinkssearchbox">
+    <meta name="rating" content="safe for kids">
+    <meta name="robots" content="index, follow">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <link rel="stylesheet" href="../Css/Boost Knowledge/KnowledgeBooster.css">
+    <link rel="stylesheet" href="../Css/Boost Knowledge/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules\bootstrap\dist\css\bootstrap.css">
+    <title>Files</title>
 </head>
+
 <body>
+    <header class="Navigation-container">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="../KnowledgeBooster.html">
+                    <i class="fas fa-lightbulb blinking-icon"></i> Boost your Knowledge
+                </a>
+                <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <i class="fa-duotone fa-solid fa-bars"></i>
+                </div>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../KnowledgeBooster.html"><i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="files" href="files.html"><i class="fas fa-file-alt"></i>Learning</a>
+                        </li>
 
-    <style>
-.packshot-3-card-component {
-    padding: 80px 20px;
-}
-
-@media (max-width: 74.9375rem) {
-    .packshot-3-card-component {
-        grid-gap: 30px;
-        gap: 30px;
-    }
-}
-
-.packshot-3-card-component a {
-    display: none;
-}
-
-.packshot-3-card-component .items {
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    gap: 20px;
-}
-
-.packshot-3-card-component .items .item {
-    flex: 1;
-    position: relative;
-    scroll-snap-align: center;
-    transition: flex 1s cubic-bezier(0.175, 0.665, 0.32, 1.27), transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Card Image Container */
-.packshot-3-card-component .items .item .Packshot-card .packshot-card-img-container {
-    border: 3px solid transparent;
-    transition: border-color 1s ease-in;
-}
-
-/* Product Image - Dynamic Scaling */
-.packshot-3-card-component .items .item .Packshot-card .packshot-card-img-container .product-card-img {
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Adjust aspect ratio instead of fixed height */
-}
-
-        
-/* Ensure images fit properly */
-.packshot-3-card-component .items .item .Packshot-card .packshot-card-img-container .product-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Video - Dynamic Scaling */
-.packshot-3-card-component .items .item .Packshot-card .packshot-card-img-container .product-card-img .custom-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Text Content */
-.packshot-3-card-component .items .item .Packshot-card .product-card-text {
-    padding: 10px;
-    text-align: center;
-    background-color: transparent;
-}
-
-/* Card Title */
-.packshot-3-card-component .items .item .Packshot-card .product-card-text .field-item-title {
-    font-family: var(--ff-headings);
-    font-size: 24px;
-    font-weight: var(--fw-bold);
-    color: var(--packshot-h3);
-}
-
-/* Card Heading */
-.packshot-3-card-component .items .item .Packshot-card .product-card-text .field-item-heading {
-    font-family: var(--ff-headings);
-    font-size: 14px;
-    font-weight: var(--fw-regular);
-    color: var(--packshot-h4);
-}
-
-/* Active Card */
-.packshot-3-card-component .items .item.active {
-    flex: 0 0 33%;
-    transform: scale(1);
-    width: 100%;
-    z-index: 1;
-    cursor: pointer;
-}
-
-/* Active Card Image Container */
-.packshot-3-card-component .items .item.active .packshot-card-img-container {
-    position: relative;
-    border-color: var(--packshot-border-color);
-    transition: border 0.5s;
-}
-
-/* Active Product Image */
-.packshot-3-card-component .items .item.active .packshot-card-img-container .product-card-img {
-    min-height: 500px; /* Ensures proper visibility */
-    aspect-ratio: 16 / 9;
-    width: 100%;
-}
-
-/* Video in Active Card */
-.packshot-3-card-component .items .item.active .packshot-card-img-container .product-card-img .custom-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Inactive Cards */
-.packshot-3-card-component .items .item:not(.active) {
-    flex: 0 0 30%;
-    transform: scale(0.96);
-    padding-top: 40px;
-}
-
-/* Inactive Product Image */
-.packshot-3-card-component .items .item:not(.active) .Packshot-card .packshot-card-img-container .product-card-img {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    height: auto;
-}
-
-/* Hide videos in inactive items */
-.packshot-3-card-component .items .item:not(.active) .Packshot-card .custom-video {
-    display: none;
-}
-
-/* Mobile Adjustments */
-@media screen and (max-width: 576px) {
-    .packshot-3-card-component ul.items li.item.active {
-        flex: 0 0 85%;
-        transform: scale(0.95);
-    }
-
-    .packshot-3-card-component ul.items li.item:not(.active) {
-        flex: 0 0 85%;
-        transform: scale(0.89);
-        padding: 0;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .packshot-3-card-component {
-        padding: 80px 0;
-    }
-
-    .packshot-3-card-component .items {
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        padding: 0;
-        justify-content: flex-start;
-        gap: 0;
-    }
-
-    .packshot-3-card-component .items::-webkit-scrollbar {
-        display: none;
-    }
-
-    .packshot-3-card-component .items .item {
-        scroll-snap-type: initial;
-    }
-
-    /* Scaling for active items */
-    .packshot-3-card-component .items .item.active {
-        flex: 0 0 90%;
-        transform: scale(0.9);
-    }
-
-    /* Scaling for inactive items */
-    .packshot-3-card-component .items .item:not(.active) {
-        flex: 0 0 85%;
-        transform: scale(0.85);
-        padding: 0;
-    }
-
-    /* Hide inactive videos */
-    .packshot-3-card-component .items .item:not(.active) .custom-video {
-        display: none;
-    }
-}
-
-    </style>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./Blog.html"><i class="fas fa-blog"></i> Feeds</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html"><i class="fas fa-envelope"></i> About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showLoginOverlay()"><i class="fa-regular fa-user"></i>
+                                Login</a>
+                        </li>
+                    </ul>
+                    <div class="dark-mode-toggle ml-3" onclick="toggleDarkMode()">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="blog-container">
+            <h1>Latest Technology News</h1>
+            <div id="news-list"></div>
+            <div id="preloader" style="display: none;">Loading...</div>
+            <div id="news-list"></div>
+            <button id="load-more" style="display: none;">Load More</button>
+        </section>
+        <section class="ad-container">
+            <button class="close-ad" onclick="closeAdPopup()">&times;</button>
+            <div class="ad-content">
+                <video id="ad-video" controls>
+                    <source src="https://youtu.be/GLB8A-uCiEA?si=PRW22rpzhgfPJ9Nr" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+    </main>
 </body>
+<script src="../Libraries/blog.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    const items = document.querySelectorAll(".packshot-3-card-component .item");
-    const parentComponent = document.querySelector(".packshot-3-card-component");
-    const videoStates = new Map();
-    let cardObserver = null;
-
-    const observerOptions = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.8,
-    };
-
-    function setDefaultActiveCard() {
-        const defaultIndex = window.innerWidth < 991 ? 0 : 1;
-        if (items.length > 0) {
-            activateCard(items[Math.min(defaultIndex, items.length - 1)]);
-        }
-    }
-
-    function activateCard(card) {
-        if (!card || card.classList.contains("active")) return;
-
-        items.forEach((item) => {
-            const video = item.querySelector("video");
-            item.classList.remove("active");
-
-            if (video) {
-                if (item !== card && !video.paused) {
-                    videoStates.set(item, video.currentTime);
-                    video.pause();
-                } else if (item === card && video.paused) {
-                    if (videoStates.has(item)) {
-                        video.currentTime = videoStates.get(item);
-                    }
-                    video.play().catch((error) => {
-                        if (error.name !== "AbortError") {
-                            console.error("Video play error:", error);
-                        }
-                    });
-                }
-            }
-        });
-
-        card.classList.add("active");
-    }
-
-    const cardObserverCallback = (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                activateCard(entry.target);
-            }
-        });
-    };
-
-    function initializeCardObserver() {
-        if (cardObserver) {
-            cardObserver.disconnect();
-        }
-
-        if (window.innerWidth < 991 && items.length > 0) {
-            cardObserver = new IntersectionObserver(cardObserverCallback, observerOptions);
-            items.forEach((item) => cardObserver.observe(item));
-        }
-    }
-
-    const parentObserverCallback = (entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const videos = parentComponent.querySelectorAll("video[data-src]");
-                videos.forEach((video) => {
-                    if (video.dataset.src && !video.src) {
-                        video.src = video.dataset.src;
-                        video.removeAttribute("data-src");
-                    }
-                });
-
-                // Once videos are loaded, restart the active video safely
-                const activeCard = document.querySelector(".packshot-3-card-component .item.active");
-                if (activeCard) {
-                    const activeVideo = activeCard.querySelector("video");
-                    if (activeVideo && activeVideo.paused) {
-                        activeVideo.play().catch((error) => {
-                            if (error.name !== "AbortError") {
-                                console.error("Video play error:", error);
-                            }
-                        });
-                    }
-                }
-
-                observer.unobserve(entry.target); // Unobserve parent after first load
-            }
-        });
-    };
-
-    const parentObserver = new IntersectionObserver(parentObserverCallback, {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.8,
-    });
-
-    if (parentComponent) {
-        parentObserver.observe(parentComponent);
-    }
-
-    function onMouseEnter() {
-        activateCard(this);
-    }
-
-    function onMouseLeave() {
-        setDefaultActiveCard();
-    }
-
-    function initializeHoverListeners() {
-        if (window.innerWidth >= 991) {
-            items.forEach((item) => {
-                item.addEventListener("mouseenter", onMouseEnter);
-                item.addEventListener("mouseleave", onMouseLeave);
-            });
-        } else {
-            items.forEach((item) => {
-                item.removeEventListener("mouseenter", onMouseEnter);
-                item.removeEventListener("mouseleave", onMouseLeave);
-            });
-        }
-    }
-
-    // 🚀 Commented out resize event listener
-    /*
-    let resizeTimeout;
-    window.addEventListener("resize", () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            initializeHoverListeners();
-            initializeCardObserver();
-            setDefaultActiveCard();
-        }, 300);
-    });
-    */
-
-    if (parentComponent) {
-        initializeCardObserver();
-        initializeHoverListeners();
-        setDefaultActiveCard();
-    }
-});
-
-</script>
 </html>

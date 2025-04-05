@@ -208,3 +208,20 @@ h1 {
         bottom: 10px;
     }
 }
+#product-header {
+    display: flex; /* Keeps .img-container and .content-container side by side */
+    align-items: flex-start;
+    
+    .img-container {
+        flex: 1; /* Takes half of the width */
+        position: sticky;
+        top: 0; /* Makes it stick while scrolling */
+        height: fit-content; /* Prevents overflow issues */
+    }
+    
+    .content-container {
+        flex: 1; /* Takes the other half of the width */
+    }
+}
+
+

@@ -2258,7 +2258,7 @@ select#filterOptions,
     border: none;
     font-size: 22px;
     font-weight: bold;
-    color: red;
+    color:var(--brand-color-1);
     cursor: pointer;
     margin-left: 10px;
     transition: transform 0.2s;
@@ -2266,7 +2266,7 @@ select#filterOptions,
   
   .popup-close:hover {
     transform: scale(1.2);
-    color: darkred;
+    color: var(--login-btn-bg-color);
   }
   
   /* Slide animation */
@@ -2290,8 +2290,8 @@ select#filterOptions,
       bottom: 15px;
       padding: 12px 15px;
       font-size: 13px;
+      width: 50%;
     }
-  
     .popup-close {
       font-size: 20px;
     }

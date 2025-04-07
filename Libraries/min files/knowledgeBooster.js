@@ -56,3 +56,10 @@ function toggleDarkMode(){document.body.classList.toggle("dark-mode");var e=docu
             </div>
         </div>
     `;document.body.insertAdjacentHTML("beforeend",t);let a=document.getElementById("acceptCookies"),s=document.getElementById("rejectCookies");a.addEventListener("click",()=>o("accepted")),s.addEventListener("click",()=>o("rejected"))}function o(e){localStorage.setItem("cookieConsent",e),l()}function l(){let e=document.getElementById("cookiePopup");e&&(e.style.display="none")}});
+    function createFeedPopup(){let e=localStorage.getItem("feed_popup_closed");if(e)return;let o=document.createElement("div");o.className="feed-popup",o.innerHTML=`
+        <div class="popup-content" onclick="window.location.href='https://vinaykumar1332.github.io/Hyper-portfolio/Pages/Blog.html'>
+          <p>🔥 New Feeds Available! Click to Explore →</p>
+        </div>
+        <button class="popup-close" aria-label="Close Feed Popup">&times;</button>
+      `,document.body.appendChild(o),o.querySelector(".popup-close").addEventListener("click",()=>{o.remove(),localStorage.setItem("feed_popup_closed","true")})}window.addEventListener("load",()=>{setTimeout(createFeedPopup,5e3)});
+      

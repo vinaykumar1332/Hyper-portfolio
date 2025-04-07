@@ -12,16 +12,6 @@ body {
     margin: 2rem auto;
     padding: 0 1rem;
 
-
-h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #333;
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
 #news-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -98,7 +88,7 @@ h1 {
 /* Preloader Styling */
 #preloader {
     text-align: center;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: bold;
     margin: 20px auto;
     display: none;
@@ -221,6 +211,63 @@ h1 {
     
     .content-container {
         flex: 1; /* Takes the other half of the width */
+    }
+}
+
+/* ✅ FIX for .blog-container and h1 */
+.blog-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.blog-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #0078d4;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    font-style: italic;
+    text-transform: capitalize;
+}
+
+/* ✅ Animation for cards */
+.news-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInFade 0.6s ease forwards;
+}
+
+/* ✅ Stagger card animation when JS adds them */
+.news-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ✅ Keyframes */
+@keyframes slideInFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

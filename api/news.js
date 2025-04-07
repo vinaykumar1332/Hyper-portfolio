@@ -1,17 +1,26 @@
-const url = 'https://hyper-portfolio.vercel.app/api/news';
+const url = 'https://hyper-portfolio.vercel.app/api/news'; // Make sure your /api/news works on Vercel
 let articles = [];
 let currentIndex = 0;
-const batchSize = 6; // Number of articles to load at a time
+const batchSize = 6; // Load 6 articles at a time
 
+// Fetch News from Proxy API
 async function fetchNews() {
     try {
         showPreloader(true);
         const response = await fetch(url);
+
+        // Handle HTML response by mistake
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            throw new Error(`Expected JSON, got: ${text.slice(0, 100)}...`);
+        }
+
         const data = await response.json();
         showPreloader(false);
 
         if (data.status === 'ok') {
-            articles = data.articles.sort((a, b) => 
+            articles = data.articles.sort((a, b) =>
                 new Date(b.publishedAt) - new Date(a.publishedAt)
             );
             currentIndex = 0;
@@ -27,8 +36,10 @@ async function fetchNews() {
     }
 }
 
+// Display News Cards
 function displayNews() {
     const newsList = document.getElementById('news-list');
+
     for (let i = 0; i < batchSize && currentIndex < articles.length; i++, currentIndex++) {
         const article = articles[currentIndex];
         const newsCard = document.createElement('div');
@@ -53,19 +64,17 @@ function displayNews() {
         newsList.appendChild(newsCard);
     }
 
-    // Show/Hide Load More button
+    // Toggle "Load More" button
     const loadMoreBtn = document.getElementById('load-more');
     loadMoreBtn.style.display = currentIndex < articles.length ? 'block' : 'none';
 }
 
+// Preloader Toggle
 function showPreloader(show) {
     document.getElementById('preloader').style.display = show ? 'block' : 'none';
 }
 
-// Event Listeners
-window.onload = fetchNews;
-document.getElementById('load-more').addEventListener('click', displayNews);
-
+// Ad Popup Logic
 function showAdPopup() {
     document.querySelector('.ad-container').style.display = 'block';
 }
@@ -73,4 +82,8 @@ function showAdPopup() {
 function closeAdPopup() {
     document.querySelector('.ad-container').style.display = 'none';
 }
+
+// Event Listeners
+window.onload = fetchNews;
+document.getElementById('load-more').addEventListener('click', displayNews);
 setTimeout(showAdPopup, 5000);

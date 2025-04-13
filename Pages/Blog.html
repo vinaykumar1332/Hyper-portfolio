@@ -66,15 +66,14 @@
             </div>
         </nav>
     </header>
-    <main >
+    <main class="blog-main">
         <section class="blog-container">
-            <h1>Your Daily Dose of Tech News</h1>
+            <h1>Daily Tech News</h1>
             <div id="news-list"></div>
-            <div id="preloader" style="display: none;">Loading please wait...</div>
-            <div id="news-list"></div>
+            <!-- <div id="video-articles" class="video-grid"></div> -->
             <button id="load-more" style="display: none;">Load More <i class="fa-solid fa-square-caret-down"></i></button>
         </section>
-        <section class="ad-container">
+        <!-- <section class="ad-container">
             <button class="close-ad" onclick="closeAdPopup()">&times;</button>
             <div class="ad-content">
                 <video id="ad-video" controls>
@@ -82,7 +81,7 @@
                     Your browser does not support the video tag.
                 </video>
             </div>
-        </section>
+        </section> -->
         <section class="footer-section">
             <footer class="footer">
                 <div class="footer-content">
@@ -124,6 +123,7 @@
     </main>
 </body>
 <script src="../Libraries/news_blog_api.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
 

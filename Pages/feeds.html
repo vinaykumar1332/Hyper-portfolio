@@ -21,7 +21,9 @@
     <meta name="robots" content="index, follow">
     <meta name="HandheldFriendly" content="true">
     <meta name="MobileOptimized" content="width">
+    <link rel="stylesheet" href="../Css/Boost Knowledge/youtude-feeds.css">
     <link rel="stylesheet" href="../Css/Boost Knowledge/KnowledgeBooster.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules\bootstrap\dist\css\bootstrap.css">
@@ -70,17 +72,11 @@
             </div>
         </nav>
     </header>
-    <main>
-        <section>
-            <div class="swiper-container">
-                <div class="swiper-wrapper" id="video-carousel"></div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-              </div>
+    <main class="youtude-feeds">
+        <section class="feeds">
+            <h1>Your YouTube Video Feeds</h1>
+            <div id="video-categories"></div>
         </section>
-       
-          
     </main>
         <section class="footer-section">
             <footer class="footer">
@@ -122,9 +118,9 @@
         </section>
     </main>
 </body>
-<script src="../api/youtube.js"></script>
 <script src="../Libraries/youtube_api.js"></script>
 <script src="../Libraries/min files/knowledgeBooster.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>

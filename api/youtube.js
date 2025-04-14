@@ -1,8 +1,9 @@
+// /api/youtube.js (Next.js example)
 export default async function handler(req, res) {
     const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-    const category = req.query.category || '28';
-  
-    const apiURL = `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=IN&videoCategoryId=${category}&maxResults=10&key=${YOUTUBE_API_KEY}`;
+    const query = req.query.q || 'technology';
+    // Use the search endpoint rather than the videos endpoint:
+    const apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${encodeURIComponent(query)}&type=video&key=${YOUTUBE_API_KEY}`;
   
     try {
       const response = await fetch(apiURL);

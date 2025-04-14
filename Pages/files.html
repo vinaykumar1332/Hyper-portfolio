@@ -46,15 +46,20 @@
                         <li class="nav-item">
                             <a class="nav-link" id="files" href="files.html"><i class="fas fa-file-alt"></i>Learning</a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="./Blog.html"><i class="fas fa-blog"></i> Feeds</a>
-                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#">
+                              <i class="fas fa-blog"></i> Feeds <i class="fas fa-chevron-down chevron-icon"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a href="./Blog.html">Tech Blogs</a></li>
+                              <li><a href="./feeds.html">My Feeds</a></li>
+                            </ul>
+                          </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../index.html"><i class="fas fa-envelope"></i> About us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="showLoginOverlay()"><i class="fa-regular fa-user"></i>
+                            <a class="nav-link login" href="#" onclick="showLoginOverlay()"><i class="fa-regular fa-user"></i>
                                 Login</a>
                         </li>
                     </ul>

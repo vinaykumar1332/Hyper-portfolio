@@ -646,7 +646,7 @@ const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
     function updateNavbar() {
         const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-        const loginNavLink = document.querySelector('.nav-link[href="#"]');
+        const loginNavLink = document.querySelector('.nav-link.login');
     
         if (isLoggedIn) {
             const username = localStorage.getItem("username");

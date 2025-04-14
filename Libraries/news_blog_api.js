@@ -79,7 +79,7 @@ function displayNews() {
     } else if (article.type === 'video') {
       newsCard.innerHTML = `
         <img src="${article.urlToImage || 'https://via.placeholder.com/300x180'}" />
-        <h2>🎥 ${article.title}</h2>
+        <h2>${article.title}</h2>
         <div class="video-content">${article.body_html}</div>
         <a href="${article.url}" target="_blank">Watch on DEV.to</a>
       `;

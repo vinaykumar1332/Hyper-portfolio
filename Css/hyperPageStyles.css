@@ -420,6 +420,7 @@ img {
 .about-description {
   text-align: center;
   margin-bottom: var(--margin-bottom-0-2-5);
+  padding: 10px;
 }
 
 .about-info {
@@ -485,14 +486,15 @@ img {
   animation: progressBarAnimation 1s linear forwards;
   /* Adjust animation duration and timing */
 }
-
-
 .button {
   position: relative;
   overflow: hidden;
   cursor: pointer;
   font-family: var(--small-font-size);
   font-weight: 600;
+  @media screen and (max-width: 578px) {
+    margin-bottom: 10px;
+  }
 }
 
 .button-icon {
@@ -1145,6 +1147,7 @@ img {
 
   .home-scroll {
     display: block;
+    margin-left: -55px;
   }
 
   .home-scroll-button {

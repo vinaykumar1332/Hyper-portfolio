@@ -488,8 +488,8 @@ function startDownload() {
 
 function downloadFile(progressBar, button) {
   const link = document.createElement('a');
-  link.href = '#';
-  link.download = 'NO-FILE1.pdf';
+  link.href = 'Vinay-kumar-pudi.pdf';
+  link.download = 'Vinay-kumar-pudi.pdf'; 
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

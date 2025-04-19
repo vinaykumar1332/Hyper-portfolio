@@ -4,28 +4,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta http-equiv="expires" content="Wed, 21 Oct 2026 07:28:00 GMT">
     <meta name="google" content="nositelinkssearchbox">
-    <meta name="description" content="Vinay Kumar's portfolio showcasing web development projects and skills">
-     <meta name="keywords" content="Vinay Kumar, portfolio, web developer, GitHub Pages">  
-    <meta name="description"
-        content="Welcome to vinay kumar pudi portfolio website. Explore a curated collection of my latest projects showcasing my skills in javascript. From web design and development to graphic design and more, discover how I can bring creativity and innovation to your next project.">
-    <title>Vinay Kumar</title>
-    <meta name="keywords"
-        content="Vinay Kumar, portfolio, web development, JavaScript, HTML, CSS, React, frontend developer">
+    <meta name="description" content="Vinay Kumar's portfolio website showcasing web development skills in JavaScript, React, and responsive design.">
+    <meta name="keywords" content="Vinay Kumar, portfolio, web development, JavaScript, HTML, CSS, React, frontend developer">
     <meta name="author" content="Vinay Kumar">
     <meta name="robots" content="index, follow">
-    <meta name="google" content="nositelinkssearchbox">
+    <title>Vinay Kumar</title>
     <link rel="stylesheet" href="Css/Minfier/swiper-bundle.min.css">
     <link rel="stylesheet" href="Css/hyperPageStyles.css" media="all">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="Assets/favicon-v.svg" />
 </head>
-
 <body class="icon-Theme">
     <!-- Preloader  -->
     <div id="preloader">
@@ -517,6 +509,50 @@
                 </div>
             </div>
         </section>
+        <section id="testimonials" class="testimonials-section">
+            <h2>Testimonials</h2>
+            <div class="swiper testimonial-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide testimonial-card">
+                  <p>"Vinay is a skilled frontend dev..."</p>
+                  <span class="button button-flex button-small button-link services-button" onclick="openModal(0)">
+                    View more
+                    <i class="fa-solid fa-arrow-right button-icon" loading="lazy lazy-icon"></i>
+                  </span>
+                </div>
+                <div class="swiper-slide testimonial-card">
+                  <p>"Great at solving UI problems..."</p>
+                  <span class="button button-flex button-small button-link services-button" onclick="openModal(1)">
+                    View more
+                    <i class="fa-solid fa-arrow-right button-icon" loading="lazy lazy-icon"></i>
+                  </span>
+                </div>
+                <div class="swiper-slide testimonial-card">
+                  <p>"Brings creativity and structure..."</p>
+                  <span class="button button-flex button-small button-link services-button" onclick="openModal(2)">
+                    View more
+                    <i class="fa-solid fa-arrow-right button-icon" loading="lazy lazy-icon"></i>
+                  </span>
+                </div>
+                <div class="swiper-slide testimonial-card">
+                  <p>"Great at solving UI problems..."</p>
+                  <span class="button button-flex button-small button-link services-button" onclick="openModal(3)">
+                    View more
+                    <i class="fa-solid fa-arrow-right button-icon" loading="lazy lazy-icon"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          
+            <div id="testimonialModal" class="testimonial-modal">
+              <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">×</span>
+                <p id="modalText"></p>
+                <h4 id="modalAuthor"></h4>
+              </div>
+            </div>
+          </section>
+          
         <!-- footer  -->
         <footer class="footer">
             <div class="footer-bg">

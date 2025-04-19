@@ -2532,4 +2532,143 @@ li {
   display: none;
 }
 
+.testimonials-section {
+  padding: 50px 20px;
+  background: transparent;
+  text-align: center;
+  @media (max-width: 576px) {
+    padding: 20px 10px;
+    
+  }
+}
 
+.testimonials-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 576px) {
+  .testimonials-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+}
+
+.testimonial-swiper {
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* Testimonial Card Styles */
+.swiper-slide.testimonial-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--container-color);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .swiper-slide.testimonial-card {
+    width: 80%;
+    height: 110px;
+  }
+}
+
+.testimonial-card:hover {
+  transform: scale(1.05);
+}
+/* Connector line between cards */
+.swiper-slide.testimonial-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px; /* Half of spaceBetween (30px) */
+  width: 30px;
+  height: 2px;
+  background-color: var(--first-color);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Coupling dot in the center of the line */
+.swiper-slide.testimonial-card:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -13px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--first-color);
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  z-index: 2;
+}
+
+.testimonial-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: var(--first-color-second);
+}
+
+.modal-content h4 {
+  color: #0077cc;
+}
+
+.close-btn {
+  position: absolute;
+  top: 30%;
+  right: 30px;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.services-button i.fa-solid::before {
+  position: relative;
+  top: -1px;
+  font-size: 1.2rem;
+}

@@ -79,19 +79,17 @@ function scrollActive() {
     const sectionTop = current.offsetTop - 50;
     const sectionId = current.getAttribute("id");
 
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document
-        .querySelector(".nav-menu a[href*=" + sectionId + "]")
-        .classList.add("active-link");
-    } else {
-      document
-        .querySelector(".nav-menu a[href*=" + sectionId + "]")
-        .classList.remove("active-link");
+    const navLink = document.querySelector(`.nav-menu a[href*="${sectionId}"]`);
+    if (navLink) {
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLink.classList.add("active-link");
+      } else {
+        navLink.classList.remove("active-link");
+      }
     }
   });
 }
 window.addEventListener("scroll", scrollActive);
-
 // change bg header
 function scrollHeader() {
   const nav = document.getElementById("header");
@@ -856,3 +854,75 @@ skills.forEach((skill) => {
 
 
 
+const testimonials = [
+  {
+    text: "Vinay is a skilled frontend developer with great attention to detail. His code is clean and maintainable.",
+    author: "Teammate, TCS"
+  },
+  {
+    text: "Great at solving UI problems under pressure. Always brings in fresh ideas and ensures deadlines are met.",
+    author: "Project Mentor"
+  },
+  {
+    text: "His passion for learning and implementing new tech like React and GenAI tools is impressive.",
+    author: "Bootcamp Instructor"
+  },
+  {
+    text: "His passion for learning and implementing new tech like React and GenAI tools is impressive.",
+    author: "Bootcamp Instructor"
+  }
+];
+
+function openModal(index) {
+  document.getElementById("modalText").innerText = testimonials[index].text;
+  document.getElementById("modalAuthor").innerText = `— ${testimonials[index].author}`;
+  document.getElementById("testimonialModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("testimonialModal").style.display = "none";
+  swiper.autoplay.start();
+}
+
+const swiper = new Swiper('.testimonial-swiper', {
+  slidesPerView: 'auto',
+  spaceBetween: 30,
+  loop: true,
+  speed: 10000,
+  autoplay: {
+    delay: 0,
+    disableOnInteraction: false, // Allows autoplay to continue after drag
+  },
+  freeMode: {
+    enabled: true,
+    momentum: false // Prevents overscrolling bounce
+  },
+  grabCursor: true,
+  breakpoints: {
+    320: { slidesPerView: 1.2 },
+    480: { slidesPerView: 1.5 },
+    768: { slidesPerView: 2.2 },
+    1024: { slidesPerView: 3.5 }
+  }
+});
+
+// Pause autoplay when section not visible
+const testimonialSection = document.querySelector('#testimonials');
+const observer1 = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        swiper.autoplay.start();
+      } else {
+        swiper.autoplay.stop();
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
+observer1.observe(testimonialSection);
+
+// Pause on hover
+const swiperEl = document.querySelector('.testimonial-swiper');
+swiperEl.addEventListener('mouseenter', () => swiper.autoplay.stop());
+swiperEl.addEventListener('mouseleave', () => swiper.autoplay.start());

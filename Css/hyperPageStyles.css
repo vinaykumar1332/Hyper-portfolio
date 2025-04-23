@@ -49,7 +49,8 @@
 
 
 
-
+  --blob-color: #d0e7ff;
+  --blob-size: clamp(200px, 40vw, 350px);
   --preloader-backgorund: #FFFFFF;
 
   @media screen and (min-width: 968px) {

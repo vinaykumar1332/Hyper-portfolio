@@ -896,3 +896,35 @@ observer1.observe(testimonialSection);
 const swiperEl = document.querySelector('.testimonial-swiper');
 swiperEl.addEventListener('mouseenter', () => swiper.autoplay.stop());
 swiperEl.addEventListener('mouseleave', () => swiper.autoplay.start());
+
+
+<script>
+      const scriptURL =                       
+      "https://script.google.com/macros/s/AKfycbxs1Vigr-HLZO1co-Ht6itcH_49kRbzJE_QLFMz0AkvTVPFICsF8bbz59qsJWhnGrXU/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var formData = new FormData(form);
+        var ex = document.getElementById("ex").checked;
+        var age = document.getElementById("age").checked;
+
+        if (age) {
+          formData.append("age", "Yes");
+        } else {
+          formData.append("age", "No");
+        }
+        if (ex) {
+          formData.append("ex", "Yes");
+        } else {
+          formData.append("ex", "No");
+        }
+
+        fetch(scriptURL, { method: "POST", body: formData })
+          .then((response) => {
+            swal("Done", "Submitted Successfully.", "success");
+          })
+          .catch((error) => {
+            swal("Error", "Something went wrong. please try again!", "error");
+          });
+      });
+    </script>

@@ -364,36 +364,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// -----------form_notification-------------
-// document.getElementById('contactForm').addEventListener('submit', function(event) {
-//   event.preventDefault(); // Prevent default form submission
-//   simulateFormSubmission();
-// });
-
-// function simulateFormSubmission() {
-//   // Simulate form submission delay (1.5 seconds)
-//   setTimeout(function() {
-//       showNotificationForm();
-//   }, 500);
-// }
-
-// function showNotificationForm() {
-//   const notification = document.getElementById('notificationForm');
-//   notification.style.display = 'block'; // Display the notification
-// }
-
-// const feedbackInput = document.querySelectorAll('input feedback-input')
-// function closeNotification() {
-//   const notification = document.getElementById('notificationForm');
-//   document.getElementById("contactForm").reset();
-//   notification.style.display = 'none'; // Hide the notification
-//   setTimeout(function() { 
-//       feedbackInput.Value='';
-//   }, 500);
-// }
-// window.scrollTo(0, 0);
-
-
 
 // -----------slide -carousel------
 let slideIndex = 1;

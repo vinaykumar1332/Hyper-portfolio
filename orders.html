@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rice Bag Order Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    button {
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .success {
+      color: green;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Order Rice Bags</h2>
+
+  <form id="orderForm">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="mobile">Mobile Number</label>
+    <input type="tel" id="mobile" name="mobile" required>
+
+    <label for="address">Full Address</label>
+    <textarea id="address" name="address" rows="3" required></textarea>
+
+    <label for="pincode">Pincode</label>
+    <input type="text" id="pincode" name="pincode" required>
+
+    <label for="quantity">Select Quantity</label>
+    <select id="quantity" name="quantity" required>
+      <option value="5kg">5 KG</option>
+      <option value="10kg">10 KG</option>
+      <option value="25kg">25 KG</option>
+      <option value="50kg">50 KG</option>
+    </select>
+
+    <label for="date">Preferred Delivery Date</label>
+    <input type="date" id="date" name="date" required>
+
+    <button type="submit">Submit Order</button>
+    <p class="success" id="successMsg"></p>
+  </form>
+
+  <script>
+    const form = document.getElementById("orderForm");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = {
+        name: form.name.value,
+        mobile: form.mobile.value,
+        address: form.address.value,
+        pincode: form.pincode.value,
+        quantity: form.quantity.value,
+        date: form.date.value,
+        location: ""  // Optional: can be updated later
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbzp9ttES6oVB9LBTsI25DpJOaRvqcKGvliJn4KuhY-lYyTVUwhhBwT7NSfbeMWCF-9kIw/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(() => {
+        successMsg.textContent = "Order submitted successfully!";
+        form.reset();
+      })
+      .catch(() => {
+        successMsg.textContent = "Error submitting order. Please try again.";
+      });
+    });
+  </script>
+
+</body>
+</html>

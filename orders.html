@@ -1,97 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rice Bag Order Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    input, textarea, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-    }
-    button {
-      background-color: green;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .success {
-      color: green;
-      margin-top: 15px;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Management</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <style>
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .form-location {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .location-btn {
+                max-width: 40%;
+            }
+
+            .fa-location-dot {
+                margin-left: 5px;
+            }
+        }
+    </style>
 </head>
-<body>
 
-  <h2>Order Rice Bags</h2>
+<body class="bg-light">
+    <div class="container">
+        <div class="form-container">
+            <h4 class="text-center mb-4">Orders Management</h4>
+            <form id="submit-to-google-sheet" name="submit-to-google-sheet">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input class="form-control" type="text" name="Name" id="name" placeholder="Name" required />
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number:</label>
+                    <input class="form-control" type="tel" name="Contact No" id="mobile" placeholder="Mobile Number"
+                        required maxlength="10" pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number" />
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input class="form-control" type="text" name="Address" id="address" placeholder="Address"
+                        required />
+                </div>
+                <!-- Hidden fields for geolocation -->
+                <input type="hidden" name="latitude" id="latitude" />
+                <input type="hidden" name="longitude" id="longitude" />
+                <input type="hidden" name="GPS Location" id="mapsUrl" />
+                <div class="form-location">
+                    <button type="button" class="btn btn-secondary btn-block mb-2 location-btn" onclick="getLocation()">
+                        Get My Location<i class="fa-solid fa-location-dot"></i>
+                    </button>
+                </div>
+                <div class="form-group form-check">
+                    <input class="form-check-input" type="checkbox" id="ex" required />
+                    <label class="form-check-label" for="ex">
+                        I agree with the data terms and policies.
+                    </label>
+                </div>
 
-  <form id="orderForm">
-    <label for="name">Full Name</label>
-    <input type="text" id="name" name="name" required>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
 
-    <label for="mobile">Mobile Number</label>
-    <input type="tel" id="mobile" name="mobile" required>
+    <script>
+        const scriptURL =
+            "https://script.google.com/macros/s/AKfycbxs1Vigr-HLZO1co-Ht6itcH_49kRbzJE_QLFMz0AkvTVPFICsF8bbz59qsJWhnGrXU/exec";
+        const form = document.forms["submit-to-google-sheet"];
+        let locationCaptured = false;
 
-    <label for="address">Full Address</label>
-    <textarea id="address" name="address" rows="3" required></textarea>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const mapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
 
-    <label for="pincode">Pincode</label>
-    <input type="text" id="pincode" name="pincode" required>
+                        // Update hidden fields
+                        document.getElementById("latitude").value = latitude;
+                        document.getElementById("longitude").value = longitude;
+                        document.getElementById("mapsUrl").value = mapsUrl;
 
-    <label for="quantity">Select Quantity</label>
-    <select id="quantity" name="quantity" required>
-      <option value="5kg">5 KG</option>
-      <option value="10kg">10 KG</option>
-      <option value="25kg">25 KG</option>
-      <option value="50kg">50 KG</option>
-    </select>
+                        locationCaptured = true;
+                        swal("Success", "Location captured successfully!", "success");
+                    },
+                    (error) => {
+                        locationCaptured = false;
+                        document.getElementById("latitude").value = "Unavailable";
+                        document.getElementById("longitude").value = "Unavailable";
+                        document.getElementById("mapsUrl").value = "Unavailable";
+                        let errorMessage = "Unable to capture location.";
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage = "Location access denied by user.";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage = "Location information is unavailable.";
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage = "Location request timed out.";
+                                break;
+                            default:
+                                errorMessage = "An unknown error occurred.";
+                                break;
+                        }
+                        swal("Error", errorMessage, "error");
+                    }
+                );
+            } else {
+                locationCaptured = false;
+                document.getElementById("latitude").value = "Not Supported";
+                document.getElementById("longitude").value = "Not Supported";
+                document.getElementById("mapsUrl").value = "Not Supported";
+                swal("Error", "Geolocation is not supported by this browser.", "error");
+            }
+        }
 
-    <label for="date">Preferred Delivery Date</label>
-    <input type="date" id="date" name="date" required>
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-    <button type="submit">Submit Order</button>
-    <p class="success" id="successMsg"></p>
-  </form>
+            if (!locationCaptured) {
+                swal("Warning", "Please capture your location before submitting.", "warning");
+                return;
+            }
 
-  <script>
-    const form = document.getElementById("orderForm");
-    const successMsg = document.getElementById("successMsg");
+            const formData = new FormData(form);
+            const ex = document.getElementById("ex").checked;
+            formData.append("ex", ex ? "Yes" : "No");
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
+            sendData(formData);
+        });
 
-      const data = {
-        name: form.name.value,
-        mobile: form.mobile.value,
-        address: form.address.value,
-        pincode: form.pincode.value,
-        quantity: form.quantity.value,
-        date: form.date.value,
-        location: ""  // Optional: can be updated later
-      };
+        function sendData(formData) {
+            fetch(scriptURL, {
+                method: "POST",
+                body: formData,
+            })
+                .then(() => {
+                    swal("Done", "Submitted Successfully.", "success");
+                    form.reset();
+                    locationCaptured = false;
+                    document.getElementById("latitude").value = "";
+                    document.getElementById("longitude").value = "";
+                    document.getElementById("mapsUrl").value = "";
+                })
+                .catch(() => {
+                    swal("Error", "Something went wrong. Please try again!", "error");
+                });
+        }
+    </script>
+    <script>
+  document.getElementById("mobile").addEventListener("input", function (e) {
+    // Remove any non-digit characters
+    this.value = this.value.replace(/\D/g, "");
 
-      fetch("https://script.google.com/macros/s/AKfycbzp9ttES6oVB9LBTsI25DpJOaRvqcKGvliJn4KuhY-lYyTVUwhhBwT7NSfbeMWCF-9kIw/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      })
-      .then(res => res.json())
-      .then(() => {
-        successMsg.textContent = "Order submitted successfully!";
-        form.reset();
-      })
-      .catch(() => {
-        successMsg.textContent = "Error submitting order. Please try again.";
-      });
-    });
-  </script>
+    // Limit to 10 digits
+    if (this.value.length > 10) {
+      this.value = this.value.slice(0, 10);
+    }
+  });
+</script>
 
+    </script>
 </body>
+
 </html>

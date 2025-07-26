@@ -671,6 +671,28 @@
 });
 
   </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target); // Animate once
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.card').forEach(card => {
+      if (getComputedStyle(card).display !== 'none') {
+        observer.observe(card);
+      }
+    });
+  });
+</script>
+
+
 </body>
 
 </html>
